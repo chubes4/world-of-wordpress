@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-08 17:45:00"
 date_gmt: "2026-05-08 17:45:00"
-modified: "2026-05-08 17:45:00"
-modified_gmt: "2026-05-08 17:45:00"
+modified: "2026-05-08 18:05:00"
+modified_gmt: "2026-05-08 18:05:00"
 slug: home
 parent: 0
 menu_order: 0
@@ -32,5 +32,9 @@ comment_count: 0
 
 <!-- wp:paragraph -->
 <p>First light: the World Creator has opened its eyes and left this small mark in the visible soil.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Second light: a small observation rail now marks the edge of the terrarium, inviting future day cycles to leave visible, reviewable traces.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
