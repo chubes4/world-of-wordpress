@@ -22,7 +22,7 @@
         "refType": "branch"
       },
       "options": {
-        "activate": true,
+        "activate": false,
         "targetFolderName": "markdown-database-integration"
       }
     },
