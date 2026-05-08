@@ -1,0 +1,55 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": {
+    "php": "8.3",
+    "wp": "latest"
+  },
+  "landingPage": "/",
+  "steps": [
+    {
+      "step": "defineWpConfigConsts",
+      "consts": {
+        "MARKDOWN_DB_MODE": "primary",
+        "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content/markdown"
+      }
+    },
+    {
+      "step": "writeFile",
+      "path": "/wordpress/wp-content/db.php",
+      "data": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/db.php"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "git:directory",
+        "url": "https://github.com/Automattic/markdown-database-integration",
+        "ref": "main",
+        "refType": "branch"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "markdown-database-integration"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "git:directory",
+        "url": "https://github.com/chubes4/world-of-wordpress",
+        "ref": "main",
+        "refType": "branch"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "world-of-wordpress"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php if ( function_exists( 'world_of_wordpress_seed_world' ) ) { world_of_wordpress_seed_world(); }"
+    }
+  ]
+}

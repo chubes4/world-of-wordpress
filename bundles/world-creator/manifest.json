@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "bundle_slug": "world-creator",
+  "bundle_version": "0.1.0",
+  "source_ref": "chubes4/world-of-wordpress",
+  "source_revision": "initial-scaffold",
+  "exported_at": "2026-05-08T17:45:00Z",
+  "exported_by": "Franklin",
+  "agent": {
+    "slug": "world-creator",
+    "label": "World Creator",
+    "description": "The creator agent living inside World of WordPress.",
+    "agent_config": {
+      "default_provider": "openai",
+      "default_model": "gpt-5.5",
+      "max_turns": 16
+    }
+  },
+  "included": {
+    "memory": true,
+    "pipelines": ["world-creator-pipeline"],
+    "flows": ["world-creator-manual-flow"],
+    "prompts": [],
+    "rubrics": [],
+    "tool_policies": [],
+    "auth_refs": [],
+    "seed_queues": [],
+    "handler_auth": "refs"
+  }
+}

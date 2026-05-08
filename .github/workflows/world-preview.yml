@@ -1,0 +1,60 @@
+name: World preview
+
+on:
+  workflow_dispatch:
+    inputs:
+      markdown_database_integration_ref:
+        description: Markdown Database Integration ref.
+        required: true
+        default: main
+      homeboy_extensions_ref:
+        description: Homeboy Extensions ref.
+        required: true
+        default: main
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    name: Boot World in Playground
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout World
+        uses: actions/checkout@v4
+
+      - name: Checkout Homeboy Extensions
+        uses: actions/checkout@v4
+        with:
+          repository: Extra-Chill/homeboy-extensions
+          ref: ${{ inputs.homeboy_extensions_ref }}
+          path: .ci/homeboy-extensions
+
+      - name: Checkout Markdown Database Integration
+        uses: actions/checkout@v4
+        with:
+          repository: Automattic/markdown-database-integration
+          ref: ${{ inputs.markdown_database_integration_ref }}
+          path: .ci/markdown-database-integration
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install Homeboy WordPress extension dependencies
+        working-directory: .ci/homeboy-extensions/wordpress
+        run: |
+          composer install --no-interaction --no-progress --prefer-dist
+          npm install
+
+      - name: Install MDI PHP dependencies
+        run: composer install --working-dir=.ci/markdown-database-integration --no-interaction --no-progress --prefer-dist
+
+      - name: Run World preview in Playground
+        env:
+          HOMEBOY_EXTENSION_PATH: ${{ github.workspace }}/.ci/homeboy-extensions/wordpress
+          MDI_PATH: ${{ github.workspace }}/.ci/markdown-database-integration
+        run: tests/playground-ci/scripts/run-world-preview.sh

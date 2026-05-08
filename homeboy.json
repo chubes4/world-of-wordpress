@@ -1,0 +1,14 @@
+{
+  "id": "world-of-wordpress",
+  "name": "World of WordPress",
+  "extensions": {
+    "wordpress": {
+      "settings": {
+        "wp_config_defines": {
+          "MARKDOWN_DB_MODE": "primary",
+          "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content/markdown"
+        }
+      }
+    }
+  }
+}

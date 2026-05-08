@@ -1,0 +1,40 @@
+{
+  "max_items": [],
+  "name": "World Creator - Manual",
+  "pipeline_slug": "world-creator-pipeline",
+  "schedule": "manual",
+  "schema_version": 1,
+  "slug": "world-creator-manual-flow",
+  "steps": [
+    {
+      "enabled_tools": [
+        "list_github_issues",
+        "get_github_issue",
+        "manage_github_issue",
+        "list_github_pulls",
+        "get_github_pull",
+        "get_github_pull_files",
+        "get_github_pull_review_context",
+        "workspace_worktree_add",
+        "workspace_read",
+        "workspace_write",
+        "workspace_edit",
+        "workspace_git_status",
+        "workspace_git_commit",
+        "workspace_git_push",
+        "create_github_pull_request",
+        "comment_github_pull_request"
+      ],
+      "handler_configs": [],
+      "prompt_queue": [
+        {
+          "added_at": "2026-05-08T17:45:00Z",
+          "prompt": "Begin a new day cycle. Inspect your world, plan the next visible mutation, keep WordPress Playground loadable, and open a pull request for repository changes."
+        }
+      ],
+      "queue_mode": "static",
+      "step_position": 0,
+      "step_type": "ai"
+    }
+  ]
+}
