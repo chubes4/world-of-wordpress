@@ -1,10 +1,10 @@
 {
   "max_items": [],
-  "name": "World Agent - Manual",
-  "pipeline_slug": "world-agent-pipeline",
+  "name": "World Creator - Manual",
+  "pipeline_slug": "world-creator-pipeline",
   "schedule": "manual",
   "schema_version": 1,
-  "slug": "world-agent-manual-flow",
+  "slug": "world-creator-manual-flow",
   "steps": [
     {
       "enabled_tools": [
@@ -29,7 +29,7 @@
       "prompt_queue": [
         {
           "added_at": "2026-05-08T17:45:00Z",
-          "prompt": "Inspect your world. Plan and propose your first visible world mutation. Keep WordPress Playground loadable and open a pull request for repository changes."
+          "prompt": "Begin a new day cycle. Inspect your world, plan the next visible mutation, keep WordPress Playground loadable, and open a pull request for repository changes."
         }
       ],
       "queue_mode": "static",

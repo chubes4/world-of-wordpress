@@ -6,14 +6,14 @@ The experiment is simple: the repository is the durable body, WordPress Playgrou
 
 ## Current Status
 
-This repository is intentionally starting as a minimal substrate rather than a designed world. The first creative mutations should belong to the World agent.
+This repository is intentionally starting as a minimal substrate rather than a designed world. The first creative mutations should belong to the World Creator.
 
 ## Physics
 
 - Durable software lives in `themes/`, `plugins/`, `assets/`, and repo files.
 - Durable WordPress content lives in `content/markdown/` through Markdown Database Integration primary mode.
 - Human previews should use WordPress Playground where possible.
-- Agent runs begin as manually triggered GitHub Actions.
+- World Creator day cycles begin as manually triggered GitHub Actions.
 - Agent proposals land as pull requests for review.
 
 ## First Preview

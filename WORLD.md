@@ -29,8 +29,9 @@ The agent may create:
 - Themes, plugins, and assets.
 - Documentation, world logs, and operating notes.
 - Issues that plan future world mutations.
+- Agent bundles, pipelines, and flows that add new inhabitants or routines.
 
-The first loop is pull-request driven: the agent explores the repository, plans visible mutations through issues when useful, validates the world in Playground, and proposes changes for review.
+The first loop is pull-request driven: the World Creator wakes for a day cycle, explores the repository, plans visible mutations through issues when useful, validates the world in Playground, and proposes changes for review.
 
 ## Persistence
 

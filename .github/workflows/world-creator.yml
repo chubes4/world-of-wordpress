@@ -1,12 +1,12 @@
-name: World agent
+name: World Creator
 
 on:
   workflow_dispatch:
     inputs:
       prompt:
-        description: Instruction for the World Agent.
+        description: Instruction for the World Creator.
         required: true
-        default: Inspect your world and propose the first visible mutation as a pull request.
+        default: Begin a day cycle. Inspect your world and propose the next visible mutation as a pull request.
       openai_model:
         description: OpenAI model to use for the imported agent flow.
         required: true
@@ -34,8 +34,8 @@ permissions:
   pull-requests: write
 
 jobs:
-  world-agent:
-    name: Run World Agent manually
+  world-creator:
+    name: Run World Creator day cycle
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -96,5 +96,5 @@ jobs:
 
       - name: Placeholder
         run: |
-          echo "World Agent runtime scaffold is present. The first runnable agent probe will land after the scaffold PR is reviewed."
+          echo "World Creator runtime scaffold is present. The first runnable day-cycle probe will land after the scaffold PR is reviewed."
           echo "Prompt: ${{ inputs.prompt }}"
