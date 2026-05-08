@@ -21,6 +21,7 @@ $home           = get_page_by_path( 'home', OBJECT, 'page' );
 $hello_world    = get_page_by_path( 'hello-world', OBJECT, 'post' );
 $sample_page    = get_page_by_path( 'sample-page', OBJECT, 'page' );
 $privacy_policy = get_page_by_path( 'privacy-policy', OBJECT, 'page' );
+$comment_count  = count( get_comments( array( 'status' => 'all' ) ) );
 
 $metadata['home_page_found']   = (bool) $home;
 $metadata['home_page_id']      = $home ? (int) $home->ID : 0;
@@ -28,6 +29,7 @@ $metadata['front_page_id']     = (int) get_option( 'page_on_front' );
 $metadata['hello_world_id']    = $hello_world ? (int) $hello_world->ID : 0;
 $metadata['sample_page_id']    = $sample_page ? (int) $sample_page->ID : 0;
 $metadata['privacy_policy_id'] = $privacy_policy ? (int) $privacy_policy->ID : 0;
+$metadata['comment_count']     = $comment_count;
 
 $content_has_seed = $home && str_contains( (string) $home->post_content, 'World of WordPress' );
 
@@ -38,6 +40,7 @@ return array(
 		'home_page_found'          => $home ? 1 : 0,
 		'home_content_seeded'      => $content_has_seed ? 1 : 0,
 		'sample_content_removed'   => ( ! $hello_world && ! $sample_page && ! $privacy_policy ) ? 1 : 0,
+		'default_comments_removed' => 0 === $comment_count ? 1 : 0,
 	),
 	'metadata' => $metadata,
 );

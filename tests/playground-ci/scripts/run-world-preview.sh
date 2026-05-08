@@ -35,6 +35,13 @@ SETTINGS_JSON=$(jq -nc \
             MARKDOWN_DB_MODE: "primary",
             MARKDOWN_DB_CONTENT_DIR: "/wordpress/wp-content/plugins/world-of-wordpress/content"
         },
+        playground_file_mounts: [
+            {
+                from_dependency: "markdown-database-integration",
+                from: "db.php",
+                to: "/wordpress/wp-content/db.php"
+            }
+        ],
         playground_workloads: [
             {
                 id: "world-preview",
@@ -68,8 +75,9 @@ primary=$(jq -r "$scenario | .metrics.markdown_db_primary_mode_mean // .metrics.
 home=$(jq -r "$scenario | .metrics.home_page_found_mean // .metrics.home_page_found // 0" "$RESULTS_TMPFILE")
 seed=$(jq -r "$scenario | .metrics.home_content_seeded_mean // .metrics.home_content_seeded // 0" "$RESULTS_TMPFILE")
 sample_removed=$(jq -r "$scenario | .metrics.sample_content_removed_mean // .metrics.sample_content_removed // 0" "$RESULTS_TMPFILE")
+comments_removed=$(jq -r "$scenario | .metrics.default_comments_removed_mean // .metrics.default_comments_removed // 0" "$RESULTS_TMPFILE")
 
-if [ "$dropin" = "1" ] && [ "$primary" = "1" ] && [ "$home" = "1" ] && [ "$seed" = "1" ] && [ "$sample_removed" = "1" ]; then
+if [ "$dropin" = "1" ] && [ "$primary" = "1" ] && [ "$home" = "1" ] && [ "$seed" = "1" ] && [ "$sample_removed" = "1" ] && [ "$comments_removed" = "1" ]; then
     echo "World preview PASSED"
     exit 0
 fi
