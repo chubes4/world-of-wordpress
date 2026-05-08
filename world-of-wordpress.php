@@ -44,6 +44,10 @@ function world_of_wordpress_seed_world(): void {
 		}
 	}
 
+	foreach ( get_comments( array( 'status' => 'all' ) ) as $comment ) {
+		wp_delete_comment( (int) $comment->comment_ID, true );
+	}
+
 	$home = get_page_by_path( 'home', OBJECT, 'page' );
 	if ( $home ) {
 		update_option( 'show_on_front', 'page' );
