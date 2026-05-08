@@ -35,6 +35,9 @@ function world_of_wordpress_seed_world(): void {
 		markdown_database_integration_import_seed_posts_after_install();
 	}
 
+	update_option( 'blogname', 'World of WordPress' );
+	update_option( 'blogdescription', 'A living WordPress Playground terrarium.' );
+
 	foreach ( array( 'hello-world', 'sample-page', 'privacy-policy' ) as $slug ) {
 		foreach ( array( 'post', 'page' ) as $post_type ) {
 			$sample = get_page_by_path( $slug, OBJECT, $post_type );
