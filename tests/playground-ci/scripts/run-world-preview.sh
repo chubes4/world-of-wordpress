@@ -11,6 +11,10 @@ if [ ! -f "$EXTENSION_PATH/scripts/bench/bench-runner.sh" ]; then
     echo "ERROR: Homeboy WordPress extension not found at $EXTENSION_PATH" >&2
     exit 1
 fi
+if [ ! -f "$EXTENSION_PATH/scripts/validation/validate-playground-blueprint.sh" ]; then
+    echo "ERROR: Homeboy Playground Blueprint validator not found at $EXTENSION_PATH" >&2
+    exit 1
+fi
 if [ ! -d "$MDI_PATH" ]; then
     echo "ERROR: Markdown Database Integration not found at $MDI_PATH" >&2
     exit 1
@@ -25,6 +29,13 @@ cleanup() {
     rm -f "$RESULTS_TMPFILE"
 }
 trap cleanup EXIT
+
+BLUEPRINT_ARTIFACT_DIR="${HOMEBOY_ARTIFACT_DIR:-${RUNNER_TEMP:-${TMPDIR:-/tmp}}/world-blueprint-validation}"
+"$EXTENSION_PATH/scripts/validation/validate-playground-blueprint.sh" \
+    "$REPO_ROOT/blueprints/world.json" \
+    --wp "${PLAYGROUND_BLUEPRINT_WORDPRESS_VERSION:-latest}" \
+    --php "${PLAYGROUND_BLUEPRINT_PHP_VERSION:-8.3}" \
+    --artifact-dir "$BLUEPRINT_ARTIFACT_DIR"
 
 SETTINGS_JSON=$(jq -nc \
     --arg mdi "$MDI_PATH" \
