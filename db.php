@@ -14,7 +14,7 @@ if ( ! defined( 'MARKDOWN_DB_MODE' ) ) {
 	define( 'MARKDOWN_DB_MODE', 'primary' );
 }
 if ( ! defined( 'MARKDOWN_DB_CONTENT_DIR' ) ) {
-	define( 'MARKDOWN_DB_CONTENT_DIR', WP_CONTENT_DIR . '/plugins/world-of-wordpress/content/markdown' );
+	define( 'MARKDOWN_DB_CONTENT_DIR', WP_CONTENT_DIR . '/plugins/world-of-wordpress/content' );
 }
 
 $sqlite_plugin_implementation_folder_path = realpath( __DIR__ . '/mu-plugins/sqlite-database-integration' );

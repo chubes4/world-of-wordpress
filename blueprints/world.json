@@ -10,7 +10,7 @@
       "step": "defineWpConfigConsts",
       "consts": {
         "MARKDOWN_DB_MODE": "primary",
-        "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content/markdown"
+        "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content"
       }
     },
     {

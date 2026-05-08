@@ -13,7 +13,7 @@ This repository is intentionally starting as a minimal substrate rather than a d
 ## Physics
 
 - Durable software lives in `themes/`, `plugins/`, `assets/`, and repo files.
-- Durable WordPress content lives in `content/markdown/` through Markdown Database Integration primary mode.
+- Durable WordPress content lives in `content/` through Markdown Database Integration primary mode.
 - Human previews should use WordPress Playground where possible.
 - World Creator day cycles begin as manually triggered GitHub Actions.
 - Agent proposals land as pull requests for review.
