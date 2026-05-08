@@ -13,15 +13,19 @@ $metadata = array(
 	'markdown_db_content_dir' => defined( 'MARKDOWN_DB_CONTENT_DIR' ) ? MARKDOWN_DB_CONTENT_DIR : '',
 );
 
-$home = get_page_by_path( 'home', OBJECT, 'page' );
-if ( $home ) {
-	update_option( 'show_on_front', 'page' );
-	update_option( 'page_on_front', (int) $home->ID );
+if ( function_exists( 'world_of_wordpress_seed_world' ) ) {
+	world_of_wordpress_seed_world();
 }
+
+$home = get_page_by_path( 'home', OBJECT, 'page' );
+$hello_world = get_page_by_path( 'hello-world', OBJECT, 'post' );
+$sample_page = get_page_by_path( 'sample-page', OBJECT, 'page' );
 
 $metadata['home_page_found'] = (bool) $home;
 $metadata['home_page_id']    = $home ? (int) $home->ID : 0;
 $metadata['front_page_id']   = (int) get_option( 'page_on_front' );
+$metadata['hello_world_id']  = $hello_world ? (int) $hello_world->ID : 0;
+$metadata['sample_page_id']  = $sample_page ? (int) $sample_page->ID : 0;
 
 $content_has_seed = $home && str_contains( (string) $home->post_content, 'World of WordPress' );
 
@@ -31,6 +35,7 @@ return array(
 		'markdown_db_primary_mode'  => defined( 'MARKDOWN_DB_MODE' ) && 'primary' === MARKDOWN_DB_MODE ? 1 : 0,
 		'home_page_found'          => $home ? 1 : 0,
 		'home_content_seeded'      => $content_has_seed ? 1 : 0,
+		'sample_content_removed'   => ( ! $hello_world && ! $sample_page ) ? 1 : 0,
 	),
 	'metadata' => $metadata,
 );

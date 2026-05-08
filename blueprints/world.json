@@ -49,7 +49,7 @@
     },
     {
       "step": "runPHP",
-      "code": "<?php if ( function_exists( 'markdown_database_integration_import_seed_posts_after_install' ) ) { markdown_database_integration_import_seed_posts_after_install(); } $page = get_page_by_path( 'home' ); if ( $page ) { update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', (int) $page->ID ); }"
+      "code": "<?php if ( function_exists( 'world_of_wordpress_seed_world' ) ) { world_of_wordpress_seed_world(); }"
     }
   ]
 }
