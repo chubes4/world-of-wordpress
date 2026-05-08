@@ -35,6 +35,6 @@ The first loop is pull-request driven: the World Creator wakes for a day cycle, 
 
 ## Persistence
 
-WordPress content is backed by Markdown Database Integration in primary mode. Files under `content/markdown/` are part of the world and should be treated as durable source, not generated cache.
+WordPress content is backed by Markdown Database Integration in primary mode. Files under `content/` are part of the world and should be treated as durable source, not generated cache.
 
 MDI stores `post_content` bytes as-is. For WordPress-visible pages, prefer valid block markup or HTML-shaped content. Plain markdown is useful for docs and lore, but it is not automatically converted into blocks unless the world builds that capability.

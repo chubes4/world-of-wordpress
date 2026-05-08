@@ -22,11 +22,20 @@ add_action( 'init', static function (): void {
  * samples.
  */
 function world_of_wordpress_seed_world(): void {
+	if ( ! function_exists( 'markdown_database_integration_import_seed_posts_after_install' ) ) {
+		foreach ( array( WP_PLUGIN_DIR . '/markdown-database-integration/markdown-database-integration.php' ) as $mdi_plugin ) {
+			if ( file_exists( $mdi_plugin ) ) {
+				require_once $mdi_plugin;
+				break;
+			}
+		}
+	}
+
 	if ( function_exists( 'markdown_database_integration_import_seed_posts_after_install' ) ) {
 		markdown_database_integration_import_seed_posts_after_install();
 	}
 
-	foreach ( array( 'hello-world', 'sample-page' ) as $slug ) {
+	foreach ( array( 'hello-world', 'sample-page', 'privacy-policy' ) as $slug ) {
 		foreach ( array( 'post', 'page' ) as $post_type ) {
 			$sample = get_page_by_path( $slug, OBJECT, $post_type );
 			if ( $sample ) {

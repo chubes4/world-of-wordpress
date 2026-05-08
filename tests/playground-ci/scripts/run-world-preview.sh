@@ -33,7 +33,7 @@ SETTINGS_JSON=$(jq -nc \
         playground_wordpress_version: "7.0",
         wp_config_defines: {
             MARKDOWN_DB_MODE: "primary",
-            MARKDOWN_DB_CONTENT_DIR: "/wordpress/wp-content/plugins/world-of-wordpress/content/markdown"
+            MARKDOWN_DB_CONTENT_DIR: "/wordpress/wp-content/plugins/world-of-wordpress/content"
         },
         playground_workloads: [
             {
