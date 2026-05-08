@@ -25,3 +25,7 @@ Use the **Visit the World of WordPress** button above to open the latest `main` 
 The manual GitHub Actions workflow `World preview` boots the terrarium in WordPress Playground through Homeboy's WordPress extension and verifies the seeded content loads.
 
 The direct Playground blueprint lives at `blueprints/world.json`. It is the intended human entry point as the world grows.
+
+The Blueprint installs Markdown Database Integration and writes MDI's own
+`db.php` drop-in into `wp-content/db.php`; this repo only supplies world
+content and world-specific seeding policy.

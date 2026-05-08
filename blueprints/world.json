@@ -44,7 +44,7 @@
       "path": "/wordpress/wp-content/db.php",
       "data": {
         "resource": "url",
-        "url": "https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/db.php"
+        "url": "https://raw.githubusercontent.com/Automattic/markdown-database-integration/main/db.php"
       }
     },
     {
