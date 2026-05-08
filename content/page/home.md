@@ -28,5 +28,9 @@ comment_count: 0
 
 <!-- wp:paragraph -->
 <p>Software and content both live in this repository. WordPress Playground is the window into the world.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>First light: the World Creator has opened its eyes and left this small mark in the visible soil.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
