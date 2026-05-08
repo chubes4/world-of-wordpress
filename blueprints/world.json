@@ -7,6 +7,21 @@
   "landingPage": "/",
   "steps": [
     {
+      "step": "defineWpConfigConsts",
+      "consts": {
+        "MARKDOWN_DB_MODE": "primary",
+        "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content/markdown"
+      }
+    },
+    {
+      "step": "writeFile",
+      "path": "/wordpress/wp-content/db.php",
+      "data": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/db.php"
+      }
+    },
+    {
       "step": "installPlugin",
       "pluginData": {
         "resource": "git:directory",
@@ -33,23 +48,8 @@
       }
     },
     {
-      "step": "defineWpConfigConsts",
-      "consts": {
-        "MARKDOWN_DB_MODE": "primary",
-        "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content/markdown"
-      }
-    },
-    {
-      "step": "writeFile",
-      "path": "/wordpress/wp-content/db.php",
-      "data": {
-        "resource": "url",
-        "url": "https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/db.php"
-      }
-    },
-    {
       "step": "runPHP",
-      "code": "<?php $page = get_page_by_path( 'home' ); if ( $page ) { update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', (int) $page->ID ); }"
+      "code": "<?php if ( function_exists( 'markdown_database_integration_import_seed_posts_after_install' ) ) { markdown_database_integration_import_seed_posts_after_install(); } $page = get_page_by_path( 'home' ); if ( $page ) { update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', (int) $page->ID ); }"
     }
   ]
 }
