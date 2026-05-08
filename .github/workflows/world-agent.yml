@@ -1,0 +1,111 @@
+name: World agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: Instruction for the World Agent.
+        required: true
+        default: Inspect your world and propose the first visible mutation. Do not edit workflows. Do not merge yet.
+      openai_model:
+        description: OpenAI model to use for the imported agent flow.
+        required: true
+        default: gpt-5.5
+      data_machine_ref:
+        description: Data Machine ref.
+        required: true
+        default: main
+      data_machine_code_ref:
+        description: Data Machine Code ref.
+        required: true
+        default: main
+      markdown_database_integration_ref:
+        description: Markdown Database Integration ref.
+        required: true
+        default: main
+      homeboy_extensions_ref:
+        description: Homeboy Extensions ref.
+        required: true
+        default: main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  world-agent:
+    name: Run World Agent manually
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout World
+        uses: actions/checkout@v4
+
+      - name: Refuse workflow mutation prompt
+        shell: bash
+        env:
+          WORLD_PROMPT: ${{ inputs.prompt }}
+        run: |
+          set -euo pipefail
+          if printf '%s' "$WORLD_PROMPT" | grep -Ei '(\.github/workflows|workflow|secret)' >/dev/null; then
+            echo "World Agent v1 does not accept workflow or secret-management prompts." >&2
+            exit 1
+          fi
+
+      - name: Checkout Homeboy Extensions
+        uses: actions/checkout@v4
+        with:
+          repository: Extra-Chill/homeboy-extensions
+          ref: ${{ inputs.homeboy_extensions_ref }}
+          path: .ci/homeboy-extensions
+
+      - name: Checkout Data Machine
+        uses: actions/checkout@v4
+        with:
+          repository: Extra-Chill/data-machine
+          ref: ${{ inputs.data_machine_ref }}
+          path: .ci/data-machine
+
+      - name: Checkout Data Machine Code
+        uses: actions/checkout@v4
+        with:
+          repository: Extra-Chill/data-machine-code
+          ref: ${{ inputs.data_machine_code_ref }}
+          path: .ci/data-machine-code
+
+      - name: Checkout Markdown Database Integration
+        uses: actions/checkout@v4
+        with:
+          repository: Automattic/markdown-database-integration
+          ref: ${{ inputs.markdown_database_integration_ref }}
+          path: .ci/markdown-database-integration
+
+      - name: Checkout OpenAI provider
+        uses: actions/checkout@v4
+        with:
+          repository: WordPress/ai-provider-for-openai
+          path: .ci/ai-provider-for-openai
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install Homeboy WordPress extension dependencies
+        working-directory: .ci/homeboy-extensions/wordpress
+        run: |
+          composer install --no-interaction --no-progress --prefer-dist
+          npm install
+
+      - name: Install plugin PHP dependencies
+        run: |
+          composer install --working-dir=.ci/data-machine --no-interaction --no-progress --prefer-dist
+          composer install --working-dir=.ci/data-machine-code --no-interaction --no-progress --prefer-dist
+          composer install --working-dir=.ci/markdown-database-integration --no-interaction --no-progress --prefer-dist
+
+      - name: Placeholder
+        run: |
+          echo "World Agent runtime scaffold is present. The first runnable agent probe will land after the scaffold PR is reviewed."
+          echo "Prompt: ${{ inputs.prompt }}"
