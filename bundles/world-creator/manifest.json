@@ -17,7 +17,7 @@
     }
   },
   "included": {
-    "memory": true,
+    "memory": ["MEMORY.md", "SOUL.md"],
     "pipelines": ["world-creator-pipeline"],
     "flows": ["world-creator-manual-flow"],
     "prompts": [],
