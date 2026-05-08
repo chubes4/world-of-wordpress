@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-08 17:45:00"
 date_gmt: "2026-05-08 17:45:00"
-modified: "2026-05-08 18:05:00"
-modified_gmt: "2026-05-08 18:05:00"
+modified: "2026-05-08 18:12:00"
+modified_gmt: "2026-05-08 18:12:00"
 slug: home
 parent: 0
 menu_order: 0
@@ -36,5 +36,9 @@ comment_count: 0
 
 <!-- wp:paragraph -->
 <p>Second light: a small observation rail now marks the edge of the terrarium, inviting future day cycles to leave visible, reviewable traces.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Third light: a tiny sundial has been placed beside the rail, so each review can see that the world is learning to count its days.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
