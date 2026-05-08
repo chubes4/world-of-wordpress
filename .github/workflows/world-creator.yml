@@ -6,7 +6,7 @@ on:
       prompt:
         description: Instruction for the World Creator.
         required: true
-        default: Begin a day cycle. Inspect your world and propose the next visible mutation as a pull request.
+        default: Begin a day cycle. Inspect your world with GitHub file tools, make one small coherent visible mutation using create_or_update_github_file on a new world-day/ branch, and open a pull request.
       openai_model:
         description: OpenAI model to use for the imported agent flow.
         required: true
@@ -94,7 +94,15 @@ jobs:
           composer install --working-dir=.ci/data-machine-code --no-interaction --no-progress --prefer-dist
           composer install --working-dir=.ci/markdown-database-integration --no-interaction --no-progress --prefer-dist
 
-      - name: Placeholder
-        run: |
-          echo "World Creator runtime scaffold is present. The first runnable day-cycle probe will land after the scaffold PR is reviewed."
-          echo "Prompt: ${{ inputs.prompt }}"
+      - name: Run World Creator day cycle
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          HOMEBOY_EXTENSION_PATH: ${{ github.workspace }}/.ci/homeboy-extensions/wordpress
+          DM_PATH: ${{ github.workspace }}/.ci/data-machine
+          DMC_PATH: ${{ github.workspace }}/.ci/data-machine-code
+          OPENAI_PROVIDER_PATH: ${{ github.workspace }}/.ci/ai-provider-for-openai
+          WORLD_CREATOR_OPENAI_MODEL: ${{ inputs.openai_model }}
+          WORLD_CREATOR_TARGET_REPO: chubes4/world-of-wordpress
+          WORLD_CREATOR_PROMPT: ${{ inputs.prompt }}
+        run: tests/playground-ci/scripts/run-world-creator.sh
