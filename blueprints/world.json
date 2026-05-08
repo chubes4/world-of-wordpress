@@ -14,14 +14,6 @@
       }
     },
     {
-      "step": "writeFile",
-      "path": "/wordpress/wp-content/db.php",
-      "data": {
-        "resource": "url",
-        "url": "https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/db.php"
-      }
-    },
-    {
       "step": "installPlugin",
       "pluginData": {
         "resource": "git:directory",
@@ -45,6 +37,14 @@
       "options": {
         "activate": true,
         "targetFolderName": "world-of-wordpress"
+      }
+    },
+    {
+      "step": "writeFile",
+      "path": "/wordpress/wp-content/db.php",
+      "data": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/db.php"
       }
     },
     {
