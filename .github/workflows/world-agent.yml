@@ -6,7 +6,7 @@ on:
       prompt:
         description: Instruction for the World Agent.
         required: true
-        default: Inspect your world and propose the first visible mutation. Do not edit workflows. Do not merge yet.
+        default: Inspect your world and propose the first visible mutation as a pull request.
       openai_model:
         description: OpenAI model to use for the imported agent flow.
         required: true
@@ -42,17 +42,6 @@ jobs:
     steps:
       - name: Checkout World
         uses: actions/checkout@v4
-
-      - name: Refuse workflow mutation prompt
-        shell: bash
-        env:
-          WORLD_PROMPT: ${{ inputs.prompt }}
-        run: |
-          set -euo pipefail
-          if printf '%s' "$WORLD_PROMPT" | grep -Ei '(\.github/workflows|workflow|secret)' >/dev/null; then
-            echo "World Agent v1 does not accept workflow or secret-management prompts." >&2
-            exit 1
-          fi
 
       - name: Checkout Homeboy Extensions
         uses: actions/checkout@v4

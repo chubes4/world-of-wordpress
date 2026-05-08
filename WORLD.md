@@ -30,12 +30,7 @@ The agent may create:
 - Documentation, world logs, and operating notes.
 - Issues that plan future world mutations.
 
-The agent should not yet:
-
-- Edit `.github/workflows/**`.
-- Manage repository secrets.
-- Write to upstream repositories.
-- Bypass failing validation.
+The first loop is pull-request driven: the agent explores the repository, plans visible mutations through issues when useful, validates the world in Playground, and proposes changes for review.
 
 ## Persistence
 

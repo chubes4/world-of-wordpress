@@ -6,4 +6,4 @@
 - The agent's first creative mutation should belong to the agent, not to the scaffold.
 - Durable WordPress content lives in `content/markdown/`.
 - WordPress-visible page bodies should use block markup or HTML-compatible content unless the world later builds markdown rendering.
-- Manual runs only for now; continuous evolution can come later.
+- Agent runs begin as manually triggered GitHub Actions; continuous evolution can come later.

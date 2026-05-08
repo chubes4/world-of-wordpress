@@ -7,9 +7,6 @@
   "slug": "world-agent-manual-flow",
   "steps": [
     {
-      "disabled_tools": [
-        "merge_github_pull_request"
-      ],
       "enabled_tools": [
         "list_github_issues",
         "get_github_issue",
@@ -32,7 +29,7 @@
       "prompt_queue": [
         {
           "added_at": "2026-05-08T17:45:00Z",
-          "prompt": "Inspect your world. Plan and propose your first visible world mutation. Keep WordPress Playground loadable. Do not edit workflows. Open a pull request for any repository changes; do not merge yet."
+          "prompt": "Inspect your world. Plan and propose your first visible world mutation. Keep WordPress Playground loadable and open a pull request for repository changes."
         }
       ],
       "queue_mode": "static",
