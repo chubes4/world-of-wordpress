@@ -57,4 +57,13 @@ jobs:
         env:
           HOMEBOY_EXTENSION_PATH: ${{ github.workspace }}/.ci/homeboy-extensions/wordpress
           MDI_PATH: ${{ github.workspace }}/.ci/markdown-database-integration
+          HOMEBOY_ARTIFACT_DIR: ${{ runner.temp }}/world-blueprint-validation
         run: tests/playground-ci/scripts/run-world-preview.sh
+
+      - name: Upload Blueprint validation artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-blueprint-validation
+          path: ${{ runner.temp }}/world-blueprint-validation
+          if-no-files-found: ignore
