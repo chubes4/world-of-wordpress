@@ -5,11 +5,113 @@
  * Version: 0.1.0
  * Author: Chris Huber
  * License: GPL v2 or later
+ * Text Domain: world-of-wordpress
  */
 
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
+add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
+add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
+
+/**
+ * Configure which runtime database tables belong in the repo-backed world.
+ *
+ * MDI owns the disk persistence mechanism. This plugin owns the site policy:
+ * keep just enough Data Machine job history for recurring flow due checks, and
+ * keep ephemeral queues, logs, chats, and credential tables out of the repo.
+ */
+function world_of_wordpress_markdown_db_table_persistence_policy( array $policy ): array {
+	$policy['datamachine_jobs'] = array(
+		'persist'            => true,
+		'latest_per_flow'    => 10,
+		'redact_engine_data' => true,
+	);
+
+	foreach (
+		array(
+			'actionscheduler_actions',
+			'actionscheduler_claims',
+			'actionscheduler_groups',
+			'actionscheduler_logs',
+			'datamachine_agent_access',
+			'datamachine_agent_tokens',
+			'datamachine_bundle_artifacts',
+			'datamachine_chat_sessions',
+			'datamachine_flows',
+			'datamachine_logs',
+			'datamachine_pipelines',
+			'datamachine_processed_items',
+			'datamachine_code_cleanup_items',
+			'datamachine_code_cleanup_runs',
+			'datamachine_code_locks',
+			'datamachine_code_worktrees',
+		) as $table
+	) {
+		$policy[ $table ] = false;
+	}
+
+	return $policy;
+}
+
+/**
+ * Compact persisted Data Machine jobs to scheduler-relevant history.
+ *
+ * Data Machine derives flow last-run time from the latest job row for each
+ * flow. The full job row includes large execution payloads that are useful
+ * during the request but should not become durable world state.
+ *
+ * @param array<int,array<string,mixed>> $rows Rows about to be written.
+ * @param string                         $table_suffix Table name without prefix.
+ * @param string                         $table Full table name.
+ * @param array<string,mixed>|bool|null  $policy Table persistence policy.
+ * @return array<int,array<string,mixed>> Compacted rows.
+ */
+function world_of_wordpress_filter_markdown_db_runtime_rows( array $rows, string $table_suffix, string $table, $policy ): array {
+	unset( $table );
+
+	if ( 'datamachine_jobs' !== $table_suffix ) {
+		return $rows;
+	}
+
+	$table_policy = is_array( $policy ) ? $policy : array();
+	$keep         = max( 1, (int) ( $table_policy['latest_per_flow'] ?? 10 ) );
+	usort(
+		$rows,
+		static function ( array $a, array $b ): int {
+			return (int) ( $b['job_id'] ?? 0 ) <=> (int) ( $a['job_id'] ?? 0 );
+		}
+	);
+
+	$counts = array();
+	$kept   = array();
+	foreach ( $rows as $row ) {
+		$flow_id = (string) ( $row['flow_id'] ?? '' );
+		if ( '' === $flow_id || ! is_numeric( $flow_id ) || (int) $flow_id <= 0 ) {
+			continue;
+		}
+
+		$counts[ $flow_id ] = ( $counts[ $flow_id ] ?? 0 ) + 1;
+		if ( $counts[ $flow_id ] > $keep ) {
+			continue;
+		}
+
+		if ( ! empty( $table_policy['redact_engine_data'] ) ) {
+			$row['engine_data'] = null;
+		}
+
+		$kept[] = $row;
+	}
+
+	usort(
+		$kept,
+		static function ( array $a, array $b ): int {
+			return (int) ( $a['job_id'] ?? 0 ) <=> (int) ( $b['job_id'] ?? 0 );
+		}
+	);
+
+	return $kept;
+}
 
 /**
  * Register the world model as shared memory for every agent in this site.
@@ -92,10 +194,10 @@ function world_of_wordpress_copy_directory( string $source, string $destination 
  * Seed and activate the repository-owned starter block theme.
  */
 function world_of_wordpress_seed_theme(): void {
-	$theme_slug   = 'world-of-wordpress';
-	$source       = __DIR__ . '/themes/' . $theme_slug;
-	$destination  = WP_CONTENT_DIR . '/themes/' . $theme_slug;
-	$stylesheet   = $destination . '/style.css';
+	$theme_slug  = 'world-of-wordpress';
+	$source      = __DIR__ . '/themes/' . $theme_slug;
+	$destination = WP_CONTENT_DIR . '/themes/' . $theme_slug;
+	$stylesheet  = $destination . '/style.css';
 
 	world_of_wordpress_copy_directory( $source, $destination );
 
@@ -140,8 +242,15 @@ function world_of_wordpress_seed_world(): void {
 		}
 	}
 
-	foreach ( get_comments( array( 'status' => 'all' ) ) as $comment ) {
-		wp_delete_comment( (int) $comment->comment_ID, true );
+	$comments = get_comments( array( 'status' => 'all' ) );
+	if ( is_array( $comments ) ) {
+		foreach ( $comments as $comment ) {
+			if ( ! $comment instanceof WP_Comment ) {
+				continue;
+			}
+
+			wp_delete_comment( (int) $comment->comment_ID, true );
+		}
 	}
 
 	update_option( 'show_on_front', 'posts' );
