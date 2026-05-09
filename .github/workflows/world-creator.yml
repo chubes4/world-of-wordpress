@@ -6,7 +6,7 @@ on:
       prompt:
         description: Instruction for the World Creator.
         required: true
-        default: Good morning! It's a new day in the World of WordPress. Inspect the world, choose one small coherent mutation, journal the day, and open a pull request.
+        default: Good morning! It's a new day in the World of WordPress. Inspect the world, choose a coherent mutation, journal the day, and open a pull request.
       openai_model:
         description: OpenAI model to use for the imported agent flow.
         required: true
