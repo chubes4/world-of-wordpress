@@ -19,13 +19,15 @@
         "get_github_file",
         "create_or_update_github_file",
         "create_github_pull_request",
-        "comment_github_pull_request"
+        "comment_github_pull_request",
+        "agent_daily_memory"
       ],
       "handler_configs": {},
       "completion_assertions": {
         "required_tool_names": [
           "create_or_update_github_file",
-          "create_github_pull_request"
+          "create_github_pull_request",
+          "agent_daily_memory"
         ]
       },
       "prompt_queue": [
