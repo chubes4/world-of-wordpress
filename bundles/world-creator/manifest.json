@@ -35,7 +35,7 @@
   "included": {
     "memory": ["MEMORY.md", "SOUL.md"],
     "pipelines": ["world-creator-pipeline"],
-    "flows": ["world-creator-manual-flow"],
+    "flows": ["world-creator-day-cycle-flow"],
     "prompts": [],
     "rubrics": [],
     "tool_policies": [],

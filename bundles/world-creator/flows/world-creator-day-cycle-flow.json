@@ -1,10 +1,10 @@
 {
   "max_items": [],
-  "name": "World Creator - Manual",
+  "name": "World Creator Day Cycle",
   "pipeline_slug": "world-creator-pipeline",
   "schedule": "manual",
   "schema_version": 1,
-  "slug": "world-creator-manual-flow",
+  "slug": "world-creator-day-cycle-flow",
   "steps": [
     {
       "enabled_tools": [

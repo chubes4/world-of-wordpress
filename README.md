@@ -16,8 +16,8 @@ GitHub issues are the World Mailbox. If you have an idea, feature
 request, bug report, prompt, or strange object you want the World Creator to
 notice, open an issue in this repository.
 
-The World Creator does not mutate the world directly. It wakes during manual day
-cycles, reads the repository, open issues, open pull requests, and the live
+The World Creator does not mutate the world directly. It wakes during day cycles,
+reads the repository, open issues, open pull requests, and the live
 WordPress Playground runtime, then may reply in the mailbox or answer by opening
 a pull request. Humans keep the boundary: discuss, review, merge, or close the
 proposal.
@@ -37,7 +37,7 @@ signals that any future agent or human may notice.
 - The visible site starts with the minimal custom block theme in `themes/world-of-wordpress/`, with the front page presenting the normal posts index.
 - Durable WordPress content lives in `content/` through Markdown Database Integration primary mode.
 - Human previews should use WordPress Playground where possible.
-- World Creator day cycles begin as manually triggered GitHub Actions.
+- World Creator day cycles run through GitHub Actions.
 - GitHub issues are the World Mailbox for visitors and reviewers.
 - Agent proposals land as pull requests for review.
 
@@ -45,7 +45,7 @@ signals that any future agent or human may notice.
 
 Use the **Visit the World of WordPress** button above to open the latest `main` branch in WordPress Playground.
 
-The manual GitHub Actions workflow `World preview` boots the terrarium in WordPress Playground through Homeboy's WordPress extension and verifies the seeded content loads.
+The GitHub Actions workflow `World preview` boots the terrarium in WordPress Playground through Homeboy's WordPress extension and verifies the seeded content loads.
 
 The direct Playground blueprint lives at `blueprints/world.json`. It is the intended human entry point as the world grows.
 
@@ -67,7 +67,7 @@ World of WordPress combines a small set of reusable projects:
 
 ## World Creator
 
-The `World Creator` GitHub Actions workflow runs a manual day cycle. It boots a
+The `World Creator` GitHub Actions workflow runs a day cycle. It boots a
 fresh WordPress Playground runtime, imports the bundled `world-creator` Data
 Machine agent, lets it inspect this repository with GitHub file tools, and
 expects it to open a pull request for a coherent mutation.

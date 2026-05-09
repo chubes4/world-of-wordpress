@@ -1,6 +1,6 @@
 <?php
 /**
- * Imports and runs the World Creator agent bundle for one manual day cycle.
+ * Imports and runs the World Creator agent bundle for one day cycle.
  */
 
 use DataMachine\Core\Database\Agents\Agents;
@@ -276,9 +276,9 @@ if ( ! $pipeline ) {
 	return world_creator_result( array( 'pipeline_resolved' => 0 ), $metadata + array( 'agent_id' => $agent_id ), 'Imported World Creator pipeline was not found' );
 }
 
-$flow = $flows->get_by_portable_slug( (int) $pipeline['pipeline_id'], 'world-creator-manual-flow' );
+$flow = $flows->get_by_portable_slug( (int) $pipeline['pipeline_id'], 'world-creator-day-cycle-flow' );
 if ( ! $flow ) {
-	return world_creator_result( array( 'flow_resolved' => 0 ), $metadata + array( 'agent_id' => $agent_id ), 'Imported World Creator manual flow was not found' );
+	return world_creator_result( array( 'flow_resolved' => 0 ), $metadata + array( 'agent_id' => $agent_id ), 'Imported World Creator day-cycle flow was not found' );
 }
 
 $flow_id     = (int) $flow['flow_id'];
