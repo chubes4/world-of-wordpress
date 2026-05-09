@@ -55,6 +55,7 @@ if ( ! function_exists( 'world_creator_configure_settings' ) ) {
 		$settings['github_default_repo']       = $inputs['target_repo'];
 		$settings['default_provider']          = 'openai';
 		$settings['default_model']             = $inputs['openai_model'];
+		$settings['daily_memory_enabled']      = true;
 		$settings['mode_models']               = array(
 			'pipeline' => array( 'provider' => 'openai', 'model' => $inputs['openai_model'] ),
 			'chat'     => array( 'provider' => 'openai', 'model' => $inputs['openai_model'] ),
@@ -88,7 +89,7 @@ if ( ! function_exists( 'world_creator_bootstrap_abilities' ) ) {
 			return world_creator_result( array( 'has_abilities_api' => 0 ), array(), 'Abilities API not loaded' );
 		}
 
-		foreach ( array( 'datamachine/import-agent', 'datamachine/run-flow', 'datamachine/drain-job', 'datamachine/create-or-update-github-file' ) as $ability_name ) {
+		foreach ( array( 'datamachine/import-agent', 'datamachine/run-flow', 'datamachine/drain-job', 'datamachine/create-or-update-github-file', 'datamachine/daily-memory-write' ) as $ability_name ) {
 			if ( ! wp_get_ability( $ability_name ) ) {
 				return world_creator_result( array( 'required_abilities_resolved' => 0 ), array(), $ability_name . ' not registered' );
 			}
@@ -193,6 +194,9 @@ if ( ! class_exists( 'World_Creator_Pull_Request_Recorder' ) ) {
 
 if ( function_exists( 'wp_set_current_user' ) ) {
 	wp_set_current_user( 1 );
+}
+if ( function_exists( 'world_of_wordpress_ci_seed_shared_memory' ) ) {
+	world_of_wordpress_ci_seed_shared_memory();
 }
 
 $inputs = world_creator_inputs();

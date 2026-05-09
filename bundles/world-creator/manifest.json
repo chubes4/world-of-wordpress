@@ -13,7 +13,11 @@
     "agent_config": {
       "default_provider": "openai",
       "default_model": "gpt-5.5",
-      "max_turns": 16
+      "max_turns": 16,
+      "daily_memory": {
+        "enabled": true,
+        "recent_days": 7
+      }
     }
   },
   "included": {
