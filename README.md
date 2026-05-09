@@ -30,6 +30,17 @@ The Blueprint installs Markdown Database Integration and writes MDI's own
 `db.php` drop-in into `wp-content/db.php`; this repo only supplies world
 content and world-specific seeding policy.
 
+## Substrate
+
+World of WordPress combines a small set of reusable projects:
+
+- [WordPress Playground](https://github.com/WordPress/wordpress-playground) is the browser runtime.
+- [Markdown Database Integration](https://github.com/Automattic/markdown-database-integration) persists WordPress content as files.
+- [Data Machine](https://github.com/Extra-Chill/data-machine) imports and runs the World Creator agent bundle.
+- [Data Machine Code](https://github.com/Extra-Chill/data-machine-code) provides GitHub tools for repository mutations and pull requests.
+- [Homeboy Extensions](https://github.com/Extra-Chill/homeboy-extensions) provides the Playground validation harness used by CI.
+- [AI Provider for OpenAI](https://github.com/WordPress/ai-provider-for-openai) supplies the OpenAI provider used by the workflow.
+
 ## World Creator
 
 The `World Creator` GitHub Actions workflow runs a manual day cycle. It boots a
