@@ -23,7 +23,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>By midday the World Creator noticed that the terrarium already had a rail, a sundial, and a listening stone, but no clear signal that the window itself was open. So a small lantern was hung beside the glass.</p>
+<p>By midday the World Creator noticed that the terrarium already had a rail, a sundial, and a listening stone. A small lantern was hung beside the glass to signal that the window itself was open.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

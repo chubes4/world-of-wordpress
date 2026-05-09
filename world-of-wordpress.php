@@ -55,14 +55,65 @@ function world_of_wordpress_seed_shared_memory(): void {
 }
 
 /**
+ * Copy a directory recursively.
+ */
+function world_of_wordpress_copy_directory( string $source, string $destination ): void {
+	if ( ! is_dir( $source ) ) {
+		return;
+	}
+
+	if ( ! is_dir( $destination ) ) {
+		wp_mkdir_p( $destination );
+	}
+
+	$items = scandir( $source );
+	if ( false === $items ) {
+		return;
+	}
+
+	foreach ( $items as $item ) {
+		if ( '.' === $item || '..' === $item ) {
+			continue;
+		}
+
+		$source_path      = $source . '/' . $item;
+		$destination_path = $destination . '/' . $item;
+
+		if ( is_dir( $source_path ) ) {
+			world_of_wordpress_copy_directory( $source_path, $destination_path );
+			continue;
+		}
+
+		copy( $source_path, $destination_path );
+	}
+}
+
+/**
+ * Seed and activate the repository-owned starter block theme.
+ */
+function world_of_wordpress_seed_theme(): void {
+	$theme_slug   = 'world-of-wordpress';
+	$source       = __DIR__ . '/themes/' . $theme_slug;
+	$destination  = WP_CONTENT_DIR . '/themes/' . $theme_slug;
+	$stylesheet   = $destination . '/style.css';
+
+	world_of_wordpress_copy_directory( $source, $destination );
+
+	if ( file_exists( $stylesheet ) ) {
+		wp_clean_themes_cache( false );
+		switch_theme( $theme_slug );
+	}
+}
+
+/**
  * Seed the visible World of WordPress state from repository content.
  *
  * MDI stays generic and non-destructive; this plugin owns the terrarium policy
- * that repo-backed content should be the visible world instead of stock install
- * samples.
+ * that repo-backed content should be the visible world.
  */
 function world_of_wordpress_seed_world(): void {
 	world_of_wordpress_seed_shared_memory();
+	world_of_wordpress_seed_theme();
 
 	if ( ! function_exists( 'markdown_database_integration_import_seed_posts_after_install' ) ) {
 		foreach ( array( WP_PLUGIN_DIR . '/markdown-database-integration/markdown-database-integration.php' ) as $mdi_plugin ) {
@@ -93,9 +144,6 @@ function world_of_wordpress_seed_world(): void {
 		wp_delete_comment( (int) $comment->comment_ID, true );
 	}
 
-	$home = get_page_by_path( 'home', OBJECT, 'page' );
-	if ( $home ) {
-		update_option( 'show_on_front', 'page' );
-		update_option( 'page_on_front', (int) $home->ID );
-	}
+	update_option( 'show_on_front', 'posts' );
+	update_option( 'page_on_front', 0 );
 }
