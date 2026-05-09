@@ -198,6 +198,9 @@ if ( function_exists( 'wp_set_current_user' ) ) {
 if ( function_exists( 'world_of_wordpress_ci_seed_shared_memory' ) ) {
 	world_of_wordpress_ci_seed_shared_memory();
 }
+if ( function_exists( 'world_of_wordpress_seed_world' ) ) {
+	world_of_wordpress_seed_world();
+}
 
 $inputs = world_creator_inputs();
 $metadata = array(
@@ -206,6 +209,10 @@ $metadata = array(
 	'github_token_present'        => '' !== $inputs['github_token'],
 	'openai_key_present'          => '' !== $inputs['openai_api_key'],
 	'openai_provider_registered'  => class_exists( WpAiClientProviderAdmin::class ) && WpAiClientProviderAdmin::isProviderRegistered( 'openai' ),
+	'world_theme_stylesheet'      => function_exists( 'get_stylesheet' ) ? (string) get_stylesheet() : '',
+	'markdown_db_dropin'          => defined( 'MARKDOWN_DB_DROPIN' ),
+	'markdown_db_mode'            => defined( 'MARKDOWN_DB_MODE' ) ? MARKDOWN_DB_MODE : '',
+	'markdown_db_content_dir'     => defined( 'MARKDOWN_DB_CONTENT_DIR' ) ? MARKDOWN_DB_CONTENT_DIR : '',
 );
 
 if ( '' === $inputs['github_token'] || '' === $inputs['openai_api_key'] ) {
@@ -213,6 +220,9 @@ if ( '' === $inputs['github_token'] || '' === $inputs['openai_api_key'] ) {
 }
 if ( '' === $inputs['prompt'] ) {
 	return world_creator_result( array( 'prompt_present' => 0 ), $metadata, 'WORLD_CREATOR_PROMPT is required' );
+}
+if ( 'world-of-wordpress' !== $metadata['world_theme_stylesheet'] ) {
+	return world_creator_result( array( 'world_theme_active' => 0 ), $metadata, 'World of WordPress theme was not active before the day cycle' );
 }
 
 $bootstrap_error = world_creator_bootstrap_abilities();
