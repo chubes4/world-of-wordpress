@@ -20,6 +20,18 @@
       }
     }
   },
+  "run_artifacts": {
+    "completion_assertions": {
+      "egress": ["pr-body"]
+    },
+    "daily_memory": {
+      "egress": ["bundle-file", "pr-body"],
+      "bundle_relative_path": "memory/agent/daily/{yyyy}/{mm}/{dd}.md"
+    },
+    "transcript_summary": {
+      "egress": ["artifact"]
+    }
+  },
   "included": {
     "memory": ["MEMORY.md", "SOUL.md"],
     "pipelines": ["world-creator-pipeline"],

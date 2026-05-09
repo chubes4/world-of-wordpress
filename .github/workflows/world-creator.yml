@@ -116,6 +116,9 @@ jobs:
           composer install --working-dir=.ci/data-machine-code --no-interaction --no-progress --prefer-dist
           composer install --working-dir=.ci/markdown-database-integration --no-interaction --no-progress --prefer-dist
 
+      - name: Validate World Creator bundle
+        run: php tests/validate-world-creator-bundle.php
+
       - name: Run World Creator day cycle
         env:
           GITHUB_TOKEN: ${{ github.token }}
