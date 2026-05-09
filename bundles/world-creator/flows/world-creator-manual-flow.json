@@ -33,7 +33,7 @@
       "prompt_queue": [
         {
           "added_at": "2026-05-08T17:45:00Z",
-          "prompt": "Begin a new day cycle. Inspect your world, plan the next visible mutation, keep WordPress Playground loadable, and open a pull request for repository changes."
+          "prompt": "Good morning! It's a new day in the World of WordPress. Wake with the shared world memory, inspect the world, choose one small coherent mutation, keep WordPress Playground loadable, write a concise daily memory note, and open a pull request."
         }
       ],
       "queue_mode": "static",
