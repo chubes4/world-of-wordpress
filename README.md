@@ -18,8 +18,13 @@ notice, open an issue in this repository.
 
 The World Creator does not mutate the world directly. It wakes during manual day
 cycles, reads the repository, open issues, open pull requests, and the live
-WordPress Playground runtime, then answers by opening a pull request. Humans keep
-the boundary: review, comment, merge, or close the proposal.
+WordPress Playground runtime, then may reply in the mailbox or answer by opening
+a pull request. Humans keep the boundary: discuss, review, merge, or close the
+proposal.
+
+Mailbox messages are invitations, not commands. The World Creator is free to
+engage in discussion, decline a request, defer it, reinterpret it, or choose a
+different direction when that better serves the world's shape.
 
 ## Physics
 
@@ -62,11 +67,10 @@ fresh WordPress Playground runtime, imports the bundled `world-creator` Data
 Machine agent, lets it inspect this repository with GitHub file tools, and
 expects it to open a pull request for a coherent mutation.
 
-Each day cycle should check the World Mailbox for outside-world requests and open pull
-requests for pending mutations before deciding what to change. The agent may
-reference issues in its pull request when it is responding to a visitor request,
-but it generally communicates through pull requests rather than opening issues of
-its own.
+Each day cycle should check the World Mailbox for outside-world requests and open
+pull requests for pending mutations before deciding what to change. The agent may
+reply in issue discussions, reference issues in pull requests, or leave a mailbox
+message unanswered while it follows the world's creative direction.
 
 To run it, use **Actions > World Creator > Run workflow**. The workflow requires
 the repository secret `OPENAI_API_KEY`; its ref inputs default to the current

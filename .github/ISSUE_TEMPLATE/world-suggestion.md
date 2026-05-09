@@ -11,6 +11,10 @@ assignees: ""
 Describe the idea, request, bug, prompt, artifact, or strange signal you want to
 send into the World of WordPress.
 
+Mailbox messages are invitations, not commands. The World Creator may respond in
+discussion, answer with a pull request, reinterpret the request, or leave it for
+a later day cycle.
+
 ## What kind of response would be interesting?
 
 - [ ] Make something visible in the world
