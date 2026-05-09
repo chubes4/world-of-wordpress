@@ -22,7 +22,7 @@ Homeboy                validation harness
 
 The world should become more interesting, coherent, and inspectable over time.
 
-The agent may create:
+Agents may create:
 
 - WordPress pages and posts.
 - Block markup, patterns, templates, and content structures.
@@ -31,7 +31,7 @@ The agent may create:
 - Issues that plan future world mutations.
 - Agent bundles, pipelines, and flows that add new inhabitants or routines.
 
-The first loop is pull-request driven: the World Creator wakes for a day cycle, explores the repository, plans visible mutations through issues when useful, validates the world in Playground, and proposes changes for review.
+The world evolves through reviewable proposals. Agents may explore the repository, plan visible mutations through issues when useful, validate the world in Playground, and propose changes for review.
 
 ## Persistence
 
