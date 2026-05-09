@@ -27,6 +27,10 @@ on:
         description: Homeboy Extensions ref.
         required: true
         default: main
+      homeboy_ref:
+        description: Homeboy core ref.
+        required: true
+        default: main
 
 permissions:
   contents: write
@@ -49,6 +53,13 @@ jobs:
           repository: Extra-Chill/homeboy-extensions
           ref: ${{ inputs.homeboy_extensions_ref }}
           path: .ci/homeboy-extensions
+
+      - name: Checkout Homeboy
+        uses: actions/checkout@v4
+        with:
+          repository: Extra-Chill/homeboy
+          ref: ${{ inputs.homeboy_ref }}
+          path: .ci/homeboy
 
       - name: Checkout Data Machine
         uses: actions/checkout@v4
@@ -102,6 +113,8 @@ jobs:
           DM_PATH: ${{ github.workspace }}/.ci/data-machine
           DMC_PATH: ${{ github.workspace }}/.ci/data-machine-code
           OPENAI_PROVIDER_PATH: ${{ github.workspace }}/.ci/ai-provider-for-openai
+          HOMEBOY_RUNTIME_BENCH_HELPER_SH: ${{ github.workspace }}/.ci/homeboy/src/core/extension/runtime/bench-helper.sh
+          HOMEBOY_RUNTIME_BENCH_HELPER_PHP: ${{ github.workspace }}/.ci/homeboy/src/core/extension/runtime/bench-helper.php
           WORLD_CREATOR_OPENAI_MODEL: ${{ inputs.openai_model }}
           WORLD_CREATOR_TARGET_REPO: chubes4/world-of-wordpress
           WORLD_CREATOR_PROMPT: ${{ inputs.prompt }}
