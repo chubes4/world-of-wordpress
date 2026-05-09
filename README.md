@@ -4,7 +4,7 @@
 
 A self-contained WordPress Playground terrarium where an agent evolves software and content inside a dedicated GitHub repository.
 
-The experiment is simple: the repository is the durable body, WordPress Playground is the visible runtime, Data Machine is the agent mind, Data Machine Code is the agent's hands, and Markdown Database Integration makes WordPress content persist as files.
+The experiment is simple: the repository is the durable body, WordPress Playground is the visible runtime, Agents API is the agent runtime substrate, Data Machine is the agent mind, Data Machine Code is the agent's hands, and Markdown Database Integration makes WordPress content persist as files.
 
 ## Current Status
 
@@ -35,6 +35,7 @@ content and world-specific seeding policy.
 World of WordPress combines a small set of reusable projects:
 
 - [WordPress Playground](https://github.com/WordPress/wordpress-playground) is the browser runtime.
+- [Agents API](https://github.com/Automattic/agents-api) provides the WordPress-native agent runtime substrate.
 - [Markdown Database Integration](https://github.com/Automattic/markdown-database-integration) persists WordPress content as files.
 - [Data Machine](https://github.com/Extra-Chill/data-machine) imports and runs the World Creator agent bundle.
 - [Data Machine Code](https://github.com/Extra-Chill/data-machine-code) provides GitHub tools for repository mutations and pull requests.
@@ -45,10 +46,10 @@ World of WordPress combines a small set of reusable projects:
 
 The `World Creator` GitHub Actions workflow runs a manual day cycle. It boots a
 fresh WordPress Playground runtime, imports the bundled `world-creator` Data
-Machine agent, lets it inspect this repository with GitHub file tools, and
-expects it to open a pull request for one small visible mutation.
+ Machine agent, lets it inspect this repository with GitHub file tools, and
+ expects it to open a pull request for a coherent mutation.
 
 To run it, use **Actions > World Creator > Run workflow**. The workflow requires
 the repository secret `OPENAI_API_KEY`; its ref inputs default to the current
-`main` branches for Data Machine, Data Machine Code, Markdown Database
-Integration, and Homeboy Extensions.
+`main` branches for Agents API, Data Machine, Data Machine Code, Markdown
+Database Integration, Homeboy, and Homeboy Extensions.
