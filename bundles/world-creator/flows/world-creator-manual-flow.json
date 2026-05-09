@@ -33,6 +33,16 @@
           "agent_daily_memory"
         ]
       },
+      "tool_runtime_rules": [
+        {
+          "id": "daily-memory-before-pr",
+          "type": "require_prior_tool",
+          "before_tool": "create_github_pull_request",
+          "require_prior_tool": [
+            "agent_daily_memory"
+          ]
+        }
+      ],
       "prompt_queue": [
         {
           "added_at": "2026-05-08T17:45:00Z",
