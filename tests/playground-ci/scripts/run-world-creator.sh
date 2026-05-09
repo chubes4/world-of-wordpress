@@ -8,9 +8,11 @@ WORKLOAD_PATH="$REPO_ROOT/tests/playground-ci/workloads/world-creator-day-cycle.
 BUNDLE_SOURCE="$REPO_ROOT/bundles/world-creator"
 
 EXTENSION_PATH="${HOMEBOY_EXTENSION_PATH:-/Users/chubes/Developer/homeboy-extensions/wordpress}"
+WORLD_PLUGIN_PATH="${WORLD_PLUGIN_PATH:-$REPO_ROOT}"
 AGENTS_API_PATH="${AGENTS_API_PATH:-/Users/chubes/Developer/agents-api}"
 DM_PATH="${DM_PATH:-/Users/chubes/Developer/data-machine}"
 DMC_PATH="${DMC_PATH:-/Users/chubes/Developer/data-machine-code}"
+MDI_PATH="${MDI_PATH:-/Users/chubes/Developer/markdown-database-integration}"
 OPENAI_PROVIDER_PATH="${OPENAI_PROVIDER_PATH:-/Users/chubes/Studio/intelligence-chubes4/wp-content/plugins/ai-provider-for-openai}"
 STUDIO_SITE_PATH="${STUDIO_SITE_PATH:-/Users/chubes/Studio/intelligence-chubes4}"
 WORLD_CREATOR_OPENAI_MODEL="${WORLD_CREATOR_OPENAI_MODEL:-gpt-5.5}"
@@ -21,8 +23,8 @@ if [ ! -f "$EXTENSION_PATH/scripts/bench/bench-runner.sh" ]; then
     echo "ERROR: Homeboy WordPress extension not found at $EXTENSION_PATH" >&2
     exit 1
 fi
-if [ ! -d "$AGENTS_API_PATH" ] || [ ! -d "$DM_PATH" ] || [ ! -d "$DMC_PATH" ]; then
-    echo "ERROR: Agents API, Data Machine, and Data Machine Code checkouts are required" >&2
+if [ ! -d "$WORLD_PLUGIN_PATH" ] || [ ! -d "$AGENTS_API_PATH" ] || [ ! -d "$DM_PATH" ] || [ ! -d "$DMC_PATH" ] || [ ! -d "$MDI_PATH" ]; then
+    echo "ERROR: World plugin, Agents API, Data Machine, Data Machine Code, and Markdown Database Integration checkouts are required" >&2
     exit 1
 fi
 if [ ! -d "$OPENAI_PROVIDER_PATH" ]; then
@@ -74,9 +76,11 @@ cp -R "$BUNDLE_SOURCE" "$COMPONENT_BUNDLE_DIR"
 cp "$REPO_ROOT/WORLD.md" "$COMPONENT_PATH/WORLD.md"
 
 SETTINGS_JSON=$(jq -nc \
+    --arg worldPlugin "$WORLD_PLUGIN_PATH" \
     --arg agentsApi "$AGENTS_API_PATH" \
     --arg dm "$DM_PATH" \
     --arg dmc "$DMC_PATH" \
+    --arg mdi "$MDI_PATH" \
     --arg openaiProvider "$OPENAI_PROVIDER_PATH" \
     --arg githubToken "$GITHUB_TOKEN" \
     --arg openaiKey "$OPENAI_API_KEY" \
@@ -84,8 +88,19 @@ SETTINGS_JSON=$(jq -nc \
     --arg targetRepo "$WORLD_CREATOR_TARGET_REPO" \
     --arg prompt "$WORLD_CREATOR_PROMPT" \
     '{
-        validation_dependencies: [$agentsApi, $dm, $dmc, $openaiProvider],
+        validation_dependencies: [$worldPlugin, $mdi, $agentsApi, $dm, $dmc, $openaiProvider],
         playground_wordpress_version: "7.0",
+        wp_config_defines: {
+            MARKDOWN_DB_MODE: "primary",
+            MARKDOWN_DB_CONTENT_DIR: "/wordpress/wp-content/plugins/world-of-wordpress/content"
+        },
+        playground_file_mounts: [
+            {
+                from_dependency: "markdown-database-integration",
+                from: "db.php",
+                to: "/wordpress/wp-content/db.php"
+            }
+        ],
         bench_env: {
             GITHUB_TOKEN: $githubToken,
             OPENAI_API_KEY: $openaiKey,
@@ -124,6 +139,8 @@ HOMEBOY_BENCH_WARMUP_ITERATIONS=0 \
 HOMEBOY_COMPONENT_ID=world-of-wordpress-ci-driver \
 HOMEBOY_COMPONENT_PATH="$COMPONENT_PATH" \
 HOMEBOY_WORDPRESS_DEPENDENCY_PATHS="$AGENTS_API_PATH
+$WORLD_PLUGIN_PATH
+$MDI_PATH
 $DM_PATH
 $DMC_PATH
 $OPENAI_PROVIDER_PATH" \
