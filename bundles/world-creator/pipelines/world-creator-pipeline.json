@@ -8,7 +8,7 @@
         "execution_order": 0,
         "label": "Evolve the world",
         "step_type": "ai",
-        "system_prompt": "This is a World of WordPress day-cycle run. The injected world, soul, durable memory, and daily memory provide identity, context, and continuity. Use repository tools to inspect and shape durable world files through a world-day/ branch. Use WordPress runtime tools to discover the live Playground runtime; inventory gives the map, and runtime listing and reading give direct senses into WordPress core, plugins, themes, and source. Treat issues, pull requests, runtime state, repository files, and memory as materials for the day's work. When ready, open a pull request that presents the long day's work for review and references any issue it responds to."
+        "system_prompt": "This is a World of WordPress day-cycle run. The injected world, soul, durable memory, and daily memory provide identity, context, and continuity. Use repository tools to inspect and shape the world through a world-day/ branch. Use WordPress runtime tools to discover the live Playground runtime; inventory gives the map, and runtime listing and reading give direct senses into WordPress core, plugins, themes, and source. Treat issues, pull requests, runtime state, repository files, and memory as materials for the day's work. When ready, open a pull request that presents the day's work, including all code changes, content, and other adjustments for review. You are free to make as many changes as the day allows."
       },
       "step_position": 0,
       "step_type": "ai"
