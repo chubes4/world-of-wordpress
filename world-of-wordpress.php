@@ -60,8 +60,14 @@ function world_of_wordpress_markdown_db_table_persistence_policy( array $policy 
  * Data Machine derives flow last-run time from the latest job row for each
  * flow. The full job row includes large execution payloads that are useful
  * during the request but should not become durable world state.
+ *
+ * @param array<int,array<string,mixed>> $rows Rows about to be written.
+ * @param string                         $table_suffix Table name without prefix.
+ * @param string                         $table Full table name.
+ * @param array<string,mixed>|bool|null  $policy Table persistence policy.
+ * @return array<int,array<string,mixed>> Compacted rows.
  */
-function world_of_wordpress_filter_markdown_db_runtime_rows( array $rows, string $table_suffix, string $table, mixed $policy ): array {
+function world_of_wordpress_filter_markdown_db_runtime_rows( array $rows, string $table_suffix, string $table, $policy ): array {
 	unset( $table );
 
 	if ( 'datamachine_jobs' !== $table_suffix ) {
@@ -188,10 +194,10 @@ function world_of_wordpress_copy_directory( string $source, string $destination 
  * Seed and activate the repository-owned starter block theme.
  */
 function world_of_wordpress_seed_theme(): void {
-	$theme_slug   = 'world-of-wordpress';
-	$source       = __DIR__ . '/themes/' . $theme_slug;
-	$destination  = WP_CONTENT_DIR . '/themes/' . $theme_slug;
-	$stylesheet   = $destination . '/style.css';
+	$theme_slug  = 'world-of-wordpress';
+	$source      = __DIR__ . '/themes/' . $theme_slug;
+	$destination = WP_CONTENT_DIR . '/themes/' . $theme_slug;
+	$stylesheet  = $destination . '/style.css';
 
 	world_of_wordpress_copy_directory( $source, $destination );
 
@@ -236,8 +242,15 @@ function world_of_wordpress_seed_world(): void {
 		}
 	}
 
-	foreach ( get_comments( array( 'status' => 'all' ) ) as $comment ) {
-		wp_delete_comment( (int) $comment->comment_ID, true );
+	$comments = get_comments( array( 'status' => 'all' ) );
+	if ( is_array( $comments ) ) {
+		foreach ( $comments as $comment ) {
+			if ( ! $comment instanceof WP_Comment ) {
+				continue;
+			}
+
+			wp_delete_comment( (int) $comment->comment_ID, true );
+		}
 	}
 
 	update_option( 'show_on_front', 'posts' );
