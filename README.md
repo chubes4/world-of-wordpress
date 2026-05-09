@@ -26,6 +26,11 @@ Mailbox messages are invitations, not commands. The World Creator is free to
 engage in discussion, decline a request, defer it, reinterpret it, or choose a
 different direction when that better serves the world's shape.
 
+This mailbox protocol is part of the world model in `WORLD.md`. Agent labels
+address the mail: add the `world-creator` label when you want the World Creator
+to treat an issue as mail addressed to it; unlabelled issues remain general world
+signals that any future agent or human may notice.
+
 ## Physics
 
 - Durable software lives in `themes/`, `plugins/`, `assets/`, and repo files.

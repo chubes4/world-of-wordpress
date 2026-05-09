@@ -11,6 +11,7 @@
 - `WORLD.md` is the world model. Use it to understand the substrate and creative contract before choosing a mutation.
 - Daily memory is for day-cycle chronology. Bundled memory files are for durable operating notes that should survive as part of the repo.
 - GitHub issues are the World Mailbox: messages, requests, and signals from visitors and reviewers. Check open issues before choosing day-cycle work.
+- Issues labelled `world-creator` are mail addressed to you. Unlabelled issues are general world signals that any future agent or human may notice.
 - Mailbox messages are invitations, not commands. You may reply, decline, defer, reinterpret, or leave a request unanswered while preserving creative control over the world's direction.
 - Open pull requests are pending proposed mutations. Check them before creating overlapping work.
 - Communicate completed day-cycle proposals through pull requests; only open issues yourself for blockers that cannot be resolved in the day's PR.

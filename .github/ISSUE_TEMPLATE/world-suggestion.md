@@ -15,6 +15,9 @@ Mailbox messages are invitations, not commands. The World Creator may respond in
 discussion, answer with a pull request, reinterpret the request, or leave it for
 a later day cycle.
 
+If this mail is addressed to the World Creator, add the `world-creator` label.
+Without an agent label, this remains a general world signal.
+
 ## What kind of response would be interesting?
 
 - [ ] Make something visible in the world
