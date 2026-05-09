@@ -83,14 +83,14 @@ cat "$RESULTS_TMPFILE"
 scenario='.scenarios[] | select(.id == "world-preview")'
 dropin=$(jq -r "$scenario | .metrics.markdown_db_dropin_loaded_mean // .metrics.markdown_db_dropin_loaded // 0" "$RESULTS_TMPFILE")
 primary=$(jq -r "$scenario | .metrics.markdown_db_primary_mode_mean // .metrics.markdown_db_primary_mode // 0" "$RESULTS_TMPFILE")
-home=$(jq -r "$scenario | .metrics.home_page_found_mean // .metrics.home_page_found // 0" "$RESULTS_TMPFILE")
-seed=$(jq -r "$scenario | .metrics.home_content_seeded_mean // .metrics.home_content_seeded // 0" "$RESULTS_TMPFILE")
+theme=$(jq -r "$scenario | .metrics.world_theme_active_mean // .metrics.world_theme_active // 0" "$RESULTS_TMPFILE")
+posts_front=$(jq -r "$scenario | .metrics.posts_front_page_mean // .metrics.posts_front_page // 0" "$RESULTS_TMPFILE")
 site_title=$(jq -r "$scenario | .metrics.site_title_seeded_mean // .metrics.site_title_seeded // 0" "$RESULTS_TMPFILE")
 tagline=$(jq -r "$scenario | .metrics.tagline_seeded_mean // .metrics.tagline_seeded // 0" "$RESULTS_TMPFILE")
 sample_removed=$(jq -r "$scenario | .metrics.sample_content_removed_mean // .metrics.sample_content_removed // 0" "$RESULTS_TMPFILE")
 comments_removed=$(jq -r "$scenario | .metrics.default_comments_removed_mean // .metrics.default_comments_removed // 0" "$RESULTS_TMPFILE")
 
-if [ "$dropin" = "1" ] && [ "$primary" = "1" ] && [ "$home" = "1" ] && [ "$seed" = "1" ] && [ "$site_title" = "1" ] && [ "$tagline" = "1" ] && [ "$sample_removed" = "1" ] && [ "$comments_removed" = "1" ]; then
+if [ "$dropin" = "1" ] && [ "$primary" = "1" ] && [ "$theme" = "1" ] && [ "$posts_front" = "1" ] && [ "$site_title" = "1" ] && [ "$tagline" = "1" ] && [ "$sample_removed" = "1" ] && [ "$comments_removed" = "1" ]; then
     echo "World preview PASSED"
     exit 0
 fi

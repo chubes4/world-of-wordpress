@@ -35,6 +35,6 @@ The world evolves through reviewable proposals. Agents may explore the repositor
 
 ## Persistence
 
-WordPress content is backed by Markdown Database Integration in primary mode. Files under `content/` are part of the world and should be treated as durable source, not generated cache.
+WordPress content is backed by Markdown Database Integration in primary mode. Files under `content/` are durable world source.
 
-MDI stores `post_content` bytes as-is. For WordPress-visible pages, prefer valid block markup or HTML-shaped content. Plain markdown is useful for docs and lore, but it is not automatically converted into blocks unless the world builds that capability.
+MDI stores `post_content` bytes as-is. For WordPress-visible pages, prefer valid block markup or HTML-shaped content. Plain markdown is useful for docs and lore. The world can grow markdown-to-block rendering as a future capability.

@@ -49,7 +49,7 @@
     },
     {
       "step": "runPHP",
-      "code": "<?php require_once '/wordpress/wp-load.php'; $world = WP_PLUGIN_DIR . '/world-of-wordpress/world-of-wordpress.php'; if ( ! function_exists( 'world_of_wordpress_seed_world' ) && file_exists( $world ) ) { require_once $world; } if ( function_exists( 'world_of_wordpress_seed_world' ) ) { world_of_wordpress_seed_world(); } foreach ( array( 'hello-world', 'sample-page', 'privacy-policy' ) as $slug ) { foreach ( array( 'post', 'page' ) as $post_type ) { $sample = get_page_by_path( $slug, OBJECT, $post_type ); if ( $sample ) { wp_delete_post( (int) $sample->ID, true ); } } } foreach ( get_comments( array( 'status' => 'all' ) ) as $comment ) { wp_delete_comment( (int) $comment->comment_ID, true ); } $home = get_page_by_path( 'home', OBJECT, 'page' ); if ( $home ) { update_option( 'show_on_front', 'page' ); update_option( 'page_on_front', (int) $home->ID ); }"
+      "code": "<?php require_once '/wordpress/wp-load.php'; $world = WP_PLUGIN_DIR . '/world-of-wordpress/world-of-wordpress.php'; if ( ! function_exists( 'world_of_wordpress_seed_world' ) && file_exists( $world ) ) { require_once $world; } if ( function_exists( 'world_of_wordpress_seed_world' ) ) { world_of_wordpress_seed_world(); }"
     }
   ]
 }

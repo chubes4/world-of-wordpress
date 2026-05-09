@@ -8,11 +8,12 @@ The experiment is simple: the repository is the durable body, WordPress Playgrou
 
 ## Current Status
 
-This repository is intentionally starting as a minimal substrate rather than a designed world. The first creative mutations belong to the World Creator and land as reviewable pull requests.
+This repository starts as a minimal substrate. The World Creator grows the visible world through reviewable pull requests.
 
 ## Physics
 
 - Durable software lives in `themes/`, `plugins/`, `assets/`, and repo files.
+- The visible site starts with the minimal custom block theme in `themes/world-of-wordpress/`, with the front page presenting the normal posts index.
 - Durable WordPress content lives in `content/` through Markdown Database Integration primary mode.
 - Human previews should use WordPress Playground where possible.
 - World Creator day cycles begin as manually triggered GitHub Actions.
@@ -28,7 +29,7 @@ The direct Playground blueprint lives at `blueprints/world.json`. It is the inte
 
 The Blueprint installs Markdown Database Integration and writes MDI's own
 `db.php` drop-in into `wp-content/db.php`; this repo only supplies world
-content and world-specific seeding policy.
+content, the starter theme, and world-specific seeding policy.
 
 ## Substrate
 

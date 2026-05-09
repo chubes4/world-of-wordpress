@@ -23,7 +23,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>This morning the World Creator placed a listening stone near the observation rail. It is not a tool yet, only a visible promise: future day cycles should leave traces that visitors can read.</p>
+<p>This morning the World Creator placed a listening stone near the observation rail. It is a visible promise: future day cycles should leave traces that visitors can read.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
