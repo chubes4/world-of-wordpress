@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 COMPONENT_PATH="$REPO_ROOT/tests/playground-ci/component"
-WORKLOAD_PATH="$REPO_ROOT/tests/playground-ci/workloads/world-creator-day-cycle.php"
+BOOTSTRAP_WORKLOAD_PATH="$REPO_ROOT/tests/playground-ci/workloads/world-creator-bootstrap.php"
 BUNDLE_SOURCE="$REPO_ROOT/bundles/world-creator"
 
 EXTENSION_PATH="${HOMEBOY_EXTENSION_PATH:-/Users/chubes/Developer/homeboy-extensions/wordpress}"
@@ -58,24 +58,32 @@ if [ -z "$OPENAI_API_KEY" ]; then
     exit 1
 fi
 
-RESULTS_TMPFILE=$(mktemp "${TMPDIR:-/tmp}/world-creator.XXXXXX")
-COMPONENT_WORKLOAD="$COMPONENT_PATH/world-creator-day-cycle.php"
+CONFIG_TMPFILE=$(mktemp "${TMPDIR:-/tmp}/world-creator-config.XXXXXX.json")
+RESULTS_TMPFILE=$(mktemp "${TMPDIR:-/tmp}/world-creator-results.XXXXXX.json")
+COMPONENT_BOOTSTRAP_WORKLOAD="$COMPONENT_PATH/world-creator-bootstrap.php"
 COMPONENT_BUNDLE_DIR="$COMPONENT_PATH/bundles/world-creator"
 TRANSCRIPT_ARTIFACT_DIR="$COMPONENT_PATH/artifacts/world-creator"
 
 cleanup() {
-    rm -f "$RESULTS_TMPFILE" "$COMPONENT_WORKLOAD" "$COMPONENT_PATH/WORLD.md"
+    rm -f "$CONFIG_TMPFILE" "$RESULTS_TMPFILE" "$COMPONENT_BOOTSTRAP_WORKLOAD" "$COMPONENT_PATH/WORLD.md"
     rm -rf "$COMPONENT_PATH/bundles"
 }
 trap cleanup EXIT
 
 rm -rf "$TRANSCRIPT_ARTIFACT_DIR"
 mkdir -p "$TRANSCRIPT_ARTIFACT_DIR" "$COMPONENT_PATH/bundles"
-cp "$WORKLOAD_PATH" "$COMPONENT_WORKLOAD"
+cp "$BOOTSTRAP_WORKLOAD_PATH" "$COMPONENT_BOOTSTRAP_WORKLOAD"
 cp -R "$BUNDLE_SOURCE" "$COMPONENT_BUNDLE_DIR"
 cp "$REPO_ROOT/WORLD.md" "$COMPONENT_PATH/WORLD.md"
 
-SETTINGS_JSON=$(jq -nc \
+HE_AGENT_RUNNER="$EXTENSION_PATH/scripts/agent/run-datamachine-agent.sh"
+if [ ! -f "$HE_AGENT_RUNNER" ]; then
+    echo "ERROR: generic Data Machine agent runner not found at $HE_AGENT_RUNNER" >&2
+    exit 1
+fi
+
+jq -n \
+    --arg componentPath "$COMPONENT_PATH" \
     --arg worldPlugin "$WORLD_PLUGIN_PATH" \
     --arg agentsApi "$AGENTS_API_PATH" \
     --arg dm "$DM_PATH" \
@@ -88,6 +96,10 @@ SETTINGS_JSON=$(jq -nc \
     --arg targetRepo "$WORLD_CREATOR_TARGET_REPO" \
     --arg prompt "$WORLD_CREATOR_PROMPT" \
     '{
+        component_id: "world-of-wordpress-ci-driver",
+        component_path: $componentPath,
+        workload_id: "world-creator-day-cycle",
+        workload_label: "Run World Creator day cycle",
         validation_dependencies: [$worldPlugin, $mdi, $agentsApi, $dm, $dmc, $openaiProvider],
         playground_wordpress_version: "7.0",
         wp_config_defines: {
@@ -101,24 +113,41 @@ SETTINGS_JSON=$(jq -nc \
                 to: "/wordpress/wp-content/db.php"
             }
         ],
+        bundle_path: "/wordpress/wp-content/plugins/world-of-wordpress-ci-driver/bundles/world-creator",
+        agent_slug: "world-creator",
+        pipeline_slug: "world-creator-pipeline",
+        flow_slug: "world-creator-day-cycle-flow",
+        provider: "openai",
+        model: $model,
+        provider_register_function: "WordPress\\OpenAiAiProvider\\register_provider",
+        provider_credentials: {
+            connectors_ai_openai_api_key: "OPENAI_API_KEY"
+        },
+        github_token_env: "GITHUB_TOKEN",
+        github_profile_id: "world-creator-ci",
+        target_repo: $targetRepo,
+        allowed_repos: [$targetRepo],
+        daily_memory_enabled: true,
+        max_turns: 16,
+        prompt: $prompt,
+        step_budget: 20,
+        time_budget_ms: 900000,
+        transcript_dir: "/wordpress/wp-content/plugins/world-of-wordpress-ci-driver/artifacts/world-creator",
+        required_abilities: [
+            "datamachine/import-agent",
+            "datamachine/run-flow",
+            "datamachine/drain-job",
+            "datamachine/create-or-update-github-file",
+            "datamachine/daily-memory-write"
+        ],
         bench_env: {
             GITHUB_TOKEN: $githubToken,
-            OPENAI_API_KEY: $openaiKey,
-            WORLD_CREATOR_OPENAI_MODEL: $model,
-            WORLD_CREATOR_TARGET_REPO: $targetRepo,
-            WORLD_CREATOR_PROMPT: $prompt,
-            WORLD_CREATOR_TRANSCRIPT_DIR: "/wordpress/wp-content/plugins/world-of-wordpress-ci-driver/artifacts/world-creator"
+            OPENAI_API_KEY: $openaiKey
         },
-        playground_workloads: [
-            {
-                id: "world-creator-day-cycle",
-                label: "Run World Creator day cycle",
-                run: [
-                    { type: "php", file: "world-creator-day-cycle.php" }
-                ]
-            }
+        workload_run_before: [
+            { type: "php", file: "world-creator-bootstrap.php" }
         ]
-    }')
+    }' > "$CONFIG_TMPFILE"
 
 echo "============================================"
 echo "World Creator day cycle"
@@ -134,19 +163,8 @@ WORLD_CREATOR_OPENAI_MODEL="$WORLD_CREATOR_OPENAI_MODEL" \
 WORLD_CREATOR_TARGET_REPO="$WORLD_CREATOR_TARGET_REPO" \
 WORLD_CREATOR_PROMPT="$WORLD_CREATOR_PROMPT" \
 HOMEBOY_BENCH_RESULTS_FILE="$RESULTS_TMPFILE" \
-HOMEBOY_BENCH_ITERATIONS=1 \
-HOMEBOY_BENCH_WARMUP_ITERATIONS=0 \
-HOMEBOY_COMPONENT_ID=world-of-wordpress-ci-driver \
-HOMEBOY_COMPONENT_PATH="$COMPONENT_PATH" \
-HOMEBOY_WORDPRESS_DEPENDENCY_PATHS="$AGENTS_API_PATH
-$WORLD_PLUGIN_PATH
-$MDI_PATH
-$DM_PATH
-$DMC_PATH
-$OPENAI_PROVIDER_PATH" \
 HOMEBOY_EXTENSION_PATH="$EXTENSION_PATH" \
-HOMEBOY_SETTINGS_JSON="$SETTINGS_JSON" \
-    bash "$EXTENSION_PATH/scripts/bench/bench-runner.sh"
+    bash "$HE_AGENT_RUNNER" "$CONFIG_TMPFILE"
 
 if [ ! -s "$RESULTS_TMPFILE" ]; then
     echo "ERROR: results file empty or missing at $RESULTS_TMPFILE" >&2
@@ -160,8 +178,8 @@ import_resolved=$(jq -r "$scenario | .metadata.import_result.success // false" "
 run_resolved=$(jq -r "$scenario | .metadata.run_result.success // false" "$RESULTS_TMPFILE")
 drain_resolved=$(jq -r "$scenario | .metadata.drain_result.success // false" "$RESULTS_TMPFILE")
 job_status=$(jq -r "$scenario | .metadata.job_status // \"unknown\"" "$RESULTS_TMPFILE")
-transcript_json_path=$(jq -r "$scenario | .metadata.transcript_artifacts.json // \"\"" "$RESULTS_TMPFILE")
-world_creator_pr_url=$(jq -r "$scenario | .metadata.world_creator_pr_url // \"\"" "$RESULTS_TMPFILE")
+transcript_json_path=$(jq -r "$scenario | .metadata.transcript_artifacts | if type == \"object\" then (.json // \"\") else \"\" end" "$RESULTS_TMPFILE")
+world_creator_pr_url=$(jq -r "$scenario | .metadata.engine_data.world_creator.pr_url // \"\"" "$RESULTS_TMPFILE")
 
 echo "============================================"
 echo "World Creator summary"
