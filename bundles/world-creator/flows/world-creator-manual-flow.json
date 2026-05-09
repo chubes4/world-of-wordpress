@@ -40,7 +40,12 @@
           "before_tool": "create_github_pull_request",
           "require_prior_tool": [
             "agent_daily_memory"
-          ]
+          ],
+          "require_prior_tool_parameters": {
+            "agent_daily_memory": {
+              "action": "write"
+            }
+          }
         }
       ],
       "prompt_queue": [
