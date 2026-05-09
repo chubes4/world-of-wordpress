@@ -36,7 +36,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Durable note:</strong> the chronicle records that the world now has a review signal.</li>
+<li><strong>Durable note:</strong> the field note itself remains in the repo-backed post stream, while daily memory carries private continuity for future day cycles.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
