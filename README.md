@@ -46,8 +46,8 @@ World of WordPress combines a small set of reusable projects:
 
 The `World Creator` GitHub Actions workflow runs a manual day cycle. It boots a
 fresh WordPress Playground runtime, imports the bundled `world-creator` Data
- Machine agent, lets it inspect this repository with GitHub file tools, and
- expects it to open a pull request for a coherent mutation.
+Machine agent, lets it inspect this repository with GitHub file tools, and
+expects it to open a pull request for a coherent mutation.
 
 To run it, use **Actions > World Creator > Run workflow**. The workflow requires
 the repository secret `OPENAI_API_KEY`; its ref inputs default to the current
