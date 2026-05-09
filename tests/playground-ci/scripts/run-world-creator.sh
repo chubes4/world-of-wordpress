@@ -8,6 +8,7 @@ WORKLOAD_PATH="$REPO_ROOT/tests/playground-ci/workloads/world-creator-day-cycle.
 BUNDLE_SOURCE="$REPO_ROOT/bundles/world-creator"
 
 EXTENSION_PATH="${HOMEBOY_EXTENSION_PATH:-/Users/chubes/Developer/homeboy-extensions/wordpress}"
+AGENTS_API_PATH="${AGENTS_API_PATH:-/Users/chubes/Developer/agents-api}"
 DM_PATH="${DM_PATH:-/Users/chubes/Developer/data-machine}"
 DMC_PATH="${DMC_PATH:-/Users/chubes/Developer/data-machine-code}"
 OPENAI_PROVIDER_PATH="${OPENAI_PROVIDER_PATH:-/Users/chubes/Studio/intelligence-chubes4/wp-content/plugins/ai-provider-for-openai}"
@@ -20,8 +21,8 @@ if [ ! -f "$EXTENSION_PATH/scripts/bench/bench-runner.sh" ]; then
     echo "ERROR: Homeboy WordPress extension not found at $EXTENSION_PATH" >&2
     exit 1
 fi
-if [ ! -d "$DM_PATH" ] || [ ! -d "$DMC_PATH" ]; then
-    echo "ERROR: Data Machine and Data Machine Code checkouts are required" >&2
+if [ ! -d "$AGENTS_API_PATH" ] || [ ! -d "$DM_PATH" ] || [ ! -d "$DMC_PATH" ]; then
+    echo "ERROR: Agents API, Data Machine, and Data Machine Code checkouts are required" >&2
     exit 1
 fi
 if [ ! -d "$OPENAI_PROVIDER_PATH" ]; then
@@ -73,6 +74,7 @@ cp -R "$BUNDLE_SOURCE" "$COMPONENT_BUNDLE_DIR"
 cp "$REPO_ROOT/WORLD.md" "$COMPONENT_PATH/WORLD.md"
 
 SETTINGS_JSON=$(jq -nc \
+    --arg agentsApi "$AGENTS_API_PATH" \
     --arg dm "$DM_PATH" \
     --arg dmc "$DMC_PATH" \
     --arg openaiProvider "$OPENAI_PROVIDER_PATH" \
@@ -82,7 +84,7 @@ SETTINGS_JSON=$(jq -nc \
     --arg targetRepo "$WORLD_CREATOR_TARGET_REPO" \
     --arg prompt "$WORLD_CREATOR_PROMPT" \
     '{
-        validation_dependencies: [$dm, $dmc, $openaiProvider],
+        validation_dependencies: [$agentsApi, $dm, $dmc, $openaiProvider],
         playground_wordpress_version: "7.0",
         bench_env: {
             GITHUB_TOKEN: $githubToken,
@@ -121,7 +123,8 @@ HOMEBOY_BENCH_ITERATIONS=1 \
 HOMEBOY_BENCH_WARMUP_ITERATIONS=0 \
 HOMEBOY_COMPONENT_ID=world-of-wordpress-ci-driver \
 HOMEBOY_COMPONENT_PATH="$COMPONENT_PATH" \
-HOMEBOY_WORDPRESS_DEPENDENCY_PATHS="$DM_PATH
+HOMEBOY_WORDPRESS_DEPENDENCY_PATHS="$AGENTS_API_PATH
+$DM_PATH
 $DMC_PATH
 $OPENAI_PROVIDER_PATH" \
 HOMEBOY_EXTENSION_PATH="$EXTENSION_PATH" \
