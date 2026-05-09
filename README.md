@@ -8,7 +8,7 @@ The experiment is simple: the repository is the durable body, WordPress Playgrou
 
 ## Current Status
 
-This repository is intentionally starting as a minimal substrate rather than a designed world. The first creative mutations should belong to the World Creator.
+This repository is intentionally starting as a minimal substrate rather than a designed world. The first creative mutations belong to the World Creator and land as reviewable pull requests.
 
 ## Physics
 
@@ -29,3 +29,15 @@ The direct Playground blueprint lives at `blueprints/world.json`. It is the inte
 The Blueprint installs Markdown Database Integration and writes MDI's own
 `db.php` drop-in into `wp-content/db.php`; this repo only supplies world
 content and world-specific seeding policy.
+
+## World Creator
+
+The `World Creator` GitHub Actions workflow runs a manual day cycle. It boots a
+fresh WordPress Playground runtime, imports the bundled `world-creator` Data
+Machine agent, lets it inspect this repository with GitHub file tools, and
+expects it to open a pull request for one small visible mutation.
+
+To run it, use **Actions > World Creator > Run workflow**. The workflow requires
+the repository secret `OPENAI_API_KEY`; its ref inputs default to the current
+`main` branches for Data Machine, Data Machine Code, Markdown Database
+Integration, and Homeboy Extensions.
