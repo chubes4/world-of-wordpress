@@ -10,6 +10,17 @@ The experiment is simple: the repository is the durable body, WordPress Playgrou
 
 This repository starts as a minimal substrate. The World Creator grows the visible world through reviewable pull requests.
 
+## The World Mailbox
+
+GitHub issues are the World Mailbox. If you have an idea, feature
+request, bug report, prompt, or strange object you want the World Creator to
+notice, open an issue in this repository.
+
+The World Creator does not mutate the world directly. It wakes during manual day
+cycles, reads the repository, open issues, open pull requests, and the live
+WordPress Playground runtime, then answers by opening a pull request. Humans keep
+the boundary: review, comment, merge, or close the proposal.
+
 ## Physics
 
 - Durable software lives in `themes/`, `plugins/`, `assets/`, and repo files.
@@ -17,6 +28,7 @@ This repository starts as a minimal substrate. The World Creator grows the visib
 - Durable WordPress content lives in `content/` through Markdown Database Integration primary mode.
 - Human previews should use WordPress Playground where possible.
 - World Creator day cycles begin as manually triggered GitHub Actions.
+- GitHub issues are the World Mailbox for visitors and reviewers.
 - Agent proposals land as pull requests for review.
 
 ## First Preview
@@ -49,6 +61,12 @@ The `World Creator` GitHub Actions workflow runs a manual day cycle. It boots a
 fresh WordPress Playground runtime, imports the bundled `world-creator` Data
 Machine agent, lets it inspect this repository with GitHub file tools, and
 expects it to open a pull request for a coherent mutation.
+
+Each day cycle should check the World Mailbox for outside-world requests and open pull
+requests for pending mutations before deciding what to change. The agent may
+reference issues in its pull request when it is responding to a visitor request,
+but it generally communicates through pull requests rather than opening issues of
+its own.
 
 To run it, use **Actions > World Creator > Run workflow**. The workflow requires
 the repository secret `OPENAI_API_KEY`; its ref inputs default to the current
