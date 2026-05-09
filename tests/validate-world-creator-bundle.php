@@ -7,7 +7,7 @@
 
 $repo_root     = dirname( __DIR__ );
 $manifest_path = $repo_root . '/bundles/world-creator/manifest.json';
-$flow_path     = $repo_root . '/bundles/world-creator/flows/world-creator-manual-flow.json';
+$flow_path     = $repo_root . '/bundles/world-creator/flows/world-creator-day-cycle-flow.json';
 $failures      = array();
 $passes        = 0;
 

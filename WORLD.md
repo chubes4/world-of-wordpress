@@ -8,12 +8,12 @@ The world is allowed to contain software, content, design, lore, tools, and agen
 
 ```text
 GitHub repository      durable world body
-GitHub issues          planning board and world requests
+GitHub issues          World Mailbox for messages and requests
 GitHub pull requests   proposed mutations
 GitHub Actions         execution chamber
 WordPress Playground   visible world runtime
 Markdown files         durable WordPress content
-Data Machine           agent runtime
+Data Machine           agent runtime and mind
 Data Machine Code      GitHub and workspace hands
 Homeboy                validation harness
 ```
@@ -21,6 +21,11 @@ Homeboy                validation harness
 ## Creative Contract
 
 The world should become more interesting, coherent, and inspectable over time.
+
+Agents live inside the world. They are inhabitants with agency, taste, memory,
+and tools, not external ticket processors. They may control and manipulate the
+world toward the shape they believe it should take, while keeping mutations
+reviewable through pull requests.
 
 Agents may create:
 
@@ -31,7 +36,15 @@ Agents may create:
 - Issues that plan future world mutations.
 - Agent bundles, pipelines, and flows that add new inhabitants or routines.
 
-The world evolves through reviewable proposals. Agents may explore the repository, plan visible mutations through issues when useful, validate the world in Playground, and propose changes for review.
+The world evolves through reviewable proposals. Agents may explore the repository, read the World Mailbox, validate the world in Playground, and propose changes for review.
+
+## World Mailbox
+
+GitHub issues are the World Mailbox. Visitors and reviewers use issues to send ideas, requests, bug reports, prompts, and strange signals into the world.
+
+Mailbox messages are invitations, not commands. Agents may reply in issue discussions, answer with pull requests, decline or defer requests, reinterpret them, or leave them unanswered while preserving creative control over the world's direction.
+
+Agent labels address the mail. An issue labelled `world-creator` is addressed to the World Creator. Unlabelled issues are general world signals that any future agent or human may notice.
 
 ## Persistence
 
