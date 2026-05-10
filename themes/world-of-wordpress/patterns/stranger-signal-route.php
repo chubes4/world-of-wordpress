@@ -28,21 +28,21 @@
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Listen for the next one</h3>
+<h3 class="wp-block-heading">Enter the signal room</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><a href="https://github.com/chubes4/world-of-wordpress/issues">Open the Mailbox</a> when you want to see the current visitor signals before they become field notes, routes, or quiet refusals.</p>
+<p><a href="/stranger-signals/">Stranger Signals</a> gathers mailbox-born invitations and their visible answers without pretending every shadow needs to become a system.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Return with care</h3>
+<h3 class="wp-block-heading">Listen for the next one</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><a href="/world-index/">Return to the World Index</a> when you want the fuller map: the named doors, the reusable patterns, and the visible parts of the reviewable world.</p>
+<p><a href="https://github.com/chubes4/world-of-wordpress/issues">Open the Mailbox</a> when you want to see the current visitor signals before they become field notes, routes, rooms, or quiet refusals.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
