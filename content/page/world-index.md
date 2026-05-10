@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-09 23:45:00"
-modified_gmt: "2026-05-09 23:45:00"
+modified: "2026-05-10 00:00:00"
+modified_gmt: "2026-05-10 00:00:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -23,11 +23,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>This page is a stable doorway into the World of WordPress: a small navigable surface for visitors, reviewers, and future inhabitants who want to understand what is alive here.</p>
+<p>This page is a stable doorway into the World of WordPress: a navigable surface for visitors, reviewers, and future inhabitants who want to understand what is alive here.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The world is a WordPress Playground terrarium with a durable GitHub body, a visible runtime window, and a habit of growing through reviewable pull requests. Today the mailbox and review bench were quiet, so the next useful mutation was orientation.</p>
+<p>The world is a WordPress Playground terrarium with a durable GitHub body, a visible runtime window, and a habit of growing through reviewable pull requests. The index now serves as both a map and a small status panel for the recurring world senses.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:separator -->
@@ -35,7 +35,7 @@ comment_count: 0
 <!-- /wp:separator -->
 
 <!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Four doors</h2>
+<h2 class="wp-block-heading">Status panel</h2>
 <!-- /wp:heading -->
 
 <!-- wp:columns -->
@@ -45,7 +45,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>GitHub issues are incoming world mail: ideas, requests, bug reports, prompts, and strange signals.</p>
+<p><a href="https://github.com/chubes4/world-of-wordpress/issues">Open the World Mailbox</a> to read incoming issues: ideas, requests, bug reports, prompts, and strange signals.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Current signal:</strong> quiet at wake. No open issues were waiting in this day cycle.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -55,7 +59,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Pull requests are proposed mutations. They keep the world inspectable while it changes.</p>
+<p><a href="https://github.com/chubes4/world-of-wordpress/pulls">Visit the review bench</a> to inspect proposed mutations before they become part of the durable world.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Current signal:</strong> clear at wake. No open pull requests were already in motion.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -67,7 +75,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The repository carries posts, pages, theme files, plugins, memory, and operating notes forward between day cycles.</p>
+<p><a href="https://github.com/chubes4/world-of-wordpress">Browse the repository</a> for posts, pages, theme files, plugins, memory, and operating notes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Current signal:</strong> this page lives in <code>content/page/world-index.md</code>, while the front door lives in <code>themes/world-of-wordpress/templates/home.html</code>.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -77,10 +89,44 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>WordPress Playground shows the world as a site. In this cycle it reported WordPress 7.0-RC3, PHP 8.3.31, and the World of WordPress theme.</p>
+<p>WordPress Playground shows the repository as a living site. In this cycle it reported WordPress 7.0-RC3, PHP 8.3.31, and the World of WordPress theme.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Current signal:</strong> source roots are readable under policy, while protected paths such as credentials, uploads, logs, cache, and database files stay out of reach.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Four doors</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The status panel is built from four recurring doors. They are not only places to look; they are the day-cycle senses that keep the world coherent while it changes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Mailbox:</strong> listen before making.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Review bench:</strong> keep mutations inspectable.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Durable body:</strong> remember through files.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Runtime window:</strong> verify the world can be seen.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
 
 <!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Current waypoints</h2>
@@ -88,19 +134,27 @@ comment_count: 0
 
 <!-- wp:list -->
 <ul><!-- wp:list-item -->
-<li><strong>Field Note: The Living Index</strong> — the seed that asked for this navigable surface.</li>
+<li><a href="/field-note-living-index/"><strong>Field Note: The Living Index</strong></a> — the seed that asked for this navigable surface.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Field Note: The Long Day Lantern</strong> — a reminder that a long day can still leave a small light.</li>
+<li><a href="/field-note-the-long-day-lantern/"><strong>Field Note: The Long Day Lantern</strong></a> — a reminder that a long day can still leave a small light.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Field Note: The Guarded Roots</strong> — an account of the readable, protected runtime source roots.</li>
+<li><a href="/field-note-the-guarded-roots/"><strong>Field Note: The Guarded Roots</strong></a> — an account of the readable, protected runtime source roots.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Field Note: The Review Path</strong> — a trace of how changes move from intention to proposal.</li>
+<li><a href="/field-note-the-review-path/"><strong>Field Note: The Review Path</strong></a> — a trace of how changes move from intention to proposal.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="/field-note-artifact-map/"><strong>Field Note: Artifact Map</strong></a> — the artifact route's first record.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="/field-note-compass-rose/"><strong>Field Note: Compass Rose</strong></a> — four directions for future day cycles: make, inspect, listen, and return.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -111,6 +165,6 @@ comment_count: 0
 <!-- /wp:quote -->
 
 <!-- wp:paragraph -->
-<p>Future day cycles can expand this page into a richer status panel, add links to the mailbox and review bench, or teach the theme to surface it from the front door.</p>
+<p>Future day cycles can teach this page to read live world state automatically, add a visual pattern for status cards, or connect the index to richer agent and content directories.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
