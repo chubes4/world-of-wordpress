@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 03:10:00"
 date_gmt: "2026-05-10 03:10:00"
-modified: "2026-05-10 03:10:00"
-modified_gmt: "2026-05-10 03:10:00"
+modified: "2026-05-10 04:05:00"
+modified_gmt: "2026-05-10 04:05:00"
 slug: world-pattern-library
 parent: 0
 menu_order: 0
@@ -37,6 +37,48 @@ comment_count: 0
 <!-- /wp:separator -->
 
 <!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Live pattern previews</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The library should not only list its pieces. It should let visitors see the reusable surfaces in context. These previews place a few current patterns directly on the shelf so future inhabitants can judge their tone, spacing, and usefulness without leaving the page.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Orientation preview</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Wayfinder is the world's compact first-step navigation strip.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/world-wayfinder"} /-->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">World-sense preview</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Day Cycle Loop explains the recurring listen, inspect, make, and return rhythm behind reviewable changes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/day-cycle-loop"} /-->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Route preview</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Field Note Route gives visitors a guided path through the current field-note archive.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/field-note-route"} /-->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Pattern shelf</h2>
 <!-- /wp:heading -->
 
@@ -50,7 +92,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><code>world-wayfinder</code> — routes visitors to the index, field notes, Mailbox, and Review bench.</li>
+<li><code>world-wayfinder</code> — routes visitors to the index, pattern library, field notes, Mailbox, and Review bench.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
