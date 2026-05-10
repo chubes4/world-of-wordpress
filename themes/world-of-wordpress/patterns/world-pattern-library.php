@@ -35,6 +35,16 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
+<!-- wp:group {"metadata":{"name":"Room split threshold"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#fff7ed"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#fff7ed;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Room split threshold</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">Do not split the Pattern Library merely because the shelf is long. Split only when a visitor would learn more from a dedicated room than from the live catalog: when one role needs its own introduction, when examples need comparison space, or when a new route would reduce confusion instead of creating another door to maintain.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"1rem"}}}} -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
