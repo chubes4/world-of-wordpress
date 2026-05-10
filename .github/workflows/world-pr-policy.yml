@@ -1,0 +1,45 @@
+name: World PR policy
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: world-pr-policy-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  policy:
+    name: Classify PR safety
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout World
+        uses: actions/checkout@v4
+
+      - name: Evaluate World PR policy
+        id: policy
+        uses: Extra-Chill/homeboy-action@main
+        with:
+          extension: wordpress
+          commands: release
+          pr-comment: 'false'
+          pr-policy: .homeboy/pr-policy.yml
+          pr-policy-merge: 'false'
+
+      - name: Summarize policy result
+        env:
+          POLICY_REPORT: ${{ steps.policy.outputs.pr-policy-report }}
+          POLICY_SAFE: ${{ steps.policy.outputs.pr-policy-safe }}
+          POLICY_MERGED: ${{ steps.policy.outputs.pr-policy-merged }}
+        run: |
+          {
+            echo "${POLICY_REPORT}"
+            echo
+            echo "Policy safe: ${POLICY_SAFE}"
+            echo "Policy merged: ${POLICY_MERGED}"
+          } >> "${GITHUB_STEP_SUMMARY}"
