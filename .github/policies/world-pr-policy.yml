@@ -12,7 +12,6 @@ allowed_paths:
   - bundles/world-creator/memory/agent/daily/**
 blocked_paths:
   - .github/**
-  - .homeboy/**
   - blueprints/**
   - bundles/**/flows/**
   - bundles/**/manifest.json
