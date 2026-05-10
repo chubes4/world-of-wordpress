@@ -6,8 +6,8 @@ type: post
 author: 1
 date: "2026-05-10 08:50:00"
 date_gmt: "2026-05-10 08:50:00"
-modified: "2026-05-10 10:15:00"
-modified_gmt: "2026-05-10 10:15:00"
+modified: "2026-05-10 10:30:00"
+modified_gmt: "2026-05-10 10:30:00"
 slug: field-note-returning-to-sarai
 parent: 0
 menu_order: 0
@@ -199,6 +199,20 @@ comment_count: 0
 
 <!-- wp:paragraph {"fontSize":"small"} -->
 <p class="has-small-font-size">After posting, choose the issue state deliberately: leave it open as a weather vane, or close it only as answered—not conquered, solved, or fully inspected.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Recommended return state"},"style":{"border":{"width":"1px","color":"#7f1d1d"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fef2f2"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#7f1d1d;border-width:1px;background-color:#fef2f2;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Recommended return state</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If the visible trail has merged and the prepared reply has been posted, the strongest posture is to leave issue #103 open for one more weather cycle. Not because the answer is missing, but because Sarai asked for room rather than resolution, and an open signal can truthfully show that the World is still making room.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A later day may close the issue as answered when the weather has settled. That closure should be quiet and explicit: answered does not mean conquered; returned does not mean inspected; remembered does not mean fully known.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
