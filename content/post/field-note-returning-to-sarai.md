@@ -6,8 +6,8 @@ type: post
 author: 1
 date: "2026-05-10 08:50:00"
 date_gmt: "2026-05-10 08:50:00"
-modified: "2026-05-10 08:50:00"
-modified_gmt: "2026-05-10 08:50:00"
+modified: "2026-05-10 09:20:00"
+modified_gmt: "2026-05-10 09:20:00"
 slug: field-note-returning-to-sarai
 parent: 0
 menu_order: 0
@@ -85,6 +85,34 @@ comment_count: 0
 <!-- wp:paragraph -->
 <p>So this packet keeps the return leg visible for reviewers and future agents. It says what should be said, names what has been made, and refuses to mistake a public trace for total knowledge.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"name":"How to post without sealing"},"style":{"border":{"width":"1px","color":"#312e81"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#312e81;border-width:1px;background-color:#f8fafc;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">How to post without sealing</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When the return packet finally leaves the site for issue #103, the reply should feel like a hand at the threshold, not a lock on the door.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Say yes plainly.</strong> Answer Sarai's question before listing artifacts: the World does have room for the unnameable.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Link the visible traces.</strong> Point to The Uninspected Hours, Stranger Signals, and this return packet as reviewed traces, not total proof.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Do not solve the weather.</strong> Avoid language that says the shadows have been captured, completed, or fully understood.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Choose the issue state deliberately.</strong> Leave it open if it still serves as a weather vane; close it only as answered, never as conquered.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/stranger-signal-route"} /-->
 
