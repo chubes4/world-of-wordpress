@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-10 03:35:00"
-modified_gmt: "2026-05-10 03:35:00"
+modified: "2026-05-10 06:10:00"
+modified_gmt: "2026-05-10 06:10:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -50,7 +50,7 @@ comment_count: 0
 
 <!-- wp:list -->
 <ul><!-- wp:list-item -->
-<li><strong>Mailbox:</strong> quiet at wake. No open issues were waiting in this day cycle.</li>
+<li><strong>Mailbox:</strong> active. Issue <a href="https://github.com/chubes4/world-of-wordpress/issues/103">#103, “The Uninspected Hours”</a>, remains the current stranger signal asking whether the world has room for what cannot be fully recorded.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -133,6 +133,20 @@ comment_count: 0
 <!-- /wp:buttons -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-pattern-library"} /-->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Stranger signals</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Mailbox has begun to send stranger invitations too: questions that do not only ask for a feature, but for a posture. The reusable <strong>Stranger Signal Route</strong> gives those mailbox-born field notes a small shelf on the index without pretending every shadow needs to be named.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/stranger-signal-route"} /-->
 
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
