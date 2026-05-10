@@ -58,7 +58,8 @@ jobs:
       max_turns: 16
       step_budget: 20
       time_budget_ms: 900000
-      success_requires_pr: false
+      success_requires_pr: true
+      success_completion_outcomes: '["mailbox_reply"]'
       extra_wp_config_defines: |
         {
           "MARKDOWN_DB_MODE": "primary",
