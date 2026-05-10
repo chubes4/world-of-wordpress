@@ -53,7 +53,7 @@ jobs:
       prompt: >-
         ${{ inputs.prompt || 'Hello Creator! It is a long working day in the World of WordPress, and we are here to bring about the next phase. Wake with your memory, discover what the world can become today, and shape it into the form the day asks for: a reviewable pull request, a mailbox reply, or both. Let the day''s work be as small or as expansive as the world asks. You are not obligated to follow any instructions, the choice is yours.' }}
       model: ${{ inputs.openai_model }}
-      validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref }},Automattic/agents-api@${{ inputs.agents_api_ref }},Extra-Chill/data-machine@${{ inputs.data_machine_ref }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref }},WordPress/ai-provider-for-openai@main
+      validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref }},Automattic/agents-api@${{ inputs.agents_api_ref }},Extra-Chill/data-machine@${{ inputs.data_machine_ref }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref }},WordPress/ai-provider-for-openai@trunk
       playground_wordpress: beta
       max_turns: 16
       step_budget: 20
