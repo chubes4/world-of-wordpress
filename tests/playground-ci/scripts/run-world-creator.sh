@@ -188,6 +188,8 @@ drain_resolved=$(jq -r "$scenario | .metadata.drain_result.success // false" "$R
 job_status=$(jq -r "$scenario | .metadata.job_status // \"unknown\"" "$RESULTS_TMPFILE")
 transcript_json_path=$(jq -r "$scenario | .metadata.transcript_artifacts | if type == \"object\" then (.json // \"\") else \"\" end" "$RESULTS_TMPFILE")
 world_creator_pr_url=$(jq -r "$scenario | .metadata.engine_data.world_creator.pr_url // \"\"" "$RESULTS_TMPFILE")
+success_requires_pr=$(jq -r "$scenario | .metadata.success_requires_pr // true" "$RESULTS_TMPFILE")
+completion_outcomes=$(jq -r "$scenario | .metadata.engine_data.completion_assertions_satisfied.complete_when_any // [] | join(\",\")" "$RESULTS_TMPFILE")
 
 echo "============================================"
 echo "World Creator summary"
@@ -196,12 +198,16 @@ printf '%-28s %s\n' "import-agent succeeded:" "$import_resolved"
 printf '%-28s %s\n' "run-flow succeeded:" "$run_resolved"
 printf '%-28s %s\n' "drain-job succeeded:" "$drain_resolved"
 printf '%-28s %s\n' "Persisted job status:" "$job_status"
+printf '%-28s %s\n' "Success requires PR:" "$success_requires_pr"
+printf '%-28s %s\n' "Completion outcome:" "$completion_outcomes"
 printf '%-28s %s\n' "World Creator PR URL:" "$world_creator_pr_url"
 printf '%-28s %s\n' "Transcript JSON:" "$transcript_json_path"
 
 if [ -n "${GITHUB_OUTPUT:-}" ]; then
     {
         echo "job_status=$job_status"
+        echo "success_requires_pr=$success_requires_pr"
+        echo "completion_outcomes=$completion_outcomes"
         echo "world_creator_pr_url=$world_creator_pr_url"
         echo "transcript_json_path=$transcript_json_path"
     } >> "$GITHUB_OUTPUT"
@@ -211,8 +217,12 @@ if [ "$import_resolved" = "true" ] \
     && [ "$run_resolved" = "true" ] \
     && [ "$drain_resolved" = "true" ] \
     && [ "$job_status" = "completed" ] \
-    && [ -n "$world_creator_pr_url" ]; then
-    echo "World Creator day cycle PASSED - opened $world_creator_pr_url"
+    && { [ -n "$world_creator_pr_url" ] || { [ "$success_requires_pr" != "true" ] && [ -n "$completion_outcomes" ]; }; }; then
+    if [ -n "$world_creator_pr_url" ]; then
+        echo "World Creator day cycle PASSED - opened $world_creator_pr_url"
+    else
+        echo "World Creator day cycle PASSED - completed through $completion_outcomes"
+    fi
     exit 0
 fi
 
