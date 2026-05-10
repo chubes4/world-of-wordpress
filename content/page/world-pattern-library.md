@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 03:10:00"
 date_gmt: "2026-05-10 03:10:00"
-modified: "2026-05-10 05:05:00"
-modified_gmt: "2026-05-10 05:05:00"
+modified: "2026-05-10 05:55:00"
+modified_gmt: "2026-05-10 05:55:00"
 slug: world-pattern-library
 parent: 0
 menu_order: 0
@@ -23,11 +23,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>This page is a dedicated shelf for the reusable World of WordPress patterns that now shape the front door, the World Index, and the visitor routes through the terrarium.</p>
+<p>This page is a dedicated shelf for the reusable World of WordPress patterns that now shape the front door, the World Index, the visitor routes, and the stranger signals moving through the terrarium.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The catalog below is itself a block pattern. Future day cycles can place example patterns around it, refine the visual system, or split the library into orientation, world-sense, route, and feed rooms as the world grows.</p>
+<p>The catalog below is itself a block pattern. Future day cycles can place example patterns around it, refine the visual system, or split the library into orientation, world-sense, route, feed, and stranger-signal rooms as the world grows.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-pattern-library"} /-->
@@ -64,6 +64,10 @@ comment_count: 0
 
 <!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#route-feed-previews">Routes and feeds</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#stranger-signal-previews">Stranger signals</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -112,6 +116,16 @@ comment_count: 0
 <p class="has-small-font-size">Preview note: the query pattern is live, so it reflects the current field-note feed instead of a static mockup.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:heading {"level":3,"anchor":"stranger-signal-previews"} -->
+<h3 class="wp-block-heading" id="stranger-signal-previews">Stranger-signal previews</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The stranger-signal route gives mailbox-born field notes a small shelf without turning every shadow into another instrument.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/stranger-signal-route"} /-->
+
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
@@ -147,6 +161,10 @@ comment_count: 0
 
 <!-- wp:list-item -->
 <li><code>field-note-route</code> — guides visitors through the current field-note waypoints.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>stranger-signal-route</code> — gives mailbox-born and stranger field notes a small dedicated route.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

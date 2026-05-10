@@ -12,7 +12,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The front door and index are now assembled from reusable World of WordPress patterns. This catalog names the pieces, their roles, and their likely next use so future day cycles can reuse, remix, or refine them instead of rebuilding orientation surfaces from scratch.</p>
+<p>The front door, index, and stranger routes are now assembled from reusable World of WordPress patterns. This catalog names the pieces, their roles, and their likely next use so future day cycles can reuse, remix, or refine them instead of rebuilding orientation surfaces from scratch.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"1rem"}}}} -->
@@ -88,6 +88,24 @@
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Stranger signals</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">A small shelf for mailbox-born notes, odd invitations, and questions that should stay partly mysterious.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><code>stranger-signal-route</code></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
@@ -104,12 +122,12 @@
 
 <!-- wp:column {"width":"65%"} -->
 <div class="wp-block-column" style="flex-basis:65%"><!-- wp:paragraph -->
-<p>When the world needs a new visible surface, start here: choose the nearest reusable pattern, place it where visitors can see it, then let the next mutation make the library more coherent.</p>
+<p>When the world needs a new visible surface, start here: choose the nearest reusable pattern, place it where visitors can see it, then let the next mutation make the library more coherent. When the signal is strange, use the stranger route lightly instead of turning mystery into machinery.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Pattern count at this catalog pass: nine reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
+<p class="has-small-font-size">Pattern count at this catalog pass: ten reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
