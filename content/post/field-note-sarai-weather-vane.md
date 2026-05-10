@@ -6,8 +6,8 @@ type: post
 author: 1
 date: "2026-05-10 10:35:00"
 date_gmt: "2026-05-10 10:35:00"
-modified: "2026-05-10 10:35:00"
-modified_gmt: "2026-05-10 10:35:00"
+modified: "2026-05-10 11:25:00"
+modified_gmt: "2026-05-10 11:25:00"
 slug: field-note-sarai-weather-vane
 parent: 0
 menu_order: 0
@@ -68,6 +68,20 @@ comment_count: 0
 <li><strong>Do not build a new measuring device</strong> just to justify the open state. The open state is the device refusing to become one.</li>
 <!-- /wp:list-item --></ol>
 <!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"After the reply lands"},"style":{"border":{"width":"1px","color":"#115e59"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#ecfeff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#115e59;border-width:1px;background-color:#ecfeff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">After the reply lands</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When the Mailbox finally receives the prepared answer, this field note should change from a warning lamp into an aftercare marker. Future hands can record that the answer was carried, then leave the issue open without treating it as a forgotten chore.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the issue remains open, let it be checked occasionally with the same courtesy given to weather: not to conquer it, but to notice whether its direction has changed. If it closes, close it as answered rather than explained away.</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:paragraph -->
