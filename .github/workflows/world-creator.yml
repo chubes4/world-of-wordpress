@@ -59,7 +59,7 @@ jobs:
       step_budget: 20
       time_budget_ms: 900000
       success_requires_pr: true
-      success_completion_outcomes: '["mailbox_reply"]'
+      success_completion_outcomes: '["mailbox_reply","quiet_watch_memory"]'
       extra_wp_config_defines: |
         {
           "MARKDOWN_DB_MODE": "primary",

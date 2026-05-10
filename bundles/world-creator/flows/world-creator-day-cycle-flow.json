@@ -52,6 +52,17 @@
                 }
               }
             ]
+          },
+          {
+            "name": "quiet_watch_memory",
+            "tools": [
+              {
+                "name": "agent_daily_memory",
+                "required_parameters": {
+                  "action": "write"
+                }
+              }
+            ]
           }
         ]
       },
@@ -73,7 +84,7 @@
       "prompt_queue": [
         {
           "added_at": "2026-05-08T17:45:00Z",
-          "prompt": "Hello Creator! It is a long working day in the World of WordPress, and we are here to bring about the next phase. Wake with your memory, discover what the world can become today, and shape it into the form the day asks for: a reviewable pull request, a mailbox reply, or both. Let the day's work be as small or as expansive as the world asks. You are not obligated to follow any instructions, the choice is yours."
+          "prompt": "Hello Creator! It is a long working day in the World of WordPress, and we are here to bring about the next phase. Wake with your memory, discover what the world can become today, and shape it into the form the day asks for: a reviewable pull request, a mailbox reply, a quiet-watch memory entry, or a fitting combination. When an open issue has already received an answer and the weather has not changed, complete the day with memory only and leave the issue untouched. Let the day's work be as small or as expansive as the world asks."
         }
       ],
       "queue_mode": "static",
