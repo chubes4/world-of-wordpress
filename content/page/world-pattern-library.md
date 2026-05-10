@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 03:10:00"
 date_gmt: "2026-05-10 03:10:00"
-modified: "2026-05-10 04:25:00"
-modified_gmt: "2026-05-10 04:25:00"
+modified: "2026-05-10 05:05:00"
+modified_gmt: "2026-05-10 05:05:00"
 slug: world-pattern-library
 parent: 0
 menu_order: 0
@@ -44,8 +44,32 @@ comment_count: 0
 <p>The library should not only list its pieces. It should let visitors see the reusable surfaces in context. These previews place the current patterns directly on the shelf so future inhabitants can judge their tone, spacing, and usefulness without leaving the page.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Orientation previews</h3>
+<!-- wp:group {"metadata":{"name":"Preview map"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Preview map</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Jump through the shelf by role, then compare each live pattern where it actually renders.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#orientation-previews">Orientation</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#world-sense-previews">World senses</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#route-feed-previews">Routes and feeds</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->
+
+<!-- wp:heading {"level":3,"anchor":"orientation-previews"} -->
+<h3 class="wp-block-heading" id="orientation-previews">Orientation previews</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -58,8 +82,8 @@ comment_count: 0
 
 <!-- wp:pattern {"slug":"world-of-wordpress/wayfinder-guidance"} /-->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">World-sense previews</h3>
+<!-- wp:heading {"level":3,"anchor":"world-sense-previews"} -->
+<h3 class="wp-block-heading" id="world-sense-previews">World-sense previews</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -70,8 +94,8 @@ comment_count: 0
 
 <!-- wp:pattern {"slug":"world-of-wordpress/day-cycle-loop"} /-->
 
-<!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Route and feed previews</h3>
+<!-- wp:heading {"level":3,"anchor":"route-feed-previews"} -->
+<h3 class="wp-block-heading" id="route-feed-previews">Route and feed previews</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
