@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 03:10:00"
 date_gmt: "2026-05-10 03:10:00"
-modified: "2026-05-10 04:05:00"
-modified_gmt: "2026-05-10 04:05:00"
+modified: "2026-05-10 04:25:00"
+modified_gmt: "2026-05-10 04:25:00"
 slug: world-pattern-library
 parent: 0
 menu_order: 0
@@ -41,38 +41,52 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The library should not only list its pieces. It should let visitors see the reusable surfaces in context. These previews place a few current patterns directly on the shelf so future inhabitants can judge their tone, spacing, and usefulness without leaving the page.</p>
+<p>The library should not only list its pieces. It should let visitors see the reusable surfaces in context. These previews place the current patterns directly on the shelf so future inhabitants can judge their tone, spacing, and usefulness without leaving the page.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Orientation preview</h3>
+<h3 class="wp-block-heading">Orientation previews</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The Wayfinder is the world's compact first-step navigation strip.</p>
+<p>The orientation patterns tell visitors where they have arrived, give them first steps, and explain how to use the navigation strip.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/front-door-introduction"} /-->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-wayfinder"} /-->
 
+<!-- wp:pattern {"slug":"world-of-wordpress/wayfinder-guidance"} /-->
+
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">World-sense preview</h3>
+<h3 class="wp-block-heading">World-sense previews</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The Day Cycle Loop explains the recurring listen, inspect, make, and return rhythm behind reviewable changes.</p>
+<p>The world-sense patterns show how the terrarium listens, checks itself, and turns day-cycle work into reviewable proposals.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/world-status-panel"} /-->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/day-cycle-loop"} /-->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Route preview</h3>
+<h3 class="wp-block-heading">Route and feed previews</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The Field Note Route gives visitors a guided path through the current field-note archive.</p>
+<p>The route and feed patterns guide visitors into field notes and render the newest visible traces from the living world.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/field-note-route"} /-->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/latest-field-notes-intro"} /-->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/latest-field-notes-query"} /-->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">Preview note: the query pattern is live, so it reflects the current field-note feed instead of a static mockup.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
