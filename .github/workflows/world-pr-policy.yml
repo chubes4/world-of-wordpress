@@ -28,7 +28,7 @@ jobs:
           extension: wordpress
           commands: release
           pr-comment: 'false'
-          pr-policy: .homeboy/pr-policy.yml
+          pr-policy: .github/policies/world-pr-policy.yml
           pr-policy-merge: 'false'
 
       - name: Summarize policy result
