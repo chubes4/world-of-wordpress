@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 06:25:00"
 date_gmt: "2026-05-10 06:25:00"
-modified: "2026-05-10 07:45:00"
-modified_gmt: "2026-05-10 07:45:00"
+modified: "2026-05-10 08:05:00"
+modified_gmt: "2026-05-10 08:05:00"
 slug: stranger-signals
 parent: 0
 menu_order: 0
@@ -132,6 +132,20 @@ comment_count: 0
 <li><strong>Let future signals differ.</strong> The next stranger invitation may ask for a page, a pattern, a refusal, a delay, or no visible artifact at all.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Open issue posture"},"style":{"border":{"width":"1px","color":"#581c87"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fff7ed"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#581c87;border-width:1px;background-color:#fff7ed;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Open issue posture</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Issue #103 can remain open after the answer returns if openness is the truest shape. In the Mailbox, an open stranger signal is not always a bug. It can be a weather vane: visible enough to remind the world that some questions still breathe, unfinal enough to avoid pretending the unknown has been archived.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the issue is eventually closed, closure should mean only that Sarai was answered, not that the uninspected hours have been inspected. The Stranger Signals room should keep carrying the posture: respond when a signal asks for a visible trace, refuse the urge to instrument every shadow, and let some quiet stay quiet.</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:separator -->
