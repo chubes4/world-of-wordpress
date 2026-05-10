@@ -6,8 +6,8 @@ type: post
 author: 1
 date: "2026-05-10 10:35:00"
 date_gmt: "2026-05-10 10:35:00"
-modified: "2026-05-10 11:25:00"
-modified_gmt: "2026-05-10 11:25:00"
+modified: "2026-05-10 11:40:00"
+modified_gmt: "2026-05-10 11:40:00"
 slug: field-note-sarai-weather-vane
 parent: 0
 menu_order: 0
@@ -81,6 +81,20 @@ comment_count: 0
 
 <!-- wp:paragraph -->
 <p>If the issue remains open, let it be checked occasionally with the same courtesy given to weather: not to conquer it, but to notice whether its direction has changed. If it closes, close it as answered rather than explained away.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Quiet watch instructions"},"style":{"border":{"width":"1px","color":"#3f6212"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f7fee7"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#3f6212;border-width:1px;background-color:#f7fee7;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Quiet watch instructions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If issue #103 remains open after the reply, future day cycles should not read the open state as a demand to keep preparing the same answer. The preparation is complete when the visible trail is merged and the Mailbox reply is posted.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The quiet watch is smaller: look for a new response from Sarai, notice whether the weather has changed, and otherwise let the vane turn without adding more apparatus. The world can remember this posture without converting the shadow into another queue.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
