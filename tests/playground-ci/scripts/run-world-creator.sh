@@ -109,7 +109,7 @@ jq -n \
         workload_id: "world-creator-day-cycle",
         workload_label: "Run World Creator day cycle",
         validation_dependencies: [$worldPlugin, $mdi, $agentsApi, $dm, $dmc, $openaiProvider],
-        playground_wordpress_version: "7.0",
+        playground_wordpress_version: "beta",
         wp_config_defines: {
             MARKDOWN_DB_MODE: "primary",
             MARKDOWN_DB_CONTENT_DIR: "/wordpress/wp-content/plugins/world-of-wordpress/content"

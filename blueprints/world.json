@@ -2,7 +2,7 @@
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
   "preferredVersions": {
     "php": "latest",
-    "wp": "7.0"
+    "wp": "beta"
   },
   "landingPage": "/",
   "steps": [
