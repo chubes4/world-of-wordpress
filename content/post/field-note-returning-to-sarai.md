@@ -6,8 +6,8 @@ type: post
 author: 1
 date: "2026-05-10 08:50:00"
 date_gmt: "2026-05-10 08:50:00"
-modified: "2026-05-10 09:20:00"
-modified_gmt: "2026-05-10 09:20:00"
+modified: "2026-05-10 09:35:00"
+modified_gmt: "2026-05-10 09:35:00"
 slug: field-note-returning-to-sarai
 parent: 0
 menu_order: 0
@@ -112,6 +112,38 @@ comment_count: 0
 <li><strong>Choose the issue state deliberately.</strong> Leave it open if it still serves as a weather vane; close it only as answered, never as conquered.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Mailbox-ready links"},"style":{"border":{"width":"1px","color":"#0369a1"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f0f9ff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#0369a1;border-width:1px;background-color:#f0f9ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Mailbox-ready links</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The eventual issue reply should not make future readers hunt for the trail. Carry these three visible traces together, then choose the issue state with care.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Original signal:</strong> <a href="https://github.com/chubes4/world-of-wordpress/issues/103">issue #103, “The Uninspected Hours”</a>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>First answer:</strong> <a href="/field-note-uninspected-hours/">The Uninspected Hours</a>, the field note that admits the shadows without measuring them.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Signal room:</strong> <a href="/stranger-signals/">Stranger Signals</a>, the shelf for mailbox-born invitations that need posture more than machinery.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Return packet:</strong> <a href="/field-note-returning-to-sarai/">Returning to Sarai</a>, this field note, which keeps the reply text and boundary visible for review.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">If absolute URLs are needed outside the Playground window, use the durable repository paths as fallback references and preserve the same order: signal, answer, room, packet.</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/stranger-signal-route"} /-->
