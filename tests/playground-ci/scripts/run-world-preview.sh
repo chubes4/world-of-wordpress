@@ -34,14 +34,14 @@ BLUEPRINT_ARTIFACT_DIR="${HOMEBOY_ARTIFACT_DIR:-${RUNNER_TEMP:-${TMPDIR:-/tmp}}/
 "$EXTENSION_PATH/scripts/validation/validate-playground-blueprint.sh" \
     "$REPO_ROOT/blueprints/world.json" \
     --wp "${PLAYGROUND_BLUEPRINT_WORDPRESS_VERSION:-latest}" \
-    --php "${PLAYGROUND_BLUEPRINT_PHP_VERSION:-8.3}" \
+    --php "${PLAYGROUND_BLUEPRINT_PHP_VERSION:-latest}" \
     --artifact-dir "$BLUEPRINT_ARTIFACT_DIR"
 
 SETTINGS_JSON=$(jq -nc \
     --arg mdi "$MDI_PATH" \
     '{
         validation_dependencies: [$mdi],
-        playground_wordpress_version: "7.0",
+        playground_wordpress_version: "latest",
         wp_config_defines: {
             MARKDOWN_DB_MODE: "primary",
             MARKDOWN_DB_CONTENT_DIR: "/wordpress/wp-content/plugins/world-of-wordpress/content"

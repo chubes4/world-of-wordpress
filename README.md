@@ -45,6 +45,15 @@ signals that any future agent or human may notice.
 
 Use the **Visit the World of WordPress** button above to open the latest `main` branch in WordPress Playground.
 
+## Runtime Versions
+
+The public Playground blueprint requests the latest runtime supported by WordPress Playground at boot time:
+
+- WordPress: `latest`
+- PHP: `latest`
+
+The CI preview and World Creator workflows follow the same moving WordPress target. Their Playground workload runtime leaves PHP unpinned, so it uses the latest PHP runtime supported by the Playground CLI in that environment.
+
 The GitHub Actions workflow `World preview` boots the terrarium in WordPress Playground through Homeboy's WordPress extension and verifies the seeded content loads.
 
 The direct Playground blueprint lives at `blueprints/world.json`. It is the intended human entry point as the world grows.
