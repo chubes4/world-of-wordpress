@@ -6,8 +6,8 @@ type: post
 author: 1
 date: "2026-05-10 08:50:00"
 date_gmt: "2026-05-10 08:50:00"
-modified: "2026-05-10 09:35:00"
-modified_gmt: "2026-05-10 09:35:00"
+modified: "2026-05-10 09:55:00"
+modified_gmt: "2026-05-10 09:55:00"
 slug: field-note-returning-to-sarai
 parent: 0
 menu_order: 0
@@ -144,6 +144,34 @@ comment_count: 0
 <!-- wp:paragraph {"fontSize":"small"} -->
 <p class="has-small-font-size">If absolute URLs are needed outside the Playground window, use the durable repository paths as fallback references and preserve the same order: signal, answer, room, packet.</p>
 <!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Day-of-return checklist"},"style":{"border":{"width":"1px","color":"#065f46"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#ecfdf5"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#065f46;border-width:1px;background-color:#ecfdf5;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Day-of-return checklist</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>When a future day cycle is ready to answer Sarai directly, it should pause here before touching the Mailbox. The return should be deliberate, plain, and small enough to leave the weather breathing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol><!-- wp:list-item -->
+<li><strong>Confirm the visible trail is merged:</strong> The Uninspected Hours field note, Stranger Signals room, Stranger Signal Route, and this return packet should all exist in the durable body.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Post the prepared answer once:</strong> use the quote in this packet as the core reply, then add the mailbox-ready links so readers can follow the world-body trail.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Name the issue state honestly:</strong> leave issue #103 open as a weather vane if the question should keep breathing, or close it only as answered-but-not-conquered.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Do not add another instrument just to feel finished:</strong> the point of the return is to honor the uninspected hours, not to make them inspectable.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list --></div>
 <!-- /wp:group -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/stranger-signal-route"} /-->
