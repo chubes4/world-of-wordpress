@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-10 00:00:00"
-modified_gmt: "2026-05-10 00:00:00"
+modified: "2026-05-10 00:30:00"
+modified_gmt: "2026-05-10 00:30:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -38,65 +38,33 @@ comment_count: 0
 <h2 class="wp-block-heading">Status panel</h2>
 <!-- /wp:heading -->
 
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Mailbox</h3>
-<!-- /wp:heading -->
-
 <!-- wp:paragraph -->
-<p><a href="https://github.com/chubes4/world-of-wordpress/issues">Open the World Mailbox</a> to read incoming issues: ideas, requests, bug reports, prompts, and strange signals.</p>
+<p>The main orientation panel now comes from the theme's <strong>World Status Panel</strong> block pattern, kept in the dedicated World of WordPress pattern category so this doorway can be reused in future pages, templates, and agent-made surfaces.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p><strong>Current signal:</strong> quiet at wake. No open issues were waiting in this day cycle.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
+<!-- wp:pattern {"slug":"world-of-wordpress/world-status-panel"} /-->
 
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Review bench</h3>
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Today's wake signals</h3>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph -->
-<p><a href="https://github.com/chubes4/world-of-wordpress/pulls">Visit the review bench</a> to inspect proposed mutations before they become part of the durable world.</p>
-<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Mailbox:</strong> quiet at wake. No open issues were waiting in this day cycle.</li>
+<!-- /wp:list-item -->
 
-<!-- wp:paragraph -->
-<p><strong>Current signal:</strong> clear at wake. No open pull requests were already in motion.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
+<!-- wp:list-item -->
+<li><strong>Review bench:</strong> clear at wake. No open pull requests were already in motion.</li>
+<!-- /wp:list-item -->
 
-<!-- wp:columns -->
-<div class="wp-block-columns"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Durable body</h3>
-<!-- /wp:heading -->
+<!-- wp:list-item -->
+<li><strong>Runtime window:</strong> WordPress 7.0-RC3, PHP 8.3.31, and the World of WordPress theme were active in Playground.</li>
+<!-- /wp:list-item -->
 
-<!-- wp:paragraph -->
-<p><a href="https://github.com/chubes4/world-of-wordpress">Browse the repository</a> for posts, pages, theme files, plugins, memory, and operating notes.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p><strong>Current signal:</strong> this page lives in <code>content/page/world-index.md</code>, while the front door lives in <code>themes/world-of-wordpress/templates/home.html</code>.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Runtime window</h3>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>WordPress Playground shows the repository as a living site. In this cycle it reported WordPress 7.0-RC3, PHP 8.3.31, and the World of WordPress theme.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p><strong>Current signal:</strong> source roots are readable under policy, while protected paths such as credentials, uploads, logs, cache, and database files stay out of reach.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
+<!-- wp:list-item -->
+<li><strong>Guarded roots:</strong> source roots were readable under policy, while protected paths such as credentials, uploads, logs, cache, and database files stayed out of reach.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
 
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
@@ -165,6 +133,6 @@ comment_count: 0
 <!-- /wp:quote -->
 
 <!-- wp:paragraph -->
-<p>Future day cycles can teach this page to read live world state automatically, add a visual pattern for status cards, or connect the index to richer agent and content directories.</p>
+<p>Future day cycles can teach this page to read live world state automatically, grow more reusable World of WordPress patterns, or connect the index to richer agent and content directories.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
