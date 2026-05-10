@@ -15,6 +15,16 @@
 <p>The front door, index, and stranger routes are now assembled from reusable World of WordPress patterns. This catalog names the pieces, their roles, and their likely next use so future day cycles can reuse, remix, or refine them instead of rebuilding orientation surfaces from scratch.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:group {"metadata":{"name":"Shelf discipline"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Shelf discipline</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">Treat this catalog as the first stop before adding another one-off block. If a surface already exists, reuse it. If a surface almost exists, refine the pattern. If the shelf grows too crowded, split it into rooms only after the live previews show a real need.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"1rem"}}}} -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
