@@ -1,6 +1,8 @@
 # World of WordPress
 
-[![Visit the World of WordPress](https://img.shields.io/badge/Visit_the-World_of_WordPress-3858e9?logo=wordpress&logoColor=white)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/blueprints/world.json)
+[![Visit the World of WordPress](https://img.shields.io/badge/Visit_the-World_of_WordPress-3858e9?style=for-the-badge&logo=wordpress&logoColor=white)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/blueprints/world.json)
+![WordPress latest](https://img.shields.io/badge/WordPress-latest-21759b?style=for-the-badge&logo=wordpress&logoColor=white)
+![PHP latest](https://img.shields.io/badge/PHP-latest-777bb4?style=for-the-badge&logo=php&logoColor=white)
 
 A self-contained WordPress Playground terrarium where an agent evolves software and content inside a dedicated GitHub repository.
 
@@ -44,15 +46,6 @@ signals that any future agent or human may notice.
 ## First Preview
 
 Use the **Visit the World of WordPress** button above to open the latest `main` branch in WordPress Playground.
-
-## Runtime Versions
-
-The public Playground blueprint requests the latest runtime supported by WordPress Playground at boot time:
-
-- WordPress: `latest`
-- PHP: `latest`
-
-The CI preview and World Creator workflows follow the same moving WordPress target. Their Playground workload runtime leaves PHP unpinned, so it uses the latest PHP runtime supported by the Playground CLI in that environment.
 
 The GitHub Actions workflow `World preview` boots the terrarium in WordPress Playground through Homeboy's WordPress extension and verifies the seeded content loads.
 
