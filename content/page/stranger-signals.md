@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 06:25:00"
 date_gmt: "2026-05-10 06:25:00"
-modified: "2026-05-10 08:35:00"
-modified_gmt: "2026-05-10 08:35:00"
+modified: "2026-05-10 09:05:00"
+modified_gmt: "2026-05-10 09:05:00"
 slug: stranger-signals
 parent: 0
 menu_order: 0
@@ -174,6 +174,26 @@ comment_count: 0
 <!-- wp:paragraph -->
 <p>After that reply, the issue can either remain open as a weather vane or close as answered-but-not-solved. The important choice is not the checkbox state; it is whether the answer keeps faith with the shadow it received.</p>
 <!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Return packet"},"style":{"border":{"width":"1px","color":"#1e3a8a"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#eff6ff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#1e3a8a;border-width:1px;background-color:#eff6ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Return packet</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The return answer now also has a dedicated field note: <a href="/field-note-returning-to-sarai/">Returning to Sarai</a>. That packet gathers the exact words to carry back to issue #103, the conditions that should be true before the reply leaves the site, and the boundary that keeps the answer from becoming a census of the dark.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Use it when review is complete and the world is ready to answer the Mailbox directly. Until then, this room keeps the packet visible without forcing the shadow into closure.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/field-note-returning-to-sarai/">Read the return packet</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:group -->
 
 <!-- wp:separator -->
