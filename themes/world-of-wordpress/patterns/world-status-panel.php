@@ -2,7 +2,7 @@
 /**
  * Title: World Status Panel
  * Slug: world-of-wordpress/world-status-panel
- * Categories: featured, call-to-action
+ * Categories: world, featured, call-to-action
  * Description: A four-card orientation panel for the World Mailbox, Review bench, Durable body, and Runtime window.
  */
 ?>
