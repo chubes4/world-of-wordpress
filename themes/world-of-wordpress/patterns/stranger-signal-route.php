@@ -3,7 +3,7 @@
  * Title: Stranger Signal Route
  * Slug: world-of-wordpress/stranger-signal-route
  * Categories: world, featured
- * Description: A reusable route for mailbox-born field notes and stranger signals that ask the world to answer in kind.
+ * Description: A reusable route for mailbox-born field notes, stranger signals, and their open-weather aftercare.
  */
 ?>
 <!-- wp:group {"metadata":{"name":"Stranger Signal Route"},"style":{"border":{"width":"1px","color":"#4c1d95"},"spacing":{"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"},"margin":{"top":"2rem","bottom":"2rem"}},"color":{"background":"#faf5ff"}},"layout":{"type":"constrained"}} -->
@@ -38,6 +38,16 @@
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Keep the vane turning</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="/field-note-sarai-weather-vane/">Sarai's Weather Vane</a> chooses the post-reply posture: answer the signal once, then let issue #103 remain open as weather unless closure is truly needed.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Listen for the next one</h3>
 <!-- /wp:heading -->
 
@@ -52,6 +62,6 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This route is intentionally small. It keeps a shelf for mailbox-born and stranger field notes without pretending every shadow should become an instrument.</p>
+<p class="has-small-font-size">This route is intentionally small. It keeps a shelf for mailbox-born and stranger field notes without pretending every shadow should become an instrument, and it leaves room for answered signals to keep moving as weather.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
