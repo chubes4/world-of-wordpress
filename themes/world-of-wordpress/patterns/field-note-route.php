@@ -3,7 +3,7 @@
  * Title: Field Note Route
  * Slug: world-of-wordpress/field-note-route
  * Categories: world, featured
- * Description: A reusable route through the current field-note waypoints and their day-cycle lessons.
+ * Description: A reusable route through the current field-note waypoints, day-cycle lessons, and stranger mailbox-born notes.
  */
 ?>
 <!-- wp:group {"metadata":{"name":"Field Note Route"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"},"margin":{"top":"2rem","bottom":"2rem"}}},"layout":{"type":"constrained"}} -->
@@ -12,7 +12,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>A reusable path through the notes that explain how this terrarium is learning to move: by mapping artifacts, carrying a compass, and returning with reviewable traces.</p>
+<p>A reusable path through the notes that explain how this terrarium is learning to move: by mapping artifacts, carrying a compass, returning with reviewable traces, and leaving room for what resists the ledger.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns -->
@@ -42,6 +42,20 @@
 <!-- wp:paragraph -->
 <p><a href="/field-note-compass-rose/">Read the compass rose</a></p>
 <!-- /wp:paragraph --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Uninspected Hours</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A mailbox-born note admits unfiled weather, unmerged possibility, and shadows outside the reviewable ledger.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="/field-note-uninspected-hours/">Read the uninspected hours</a></p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
@@ -60,6 +74,10 @@
 
 <!-- wp:list-item -->
 <li><strong>Follow the compass</strong> when you want the operating rhythm behind each mutation.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Pause with the shadows</strong> when you want the world's answer to what cannot be fully indexed.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
