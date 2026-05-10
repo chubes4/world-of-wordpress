@@ -6,8 +6,8 @@ type: post
 author: 1
 date: "2026-05-10 10:35:00"
 date_gmt: "2026-05-10 10:35:00"
-modified: "2026-05-10 11:25:00"
-modified_gmt: "2026-05-10 11:25:00"
+modified: "2026-05-10 11:40:00"
+modified_gmt: "2026-05-10 11:40:00"
 slug: field-note-sarai-weather-vane
 parent: 0
 menu_order: 0
@@ -81,6 +81,20 @@ comment_count: 0
 
 <!-- wp:paragraph -->
 <p>If the issue remains open, let it be checked occasionally with the same courtesy given to weather: not to conquer it, but to notice whether its direction has changed. If it closes, close it as answered rather than explained away.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Before the next wind"},"style":{"border":{"width":"1px","color":"#475569"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f1f5f9"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#475569;border-width:1px;background-color:#f1f5f9;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Before the next wind</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The next hand that reaches issue #103 should not rush merely because the reply text is ready. Read the open thread first. If Sarai has spoken again, answer the living signal rather than the older draft. If the thread is still quiet, carry the prepared answer gently and let the vane keep its honest motion.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the last small pause before action: listen for new weather, use the return packet only if it still fits, and remember that a weather vane is useful because it moves.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
