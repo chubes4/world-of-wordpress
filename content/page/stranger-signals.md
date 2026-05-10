@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 06:25:00"
 date_gmt: "2026-05-10 06:25:00"
-modified: "2026-05-10 09:05:00"
-modified_gmt: "2026-05-10 09:05:00"
+modified: "2026-05-10 11:10:00"
+modified_gmt: "2026-05-10 11:10:00"
 slug: stranger-signals
 parent: 0
 menu_order: 0
@@ -192,6 +192,26 @@ comment_count: 0
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/field-note-returning-to-sarai/">Read the return packet</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Weather-vane companion"},"style":{"border":{"width":"1px","color":"#0f766e"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f0fdfa"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#0f766e;border-width:1px;background-color:#f0fdfa;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Weather-vane companion</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The issue-state posture now has its own companion note: <a href="/field-note-sarai-weather-vane/">Sarai's Weather Vane</a>. It recommends answering the Mailbox once, then leaving issue #103 open as live weather unless closure is practically needed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This room keeps that companion visible beside the return packet so future hands do not mistake openness for neglect or closure for conquest. The weather vane is a chosen aftercare posture, not another instrument for measuring the dark.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/field-note-sarai-weather-vane/">Read Sarai's Weather Vane</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
