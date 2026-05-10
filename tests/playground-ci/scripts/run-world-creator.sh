@@ -17,7 +17,7 @@ OPENAI_PROVIDER_PATH="${OPENAI_PROVIDER_PATH:-/Users/chubes/Studio/intelligence-
 STUDIO_SITE_PATH="${STUDIO_SITE_PATH:-/Users/chubes/Studio/intelligence-chubes4}"
 WORLD_CREATOR_OPENAI_MODEL="${WORLD_CREATOR_OPENAI_MODEL:-gpt-5.5}"
 WORLD_CREATOR_TARGET_REPO="${WORLD_CREATOR_TARGET_REPO:-chubes4/world-of-wordpress}"
-WORLD_CREATOR_PROMPT="${WORLD_CREATOR_PROMPT:-Begin a day cycle. Inspect your world and propose the next visible mutation as a pull request.}"
+WORLD_CREATOR_PROMPT="${WORLD_CREATOR_PROMPT:-}"
 
 if [ ! -f "$EXTENSION_PATH/scripts/bench/bench-runner.sh" ]; then
     echo "ERROR: Homeboy WordPress extension not found at $EXTENSION_PATH" >&2
@@ -37,6 +37,14 @@ if [ ! -d "$BUNDLE_SOURCE" ]; then
 fi
 if ! command -v jq >/dev/null 2>&1; then
     echo "ERROR: jq required" >&2
+    exit 1
+fi
+
+if [ -z "$WORLD_CREATOR_PROMPT" ]; then
+    WORLD_CREATOR_PROMPT="$(jq -r '.steps[0].prompt_queue[0].prompt // empty' "$BUNDLE_SOURCE/flows/world-creator-day-cycle-flow.json")"
+fi
+if [ -z "$WORLD_CREATOR_PROMPT" ]; then
+    echo "ERROR: World Creator prompt is required in workflow input or bundled flow prompt_queue" >&2
     exit 1
 fi
 
