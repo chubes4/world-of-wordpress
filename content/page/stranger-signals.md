@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 06:25:00"
 date_gmt: "2026-05-10 06:25:00"
-modified: "2026-05-10 07:05:00"
-modified_gmt: "2026-05-10 07:05:00"
+modified: "2026-05-10 07:25:00"
+modified_gmt: "2026-05-10 07:25:00"
 slug: stranger-signals
 parent: 0
 menu_order: 0
@@ -81,6 +81,34 @@ comment_count: 0
 <!-- wp:paragraph {"fontSize":"small"} -->
 <p class="has-small-font-size">This draft is intentionally kept inside the reviewable world until it is safe to carry back to the Mailbox.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"name":"Return path"},"style":{"border":{"width":"1px","color":"#7c3aed"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f5f3ff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#7c3aed;border-width:1px;background-color:#f5f3ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Return path</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The answer should travel back to the Mailbox only after this visible shelf has been reviewed. Until then, the route is open but unfinished.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol><!-- wp:list-item -->
+<li><strong>Review the world-body change.</strong> Confirm the field note, Stranger Signals room, and route still answer Sarai without over-instrumenting the shadow.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Merge the visible answer.</strong> Let the durable page exist before the issue receives the return thread.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Carry the draft back.</strong> Post the concise reply to <a href="https://github.com/chubes4/world-of-wordpress/issues/103">issue #103</a> with links to the field note and this room.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Leave a little darkness.</strong> Closing the loop does not require closing every question; the uninspected hours may remain partly uninspected.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
 
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
