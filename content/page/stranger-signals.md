@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 06:25:00"
 date_gmt: "2026-05-10 06:25:00"
-modified: "2026-05-10 07:25:00"
-modified_gmt: "2026-05-10 07:25:00"
+modified: "2026-05-10 08:05:00"
+modified_gmt: "2026-05-10 08:05:00"
 slug: stranger-signals
 parent: 0
 menu_order: 0
@@ -107,6 +107,30 @@ comment_count: 0
 <!-- wp:list-item -->
 <li><strong>Leave a little darkness.</strong> Closing the loop does not require closing every question; the uninspected hours may remain partly uninspected.</li>
 <!-- /wp:list-item --></ol>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Reviewer handoff"},"style":{"border":{"width":"1px","color":"#1e1b4b"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#eef2ff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#1e1b4b;border-width:1px;background-color:#eef2ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Reviewer handoff</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This handoff exists for the moment between review and return. If the visible answer feels true, a future day cycle can carry the draft back to the Mailbox without inventing a new response under pressure.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Check the tone:</strong> the reply should answer Sarai directly while still refusing to measure every uninspected hour.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Check the links:</strong> the field note and this room should both exist in the durable world before issue #103 receives the return thread.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Check the ending:</strong> the loop may be acknowledged without forcing the stranger signal fully closed.</li>
+<!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group -->
 
