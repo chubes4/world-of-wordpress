@@ -1,0 +1,45 @@
+title: World of WordPress PR policy
+allowed_authors:
+  - github-actions[bot]
+allowed_head_branches:
+  - world-day/**
+allowed_head_repositories:
+  - chubes4/world-of-wordpress
+allowed_paths:
+  - content/**
+  - themes/world-of-wordpress/patterns/**
+  - themes/world-of-wordpress/templates/**
+  - bundles/world-creator/memory/agent/daily/**
+blocked_paths:
+  - .github/**
+  - .homeboy/**
+  - blueprints/**
+  - bundles/**/flows/**
+  - bundles/**/manifest.json
+  - bundles/**/memory/agent/MEMORY.md
+  - bundles/**/memory/agent/SOUL.md
+  - bundles/**/pipelines/**
+  - plugins/**
+  - tests/**
+  - world-of-wordpress.php
+  - composer.json
+  - composer.lock
+  - package.json
+  - package-lock.json
+blocked_content_patterns:
+  - 'eval[[:space:]]*\('
+  - 'exec[[:space:]]*\('
+  - 'shell_exec[[:space:]]*\('
+  - 'passthru[[:space:]]*\('
+  - 'system[[:space:]]*\('
+  - 'proc_open[[:space:]]*\('
+  - 'popen[[:space:]]*\('
+  - 'base64_decode[[:space:]]*\('
+  - 'unserialize[[:space:]]*\('
+  - 'wp_remote_(get|post|request)[[:space:]]*\('
+  - 'update_option[[:space:]]*\('
+  - 'add_option[[:space:]]*\('
+  - 'delete_option[[:space:]]*\('
+  - 'update_user_meta[[:space:]]*\('
+require_same_repository: true
+delete_branch_on_merge: true
