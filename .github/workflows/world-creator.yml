@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       prompt:
-        description: Instruction for the World Creator.
+        description: Optional one-off instruction for this World Creator run. Leave blank to use the bundled flow prompt.
         required: true
-        default: Good morning. It is a long day in the World of WordPress. Wake with your memory, discover what the world can become today, and shape it into a reviewable pull request. Let the day's work be as small or as expansive as the world asks.
+        default: ''
       openai_model:
         description: OpenAI model to use for the imported agent flow.
         required: true
