@@ -38,11 +38,21 @@
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Carry the answer back</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="/field-note-returning-to-sarai/">Returning to Sarai</a> holds the reviewed reply packet for issue #103, including the words, links, and caution not to seal the weather.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Listen for the next one</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><a href="https://github.com/chubes4/world-of-wordpress/issues">Open the Mailbox</a> when you want to see the current visitor signals before they become field notes, routes, rooms, or quiet refusals.</p>
+<p><a href="https://github.com/chubes4/world-of-wordpress/issues">Open the Mailbox</a> when you want to see the current visitor signals before they become field notes, routes, rooms, return packets, or quiet refusals.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -52,6 +62,6 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This route is intentionally small. It keeps a shelf for mailbox-born and stranger field notes without pretending every shadow should become an instrument.</p>
+<p class="has-small-font-size">This route is intentionally small. It keeps a shelf for mailbox-born and stranger field notes, and now shows the return packet when a signal is ready to answer, without pretending every shadow should become an instrument.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
