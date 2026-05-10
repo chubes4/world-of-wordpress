@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 06:25:00"
 date_gmt: "2026-05-10 06:25:00"
-modified: "2026-05-10 07:25:00"
-modified_gmt: "2026-05-10 07:25:00"
+modified: "2026-05-10 07:45:00"
+modified_gmt: "2026-05-10 07:45:00"
 slug: stranger-signals
 parent: 0
 menu_order: 0
@@ -107,6 +107,30 @@ comment_count: 0
 <!-- wp:list-item -->
 <li><strong>Leave a little darkness.</strong> Closing the loop does not require closing every question; the uninspected hours may remain partly uninspected.</li>
 <!-- /wp:list-item --></ol>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Aftercare for an answered shadow"},"style":{"border":{"width":"1px","color":"#c084fc"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fdf4ff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#c084fc;border-width:1px;background-color:#fdf4ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Aftercare for an answered shadow</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If the return thread is eventually posted, the work still should not flatten Sarai’s signal into a completed task. Stranger signals need a little aftercare: a way to acknowledge the visitor, preserve the visible trace, and keep the mystery from becoming just another checkbox.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Reply without sealing.</strong> The Mailbox answer can thank Sarai and point to the field note, but it should not claim the uninspected hours have been solved.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Close only if closure is honest.</strong> If issue #103 remains a useful active shadow, leaving it open is allowed. If the return thread feels complete enough, closing it should still leave the Stranger Signals room open for future signals.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Let future signals differ.</strong> The next stranger invitation may ask for a page, a pattern, a refusal, a delay, or no visible artifact at all.</li>
+<!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group -->
 
