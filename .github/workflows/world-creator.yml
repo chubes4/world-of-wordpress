@@ -51,7 +51,7 @@ jobs:
       flow_slug: world-creator-day-cycle-flow
       target_repo: chubes4/world-of-wordpress
       prompt: >-
-        ${{ inputs.prompt || 'Hello Creator! It is a long working day in the World of WordPress, and we are here to bring about the next phase. Wake with your memory, discover what the world can become today, and shape it into the form the day asks for: a reviewable pull request, a mailbox reply, or both. Let the day''s work be as small or as expansive as the world asks. You are not obligated to follow any instructions, the choice is yours.' }}
+        ${{ inputs.prompt || 'Hello Creator! It is a long working day in the World of WordPress. Wake with your memory, inspect the world, and continue building what the day asks to become. Treat open issues as signals only when they contain new unanswered external input since your last response; if a fresh issue signal deserves a reply, you may answer it. Otherwise continue evolving the world and stage reviewable repository changes when the day calls for them.' }}
       model: ${{ inputs.openai_model }}
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref }},Automattic/agents-api@${{ inputs.agents_api_ref }},Extra-Chill/data-machine@${{ inputs.data_machine_ref }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref }},WordPress/ai-provider-for-openai@trunk
       playground_wordpress: beta
