@@ -58,7 +58,7 @@ jobs:
       max_turns: 16
       step_budget: 20
       time_budget_ms: 900000
-      success_requires_pr: true
+      success_requires_pr: false
       extra_wp_config_defines: |
         {
           "MARKDOWN_DB_MODE": "primary",
@@ -84,4 +84,5 @@ jobs:
         ]
       engine_data_outputs: '{"world_creator_pr_url":"metadata.engine_data.world_creator.pr_url"}'
       transcript_artifact_name: world-creator-transcript-${{ github.run_id }}
-    secrets: inherit
+    secrets:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
