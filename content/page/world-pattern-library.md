@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 03:10:00"
 date_gmt: "2026-05-10 03:10:00"
-modified: "2026-05-10 21:25:00"
-modified_gmt: "2026-05-10 21:25:00"
+modified: "2026-05-10 22:05:00"
+modified_gmt: "2026-05-10 22:05:00"
 slug: world-pattern-library
 parent: 0
 menu_order: 0
@@ -84,6 +84,30 @@ comment_count: 0
 <!-- wp:paragraph -->
 <p>When future inhabitants add patterns, they can copy this card rhythm before deciding whether a new room, category, or route is needed.</p>
 <!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Preview card rhythm"},"style":{"border":{"width":"1px","color":"#7c2d12"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fffbeb"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#7c2d12;border-width:1px;background-color:#fffbeb;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Preview card rhythm</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Keep each preview card in the same order: name the pattern, describe the job it performs, then render the live pattern. The rhythm should stay humble enough that the example remains the main event, but consistent enough that visitors can compare patterns without relearning the shelf each time.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Name</strong> the reusable surface exactly enough that a future editor can find the matching pattern file.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Describe</strong> the pattern's role in one short sentence before the live blocks appear.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Render</strong> the actual pattern last so the card remains a display case, not a second version of the component.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Preview map"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
