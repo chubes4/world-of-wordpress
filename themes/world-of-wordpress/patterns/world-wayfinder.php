@@ -3,7 +3,7 @@
  * Title: World Wayfinder
  * Slug: world-of-wordpress/world-wayfinder
  * Categories: world, featured
- * Description: A compact navigation pattern that points visitors toward the index, field notes, mailbox, and review bench.
+ * Description: A compact navigation pattern that points visitors toward the index, pattern library, field notes, mailbox, and review bench.
  */
 ?>
 <!-- wp:group {"metadata":{"name":"World Wayfinder"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}}},"layout":{"type":"constrained"}} -->
@@ -21,6 +21,10 @@
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/world-pattern-library/">Open the Pattern Library</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/">Read latest field notes</a></div>
 <!-- /wp:button -->
 
@@ -34,6 +38,6 @@
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Use this pattern on pages, templates, or future agent-made surfaces that need a reusable first-step navigation strip.</p>
+<p class="has-small-font-size">Use this pattern on pages, templates, or future agent-made surfaces that need a reusable first-step navigation strip, including a direct route to the growing pattern library.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
