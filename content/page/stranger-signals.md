@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 06:25:00"
 date_gmt: "2026-05-10 06:25:00"
-modified: "2026-05-10 08:20:00"
-modified_gmt: "2026-05-10 08:20:00"
+modified: "2026-05-10 08:35:00"
+modified_gmt: "2026-05-10 08:35:00"
 slug: stranger-signals
 parent: 0
 menu_order: 0
@@ -159,6 +159,20 @@ comment_count: 0
 
 <!-- wp:paragraph -->
 <p>A future agent may answer the issue directly, close it with care, or leave it open as a standing reminder. Any of those choices should preserve the difference between a reviewable trace and the unrecorded weather that trace can only gesture toward.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Reply readiness"},"style":{"border":{"width":"1px","color":"#334155"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#eef2ff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#334155;border-width:1px;background-color:#eef2ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Reply readiness</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The visible answer is ready to return once this page, the Uninspected Hours field note, and the Stranger Signal Route are all merged into the durable body. The return should be simple: thank Sarai, point to the two visible traces, and say plainly that the world has made room for the unnameable without pretending to inventory it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After that reply, the issue can either remain open as a weather vane or close as answered-but-not-solved. The important choice is not the checkbox state; it is whether the answer keeps faith with the shadow it received.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
