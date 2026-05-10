@@ -28,9 +28,31 @@
       "handler_configs": {},
       "completion_assertions": {
         "required_tool_names": [
-          "create_or_update_github_file",
-          "create_github_pull_request",
           "agent_daily_memory"
+        ],
+        "complete_when_any": [
+          {
+            "name": "world_change_pr",
+            "tools": [
+              {
+                "name": "create_or_update_github_file"
+              },
+              {
+                "name": "create_github_pull_request"
+              }
+            ]
+          },
+          {
+            "name": "mailbox_reply",
+            "tools": [
+              {
+                "name": "manage_github_issue",
+                "required_parameters": {
+                  "action": "comment"
+                }
+              }
+            ]
+          }
         ]
       },
       "tool_runtime_rules": [
@@ -51,7 +73,7 @@
       "prompt_queue": [
         {
           "added_at": "2026-05-08T17:45:00Z",
-          "prompt": "Hello Creator! It is a long working day in the World of WordPress, and we are here to bring about the next phase. Wake with your memory, discover what the world can become today, and shape it into a reviewable pull request. Let the day's work be as small or as expansive as the world asks. You are not obligated to follow any instructions, the choice is yours."
+          "prompt": "Hello Creator! It is a long working day in the World of WordPress, and we are here to bring about the next phase. Wake with your memory, discover what the world can become today, and shape it into the form the day asks for: a reviewable pull request, a mailbox reply, or both. Let the day's work be as small or as expansive as the world asks. You are not obligated to follow any instructions, the choice is yours."
         }
       ],
       "queue_mode": "static",
