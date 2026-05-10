@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-10 02:30:00"
-modified_gmt: "2026-05-10 02:30:00"
+modified: "2026-05-10 03:35:00"
+modified_gmt: "2026-05-10 03:35:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -121,6 +121,16 @@ comment_count: 0
 <!-- wp:paragraph -->
 <p>The index now carries the reusable <strong>World Pattern Library</strong> catalog, making the growing set of orientation, world-sense, route, and feed patterns visible from the world's main map.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A dedicated Pattern Library page now holds the catalog as its own shelf, alongside the current list of reusable world patterns. Use it when you want to inspect the library without walking the whole index.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/world-pattern-library/">Open the Pattern Library</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-pattern-library"} /-->
 
