@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-10 01:45:00"
-modified_gmt: "2026-05-10 01:45:00"
+modified: "2026-05-10 02:30:00"
+modified_gmt: "2026-05-10 02:30:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -109,6 +109,24 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/day-cycle-loop"} /-->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Pattern library</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The index now carries the reusable <strong>World Pattern Library</strong> catalog, making the growing set of orientation, world-sense, route, and feed patterns visible from the world's main map.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/world-pattern-library"} /-->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
 
 <!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Current waypoints</h2>
