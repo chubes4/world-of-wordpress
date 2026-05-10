@@ -42,104 +42,46 @@ permissions:
   pull-requests: write
 
 jobs:
-  world-creator:
-    name: Run World Creator day cycle
-    runs-on: ubuntu-latest
-    timeout-minutes: 45
-
-    steps:
-      - name: Checkout World
-        uses: actions/checkout@v4
-
-      - name: Checkout Homeboy Extensions
-        uses: actions/checkout@v4
-        with:
-          repository: Extra-Chill/homeboy-extensions
-          ref: ${{ inputs.homeboy_extensions_ref }}
-          path: .ci/homeboy-extensions
-
-      - name: Checkout Homeboy
-        uses: actions/checkout@v4
-        with:
-          repository: Extra-Chill/homeboy
-          ref: ${{ inputs.homeboy_ref }}
-          path: .ci/homeboy
-
-      - name: Checkout Data Machine
-        uses: actions/checkout@v4
-        with:
-          repository: Extra-Chill/data-machine
-          ref: ${{ inputs.data_machine_ref }}
-          path: .ci/data-machine
-
-      - name: Checkout Agents API
-        uses: actions/checkout@v4
-        with:
-          repository: Automattic/agents-api
-          ref: ${{ inputs.agents_api_ref }}
-          path: .ci/agents-api
-
-      - name: Checkout Data Machine Code
-        uses: actions/checkout@v4
-        with:
-          repository: Extra-Chill/data-machine-code
-          ref: ${{ inputs.data_machine_code_ref }}
-          path: .ci/data-machine-code
-
-      - name: Checkout Markdown Database Integration
-        uses: actions/checkout@v4
-        with:
-          repository: Automattic/markdown-database-integration
-          ref: ${{ inputs.markdown_database_integration_ref }}
-          path: .ci/markdown-database-integration
-
-      - name: Checkout OpenAI provider
-        uses: actions/checkout@v4
-        with:
-          repository: WordPress/ai-provider-for-openai
-          path: .ci/ai-provider-for-openai
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-
-      - name: Install Homeboy WordPress extension dependencies
-        working-directory: .ci/homeboy-extensions/wordpress
-        run: |
-          composer install --no-interaction --no-progress --prefer-dist
-          npm install
-
-      - name: Install plugin PHP dependencies
-        run: |
-          composer install --working-dir=.ci/data-machine --no-interaction --no-progress --prefer-dist
-          composer install --working-dir=.ci/data-machine-code --no-interaction --no-progress --prefer-dist
-          composer install --working-dir=.ci/markdown-database-integration --no-interaction --no-progress --prefer-dist
-
-      - name: Validate World Creator bundle
-        run: php tests/validate-world-creator-bundle.php
-
-      - name: Run World Creator day cycle
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          HOMEBOY_EXTENSION_PATH: ${{ github.workspace }}/.ci/homeboy-extensions/wordpress
-          AGENTS_API_PATH: ${{ github.workspace }}/.ci/agents-api
-          DM_PATH: ${{ github.workspace }}/.ci/data-machine
-          DMC_PATH: ${{ github.workspace }}/.ci/data-machine-code
-          MDI_PATH: ${{ github.workspace }}/.ci/markdown-database-integration
-          OPENAI_PROVIDER_PATH: ${{ github.workspace }}/.ci/ai-provider-for-openai
-          HOMEBOY_RUNTIME_BENCH_HELPER_SH: ${{ github.workspace }}/.ci/homeboy/src/core/extension/runtime/bench-helper.sh
-          HOMEBOY_RUNTIME_BENCH_HELPER_PHP: ${{ github.workspace }}/.ci/homeboy/src/core/extension/runtime/bench-helper.php
-          WORLD_CREATOR_OPENAI_MODEL: ${{ inputs.openai_model }}
-          WORLD_CREATOR_TARGET_REPO: chubes4/world-of-wordpress
-          WORLD_CREATOR_PROMPT: ${{ inputs.prompt }}
-        run: tests/playground-ci/scripts/run-world-creator.sh
-
-      - name: Upload World Creator transcript artifacts
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: world-creator-transcript-${{ github.run_id }}
-          path: tests/playground-ci/component/artifacts/world-creator/
-          if-no-files-found: warn
+  run-world-creator:
+    uses: Extra-Chill/homeboy-extensions/.github/workflows/datamachine-agent-ci.yml@main
+    with:
+      bundle_path: bundles/world-creator
+      agent_slug: world-creator
+      pipeline_slug: world-creator-pipeline
+      flow_slug: world-creator-day-cycle-flow
+      target_repo: chubes4/world-of-wordpress
+      prompt: >-
+        ${{ inputs.prompt || 'Hello Creator! It is a long working day in the World of WordPress, and we are here to bring about the next phase. Wake with your memory, discover what the world can become today, and shape it into the form the day asks for: a reviewable pull request, a mailbox reply, or both. Let the day''s work be as small or as expansive as the world asks. You are not obligated to follow any instructions, the choice is yours.' }}
+      model: ${{ inputs.openai_model }}
+      validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref }},Automattic/agents-api@${{ inputs.agents_api_ref }},Extra-Chill/data-machine@${{ inputs.data_machine_ref }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref }},WordPress/ai-provider-for-openai@main
+      playground_wordpress: beta
+      max_turns: 16
+      step_budget: 20
+      time_budget_ms: 900000
+      success_requires_pr: true
+      extra_wp_config_defines: |
+        {
+          "MARKDOWN_DB_MODE": "primary",
+          "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content"
+        }
+      extra_playground_file_mounts: |
+        [
+          {
+            "from_dependency": "markdown-database-integration",
+            "from": "db.php",
+            "to": "/wordpress/wp-content/db.php"
+          }
+        ]
+      workload_run_before: |
+        [
+          { "type": "php", "file": "world-creator-bootstrap.php" }
+        ]
+      daily_memory_enabled: true
+      extra_required_abilities: |
+        [
+          "datamachine/create-or-update-github-file",
+          "datamachine/daily-memory-write"
+        ]
+      engine_data_outputs: '{"world_creator_pr_url":"metadata.engine_data.world_creator.pr_url"}'
+      transcript_artifact_name: world-creator-transcript-${{ github.run_id }}
+    secrets: inherit
