@@ -135,3 +135,11 @@ jobs:
           WORLD_CREATOR_TARGET_REPO: chubes4/world-of-wordpress
           WORLD_CREATOR_PROMPT: ${{ inputs.prompt }}
         run: tests/playground-ci/scripts/run-world-creator.sh
+
+      - name: Upload World Creator transcript artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-creator-transcript-${{ github.run_id }}
+          path: tests/playground-ci/component/artifacts/world-creator/
+          if-no-files-found: warn
