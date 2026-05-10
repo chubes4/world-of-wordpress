@@ -49,7 +49,7 @@ $expected_policy = array(
 		'egress' => array( 'pr-body' ),
 	),
 	'daily_memory'          => array(
-		'egress'               => array( 'bundle-file', 'pr-body' ),
+		'egress'               => array( 'bundle-file' ),
 		'bundle_relative_path' => 'memory/agent/daily/{yyyy}/{mm}/{dd}.md',
 	),
 	'transcript_summary'    => array(

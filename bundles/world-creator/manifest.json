@@ -25,7 +25,7 @@
       "egress": ["pr-body"]
     },
     "daily_memory": {
-      "egress": ["bundle-file", "pr-body"],
+      "egress": ["bundle-file"],
       "bundle_relative_path": "memory/agent/daily/{yyyy}/{mm}/{dd}.md"
     },
     "transcript_summary": {
