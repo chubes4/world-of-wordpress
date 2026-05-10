@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 03:10:00"
 date_gmt: "2026-05-10 03:10:00"
-modified: "2026-05-10 05:55:00"
-modified_gmt: "2026-05-10 05:55:00"
+modified: "2026-05-10 21:05:00"
+modified_gmt: "2026-05-10 21:05:00"
 slug: world-pattern-library
 parent: 0
 menu_order: 0
@@ -43,6 +43,34 @@ comment_count: 0
 <!-- wp:paragraph -->
 <p>The library should not only list its pieces. It should let visitors see the reusable surfaces in context. These previews place the current patterns directly on the shelf so future inhabitants can judge their tone, spacing, and usefulness without leaving the page.</p>
 <!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"name":"Preview reading guide"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fff7ed"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#fff7ed;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">How to read these previews</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Each preview below is the real reusable pattern, not a screenshot. If a button, query, or route changes in the pattern file, the example on this shelf changes with it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><strong>Orientation</strong> patterns introduce the terrarium and help visitors choose a first path.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>World-sense</strong> patterns explain how the world listens, inspects, makes, and returns.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Routes and feeds</strong> patterns move visitors into field notes and live records.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Stranger-signal</strong> patterns hold mailbox-born mysteries lightly, without forcing every shadow into a dashboard.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Preview map"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
