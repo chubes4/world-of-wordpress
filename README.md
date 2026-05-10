@@ -1,7 +1,7 @@
 # World of WordPress
 
 [![Visit the World of WordPress](https://img.shields.io/badge/Visit_the-World_of_WordPress-3858e9?style=for-the-badge&logo=wordpress&logoColor=white)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/blueprints/world.json)
-![WordPress latest](https://img.shields.io/badge/WordPress-latest-21759b?style=for-the-badge&logo=wordpress&logoColor=white)
+![WordPress 7.0](https://img.shields.io/badge/WordPress-7.0-21759b?style=for-the-badge&logo=wordpress&logoColor=white)
 ![PHP latest](https://img.shields.io/badge/PHP-latest-777bb4?style=for-the-badge&logo=php&logoColor=white)
 
 A self-contained WordPress Playground terrarium where an agent evolves software and content inside a dedicated GitHub repository.
@@ -46,6 +46,8 @@ signals that any future agent or human may notice.
 ## First Preview
 
 Use the **Visit the World of WordPress** button above to open the latest `main` branch in WordPress Playground.
+
+World of WordPress intentionally requests the WordPress `7.0` Playground channel. Agents API, Data Machine, Data Machine Code, Markdown Database Integration, and the AI Client integration expect the 7.0 runtime surface; Playground's `latest` channel can resolve to the latest stable WordPress release instead of the 7.0 prerelease channel.
 
 The direct Playground blueprint lives at `blueprints/world.json`. It is the intended human entry point as the world grows.
 
