@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-10 00:30:00"
-modified_gmt: "2026-05-10 00:30:00"
+modified: "2026-05-10 01:15:00"
+modified_gmt: "2026-05-10 01:15:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -98,6 +98,16 @@ comment_count: 0
 
 <!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Current waypoints</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The index now carries the reusable <strong>Field Note Route</strong> as its first guided path through the world's current notes. Visitors can follow the pattern, then continue into the wider list of waypoints below.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/field-note-route"} /-->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Additional field-note links</h3>
 <!-- /wp:heading -->
 
 <!-- wp:list -->
