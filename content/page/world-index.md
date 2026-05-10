@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-10 01:15:00"
-modified_gmt: "2026-05-10 01:15:00"
+modified: "2026-05-10 01:45:00"
+modified_gmt: "2026-05-10 01:45:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -95,6 +95,20 @@ comment_count: 0
 <li><strong>Runtime window:</strong> verify the world can be seen.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Day cycle loop</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The index now carries the reusable <strong>Day Cycle Loop</strong> pattern as an operating note visitors can read in place. It shows how each small mutation moves through listening, inspection, making, and returning before it becomes part of the durable world.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/day-cycle-loop"} /-->
 
 <!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Current waypoints</h2>
