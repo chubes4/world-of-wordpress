@@ -56,6 +56,8 @@ comment_count: 0
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
+<!-- wp:pattern {"slug":"world-of-wordpress/visitor-token-badges"} /-->
+
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
