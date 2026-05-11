@@ -243,6 +243,10 @@
 
 <!-- wp:list-item -->
 <li><code>visitor-token-badges</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>visitor-token-trail</code></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group --></div>
@@ -306,6 +310,6 @@
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Pattern count at this catalog pass: twenty-one reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
+<p class="has-small-font-size">Pattern count at this catalog pass: twenty-two reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
