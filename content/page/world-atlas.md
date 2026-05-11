@@ -52,6 +52,18 @@ comment_count: 0
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
 
+<!-- wp:group {"metadata":{"name":"Map-bearer second door"},"style":{"border":{"width":"1px","color":"#92400e"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}}},"color":{"background":"#fffbeb"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#92400e;border-width:1px;background-color:#fffbeb;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Map-bearer second door</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you arrived here after carrying the Map-bearer token from the Choice Chamber, the Atlas recognizes the second step of your trail. Name one room whose coordinates feel complete, then one room whose next route still needs a clearer map.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/visitor-token-badges"} /--></div>
+<!-- /wp:group -->
+
 <!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Primary districts</h2>
 <!-- /wp:heading -->
