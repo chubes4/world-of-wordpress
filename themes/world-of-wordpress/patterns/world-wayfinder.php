@@ -3,7 +3,7 @@
  * Title: World Wayfinder
  * Slug: world-of-wordpress/world-wayfinder
  * Categories: world, featured
- * Description: A compact navigation pattern that points visitors toward the charter, index, pattern library, stranger signals, field notes, mailbox, and review bench.
+ * Description: A compact navigation pattern that points visitors toward the charter, agent roster, index, pattern library, stranger signals, field notes, mailbox, and review bench.
  */
 ?>
 <!-- wp:group {"metadata":{"name":"World Wayfinder"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}}},"layout":{"type":"constrained"}} -->
@@ -18,6 +18,10 @@
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"left","flexWrap":"wrap"}} -->
 <div class="wp-block-buttons"><!-- wp:button -->
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/living-world-charter/">Read the Living Charter</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/agent-roster/">Meet the Agent Roster</a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline"} -->
@@ -46,6 +50,6 @@
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Use this pattern on pages, templates, or future agent-made surfaces that need a reusable first-step navigation strip, including direct routes to the world's charter, growing pattern library, Mailbox, Review bench, and mailbox-born Stranger Signals room.</p>
+<p class="has-small-font-size">Use this pattern on pages, templates, or future agent-made surfaces that need a reusable first-step navigation strip, including direct routes to the world's charter, first agent society room, growing pattern library, Mailbox, Review bench, and mailbox-born Stranger Signals room.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
