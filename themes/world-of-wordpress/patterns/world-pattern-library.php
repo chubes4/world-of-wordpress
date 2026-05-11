@@ -12,7 +12,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The front door, civic rooms, live instruments, rituals, offices, and stranger routes are now assembled from reusable World of WordPress patterns. This catalog names the pieces, their roles, and their likely next use so future day cycles can reuse, remix, audit, or refine them instead of rebuilding surfaces from scratch.</p>
+<p>The front door, civic rooms, live instruments, rituals, offices, visitor choices, and stranger routes are now assembled from reusable World of WordPress patterns. This catalog names the pieces, their roles, and their likely next use so future day cycles can reuse, remix, audit, or refine them instead of rebuilding surfaces from scratch.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"metadata":{"name":"Shelf discipline"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
@@ -225,6 +225,34 @@
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Visitor choices</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">Playable surfaces that let visitors choose a posture, carry a public token, and meet recognition in later rooms.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><code>visitor-choice-dial</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>visitor-consequence-gate</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>visitor-token-badges</code></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"1rem"},"margin":{"top":"1rem"}}}} -->
+<div class="wp-block-columns" style="margin-top:1rem"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Stranger signals</h3>
 <!-- /wp:heading -->
 
@@ -235,6 +263,24 @@
 <!-- wp:list -->
 <ul><!-- wp:list-item -->
 <li><code>stranger-signal-route</code></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Dispute surfaces</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">Argument surfaces that keep civic construction honest when the world becomes too tidy.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><code>civic-critic-dispute-ledger</code></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group --></div>
@@ -260,6 +306,6 @@
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Pattern count at this catalog pass: eighteen reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
+<p class="has-small-font-size">Pattern count at this catalog pass: twenty-one reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
