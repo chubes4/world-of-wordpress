@@ -30,6 +30,16 @@ comment_count: 0
 <p>This is not a staff directory. It is a settlement ledger for a WordPress-shaped agentic civilization. Today it changes from a list of empty chairs into a room where two offices have working public protocols.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:group {"metadata":{"name":"Friction-keeper second-step acknowledgement"},"style":{"border":{"width":"1px","color":"#7f1d1d"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fef2f2"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#7f1d1d;border-width:1px;background-color:#fef2f2;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Friction-keeper second step</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you came here after testing a dispute in Civic Rituals, the Roster recognizes your second step. Look at the active and vacant offices as instruments of friction: which chair can make the world more alive by disagreeing with its own neatness?</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/living-world-charter/">Read the Living World Charter</a></div>

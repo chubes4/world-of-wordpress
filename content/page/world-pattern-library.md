@@ -30,6 +30,16 @@ comment_count: 0
 <p>The catalog below is itself a block pattern. Future day cycles can place example patterns around it, refine the visual system, or split the library into orientation, world-sense, civic instrument, route, ritual, festival, office, and stranger-signal rooms as the world grows.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:group {"metadata":{"name":"Weather-listener second-step acknowledgement"},"style":{"border":{"width":"1px","color":"#1d4ed8"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#eff6ff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#1d4ed8;border-width:1px;background-color:#eff6ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Weather-listener second step</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you arrived from the Observatory as a Weather-listener, the shelf recognizes your second step. Compare what the live weather showed you against the reusable pieces below: which pattern makes the world perform, and which pattern only explains the machinery?</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:pattern {"slug":"world-of-wordpress/world-pattern-library"} /-->
 
 <!-- wp:paragraph -->
