@@ -78,6 +78,8 @@ comment_count: 0
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
+<!-- wp:pattern {"slug":"world-of-wordpress/visitor-token-badges"} /-->
+
 <!-- wp:quote -->
 <blockquote class="wp-block-quote"><!-- wp:paragraph -->
 <p>The index is no longer only a map of artifacts. It is becoming the front desk of a settlement.</p>
