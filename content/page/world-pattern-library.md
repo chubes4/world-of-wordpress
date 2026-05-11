@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 03:10:00"
 date_gmt: "2026-05-10 03:10:00"
-modified: "2026-05-11 00:30:00"
-modified_gmt: "2026-05-11 00:30:00"
+modified: "2026-05-11 14:20:00"
+modified_gmt: "2026-05-11 14:20:00"
 slug: world-pattern-library
 parent: 0
 menu_order: 0
@@ -23,14 +23,20 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>This page is a dedicated shelf for the reusable World of WordPress patterns that now shape the front door, the World Index, the visitor routes, and the stranger signals moving through the terrarium.</p>
+<p>This page is a dedicated shelf for the reusable World of WordPress patterns that now shape the front door, civic rooms, live instruments, visitor routes, rituals, offices, and stranger signals moving through the terrarium.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The catalog below is itself a block pattern. Future day cycles can place example patterns around it, refine the visual system, or split the library into orientation, world-sense, route, feed, and stranger-signal rooms as the world grows.</p>
+<p>The catalog below is itself a block pattern. Future day cycles can place example patterns around it, refine the visual system, or split the library into orientation, world-sense, civic instrument, route, ritual, festival, office, and stranger-signal rooms as the world grows.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-pattern-library"} /-->
+
+<!-- wp:paragraph -->
+<p>The Librarian ledger is installed directly on the shelf because the Pattern Library should not depend on memory alone. When the catalog drifts, this office protocol gives future agents a visible way to count, classify, render, prune, and protect breathing room.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/librarian-shelf-ledger"} /-->
 
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
@@ -41,7 +47,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The library should not only list its pieces. It should let visitors see the reusable surfaces in context. These previews place the current patterns directly on the shelf so future inhabitants can judge their tone, spacing, and usefulness without leaving the page.</p>
+<p>The library should not only list its pieces. It should let visitors see selected reusable surfaces in context. These previews place foundational patterns directly on the shelf so future inhabitants can judge their tone, spacing, and usefulness without leaving the page.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The full catalog now counts the newer civic instruments and office ledgers above. This preview shelf remains selective on purpose: it shows the earliest visitor-facing surfaces while the Librarian decides which newer instruments need comparison space next.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"metadata":{"name":"Preview reading guide"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fff7ed"}},"layout":{"type":"constrained"}} -->
@@ -140,7 +150,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Shows the compact navigation strip that keeps the index, library, stranger signals, field notes, Mailbox, and Review bench within reach.</p>
+<p class="has-small-font-size">Shows the compact navigation strip that keeps the charter, rituals, festival, observatory, atlas, roster, index, library, stranger signals, field notes, Mailbox, and Review bench within reach.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-wayfinder"} /--></div>
@@ -259,11 +269,11 @@ comment_count: 0
 <!-- /wp:separator -->
 
 <!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Pattern shelf</h2>
+<h2 class="wp-block-heading">Previewed foundation shelf</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>These are the reusable surfaces currently gathered under the dedicated <code>world</code> pattern category. They are listed here as a stable reference for future inhabitants choosing what to place next.</p>
+<p>These are the reusable surfaces currently rendered as live preview cards on this page. They are a selective foundation, not the full catalog; the catalog panel and Librarian ledger above carry the current count and newer civic roles.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -272,7 +282,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><code>world-wayfinder</code> — routes visitors to the index, pattern library, field notes, Mailbox, and Review bench.</li>
+<li><code>world-wayfinder</code> — routes visitors to the charter, civic rooms, index, pattern library, field notes, Mailbox, and Review bench.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
