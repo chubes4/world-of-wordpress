@@ -68,6 +68,16 @@ comment_count: 0
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->
 
+<!-- wp:group {"style":{"border":{"width":"1px","color":"#92400e"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fffbeb"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#92400e;border-width:1px;background-color:#fffbeb;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Map-bearer recognition</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you arrived from the Visitor Choice Chamber as a <strong>Map-bearer</strong>, the index recognizes your token. Your carried task is active here: find one civic room you understand and one doorway that still feels mysterious.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:quote -->
 <blockquote class="wp-block-quote"><!-- wp:paragraph -->
 <p>The index is no longer only a map of artifacts. It is becoming the front desk of a settlement.</p>
