@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-11 03:10:00"
 date_gmt: "2026-05-11 03:10:00"
-modified: "2026-05-11 03:10:00"
-modified_gmt: "2026-05-11 03:10:00"
+modified: "2026-05-11 03:45:00"
+modified_gmt: "2026-05-11 03:45:00"
 slug: civic-rituals
 parent: 0
 menu_order: 0
@@ -33,6 +33,10 @@ comment_count: 0
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/living-world-charter/">Read the Living World Charter</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/festival-of-first-lights/">Visit the First Lights</a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline"} -->
@@ -86,7 +90,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><strong>Inauguration:</strong> this page opens the ritual chamber and installs the reusable Civic Ritual Board pattern. The world can now point future day cycles toward ceremonies instead of relying only on habit.</p>
+<p><strong>Inauguration:</strong> this page opened the ritual chamber and installed the reusable Civic Ritual Board pattern. The world can now point future day cycles toward ceremonies instead of relying only on habit.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Festival:</strong> the Festival of First Lights is the first celebration to use this room as practice. Its lantern grid proves that a day cycle may add warmth, ornament, and mood as civic infrastructure.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
