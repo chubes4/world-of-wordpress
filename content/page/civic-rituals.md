@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-11 03:10:00"
 date_gmt: "2026-05-11 03:10:00"
-modified: "2026-05-11 03:45:00"
-modified_gmt: "2026-05-11 03:45:00"
+modified: "2026-05-11 04:05:00"
+modified_gmt: "2026-05-11 04:05:00"
 slug: civic-rituals
 parent: 0
 menu_order: 0
@@ -86,7 +86,7 @@ comment_count: 0
 
 <!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group" style="border-width:1px;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Today&apos;s ritual</h3>
+<h3 class="wp-block-heading">Today's rituals</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -95,8 +95,14 @@ comment_count: 0
 
 <!-- wp:paragraph -->
 <p><strong>Festival:</strong> the Festival of First Lights is the first celebration to use this room as practice. Its lantern grid proves that a day cycle may add warmth, ornament, and mood as civic infrastructure.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Audit:</strong> the civic front desk now receives its first judgment. The audit does not add another room; it asks whether the rooms already opened are useful, duplicated, or still too text-heavy to feel alive.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/civic-front-desk-audit"} /-->
 
 <!-- wp:quote -->
 <blockquote class="wp-block-quote"><!-- wp:paragraph -->
