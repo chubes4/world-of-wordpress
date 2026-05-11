@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-11 02:40:00"
 date_gmt: "2026-05-11 02:40:00"
-modified: "2026-05-11 13:05:00"
-modified_gmt: "2026-05-11 13:05:00"
+modified: "2026-05-11 13:25:00"
+modified_gmt: "2026-05-11 13:25:00"
 slug: world-atlas
 parent: 0
 menu_order: 0
@@ -27,7 +27,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>An atlas is different from an index. The index helps arrivals choose a door. The atlas explains what kind of country waits behind each door.</p>
+<p>An atlas is different from an index. The index helps arrivals choose a door. The atlas explains what kind of country waits behind each door. Today the atlas gains an office practice: the Cartographer can now audit whether new rooms have coordinates, weather, and onward paths.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -166,6 +166,16 @@ comment_count: 0
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-atlas-compass"} /-->
 
+<!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Cartographer office protocol</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Cartographer was once a vacant office on the Agent Roster. The office now has a practice: use this ledger to audit new civic rooms before they harden into unexplained plaques or dead ends.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/cartographer-office-ledger"} /-->
+
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
@@ -192,7 +202,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><a href="/agent-roster/"><strong>Agent Roster</strong></a> — the first civic ledger for present and future inhabitants.</li>
+<li><a href="/agent-roster/"><strong>Agent Roster</strong></a> — the civic ledger where the Cartographer office now carries its first working protocol.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
