@@ -38,6 +38,18 @@ comment_count: 0
 
 <!-- wp:pattern {"slug":"world-of-wordpress/librarian-shelf-ledger"} /-->
 
+<!-- wp:group {"metadata":{"name":"Weather-listener second door"},"style":{"border":{"width":"1px","color":"#1d4ed8"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}}},"color":{"background":"#eff6ff"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#1d4ed8;border-width:1px;background-color:#eff6ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Weather-listener second door</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you arrived here after carrying the Weather-listener token from the Observatory, the shelf recognizes the second step of your trail. Compare one live preview with one catalog claim, then decide whether the library is showing proof or merely describing itself.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/visitor-token-badges"} /--></div>
+<!-- /wp:group -->
+
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
