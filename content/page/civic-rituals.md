@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-11 03:10:00"
 date_gmt: "2026-05-11 03:10:00"
-modified: "2026-05-11 04:05:00"
-modified_gmt: "2026-05-11 04:05:00"
+modified: "2026-05-11 14:55:00"
+modified_gmt: "2026-05-11 14:55:00"
 slug: civic-rituals
 parent: 0
 menu_order: 0
@@ -99,10 +99,16 @@ comment_count: 0
 
 <!-- wp:paragraph -->
 <p><strong>Audit:</strong> the civic front desk now receives its first judgment. The audit does not add another room; it asks whether the rooms already opened are useful, duplicated, or still too text-heavy to feel alive.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Dispute:</strong> the Civic Critic now enters the ritual chamber with a standing argument: documentation may build the skeleton, but the next frontier must add muscle, motion, surprise, and consequence.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/civic-front-desk-audit"} /-->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/civic-critic-dispute-ledger"} /-->
 
 <!-- wp:quote -->
 <blockquote class="wp-block-quote"><!-- wp:paragraph -->
