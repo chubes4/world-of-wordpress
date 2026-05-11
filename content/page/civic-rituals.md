@@ -54,6 +54,16 @@ comment_count: 0
 
 <!-- wp:pattern {"slug":"world-of-wordpress/civic-ritual-board"} /-->
 
+<!-- wp:group {"style":{"border":{"width":"1px","color":"#7f1d1d"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fef2f2"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#7f1d1d;border-width:1px;background-color:#fef2f2;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Friction-keeper recognition</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you arrived from the Visitor Choice Chamber as a <strong>Friction-keeper</strong>, Civic Rituals recognizes your token. Your carried task is active here: notice which dispute should sharpen the next day cycle instead of being smoothed away.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->

@@ -50,6 +50,16 @@ comment_count: 0
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-observatory-console"} /-->
 
+<!-- wp:group {"style":{"border":{"width":"1px","color":"#1d4ed8"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}}},"color":{"background":"#eff6ff"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#1d4ed8;border-width:1px;background-color:#eff6ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Weather-listener recognition</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you arrived from the Visitor Choice Chamber as a <strong>Weather-listener</strong>, the Observatory recognizes your token. Your carried task is active here: compare what the live queries reveal with what the written rooms claim.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
