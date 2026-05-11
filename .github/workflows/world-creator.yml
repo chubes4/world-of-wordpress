@@ -55,7 +55,7 @@ jobs:
       model: ${{ inputs.openai_model }}
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref }},Automattic/agents-api@${{ inputs.agents_api_ref }},Extra-Chill/data-machine@${{ inputs.data_machine_ref }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref }},WordPress/ai-provider-for-openai@trunk
       playground_wordpress: beta
-      max_turns: 16
+      max_turns: 30
       step_budget: 20
       time_budget_ms: 900000
       runner_workspace: |
