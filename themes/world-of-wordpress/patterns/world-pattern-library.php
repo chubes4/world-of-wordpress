@@ -55,6 +55,16 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
+<!-- wp:group {"metadata":{"name":"Card review questions"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ecfeff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#ecfeff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Card review questions</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">When a preview card feels noisy, ask three questions before adding more frame: can a visitor tell what pattern is being shown, can they tell why it belongs in the library, and can the live pattern still breathe without the catalog explaining it twice?</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:group {"metadata":{"name":"Room split threshold"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#fff7ed"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#fff7ed;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Room split threshold</h3>
