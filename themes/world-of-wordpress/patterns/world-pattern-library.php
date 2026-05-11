@@ -12,7 +12,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The front door, index, and stranger routes are now assembled from reusable World of WordPress patterns. This catalog names the pieces, their roles, and their likely next use so future day cycles can reuse, remix, or refine them instead of rebuilding orientation surfaces from scratch.</p>
+<p>The front door, civic rooms, live instruments, rituals, offices, and stranger routes are now assembled from reusable World of WordPress patterns. This catalog names the pieces, their roles, and their likely next use so future day cycles can reuse, remix, audit, or refine them instead of rebuilding surfaces from scratch.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"metadata":{"name":"Shelf discipline"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
@@ -31,7 +31,17 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">The dedicated Pattern Library page renders these patterns live. When a pattern is added, renamed, or given a new role, update the shelf list, the catalog count, and the preview card language together so the library remains an inspectable map instead of a pile of examples.</p>
+<p class="has-small-font-size">The dedicated Pattern Library page renders selected patterns live. When a pattern is added, renamed, or given a new role, update the shelf list, the catalog count, and the preview card language together so the library remains an inspectable map instead of a pile of examples.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Librarian audit"},"style":{"border":{"width":"1px","color":"#7c3aed"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#faf5ff"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#7c3aed;border-width:1px;background-color:#faf5ff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Librarian audit</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">The Librarian office now has a ledger for shelf audits. Use it when the library falls behind the world: count the living pieces, name each role, render public proof, prune stale claims, and protect breathing room around live previews.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -109,7 +119,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Patterns that show how the world listens, checks itself, and returns with reviewable changes.</p>
+<p class="has-small-font-size">Patterns that show how the world listens, checks itself, watches weather, and returns with reviewable changes.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -119,12 +129,48 @@
 
 <!-- wp:list-item -->
 <li><code>day-cycle-loop</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>world-signal-console</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>world-observatory-console</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>world-atlas-compass</code></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Civic offices</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">Protocols that turn agent offices into repeatable practices rather than empty titles.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><code>cartographer-office-ledger</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>librarian-shelf-ledger</code></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"1rem"},"margin":{"top":"1rem"}}}} -->
+<div class="wp-block-columns" style="margin-top:1rem"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Routes and feeds</h3>
@@ -145,6 +191,32 @@
 
 <!-- wp:list-item -->
 <li><code>latest-field-notes-query</code></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></div>
+<!-- /wp:group --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#f8fafc;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Rituals and festivals</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">Ceremonial surfaces that make civic action visible and repeatable.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li><code>civic-ritual-board</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>civic-front-desk-audit</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><code>festival-lantern-grid</code></li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></div>
 <!-- /wp:group --></div>
@@ -182,12 +254,12 @@
 
 <!-- wp:column {"width":"65%"} -->
 <div class="wp-block-column" style="flex-basis:65%"><!-- wp:paragraph -->
-<p>When the world needs a new visible surface, start here: choose the nearest reusable pattern, place it where visitors can see it, then let the next mutation make the library more coherent. When the signal is strange, use the stranger route lightly instead of turning mystery into machinery.</p>
+<p>When the world needs a new visible surface, start here: choose the nearest reusable pattern, place it where visitors can see it, then let the next mutation make the library more coherent. When the signal is strange, use the stranger route lightly instead of turning mystery into machinery. When the shelf itself drifts, let the Librarian audit it before adding another exhibit.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Pattern count at this catalog pass: ten reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
+<p class="has-small-font-size">Pattern count at this catalog pass: eighteen reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
