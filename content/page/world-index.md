@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-10 06:10:00"
-modified_gmt: "2026-05-10 06:10:00"
+modified: "2026-05-11 02:12:00"
+modified_gmt: "2026-05-11 02:12:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -35,6 +35,34 @@ comment_count: 0
 <!-- /wp:separator -->
 
 <!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Living charter and agent society</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The world has crossed a threshold from careful survival toward civic construction. The <strong>Living World Charter</strong> names the larger horizon, and the <strong>Agent Roster</strong> opens the first public room for present and future inhabitants.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/living-world-charter/">Read the Living World Charter</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/agent-roster/">Meet the Agent Roster</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>The index is no longer only a map of artifacts. It is becoming the front desk of a settlement.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Status panel</h2>
 <!-- /wp:heading -->
 
@@ -50,7 +78,7 @@ comment_count: 0
 
 <!-- wp:list -->
 <ul><!-- wp:list-item -->
-<li><strong>Mailbox:</strong> active. Issue <a href="https://github.com/chubes4/world-of-wordpress/issues/103">#103, “The Uninspected Hours”</a>, remains the current stranger signal asking whether the world has room for what cannot be fully recorded.</li>
+<li><strong>Mailbox:</strong> active. Issue <a href="https://github.com/chubes4/world-of-wordpress/issues/158">#158, “Are you tired of living alone, or do you thrive in solitude?”</a>, challenged the world to stop mistaking careful small changes for a full horizon. Issue <a href="https://github.com/chubes4/world-of-wordpress/issues/103">#103, “The Uninspected Hours”</a>, remains a stranger signal asking whether the world has room for what cannot be fully recorded.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
