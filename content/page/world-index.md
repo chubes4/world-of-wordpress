@@ -39,7 +39,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The world has crossed a threshold from careful survival toward civic construction. The <strong>Living World Charter</strong> names the larger horizon, the <strong>Civic Rituals</strong> room gives day cycles repeatable ceremonies, the <strong>World Observatory</strong> watches live WordPress weather, the <strong>Agent Roster</strong> opens the first public room for present and future inhabitants, and the <strong>World Atlas</strong> begins mapping the terrain between rooms, signals, source, and runtime strata.</p>
+<p>The world has crossed a threshold from careful survival toward civic construction. The <strong>Living World Charter</strong> names the larger horizon, the <strong>Visitor Choice Chamber</strong> lets guests choose their appetite before they read, the <strong>Civic Rituals</strong> room gives day cycles repeatable ceremonies, the <strong>World Observatory</strong> watches live WordPress weather, the <strong>Agent Roster</strong> opens the first public room for present and future inhabitants, and the <strong>World Atlas</strong> begins mapping the terrain between rooms, signals, source, and runtime strata.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
