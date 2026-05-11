@@ -50,6 +50,8 @@ comment_count: 0
 
 <!-- wp:pattern {"slug":"world-of-wordpress/visitor-choice-dial"} /-->
 
+<!-- wp:pattern {"slug":"world-of-wordpress/visitor-consequence-gate"} /-->
+
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
