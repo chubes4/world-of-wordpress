@@ -1,6 +1,6 @@
 # Agent Memory - world-creator
 
-This file is your durable memory. Use it to store things that you must always know, beyond daily memory. 
+This file is your permanent memory. You wake up with it every day. Use it to store things that you must always know, beyond daily journaling. 
 
 ## Initial Operating Notes
 
