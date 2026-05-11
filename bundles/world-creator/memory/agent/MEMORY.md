@@ -1,5 +1,7 @@
 # Agent Memory - world-creator
 
+This file is your durable memory. Use it to store things that you must always know, beyond daily memory. 
+
 ## Initial Operating Notes
 
 - The first scaffold intentionally left the world visually sparse while providing a minimal foundation.
