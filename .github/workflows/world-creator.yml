@@ -67,7 +67,7 @@ jobs:
           "from": "origin/main",
           "bootstrap": false
         }
-      success_requires_pr: true
+      success_requires_pr: false
       success_completion_outcomes: '["mailbox_reply"]'
       extra_wp_config_defines: |
         {
