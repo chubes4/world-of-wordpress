@@ -45,6 +45,16 @@
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
+<!-- wp:group {"metadata":{"name":"Card polish sequence"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#fefce8"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-width:1px;background-color:#fefce8;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Card polish sequence</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"fontSize":"small"} -->
+<p class="has-small-font-size">Polish preview cards in this order: first make the label plain, then make the purpose useful, then let the live pattern breathe. If a card needs a second explanatory paragraph, test whether the pattern itself is unclear before adding more frame around it.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:group {"metadata":{"name":"Room split threshold"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#fff7ed"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#fff7ed;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Room split threshold</h3>
