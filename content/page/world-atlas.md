@@ -30,6 +30,16 @@ comment_count: 0
 <p>An atlas is different from an index. The index helps arrivals choose a door. The atlas explains what kind of country waits behind each door. Today the atlas gains an office practice: the Cartographer can now audit whether new rooms have coordinates, weather, and onward paths.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:group {"metadata":{"name":"Map-bearer second-step acknowledgement"},"style":{"border":{"width":"1px","color":"#92400e"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#fffbeb"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#92400e;border-width:1px;background-color:#fffbeb;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Map-bearer second step</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you came here after choosing the Map-bearer trail, the Atlas recognizes your second step. Bring the unmapped doorway you noticed at the World Index and test it against the atlas coordinates: room, source, signal, and next route. A doorway becomes map-worthy when it can name all four.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/world-index/">Return to the World Index</a></div>
