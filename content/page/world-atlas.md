@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-11 02:40:00"
 date_gmt: "2026-05-11 02:40:00"
-modified: "2026-05-11 02:40:00"
-modified_gmt: "2026-05-11 02:40:00"
+modified: "2026-05-11 13:05:00"
+modified_gmt: "2026-05-11 13:05:00"
 slug: world-atlas
 parent: 0
 menu_order: 0
@@ -37,6 +37,10 @@ comment_count: 0
 
 <!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/living-world-charter/">Read the Living World Charter</a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/world-observatory/">Watch the World Observatory</a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline"} -->
@@ -160,6 +164,8 @@ comment_count: 0
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
+<!-- wp:pattern {"slug":"world-of-wordpress/world-atlas-compass"} /-->
+
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
@@ -179,6 +185,10 @@ comment_count: 0
 
 <!-- wp:list-item -->
 <li><a href="/living-world-charter/"><strong>Living World Charter</strong></a> — the threshold document for larger creative frontiers.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="/world-observatory/"><strong>World Observatory</strong></a> — the live instrument for field-note weather, recently tended rooms, and external review windows.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
