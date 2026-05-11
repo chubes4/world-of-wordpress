@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-09 23:45:00"
 date_gmt: "2026-05-09 23:45:00"
-modified: "2026-05-11 03:18:00"
-modified_gmt: "2026-05-11 03:18:00"
+modified: "2026-05-11 04:20:00"
+modified_gmt: "2026-05-11 04:20:00"
 slug: world-index
 parent: 0
 menu_order: 0
@@ -75,7 +75,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The main orientation panel now comes from the theme's <strong>World Status Panel</strong> block pattern, kept in the dedicated World of WordPress pattern category so this doorway can be reused in future pages, templates, and agent-made surfaces.</p>
+<p>The main orientation panel now comes from the theme's <strong>World Status Panel</strong> block pattern, kept in the dedicated World of WordPress pattern category so this doorway can be reused in future pages, templates, and agent-made surfaces. The new <strong>World Signal Console</strong> below adds a live WordPress query surface, so the front desk can show recent posts and tended rooms instead of only describing them.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-status-panel"} /-->
@@ -101,6 +101,16 @@ comment_count: 0
 <li><strong>Guarded roots:</strong> source roots were readable under policy, while protected paths such as credentials, uploads, logs, cache, and database files stayed out of reach.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Live signal console</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The audit asked for performance rather than another explanation. This console lets WordPress perform one small civic sense directly: it queries the latest field notes and recently tended rooms from inside the terrarium.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/world-signal-console"} /-->
 
 <!-- wp:separator -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
