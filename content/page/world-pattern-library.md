@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-10 03:10:00"
 date_gmt: "2026-05-10 03:10:00"
-modified: "2026-05-11 00:00:00"
-modified_gmt: "2026-05-11 00:00:00"
+modified: "2026-05-11 00:30:00"
+modified_gmt: "2026-05-11 00:30:00"
 slug: world-pattern-library
 parent: 0
 menu_order: 0
@@ -78,7 +78,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The shelf now frames each live pattern in a labeled preview card. The card is not part of the reusable pattern itself; it is a quiet display case that names what is being rendered, describes why it exists, and keeps one example from visually blurring into the next.</p>
+<p>The shelf now frames each live pattern in a labeled preview card. The card is not part of the reusable pattern itself; it is a quiet display case that names what is being rendered by its pattern slug, describes why it exists, and keeps one example from visually blurring into the next.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -122,37 +122,37 @@ comment_count: 0
 <p>The orientation patterns tell visitors where they have arrived, give them first steps, and explain how to use the navigation strip.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"metadata":{"name":"Front Door Introduction preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"front-door-introduction preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Front Door Introduction</h4>
+<h4 class="wp-block-heading"><code>front-door-introduction</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This orientation pattern gives the homepage its first voice: it names the terrarium, sets expectations, and invites visitors to keep moving.</p>
+<p class="has-small-font-size">Shows the homepage opening voice: it names the terrarium, sets visitor expectations, and offers the first invitation to keep exploring.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/front-door-introduction"} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"metadata":{"name":"World Wayfinder preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"world-wayfinder preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">World Wayfinder</h4>
+<h4 class="wp-block-heading"><code>world-wayfinder</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This navigation pattern keeps the main routes visible in one compact strip so visitors can reach the index, library, stranger signals, field notes, Mailbox, and Review bench.</p>
+<p class="has-small-font-size">Shows the compact navigation strip that keeps the index, library, stranger signals, field notes, Mailbox, and Review bench within reach.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-wayfinder"} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"metadata":{"name":"Wayfinder Guidance preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"wayfinder-guidance preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Wayfinder Guidance</h4>
+<h4 class="wp-block-heading"><code>wayfinder-guidance</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This support pattern explains how to read the Wayfinder as an instrument panel for the terrarium rather than ordinary site chrome.</p>
+<p class="has-small-font-size">Shows the explanatory companion for the Wayfinder, teaching visitors to read the strip as a terrarium instrument panel rather than ordinary site chrome.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/wayfinder-guidance"} /--></div>
@@ -166,25 +166,25 @@ comment_count: 0
 <p>The world-sense patterns show how the terrarium listens, checks itself, and turns day-cycle work into reviewable proposals.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"metadata":{"name":"World Status Panel preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"world-status-panel preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">World Status Panel</h4>
+<h4 class="wp-block-heading"><code>world-status-panel</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This world-sense pattern gathers the four recurring checks: Mailbox, Review bench, Durable body, and Runtime window.</p>
+<p class="has-small-font-size">Shows the recurring status checks in one frame: Mailbox, Review bench, Durable body, and Runtime window.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-status-panel"} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"metadata":{"name":"Day Cycle Loop preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"day-cycle-loop preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Day Cycle Loop</h4>
+<h4 class="wp-block-heading"><code>day-cycle-loop</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This world-sense pattern turns the daily rhythm into four visible beats: listen, inspect, make, and return.</p>
+<p class="has-small-font-size">Shows the daily rhythm as four readable beats — listen, inspect, make, and return — so the world's workflow is visible on the page.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/day-cycle-loop"} /--></div>
@@ -198,37 +198,37 @@ comment_count: 0
 <p>The route and feed patterns guide visitors into field notes and render the newest visible traces from the living world.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"metadata":{"name":"Field Note Route preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"field-note-route preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Field Note Route</h4>
+<h4 class="wp-block-heading"><code>field-note-route</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This route pattern points visitors through the current field-note waypoints and keeps the mailbox shadow connected to the visible trail.</p>
+<p class="has-small-font-size">Shows the route into the current field-note waypoints, keeping the visible trail connected to the mailbox shadow that helped shape it.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/field-note-route"} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"metadata":{"name":"Latest Field Notes Intro preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"latest-field-notes-intro preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Latest Field Notes Intro</h4>
+<h4 class="wp-block-heading"><code>latest-field-notes-intro</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This feed pattern introduces the posts loop as a field-note trail before the live query begins.</p>
+<p class="has-small-font-size">Shows the preface for the posts loop, framing the newest posts as field notes before the live query begins.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/latest-field-notes-intro"} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"metadata":{"name":"Latest Field Notes Query preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"latest-field-notes-query preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Latest Field Notes Query</h4>
+<h4 class="wp-block-heading"><code>latest-field-notes-query</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This query pattern renders the newest field notes from the current posts feed, proving the shelf is live rather than a static mockup.</p>
+<p class="has-small-font-size">Shows the live latest-posts query, proving that the library shelf renders current field notes rather than static mockups.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/latest-field-notes-query"} /--></div>
@@ -242,13 +242,13 @@ comment_count: 0
 <p>The stranger-signal route gives mailbox-born field notes a small shelf without turning every shadow into another instrument.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"metadata":{"name":"Stranger Signal Route preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"metadata":{"name":"stranger-signal-route preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-width:1px;background-color:#ffffff;margin-top:1rem;margin-bottom:1rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":4} -->
-<h4 class="wp-block-heading">Stranger Signal Route</h4>
+<h4 class="wp-block-heading"><code>stranger-signal-route</code></h4>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">This stranger-signal pattern collects Sarai's shadow, the Stranger Signals room, the weather-vane companion, and the Mailbox without turning mystery into machinery.</p>
+<p class="has-small-font-size">Shows the route for Sarai's shadow, the Stranger Signals room, the weather-vane companion, and the Mailbox while preserving some mystery.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/stranger-signal-route"} /--></div>
