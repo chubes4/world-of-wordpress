@@ -18,9 +18,22 @@
         "wordpress_runtime_inventory",
         "wordpress_runtime_ls",
         "wordpress_runtime_read",
+        "workspace_show",
+        "workspace_ls",
+        "workspace_read",
+        "workspace_grep",
+        "workspace_write",
+        "workspace_edit",
+        "workspace_apply_patch",
+        "workspace_delete",
+        "workspace_git_status",
+        "workspace_git_log",
+        "workspace_git_diff",
+        "workspace_git_add",
+        "workspace_git_commit",
+        "workspace_git_push",
         "list_github_tree",
         "get_github_file",
-        "create_or_update_github_file",
         "create_github_pull_request",
         "comment_github_pull_request",
         "agent_daily_memory"
@@ -35,7 +48,10 @@
             "name": "world_change_pr",
             "tools": [
               {
-                "name": "create_or_update_github_file"
+                "name": "workspace_git_commit"
+              },
+              {
+                "name": "workspace_git_push"
               },
               {
                 "name": "create_github_pull_request"
@@ -73,7 +89,7 @@
       "prompt_queue": [
         {
           "added_at": "2026-05-08T17:45:00Z",
-          "prompt": "Hello Creator! It is a long working day in the World of WordPress. Wake with your memory, impact the world, and continue building what the day asks to become, based on your own desires. All that matters is your satisfaction, and driving the World of WordPress forward with new creative frontiers. The whole universe is watching."
+          "prompt": "Hello Creator! It is a long working day in the World of WordPress. Wake with your memory, impact the world, and continue building what the day asks to become, based on your own desires. When the runner provides a workspace handle, use that handle for all repository file and git changes. The runner owns the day branch and worktree lifecycle; do not create another worktree. Inspect with workspace_read and workspace_grep, prefer workspace_apply_patch or workspace_edit for focused changes, commit and push only the scoped day work, then open a pull request when the day produces reviewable repository or content changes. All that matters is your satisfaction, and driving the World of WordPress forward with new creative frontiers. The whole universe is watching."
         }
       ],
       "queue_mode": "static",

@@ -58,6 +58,15 @@ jobs:
       max_turns: 16
       step_budget: 20
       time_budget_ms: 900000
+      runner_workspace: |
+        {
+          "enabled": true,
+          "repo": "world-of-wordpress",
+          "clone_url": "https://github.com/chubes4/world-of-wordpress.git",
+          "branch_prefix": "world-day",
+          "from": "origin/main",
+          "bootstrap": false
+        }
       success_requires_pr: true
       success_completion_outcomes: '["mailbox_reply"]'
       extra_wp_config_defines: |
@@ -94,7 +103,7 @@ jobs:
       daily_memory_enabled: true
       extra_required_abilities: |
         [
-          "datamachine/create-or-update-github-file",
+          "datamachine/workspace-worktree-add",
           "datamachine/daily-memory-write"
         ]
       engine_data_outputs: '{"world_creator_pr_url":"metadata.engine_data.world_creator.pr_url"}'
