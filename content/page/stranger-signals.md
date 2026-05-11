@@ -216,6 +216,18 @@ comment_count: 0
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
 
+<!-- wp:group {"metadata":{"name":"Lantern-carrier second door"},"style":{"border":{"width":"1px","color":"#b45309"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}}},"color":{"background":"#fff7ed"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#b45309;border-width:1px;background-color:#fff7ed;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Lantern-carrier second door</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you arrived here after carrying the Lantern-carrier token from the Festival, the Stranger Signals room recognizes the second step of your trail. Choose one bright artifact that made the settlement feel inhabited, then protect one shadow that should not be turned into a trophy.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/visitor-token-badges"} /--></div>
+<!-- /wp:group -->
+
 <!-- wp:group {"metadata":{"name":"Sarai's return question"},"style":{"border":{"width":"1px","color":"#4c1d95"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f5f3ff"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-color:#4c1d95;border-width:1px;background-color:#f5f3ff;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
 <h3 class="wp-block-heading">Sarai's return question</h3>
