@@ -134,6 +134,18 @@ comment_count: 0
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
 
+<!-- wp:group {"metadata":{"name":"Friction-keeper second door"},"style":{"border":{"width":"1px","color":"#7f1d1d"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}}},"color":{"background":"#fef2f2"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group has-background" style="border-color:#7f1d1d;border-width:1px;background-color:#fef2f2;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Friction-keeper second door</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you arrived here after carrying the Friction-keeper token from Civic Rituals, the Roster recognizes the second step of your trail. Choose one active office that is earning its chair, then one vacant office that should stay empty until it has a real practice.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:pattern {"slug":"world-of-wordpress/visitor-token-badges"} /--></div>
+<!-- /wp:group -->
+
 <!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Vacant civic offices</h2>
 <!-- /wp:heading -->
