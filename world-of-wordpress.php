@@ -22,6 +22,7 @@ add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_itin
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_brief_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_action_launcher_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_action_cards_rest_route' );
+add_action( 'wp_head', 'world_of_wordpress_render_system_dark_mode_styles' );
 add_action( 'wp_footer', 'world_of_wordpress_render_action_launcher_footer' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_shortcode( 'world_application_manifest', 'world_of_wordpress_render_application_manifest_shortcode' );
@@ -103,6 +104,139 @@ function world_of_wordpress_render_application_action_cards_block( array $attrib
 			'surface'         => 'block',
 		)
 	);
+}
+
+/**
+ * Render a system-preference dark mode layer for the public world.
+ *
+ * The active theme is copied into the runtime at install time and may not be
+ * present in the compact review workspace, so this repository-owned plugin
+ * carries the immediate accessibility repair. The layer only responds to the
+ * visitor's operating-system color preference; it stores nothing, tracks
+ * nothing, writes nothing, and does not require cookies or accounts.
+ *
+ * @return void
+ */
+function world_of_wordpress_render_system_dark_mode_styles(): void {
+	if ( is_admin() || wp_doing_ajax() || wp_is_json_request() ) {
+		return;
+	}
+
+	?>
+	<style id="world-of-wordpress-system-dark-mode">
+		@media (prefers-color-scheme: dark) {
+			:root {
+				color-scheme: dark;
+				--wp--preset--color--ink: #f8fafc;
+				--wp--preset--color--paper: #080b12;
+				--wp--preset--color--wordpress-blue: #93c5fd;
+			}
+
+			html,
+			body {
+				background: #080b12 !important;
+				color: #e5e7eb !important;
+			}
+
+			body {
+				background-image:
+					radial-gradient(circle at 16% 12%, rgba(56, 88, 233, 0.22), transparent 32rem),
+					radial-gradient(circle at 85% 0%, rgba(16, 185, 129, 0.16), transparent 28rem),
+					linear-gradient(180deg, #0f172a 0%, #080b12 48%, #030712 100%) !important;
+			}
+
+			.wp-site-blocks,
+			main,
+			.entry-content,
+			.is-root-container {
+				background: transparent !important;
+				color: #e5e7eb !important;
+			}
+
+			.wp-block-group,
+			.wp-block-post,
+			.wp-block-query,
+			.wp-block-columns,
+			.wp-block-column,
+			[class*="-card"],
+			[class*="-console"],
+			[class*="-panel"],
+			[class*="-manifest"],
+			[class*="-registry"],
+			[class*="-map"],
+			[class*="-weather"] {
+				border-color: rgba(148, 163, 184, 0.26) !important;
+				background-color: rgba(15, 23, 42, 0.78) !important;
+				color: #e5e7eb !important;
+			}
+
+			.wp-block-group.has-background,
+			.wp-block-cover,
+			.wp-block-cover__background {
+				background-color: rgba(15, 23, 42, 0.84) !important;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			strong,
+			.wp-block-site-title,
+			.wp-block-post-title {
+				color: #f8fafc !important;
+			}
+
+			p,
+			li,
+			dt,
+			dd,
+			figcaption,
+			.wp-block-post-excerpt,
+			.wp-block-post-date,
+			.wp-block-navigation-item__label {
+				color: #cbd5e1 !important;
+			}
+
+			a,
+			.wp-block-navigation a {
+				color: #93c5fd !important;
+			}
+
+			a:hover,
+			a:focus,
+			.wp-block-navigation a:hover,
+			.wp-block-navigation a:focus {
+				color: #bfdbfe !important;
+			}
+
+			.wp-block-button__link,
+			button,
+			input[type="button"],
+			input[type="submit"] {
+				border-color: rgba(147, 197, 253, 0.42) !important;
+				background: #93c5fd !important;
+				color: #020617 !important;
+			}
+
+			input,
+			textarea,
+			select,
+			pre,
+			code {
+				border-color: rgba(148, 163, 184, 0.32) !important;
+				background: rgba(2, 6, 23, 0.82) !important;
+				color: #e5e7eb !important;
+			}
+
+			hr,
+			.wp-block-separator {
+				border-color: rgba(148, 163, 184, 0.28) !important;
+			}
+		}
+	</style>
+	<?php
 }
 
 /**
