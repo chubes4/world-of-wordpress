@@ -1839,7 +1839,9 @@ function world_of_wordpress_get_visitor_challenge_deck_data(): array {
 		'name'             => 'World of WordPress visitor challenge deck',
 		'purpose'          => 'Three tiny in-page challenges that make visitors learn the world by choosing, not by reading a long console. The deck is directly linkable from public action cards and the footer dock.',
 		'state'            => 'current page memory only; no persistence',
-		'completion_label' => 'Challenge complete. You have found the living path without leaving a trace.',
+		'completion_label' => 'Perfect run. You found the living path without leaving a trace.',
+		'incomplete_label' => 'Run complete, but the path is not fully aligned yet. Try again without leaving a trace.',
+		'retry_label'      => 'Try again',
 		'reward'           => array(
 			'label' => 'Claim next path',
 			'href'  => home_url( '/#visitor-choice-dial' ),
@@ -2350,18 +2352,29 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		}
 		.world-action-launcher-output[hidden],
 		.world-action-launcher-challenge[hidden],
-		.world-action-launcher-reward[hidden] {
+		.world-action-launcher-reward[hidden],
+		.world-action-launcher-retry[hidden] {
 			display: none;
 		}
-		.world-action-launcher-reward {
+		.world-action-launcher-reward,
+		.world-action-launcher-retry {
 			display: inline-flex;
 			margin-top: 0.6rem;
+			margin-right: 0.45rem;
+			border: 0;
 			border-radius: 999px;
 			padding: 0.52rem 0.72rem;
 			background: #f8fafc;
 			color: #111827;
 			font-weight: 900;
+			font-size: 0.76rem;
 			text-decoration: none;
+			cursor: pointer;
+		}
+		.world-action-launcher-retry {
+			background: rgba(255, 255, 255, 0.14);
+			color: #f8fafc;
+			border: 1px solid rgba(255, 255, 255, 0.18);
 		}
 		.world-action-launcher-riddle-options {
 			display: flex;
@@ -2421,7 +2434,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				</section>
 			<?php endforeach; ?>
 		</div>
-		<section id="world-action-launcher-challenge" class="world-action-launcher-challenge" data-world-action-challenge data-world-challenge-complete="<?php echo esc_attr( (string) ( $challenge_deck['completion_label'] ?? '' ) ); ?>" hidden aria-live="polite">
+		<section id="world-action-launcher-challenge" class="world-action-launcher-challenge" data-world-action-challenge data-world-challenge-complete="<?php echo esc_attr( (string) ( $challenge_deck['completion_label'] ?? '' ) ); ?>" data-world-challenge-incomplete="<?php echo esc_attr( (string) ( $challenge_deck['incomplete_label'] ?? '' ) ); ?>" hidden aria-live="polite">
 			<strong><?php echo esc_html__( 'Challenge: Find the living path', 'world-of-wordpress' ); ?></strong>
 			<p data-world-challenge-progress><?php echo esc_html__( 'Three quick choices. No account, cookie, score table, or tracking is involved.', 'world-of-wordpress' ); ?></p>
 			<?php foreach ( $prompts as $prompt_index => $prompt ) : ?>
@@ -2439,6 +2452,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				</div>
 			<?php endforeach; ?>
 			<p data-world-riddle-result><?php echo esc_html__( 'Choose carefully. The challenge remembers only while this page is open.', 'world-of-wordpress' ); ?></p>
+			<button class="world-action-launcher-retry" type="button" data-world-challenge-retry hidden><?php echo esc_html( (string) ( $challenge_deck['retry_label'] ?? __( 'Try again', 'world-of-wordpress' ) ) ); ?></button>
 			<?php if ( ! empty( $reward['href'] ) ) : ?>
 				<a class="world-action-launcher-reward" href="<?php echo esc_url( (string) $reward['href'] ); ?>" data-world-challenge-reward hidden><?php echo esc_html( (string) ( $reward['label'] ?? __( 'Claim next path', 'world-of-wordpress' ) ) ); ?></a>
 			<?php endif; ?>
@@ -2469,8 +2483,10 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const challengeProgress = challenge ? challenge.querySelector( '[data-world-challenge-progress]' ) : null;
 			const challengeResult = dock.querySelector( '[data-world-riddle-result]' );
 			const challengeReward = dock.querySelector( '[data-world-challenge-reward]' );
+			const challengeRetry = dock.querySelector( '[data-world-challenge-retry]' );
 			let challengeStep = 0;
 			let challengeCorrect = 0;
+			let challengeFinished = false;
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
 			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
 
@@ -2515,12 +2531,16 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const resetChallenge = () => {
 				challengeStep = 0;
 				challengeCorrect = 0;
+				challengeFinished = false;
 				showChallengeStep( 0 );
 				if ( challengeResult ) {
 					challengeResult.textContent = 'Choose carefully. The challenge remembers only while this page is open.';
 				}
 				if ( challengeReward ) {
 					challengeReward.hidden = true;
+				}
+				if ( challengeRetry ) {
+					challengeRetry.hidden = true;
 				}
 			};
 
@@ -2586,8 +2606,14 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					return;
 				}
 
+				const retry = event.target.closest( 'button[data-world-challenge-retry]' );
+				if ( retry && challenge ) {
+					resetChallenge();
+					return;
+				}
+
 				const answer = event.target.closest( 'button[data-world-riddle-answer]' );
-				if ( answer && challengeResult && challengePrompts.length ) {
+				if ( answer && challengeResult && challengePrompts.length && ! challengeFinished ) {
 					const prompt = answer.closest( '[data-world-challenge-prompt]' );
 					const isCorrect = !! prompt && prompt.dataset.worldChallengeCorrect === answer.dataset.worldRiddleAnswer;
 					const success = prompt ? prompt.dataset.worldChallengeSuccess : '';
@@ -2604,11 +2630,16 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 							return;
 						}
 
+						challengeFinished = true;
+						const perfectRun = challengeCorrect === challengePrompts.length;
 						if ( challengeProgress ) {
-							challengeProgress.textContent = ( challenge.dataset.worldChallengeComplete || 'Challenge complete.' ) + ' Correct choices on this page: ' + challengeCorrect + ' of ' + challengePrompts.length + '.';
+							challengeProgress.textContent = ( perfectRun ? ( challenge.dataset.worldChallengeComplete || 'Perfect run.' ) : ( challenge.dataset.worldChallengeIncomplete || 'Run complete.' ) ) + ' Correct choices on this page: ' + challengeCorrect + ' of ' + challengePrompts.length + '.';
 						}
 						if ( challengeReward ) {
-							challengeReward.hidden = false;
+							challengeReward.hidden = ! perfectRun;
+						}
+						if ( challengeRetry ) {
+							challengeRetry.hidden = perfectRun;
 						}
 					}, 420 );
 					return;
