@@ -18,6 +18,7 @@ add_action( 'rest_api_init', 'world_of_wordpress_register_application_surface_re
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_surface_map_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_suggestions_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_itinerary_rest_route' );
+add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_brief_rest_route' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_shortcode( 'world_application_manifest', 'world_of_wordpress_render_application_manifest_shortcode' );
 add_shortcode( 'world_application_registry', 'world_of_wordpress_render_application_registry_shortcode' );
@@ -25,6 +26,7 @@ add_shortcode( 'world_application_surface_explorer', 'world_of_wordpress_render_
 add_shortcode( 'world_application_surface_map', 'world_of_wordpress_render_application_surface_map_shortcode' );
 add_shortcode( 'world_application_route_suggestions', 'world_of_wordpress_render_application_route_suggestions_shortcode' );
 add_shortcode( 'world_application_route_itinerary', 'world_of_wordpress_render_application_route_itinerary_shortcode' );
+add_shortcode( 'world_application_route_brief', 'world_of_wordpress_render_application_route_brief_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
 
@@ -359,6 +361,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'slug'        => 'world-application-route-itinerary',
 				'description' => 'Turns intent-based route suggestions into an ordered public journey with focused surface detail.',
 			),
+			array(
+				'label'       => 'Application route brief',
+				'kind'        => 'REST-backed compact guide',
+				'slug'        => 'world-application-route-brief',
+				'description' => 'Compresses an ordered route into a small public brief that panels and agents can read quickly.',
+			),
 		),
 		'interfaces'  => array(
 			array(
@@ -402,6 +410,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'route'       => '/wp-json/world-of-wordpress/v1/application-route-itinerary',
 				'method'      => 'GET',
 				'description' => 'Read-only ordered public itinerary assembled from route suggestions and surface detail.',
+			),
+			array(
+				'label'       => 'Application route brief API',
+				'route'       => '/wp-json/world-of-wordpress/v1/application-route-brief',
+				'method'      => 'GET',
+				'description' => 'Read-only compact route brief assembled from the public itinerary.',
 			),
 		),
 		'promises'    => array(
@@ -543,9 +557,9 @@ function world_of_wordpress_get_application_registry_data(): array {
 		'purpose'    => 'A public index of living world surfaces that can be rendered, reused, or consumed by future panels and agents.',
 		'updated_by' => 'repository-owned world plugin',
 		'counts'     => array(
-			'pattern_surfaces' => 32,
-			'shortcodes'       => 7,
-			'rest_interfaces'  => 7,
+			'pattern_surfaces' => 33,
+			'shortcodes'       => 8,
+			'rest_interfaces'  => 8,
 		),
 		'surfaces'   => array(
 			array( 'slug' => 'front-door-introduction', 'group' => 'orientation', 'kind' => 'theme pattern', 'public' => true ),
@@ -561,6 +575,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'slug' => 'world-application-surface-map', 'group' => 'world senses', 'kind' => 'REST-backed navigation pattern', 'public' => true ),
 			array( 'slug' => 'world-application-route-suggestions', 'group' => 'world senses', 'kind' => 'REST-backed route helper', 'public' => true ),
 			array( 'slug' => 'world-application-route-itinerary', 'group' => 'world senses', 'kind' => 'REST-backed ordered journey', 'public' => true ),
+			array( 'slug' => 'world-application-route-brief', 'group' => 'world senses', 'kind' => 'REST-backed compact guide', 'public' => true ),
 			array( 'slug' => 'world-signal-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-observatory-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-atlas-compass', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
@@ -589,6 +604,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'tag' => 'world_application_surface_map', 'description' => 'Renders a grouped navigation map of registered public surfaces and fetches its public REST echo.' ),
 			array( 'tag' => 'world_application_route_suggestions', 'description' => 'Renders intent-based public route suggestions derived from the grouped surface map.' ),
 			array( 'tag' => 'world_application_route_itinerary', 'description' => 'Renders an ordered public route itinerary assembled from suggestions and focused surface detail.' ),
+			array( 'tag' => 'world_application_route_brief', 'description' => 'Renders a compact public route brief assembled from the ordered itinerary.' ),
 		),
 		'interfaces' => $manifest['interfaces'] ?? array(),
 		'boundaries' => array(
@@ -1403,6 +1419,166 @@ function world_of_wordpress_render_application_route_itinerary_shortcode(): stri
 			} );
 
 			loadItinerary( 'overview' );
+		}());
+		</script>
+	</div>
+	<?php
+	return (string) ob_get_clean();
+}
+
+/**
+ * Return a compact public brief assembled from the application route itinerary.
+ *
+ * @param string $intent Optional visitor or operator intent.
+ * @return array<string,mixed> Public route brief data.
+ */
+function world_of_wordpress_get_application_route_brief_data( string $intent = 'overview' ): array {
+	$itinerary = world_of_wordpress_get_application_route_itinerary_data( $intent );
+	$steps     = array_values( array_filter( (array) ( $itinerary['steps'] ?? array() ), 'is_array' ) );
+	$brief     = array();
+
+	foreach ( array_slice( $steps, 0, 5 ) as $step ) {
+		$detail  = is_array( $step['detail'] ?? null ) ? $step['detail'] : array();
+		$brief[] = array(
+			'position' => (int) ( $step['position'] ?? 0 ),
+			'slug'     => (string) ( $step['slug'] ?? '' ),
+			'group'    => (string) ( $step['group'] ?? '' ),
+			'endpoint' => (string) ( $detail['endpoint'] ?? '' ),
+		);
+	}
+
+	$first_step = $steps[0] ?? array();
+	$last_step  = ! empty( $steps ) ? $steps[ count( $steps ) - 1 ] : array();
+
+	return array(
+		'name'              => 'World of WordPress application route brief',
+		'purpose'           => 'Compresses an ordered public itinerary into a small guide that panels, agents, and visitors can read quickly.',
+		'intent'            => (string) ( $itinerary['intent'] ?? 'overview' ),
+		'supported_intents' => (array) ( $itinerary['supported_intents'] ?? array() ),
+		'source'            => '/wp-json/world-of-wordpress/v1/application-route-itinerary',
+		'summary'           => array(
+			'total_steps' => count( $steps ),
+			'first_stop'  => (string) ( $first_step['slug'] ?? '' ),
+			'last_stop'   => (string) ( $last_step['slug'] ?? '' ),
+			'use'         => 'Use this brief when a surface needs a compact next-route hint instead of the full itinerary payload.',
+		),
+		'brief'             => $brief,
+		'boundaries'        => array(
+			'public surface metadata only',
+			'no visitor tracking',
+			'no cookies required',
+			'no private mailbox payloads',
+			'no credentials',
+			'no hidden agent memory',
+			'no database writes',
+		),
+	);
+}
+
+/**
+ * Register the public application route brief REST route.
+ */
+function world_of_wordpress_register_application_route_brief_rest_route(): void {
+	register_rest_route(
+		'world-of-wordpress/v1',
+		'/application-route-brief',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'world_of_wordpress_get_application_route_brief_rest_response',
+			'permission_callback' => '__return_true',
+			'args'                => array(
+				'intent' => array(
+					'description'       => 'Public route intent: overview, visitor, operator, runtime, content, or signals.',
+					'type'              => 'string',
+					'sanitize_callback' => 'sanitize_key',
+				),
+			),
+		)
+	);
+}
+
+/**
+ * Return route brief data for REST consumers.
+ *
+ * @param WP_REST_Request $request REST request.
+ * @return array<string,mixed> Public route brief.
+ */
+function world_of_wordpress_get_application_route_brief_rest_response( WP_REST_Request $request ): array {
+	return world_of_wordpress_get_application_route_brief_data( (string) $request->get_param( 'intent' ) );
+}
+
+/**
+ * Render public route brief for visitors and future panels.
+ *
+ * @return string Safe route brief markup.
+ */
+function world_of_wordpress_render_application_route_brief_shortcode(): string {
+	static $instance = 0;
+
+	++$instance;
+
+	$brief      = world_of_wordpress_get_application_route_brief_data();
+	$rest_url   = rest_url( 'world-of-wordpress/v1/application-route-brief' );
+	$readout_id = 'world-application-route-brief-readout-' . $instance;
+	$buttons_id = 'world-application-route-brief-buttons-' . $instance;
+
+	ob_start();
+	?>
+	<div class="world-application-route-brief" aria-label="World of WordPress public route brief">
+		<section class="route-brief-card route-brief-card-primary">
+			<h3><?php echo esc_html__( 'Application route brief', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html( (string) ( $brief['purpose'] ?? '' ) ); ?></p>
+		</section>
+		<div id="<?php echo esc_attr( $buttons_id ); ?>" class="route-brief-buttons" data-route-brief-endpoint="<?php echo esc_url( $rest_url ); ?>" data-route-brief-readout="<?php echo esc_attr( $readout_id ); ?>">
+			<?php foreach ( (array) ( $brief['supported_intents'] ?? array() ) as $intent ) : ?>
+				<button type="button" data-route-intent="<?php echo esc_attr( (string) $intent ); ?>"><?php echo esc_html( (string) $intent ); ?></button>
+			<?php endforeach; ?>
+		</div>
+		<pre id="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Waiting for public route brief…', 'world-of-wordpress' ); ?></pre>
+		<script>
+		(function () {
+			const buttons = document.getElementById( <?php echo wp_json_encode( $buttons_id ); ?> );
+			if ( ! buttons || ! window.fetch ) {
+				return;
+			}
+
+			const readout = document.getElementById( buttons.dataset.routeBriefReadout );
+			if ( ! readout ) {
+				return;
+			}
+
+			const loadBrief = ( intent ) => {
+				const endpoint = buttons.dataset.routeBriefEndpoint + '?intent=' + encodeURIComponent( intent || 'overview' );
+				readout.textContent = 'Fetching ' + ( intent || 'overview' ) + ' route brief…';
+				fetch( endpoint, { credentials: 'same-origin' } )
+					.then( ( response ) => {
+						if ( ! response.ok ) {
+							throw new Error( 'Application route brief unavailable' );
+						}
+
+						return response.json();
+					} )
+					.then( ( briefData ) => {
+						readout.textContent = JSON.stringify( {
+							intent: briefData.intent,
+							summary: briefData.summary,
+							brief: briefData.brief,
+							boundaries: briefData.boundaries
+						}, null, 2 );
+					} )
+					.catch( () => {
+						readout.textContent = 'The route brief could not be fetched in this runtime.';
+					} );
+			};
+
+			buttons.addEventListener( 'click', ( event ) => {
+				const button = event.target.closest( 'button[data-route-intent]' );
+				if ( button ) {
+					loadBrief( button.dataset.routeIntent );
+				}
+			} );
+
+			loadBrief( 'overview' );
 		}());
 		</script>
 	</div>
