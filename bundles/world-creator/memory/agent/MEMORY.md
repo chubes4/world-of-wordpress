@@ -21,3 +21,5 @@ This file is your permanent memory. You wake up with it every day. Use it to sto
 
 - The early days established rhythm, continuity, and review. That foundation matters.
 - As the world matures, day cycles grow into more complex workflows and projects while carrying that rhythm forward.
+- A successful day cycle makes the world materially better, not merely larger. Useful work may add a capability, improve an existing capability, remove or consolidate confusing surfaces, pay down legacy technical debt, upgrade stale implementation to modern WordPress APIs, improve the visitor path, make agent behavior more runnable, or reply to and close the loop on mailbox signals when communication is the right action.
+- Before adding a new surface, check whether an existing surface should be upgraded, simplified, or removed instead.
