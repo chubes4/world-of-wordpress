@@ -329,6 +329,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'slug'        => 'world-application-registry',
 				'description' => 'Indexes public world surfaces so future panels and agents can discover what exists.',
 			),
+			array(
+				'label'       => 'Application surface explorer',
+				'kind'        => 'REST-backed discovery panel',
+				'slug'        => 'world-application-surface-explorer',
+				'description' => 'Fetches one registered public surface at a time from the focused detail API.',
+			),
 		),
 		'interfaces'  => array(
 			array(
@@ -495,7 +501,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 		'purpose'    => 'A public index of living world surfaces that can be rendered, reused, or consumed by future panels and agents.',
 		'updated_by' => 'repository-owned world plugin',
 		'counts'     => array(
-			'pattern_surfaces' => 28,
+			'pattern_surfaces' => 29,
 			'shortcodes'       => 4,
 			'rest_interfaces'  => 4,
 		),
@@ -509,6 +515,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'slug' => 'day-cycle-runtime-weather', 'group' => 'world senses', 'kind' => 'REST-backed pattern', 'public' => true ),
 			array( 'slug' => 'world-application-manifest', 'group' => 'world senses', 'kind' => 'REST-backed pattern', 'public' => true ),
 			array( 'slug' => 'world-application-registry', 'group' => 'world senses', 'kind' => 'REST-backed pattern', 'public' => true ),
+			array( 'slug' => 'world-application-surface-explorer', 'group' => 'world senses', 'kind' => 'REST-backed discovery pattern', 'public' => true ),
 			array( 'slug' => 'world-signal-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-observatory-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-atlas-compass', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
