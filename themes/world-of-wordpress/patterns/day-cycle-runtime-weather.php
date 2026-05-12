@@ -66,6 +66,25 @@
 	border-left: 4px solid #1d4ed8;
 	padding: 1rem;
 }
+.day-cycle-runtime-weather-live .weather-rest-echo {
+	background: #0f172a;
+	border: 1px solid #1d4ed8;
+	color: #dbeafe;
+	margin-top: 1rem;
+	padding: 1rem;
+}
+.day-cycle-runtime-weather-live .weather-rest-echo h3 {
+	color: #eff6ff;
+	margin-top: 0;
+}
+.day-cycle-runtime-weather-live .weather-rest-echo pre {
+	background: #020617;
+	border: 1px solid #334155;
+	color: #bfdbfe;
+	overflow-x: auto;
+	padding: .85rem;
+	white-space: pre-wrap;
+}
 </style>
 <!-- /wp:html -->
 
