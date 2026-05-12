@@ -1869,6 +1869,13 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 			'href'        => home_url( '/#day-cycle-flow-console' ),
 			'cta'         => 'Open workshop',
 		),
+		'play'    => array(
+			'label'       => 'Take a challenge',
+			'intent'      => 'visitor',
+			'description' => 'Open a tiny no-account visitor challenge inside the action dock.',
+			'href'        => home_url( '/#world-action-launcher-dock' ),
+			'cta'         => 'Open challenge',
+		),
 	);
 
 	$action = sanitize_key( $action );
@@ -1913,7 +1920,7 @@ function world_of_wordpress_register_application_action_launcher_rest_route(): v
 			'permission_callback' => '__return_true',
 			'args'                => array(
 				'action' => array(
-					'description'       => 'Public launcher action: choose, inspect, read, signal, or operate.',
+					'description'       => 'Public launcher action: choose, inspect, read, signal, operate, or play.',
 					'type'              => 'string',
 					'sanitize_callback' => 'sanitize_key',
 				),
@@ -2261,7 +2268,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
 		}
-		.world-action-launcher-output {
+		.world-action-launcher-output,
+		.world-action-launcher-challenge {
 			margin-top: 0.75rem;
 			padding: 0.72rem;
 			border-radius: 16px;
@@ -2270,8 +2278,32 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			line-height: 1.35;
 			white-space: normal;
 		}
-		.world-action-launcher-output[hidden] {
+		.world-action-launcher-output[hidden],
+		.world-action-launcher-challenge[hidden] {
 			display: none;
+		}
+		.world-action-launcher-riddle-options {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.42rem;
+			margin-top: 0.55rem;
+		}
+		.world-action-launcher-riddle-options button {
+			cursor: pointer;
+			border: 1px solid rgba(255, 255, 255, 0.18);
+			border-radius: 999px;
+			padding: 0.42rem 0.58rem;
+			background: rgba(255, 255, 255, 0.1);
+			color: #f8fafc;
+			font-size: 0.74rem;
+			font-weight: 800;
+		}
+		.world-action-launcher-riddle-options button:hover,
+		.world-action-launcher-riddle-options button:focus {
+			background: #f8fafc;
+			color: #111827;
+			outline: 2px solid rgba(167, 243, 208, 0.55);
+			outline-offset: 2px;
 		}
 		@media (max-width: 700px) {
 			.world-action-launcher {
@@ -2294,18 +2326,30 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		<?php endif; ?>
 		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
-			<p><?php echo esc_html__( 'Five immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
+			<p><?php echo esc_html__( 'Six immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
 		<div class="world-action-launcher-grid">
 			<?php foreach ( $actions as $action_key => $action ) : ?>
 				<?php $action = is_array( $action ) ? $action : array(); ?>
 				<section class="world-action-launcher-card">
 					<span class="world-action-launcher-card-label"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></span>
-					<?php if ( ! empty( $action['href'] ) ) : ?>
+					<?php if ( 'play' === (string) $action_key ) : ?>
+						<button class="world-action-launcher-link" type="button" data-world-open-challenge><?php echo esc_html( (string) ( $action['cta'] ?? __( 'Open challenge', 'world-of-wordpress' ) ) ); ?></button>
+					<?php elseif ( ! empty( $action['href'] ) ) : ?>
 						<a class="world-action-launcher-link" href="<?php echo esc_url( (string) $action['href'] ); ?>"><?php echo esc_html( (string) ( $action['cta'] ?? __( 'Open', 'world-of-wordpress' ) ) ); ?></a>
 					<?php endif; ?>
 				</section>
 			<?php endforeach; ?>
 		</div>
+		<section class="world-action-launcher-challenge" data-world-action-challenge hidden aria-live="polite">
+			<strong><?php echo esc_html__( 'Challenge: Name the living root', 'world-of-wordpress' ); ?></strong>
+			<p><?php echo esc_html__( 'Riddle: I carry the durable body, accept reviewable mutations, and wake the world again. What am I?', 'world-of-wordpress' ); ?></p>
+			<div class="world-action-launcher-riddle-options" aria-label="Challenge answers">
+				<button type="button" data-world-riddle-answer="runtime"><?php echo esc_html__( 'Runtime', 'world-of-wordpress' ); ?></button>
+				<button type="button" data-world-riddle-answer="repository"><?php echo esc_html__( 'Repository', 'world-of-wordpress' ); ?></button>
+				<button type="button" data-world-riddle-answer="shortcode"><?php echo esc_html__( 'Shortcode', 'world-of-wordpress' ); ?></button>
+			</div>
+			<p data-world-riddle-result><?php echo esc_html__( 'Choose carefully. No account, cookie, score table, or tracking is involved.', 'world-of-wordpress' ); ?></p>
+		</section>
 		<details class="world-action-launcher-tools">
 			<summary><?php echo esc_html__( 'Optional route tools', 'world-of-wordpress' ); ?></summary>
 			<div class="world-action-launcher-route-grid">
@@ -2327,6 +2371,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const readout = document.getElementById( dock.dataset.actionLauncherReadout );
 			const panel = document.getElementById( dock.dataset.actionLauncherPanel );
 			const toggle = dock.querySelector( '.world-action-launcher-toggle' );
+			const challenge = dock.querySelector( '[data-world-action-challenge]' );
+			const challengeResult = dock.querySelector( '[data-world-riddle-result]' );
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
 			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
 
@@ -2387,6 +2433,23 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			};
 
 			dock.addEventListener( 'click', ( event ) => {
+				const challengeOpener = event.target.closest( 'button[data-world-open-challenge]' );
+				if ( challengeOpener && challenge ) {
+					setOpen( true );
+					challenge.hidden = false;
+					if ( challengeResult ) {
+						challengeResult.textContent = 'The riddle is awake. Choose one answer.';
+					}
+					return;
+				}
+
+				const answer = event.target.closest( 'button[data-world-riddle-answer]' );
+				if ( answer && challengeResult ) {
+					const isCorrect = 'repository' === answer.dataset.worldRiddleAnswer;
+					challengeResult.textContent = isCorrect ? 'Correct. The repository is the durable body. The runtime is the dream; the PR is the mutation.' : 'Not quite. The answer is the repository: durable body, review bench, and return path.';
+					return;
+				}
+
 				const button = event.target.closest( 'button[data-world-action]' );
 				if ( button ) {
 					launch( button.dataset.worldAction );
