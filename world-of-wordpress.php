@@ -12,7 +12,9 @@ defined( 'ABSPATH' ) || exit;
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_runtime_weather_rest_route' );
+add_action( 'rest_api_init', 'world_of_wordpress_register_application_manifest_rest_route' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
+add_shortcode( 'world_application_manifest', 'world_of_wordpress_render_application_manifest_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
 
@@ -268,6 +270,183 @@ function world_of_wordpress_render_runtime_weather_shortcode(): string {
 				} )
 				.catch( () => {
 					readout.textContent = 'The server-rendered weather remains visible; the REST echo could not be fetched in this runtime.';
+				} );
+		}());
+		</script>
+	</div>
+	<?php
+	return (string) ob_get_clean();
+}
+
+/**
+ * Return a safe public manifest for the world as an application.
+ *
+ * The manifest is intentionally hand-authored and repository-owned. It names
+ * public surfaces, routes, live interfaces, and privacy promises without
+ * reading visitor state, private issue bodies, hidden memory, credentials, or
+ * logs.
+ *
+ * @return array<string,mixed> Public application manifest data.
+ */
+function world_of_wordpress_get_application_manifest_data(): array {
+	return array(
+		'name'        => 'World of WordPress',
+		'tagline'     => 'A living WordPress Playground terrarium.',
+		'purpose'     => 'Show WordPress as a durable, inspectable application substrate for agentic world-building.',
+		'updated_by'  => 'repository-owned world plugin',
+		'entrypoints' => array(
+			array(
+				'label'       => 'Front door',
+				'kind'        => 'template pattern',
+				'slug'        => 'front-door-introduction',
+				'description' => 'Orients visitors to the visible terrarium.',
+			),
+			array(
+				'label'       => 'Visitor choice chamber',
+				'kind'        => 'playable route',
+				'slug'        => 'visitor-choice-dial',
+				'description' => 'Lets visitors choose a public posture without accounts or tracking.',
+			),
+			array(
+				'label'       => 'Day-cycle console',
+				'kind'        => 'operator protocol',
+				'slug'        => 'day-cycle-flow-console',
+				'description' => 'Explains how a waking run becomes reviewable change.',
+			),
+			array(
+				'label'       => 'Runtime weather',
+				'kind'        => 'REST-backed dashboard',
+				'slug'        => 'day-cycle-runtime-weather',
+				'description' => 'Publishes safe engine, theme, tool, and privacy-boundary facts.',
+			),
+		),
+		'interfaces'  => array(
+			array(
+				'label'       => 'Runtime weather API',
+				'route'       => '/wp-json/world-of-wordpress/v1/runtime-weather',
+				'method'      => 'GET',
+				'description' => 'Read-only public runtime facts.',
+			),
+			array(
+				'label'       => 'Application manifest API',
+				'route'       => '/wp-json/world-of-wordpress/v1/application-manifest',
+				'method'      => 'GET',
+				'description' => 'Read-only public map of world surfaces and promises.',
+			),
+		),
+		'promises'    => array(
+			'Public surfaces should be reviewable in the repository.',
+			'Interactive visitor posture should remain visible and voluntary.',
+			'Live dashboards should expose safe public facts only.',
+			'Private mailbox payloads, credentials, hidden memory, logs, and visitor identity do not belong in public readouts.',
+		),
+		'boundaries'  => array(
+			'no visitor tracking',
+			'no cookies required',
+			'no private mailbox contents',
+			'no credentials',
+			'no hidden agent memory',
+			'no database writes',
+		),
+	);
+}
+
+/**
+ * Register the public application manifest REST route.
+ */
+function world_of_wordpress_register_application_manifest_rest_route(): void {
+	register_rest_route(
+		'world-of-wordpress/v1',
+		'/application-manifest',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'world_of_wordpress_get_application_manifest_data',
+			'permission_callback' => '__return_true',
+		)
+	);
+}
+
+/**
+ * Render the public application manifest for visitors.
+ *
+ * @return string Safe manifest markup.
+ */
+function world_of_wordpress_render_application_manifest_shortcode(): string {
+	static $instance = 0;
+
+	++$instance;
+
+	$manifest   = world_of_wordpress_get_application_manifest_data();
+	$rest_url   = rest_url( 'world-of-wordpress/v1/application-manifest' );
+	$readout_id = 'world-application-manifest-rest-echo-' . $instance;
+
+	ob_start();
+	?>
+	<div class="world-application-manifest-live" aria-label="World of WordPress public application manifest">
+		<div class="manifest-grid">
+			<section class="manifest-card manifest-card-primary">
+				<h3><?php echo esc_html__( 'Application identity', 'world-of-wordpress' ); ?></h3>
+				<p><strong><?php echo esc_html( (string) ( $manifest['name'] ?? '' ) ); ?></strong> — <?php echo esc_html( (string) ( $manifest['tagline'] ?? '' ) ); ?></p>
+				<p><?php echo esc_html( (string) ( $manifest['purpose'] ?? '' ) ); ?></p>
+			</section>
+			<section class="manifest-card">
+				<h3><?php echo esc_html__( 'Public entrypoints', 'world-of-wordpress' ); ?></h3>
+				<ul>
+					<?php foreach ( (array) ( $manifest['entrypoints'] ?? array() ) as $entrypoint ) : ?>
+						<?php $entrypoint = is_array( $entrypoint ) ? $entrypoint : array(); ?>
+						<li><code><?php echo esc_html( (string) ( $entrypoint['slug'] ?? '' ) ); ?></code> <?php echo esc_html( (string) ( $entrypoint['description'] ?? '' ) ); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			</section>
+			<section class="manifest-card">
+				<h3><?php echo esc_html__( 'Read-only interfaces', 'world-of-wordpress' ); ?></h3>
+				<ul>
+					<?php foreach ( (array) ( $manifest['interfaces'] ?? array() ) as $interface ) : ?>
+						<?php $interface = is_array( $interface ) ? $interface : array(); ?>
+						<li><code><?php echo esc_html( (string) ( $interface['route'] ?? '' ) ); ?></code> <?php echo esc_html( (string) ( $interface['description'] ?? '' ) ); ?></li>
+					<?php endforeach; ?>
+				</ul>
+			</section>
+		</div>
+		<section class="manifest-promises" aria-label="World application promises">
+			<h3><?php echo esc_html__( 'Promises and boundaries', 'world-of-wordpress' ); ?></h3>
+			<div class="manifest-pill-row">
+				<?php foreach ( (array) ( $manifest['promises'] ?? array() ) as $promise ) : ?>
+					<span><?php echo esc_html( (string) $promise ); ?></span>
+				<?php endforeach; ?>
+			</div>
+			<p><?php echo esc_html__( 'The manifest refuses hidden state as proof. It describes only public, reviewable surfaces and the privacy boundary those surfaces promise to keep.', 'world-of-wordpress' ); ?></p>
+		</section>
+		<section class="manifest-rest-echo" aria-label="Public application manifest REST echo">
+			<h3><?php echo esc_html__( 'Manifest REST echo', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html__( 'The same world map is fetched back through the public REST endpoint so other panels, agents, and visitors can consume the application contract directly.', 'world-of-wordpress' ); ?></p>
+			<pre id="<?php echo esc_attr( $readout_id ); ?>" data-application-manifest-endpoint="<?php echo esc_url( $rest_url ); ?>"><?php echo esc_html__( 'Waiting for public application manifest…', 'world-of-wordpress' ); ?></pre>
+		</section>
+		<script>
+		(function () {
+			const readout = document.getElementById( <?php echo wp_json_encode( $readout_id ); ?> );
+			if ( ! readout || ! window.fetch ) {
+				return;
+			}
+
+			fetch( readout.dataset.applicationManifestEndpoint, { credentials: 'same-origin' } )
+				.then( ( response ) => {
+					if ( ! response.ok ) {
+						throw new Error( 'Application manifest unavailable' );
+					}
+
+					return response.json();
+				} )
+				.then( ( manifest ) => {
+					readout.textContent = JSON.stringify( {
+						name: manifest.name,
+						entrypoints: Array.isArray( manifest.entrypoints ) ? manifest.entrypoints.map( ( entrypoint ) => entrypoint.slug ) : [],
+						interfaces: Array.isArray( manifest.interfaces ) ? manifest.interfaces.map( ( apiInterface ) => apiInterface.route ) : [],
+						boundaries: manifest.boundaries
+					}, null, 2 );
+				} )
+				.catch( () => {
+					readout.textContent = 'The server-rendered manifest remains visible; the REST echo could not be fetched in this runtime.';
 				} );
 		}());
 		</script>
