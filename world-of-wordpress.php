@@ -1629,26 +1629,36 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 			'label'       => 'Choose a path',
 			'intent'      => 'visitor',
 			'description' => 'Open the visitor route for an immediate posture and next step.',
+			'href'        => home_url( '/#visitor-choice-dial' ),
+			'cta'         => 'Open choice route',
 		),
 		'inspect' => array(
 			'label'       => 'Inspect the engine',
 			'intent'      => 'runtime',
 			'description' => 'Jump toward live runtime and application-interface surfaces.',
+			'href'        => home_url( '/#day-cycle-runtime-weather' ),
+			'cta'         => 'Open engine readout',
 		),
 		'read'    => array(
 			'label'       => 'Read field notes',
 			'intent'      => 'content',
 			'description' => 'Find public writing and content routes without decoding the whole archive.',
+			'href'        => home_url( '/#latest-field-notes-intro' ),
+			'cta'         => 'Open field notes',
 		),
 		'signal'  => array(
 			'label'       => 'Send a signal',
 			'intent'      => 'signals',
 			'description' => 'Find the public signal surfaces and the mailbox-facing route.',
+			'href'        => 'https://github.com/chubes4/world-of-wordpress/issues/new',
+			'cta'         => 'Open mailbox',
 		),
 		'operate' => array(
 			'label'       => 'See the workshop',
 			'intent'      => 'operator',
 			'description' => 'Open the operator route for day-cycle, review, and build context.',
+			'href'        => home_url( '/#day-cycle-flow-console' ),
+			'cta'         => 'Open workshop',
 		),
 	);
 
@@ -1738,6 +1748,8 @@ function world_of_wordpress_get_application_action_cards_data(): array {
 			'verb'        => (string) ( $action['label'] ?? $action_key ),
 			'intent'      => (string) ( $action['intent'] ?? '' ),
 			'description' => (string) ( $action['description'] ?? '' ),
+			'href'        => (string) ( $action['href'] ?? '' ),
+			'cta'         => (string) ( $action['cta'] ?? 'Open' ),
 			'endpoint'    => '/wp-json/world-of-wordpress/v1/application-action-launcher?action=' . rawurlencode( (string) $action_key ),
 			'first_stop'  => array(
 				'slug'     => (string) ( $first_stop['slug'] ?? $summary['first_stop'] ?? '' ),
@@ -1791,6 +1803,10 @@ function world_of_wordpress_render_application_action_cards_shortcode(): string 
 				<section class="action-card">
 					<strong><?php echo esc_html( (string) ( $card['verb'] ?? $card['label'] ?? '' ) ); ?></strong>
 					<p><?php echo esc_html( (string) ( $card['description'] ?? '' ) ); ?></p>
+					<?php $action_href = (string) ( $card['href'] ?? '' ); ?>
+					<?php if ( '' !== $action_href ) : ?>
+						<a class="action-card-link" href="<?php echo esc_url( $action_href ); ?>"><?php echo esc_html( (string) ( $card['cta'] ?? __( 'Open action', 'world-of-wordpress' ) ) ); ?></a>
+					<?php endif; ?>
 					<div class="action-card-meta">
 						<span><?php echo esc_html( 'intent: ' . (string) ( $card['intent'] ?? '' ) ); ?></span>
 						<?php $first_stop = is_array( $card['first_stop'] ?? null ) ? $card['first_stop'] : array(); ?>
@@ -1905,7 +1921,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			flex-wrap: wrap;
 			gap: 0.45rem;
 		}
-		.world-action-launcher button {
+		.world-action-launcher button,
+		.world-action-launcher-link {
 			cursor: pointer;
 			border: 0;
 			border-radius: 999px;
@@ -1914,10 +1931,20 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			color: #111827;
 			font-weight: 700;
 			font-size: 0.78rem;
+			line-height: 1;
+			text-decoration: none;
+		}
+		.world-action-launcher-link {
+			background: rgba(167, 243, 208, 0.16);
+			color: #d1fae5;
+			border: 1px solid rgba(167, 243, 208, 0.4);
 		}
 		.world-action-launcher button:hover,
-		.world-action-launcher button:focus {
+		.world-action-launcher button:focus,
+		.world-action-launcher-link:hover,
+		.world-action-launcher-link:focus {
 			background: #a7f3d0;
+			color: #111827;
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
 		}
@@ -1948,6 +1975,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			<?php foreach ( $actions as $action_key => $action ) : ?>
 				<?php $action = is_array( $action ) ? $action : array(); ?>
 				<button type="button" data-world-action="<?php echo esc_attr( (string) $action_key ); ?>"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></button>
+				<?php if ( ! empty( $action['href'] ) ) : ?>
+					<a class="world-action-launcher-link" href="<?php echo esc_url( (string) $action['href'] ); ?>"><?php echo esc_html( (string) ( $action['cta'] ?? __( 'Open', 'world-of-wordpress' ) ) ); ?></a>
+				<?php endif; ?>
 			<?php endforeach; ?>
 		</div>
 		<pre id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output"><?php echo esc_html__( 'Choose an action to receive a route brief.', 'world-of-wordpress' ); ?></pre>
