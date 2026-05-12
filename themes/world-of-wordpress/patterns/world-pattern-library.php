@@ -136,6 +136,10 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li><code>day-cycle-runtime-weather</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li><code>world-signal-console</code></li>
 <!-- /wp:list-item -->
 
@@ -322,6 +326,6 @@
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Pattern count at this catalog pass: twenty-five reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
+<p class="has-small-font-size">Pattern count at this catalog pass: twenty-six reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
