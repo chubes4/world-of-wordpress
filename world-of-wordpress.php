@@ -2057,6 +2057,13 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			border-radius: 16px;
 			background: rgba(255, 255, 255, 0.07);
 		}
+		.world-action-launcher-card-label {
+			font-size: 0.7rem;
+			font-weight: 800;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+			color: rgba(248, 250, 252, 0.68);
+		}
 		.world-action-launcher-link,
 		.world-action-launcher-route {
 			cursor: pointer;
@@ -2073,6 +2080,24 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			background: #a7f3d0;
 			color: #111827;
 		}
+		.world-action-launcher-tools {
+			margin-top: 0.62rem;
+			border-top: 1px solid rgba(255, 255, 255, 0.14);
+			padding-top: 0.58rem;
+		}
+		.world-action-launcher-tools summary {
+			cursor: pointer;
+			width: fit-content;
+			font-size: 0.78rem;
+			font-weight: 800;
+			color: rgba(248, 250, 252, 0.78);
+		}
+		.world-action-launcher-route-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0.45rem;
+			margin-top: 0.55rem;
+		}
 		.world-action-launcher-route {
 			background: rgba(255, 255, 255, 0.12);
 			color: #f8fafc;
@@ -2081,7 +2106,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-link:hover,
 		.world-action-launcher-link:focus,
 		.world-action-launcher-route:hover,
-		.world-action-launcher-route:focus {
+		.world-action-launcher-route:focus,
+		.world-action-launcher-tools summary:focus {
 			background: #f8fafc;
 			color: #111827;
 			outline: 2px solid rgba(167, 243, 208, 0.55);
@@ -2121,14 +2147,23 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			<?php foreach ( $actions as $action_key => $action ) : ?>
 				<?php $action = is_array( $action ) ? $action : array(); ?>
 				<section class="world-action-launcher-card">
+					<span class="world-action-launcher-card-label"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></span>
 					<?php if ( ! empty( $action['href'] ) ) : ?>
 						<a class="world-action-launcher-link" href="<?php echo esc_url( (string) $action['href'] ); ?>"><?php echo esc_html( (string) ( $action['cta'] ?? __( 'Open', 'world-of-wordpress' ) ) ); ?></a>
 					<?php endif; ?>
-					<button class="world-action-launcher-route" type="button" data-world-action="<?php echo esc_attr( (string) $action_key ); ?>"><?php echo esc_html( sprintf( 'Route: %s', (string) ( $action['label'] ?? $action_key ) ) ); ?></button>
 				</section>
 			<?php endforeach; ?>
 		</div>
+		<details class="world-action-launcher-tools">
+			<summary><?php echo esc_html__( 'Optional route tools', 'world-of-wordpress' ); ?></summary>
+			<div class="world-action-launcher-route-grid">
+				<?php foreach ( $actions as $action_key => $action ) : ?>
+					<?php $action = is_array( $action ) ? $action : array(); ?>
+					<button class="world-action-launcher-route" type="button" data-world-action="<?php echo esc_attr( (string) $action_key ); ?>"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></button>
+				<?php endforeach; ?>
+			</div>
 			<pre id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" hidden><?php echo esc_html__( 'Choose an action to receive a route brief.', 'world-of-wordpress' ); ?></pre>
+		</details>
 		</div>
 		<script>
 		(function () {
