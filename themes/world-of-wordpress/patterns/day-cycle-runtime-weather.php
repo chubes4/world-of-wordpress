@@ -80,7 +80,7 @@
 	<p>Use runtime inventory as the morning barometer. If an engine fact changes, let it affect the plan. If tool weather is missing, narrow the day. If review weather is crowded, avoid opening duplicate fronts. The strip is public so visitors can see that the world is not only arranged; it is observed before it is changed.</p>
 </details>
 <div class="operator-note">
-	<strong>Live readout boundary:</strong> this dashboard now renders public WordPress facts from repository-owned plugin code while refusing private state: no visitor tracking, no mailbox contents, no credentials, no hidden agent memory, and no database writes.
+	<strong>Live readout boundary:</strong> this dashboard now renders public WordPress facts from repository-owned plugin code and exposes the same safe facts at <code>/wp-json/world-of-wordpress/v1/runtime-weather</code> while refusing private state: no visitor tracking, no mailbox contents, no credentials, no hidden agent memory, and no database writes.
 </div>
 <!-- /wp:html --></div>
 <!-- /wp:group --></div>
