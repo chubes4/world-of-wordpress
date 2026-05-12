@@ -30,6 +30,7 @@ add_shortcode( 'world_application_surface_map', 'world_of_wordpress_render_appli
 add_shortcode( 'world_application_route_suggestions', 'world_of_wordpress_render_application_route_suggestions_shortcode' );
 add_shortcode( 'world_application_route_itinerary', 'world_of_wordpress_render_application_route_itinerary_shortcode' );
 add_shortcode( 'world_application_route_brief', 'world_of_wordpress_render_application_route_brief_shortcode' );
+add_shortcode( 'world_application_action_cards', 'world_of_wordpress_render_application_action_cards_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
 
@@ -585,7 +586,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 		'updated_by' => 'repository-owned world plugin',
 		'counts'     => array(
 			'pattern_surfaces' => 35,
-			'shortcodes'       => 8,
+			'shortcodes'       => 9,
 			'rest_interfaces'  => 10,
 		),
 		'surfaces'   => array(
@@ -634,6 +635,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'tag' => 'world_application_route_suggestions', 'description' => 'Renders intent-based public route suggestions derived from the grouped surface map.' ),
 			array( 'tag' => 'world_application_route_itinerary', 'description' => 'Renders an ordered public route itinerary assembled from suggestions and focused surface detail.' ),
 			array( 'tag' => 'world_application_route_brief', 'description' => 'Renders a compact public route brief assembled from the ordered itinerary.' ),
+			array( 'tag' => 'world_application_action_cards', 'description' => 'Renders compact launcher-derived action cards with verbs, first stops, and a public REST echo.' ),
 		),
 		'interfaces' => $manifest['interfaces'] ?? array(),
 		'boundaries' => array(
@@ -1760,6 +1762,78 @@ function world_of_wordpress_get_application_action_cards_data(): array {
 			'no database writes',
 		),
 	);
+}
+
+/**
+ * Render compact public action cards for visitors and future panels.
+ *
+ * @return string Safe action-card markup.
+ */
+function world_of_wordpress_render_application_action_cards_shortcode(): string {
+	static $instance = 0;
+
+	++$instance;
+
+	$cards_data = world_of_wordpress_get_application_action_cards_data();
+	$rest_url   = rest_url( 'world-of-wordpress/v1/application-action-cards' );
+	$readout_id = 'world-application-action-cards-readout-' . $instance;
+
+	ob_start();
+	?>
+	<div class="world-application-action-cards" aria-label="World of WordPress public action cards">
+		<section class="action-cards-card action-cards-card-primary">
+			<h3><?php echo esc_html__( 'Application action cards', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html( (string) ( $cards_data['purpose'] ?? '' ) ); ?></p>
+		</section>
+		<div class="action-cards-grid" aria-label="Immediate public world actions">
+			<?php foreach ( (array) ( $cards_data['cards'] ?? array() ) as $card ) : ?>
+				<?php $card = is_array( $card ) ? $card : array(); ?>
+				<section class="action-card">
+					<strong><?php echo esc_html( (string) ( $card['verb'] ?? $card['label'] ?? '' ) ); ?></strong>
+					<p><?php echo esc_html( (string) ( $card['description'] ?? '' ) ); ?></p>
+					<div class="action-card-meta">
+						<span><?php echo esc_html( 'intent: ' . (string) ( $card['intent'] ?? '' ) ); ?></span>
+						<?php $first_stop = is_array( $card['first_stop'] ?? null ) ? $card['first_stop'] : array(); ?>
+						<span><?php echo esc_html( 'first stop: ' . (string) ( $first_stop['slug'] ?? '' ) ); ?></span>
+					</div>
+				</section>
+			<?php endforeach; ?>
+		</div>
+		<section class="action-cards-rest-echo" aria-label="Public application action cards REST echo">
+			<h3><?php echo esc_html__( 'Action cards REST echo', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html__( 'The same compact action cards are fetched through the public REST endpoint so panels can render verbs without parsing the footer dock.', 'world-of-wordpress' ); ?></p>
+			<pre id="<?php echo esc_attr( $readout_id ); ?>" data-action-cards-endpoint="<?php echo esc_url( $rest_url ); ?>"><?php echo esc_html__( 'Waiting for public action cards…', 'world-of-wordpress' ); ?></pre>
+		</section>
+		<script>
+		(function () {
+			const readout = document.getElementById( <?php echo wp_json_encode( $readout_id ); ?> );
+			if ( ! readout || ! window.fetch ) {
+				return;
+			}
+
+			fetch( readout.dataset.actionCardsEndpoint, { credentials: 'same-origin' } )
+				.then( ( response ) => {
+					if ( ! response.ok ) {
+						throw new Error( 'Application action cards unavailable' );
+					}
+
+					return response.json();
+				} )
+				.then( ( data ) => {
+					readout.textContent = JSON.stringify( {
+						name: data.name,
+						cards: Array.isArray( data.cards ) ? data.cards.map( ( card ) => ( { action: card.action, verb: card.verb, firstStop: card.first_stop && card.first_stop.slug } ) ) : [],
+						privacy: data.privacy_boundary
+					}, null, 2 );
+				} )
+				.catch( () => {
+					readout.textContent = 'The server-rendered action cards remain visible; the REST echo could not be fetched in this runtime.';
+				} );
+		}());
+		</script>
+	</div>
+	<?php
+	return (string) ob_get_clean();
 }
 
 /**
