@@ -148,6 +148,10 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li><code>world-application-surface-explorer</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li><code>world-signal-console</code></li>
 <!-- /wp:list-item -->
 
@@ -334,6 +338,6 @@
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Pattern count at this catalog pass: twenty-eight reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
+<p class="has-small-font-size">Pattern count at this catalog pass: twenty-nine reusable World of WordPress surfaces, gathered under the dedicated <code>world</code> pattern category.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
