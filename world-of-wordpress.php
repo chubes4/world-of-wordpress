@@ -13,8 +13,10 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_runtime_weather_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_manifest_rest_route' );
+add_action( 'rest_api_init', 'world_of_wordpress_register_application_registry_rest_route' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_shortcode( 'world_application_manifest', 'world_of_wordpress_render_application_manifest_shortcode' );
+add_shortcode( 'world_application_registry', 'world_of_wordpress_render_application_registry_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
 
@@ -319,6 +321,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'slug'        => 'day-cycle-runtime-weather',
 				'description' => 'Publishes safe engine, theme, tool, and privacy-boundary facts.',
 			),
+			array(
+				'label'       => 'Application registry',
+				'kind'        => 'REST-backed surface index',
+				'slug'        => 'world-application-registry',
+				'description' => 'Indexes public world surfaces so future panels and agents can discover what exists.',
+			),
 		),
 		'interfaces'  => array(
 			array(
@@ -332,6 +340,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'route'       => '/wp-json/world-of-wordpress/v1/application-manifest',
 				'method'      => 'GET',
 				'description' => 'Read-only public map of world surfaces and promises.',
+			),
+			array(
+				'label'       => 'Application registry API',
+				'route'       => '/wp-json/world-of-wordpress/v1/application-registry',
+				'method'      => 'GET',
+				'description' => 'Read-only public index of visible world surfaces and REST interfaces.',
 			),
 		),
 		'promises'    => array(
@@ -447,6 +461,192 @@ function world_of_wordpress_render_application_manifest_shortcode(): string {
 				} )
 				.catch( () => {
 					readout.textContent = 'The server-rendered manifest remains visible; the REST echo could not be fetched in this runtime.';
+				} );
+		}());
+		</script>
+	</div>
+	<?php
+	return (string) ob_get_clean();
+}
+
+/**
+ * Return a safe public registry of visible world application surfaces.
+ *
+ * The registry is a deliberately boring discovery layer: it is hand-authored,
+ * repository-owned, and limited to public pattern slugs, shortcode names, and
+ * REST interface routes. It does not crawl content, inspect visitors, read
+ * mailbox payloads, or write runtime state.
+ *
+ * @return array<string,mixed> Public application registry data.
+ */
+function world_of_wordpress_get_application_registry_data(): array {
+	$manifest = world_of_wordpress_get_application_manifest_data();
+
+	return array(
+		'name'       => 'World of WordPress application registry',
+		'purpose'    => 'A public index of living world surfaces that can be rendered, reused, or consumed by future panels and agents.',
+		'updated_by' => 'repository-owned world plugin',
+		'counts'     => array(
+			'pattern_surfaces' => 28,
+			'shortcodes'       => 3,
+			'rest_interfaces'  => 3,
+		),
+		'surfaces'   => array(
+			array( 'slug' => 'front-door-introduction', 'group' => 'orientation', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'world-wayfinder', 'group' => 'orientation', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'wayfinder-guidance', 'group' => 'orientation', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'world-status-panel', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'day-cycle-loop', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'day-cycle-flow-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'day-cycle-runtime-weather', 'group' => 'world senses', 'kind' => 'REST-backed pattern', 'public' => true ),
+			array( 'slug' => 'world-application-manifest', 'group' => 'world senses', 'kind' => 'REST-backed pattern', 'public' => true ),
+			array( 'slug' => 'world-application-registry', 'group' => 'world senses', 'kind' => 'REST-backed pattern', 'public' => true ),
+			array( 'slug' => 'world-signal-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'world-observatory-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'world-atlas-compass', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'cartographer-office-ledger', 'group' => 'civic offices', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'librarian-shelf-ledger', 'group' => 'civic offices', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'field-note-route', 'group' => 'routes and feeds', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'latest-field-notes-intro', 'group' => 'routes and feeds', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'latest-field-notes-query', 'group' => 'routes and feeds', 'kind' => 'query pattern', 'public' => true ),
+			array( 'slug' => 'civic-ritual-board', 'group' => 'rituals and festivals', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'civic-front-desk-audit', 'group' => 'rituals and festivals', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'festival-lantern-grid', 'group' => 'rituals and festivals', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'visitor-choice-dial', 'group' => 'visitor choices', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'visitor-token-switchboard', 'group' => 'visitor choices', 'kind' => 'fragment-target pattern', 'public' => true ),
+			array( 'slug' => 'visitor-consequence-gate', 'group' => 'visitor choices', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'visitor-token-badges', 'group' => 'visitor choices', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'visitor-token-trail', 'group' => 'visitor choices', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'visitor-return-stamps', 'group' => 'visitor choices', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'stranger-signal-route', 'group' => 'stranger signals', 'kind' => 'theme pattern', 'public' => true ),
+			array( 'slug' => 'civic-critic-dispute-ledger', 'group' => 'dispute surfaces', 'kind' => 'theme pattern', 'public' => true ),
+		),
+		'shortcodes' => array(
+			array( 'tag' => 'world_runtime_weather', 'description' => 'Renders safe runtime weather and fetches its public REST echo.' ),
+			array( 'tag' => 'world_application_manifest', 'description' => 'Renders the world application manifest and fetches its public REST echo.' ),
+			array( 'tag' => 'world_application_registry', 'description' => 'Renders this public surface registry and fetches its public REST echo.' ),
+		),
+		'interfaces' => $manifest['interfaces'] ?? array(),
+		'boundaries' => array(
+			'public repository-owned surface names only',
+			'no visitor tracking',
+			'no private mailbox payloads',
+			'no credentials',
+			'no hidden agent memory',
+			'no database writes',
+		),
+	);
+}
+
+/**
+ * Register the public application registry REST route.
+ */
+function world_of_wordpress_register_application_registry_rest_route(): void {
+	register_rest_route(
+		'world-of-wordpress/v1',
+		'/application-registry',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'world_of_wordpress_get_application_registry_data',
+			'permission_callback' => '__return_true',
+		)
+	);
+}
+
+/**
+ * Render the public application registry for visitors.
+ *
+ * @return string Safe registry markup.
+ */
+function world_of_wordpress_render_application_registry_shortcode(): string {
+	static $instance = 0;
+
+	++$instance;
+
+	$registry   = world_of_wordpress_get_application_registry_data();
+	$rest_url   = rest_url( 'world-of-wordpress/v1/application-registry' );
+	$readout_id = 'world-application-registry-rest-echo-' . $instance;
+	$groups     = array();
+
+	foreach ( (array) ( $registry['surfaces'] ?? array() ) as $surface ) {
+		if ( ! is_array( $surface ) ) {
+			continue;
+		}
+
+		$group              = (string) ( $surface['group'] ?? 'uncategorized' );
+		$groups[ $group ][] = $surface;
+	}
+
+	ob_start();
+	?>
+	<div class="world-application-registry-live" aria-label="World of WordPress public application registry">
+		<div class="registry-grid">
+			<section class="registry-card registry-card-primary">
+				<h3><?php echo esc_html__( 'Registry identity', 'world-of-wordpress' ); ?></h3>
+				<p><strong><?php echo esc_html( (string) ( $registry['name'] ?? '' ) ); ?></strong></p>
+				<p><?php echo esc_html( (string) ( $registry['purpose'] ?? '' ) ); ?></p>
+			</section>
+			<section class="registry-card">
+				<h3><?php echo esc_html__( 'Surface count', 'world-of-wordpress' ); ?></h3>
+				<div class="registry-pill-row">
+					<?php foreach ( (array) ( $registry['counts'] ?? array() ) as $label => $count ) : ?>
+						<span><?php echo esc_html( str_replace( '_', ' ', (string) $label ) . ': ' . (string) $count ); ?></span>
+					<?php endforeach; ?>
+				</div>
+			</section>
+			<section class="registry-card">
+				<h3><?php echo esc_html__( 'REST interfaces', 'world-of-wordpress' ); ?></h3>
+				<ul>
+					<?php foreach ( (array) ( $registry['interfaces'] ?? array() ) as $interface ) : ?>
+						<?php $interface = is_array( $interface ) ? $interface : array(); ?>
+						<li><code><?php echo esc_html( (string) ( $interface['route'] ?? '' ) ); ?></code></li>
+					<?php endforeach; ?>
+				</ul>
+			</section>
+		</div>
+		<div class="registry-groups" aria-label="Grouped public world surfaces">
+			<?php foreach ( $groups as $group_label => $surfaces ) : ?>
+				<section class="registry-group-card">
+					<h3><?php echo esc_html( ucwords( $group_label ) ); ?></h3>
+					<ul>
+						<?php foreach ( $surfaces as $surface ) : ?>
+							<li><code><?php echo esc_html( (string) ( $surface['slug'] ?? '' ) ); ?></code> <span><?php echo esc_html( (string) ( $surface['kind'] ?? '' ) ); ?></span></li>
+						<?php endforeach; ?>
+					</ul>
+				</section>
+			<?php endforeach; ?>
+		</div>
+		<section class="registry-rest-echo" aria-label="Public application registry REST echo">
+			<h3><?php echo esc_html__( 'Registry REST echo', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html__( 'The same surface index is fetched through the public REST endpoint so future world instruments can discover existing panels without scraping the page.', 'world-of-wordpress' ); ?></p>
+			<pre id="<?php echo esc_attr( $readout_id ); ?>" data-application-registry-endpoint="<?php echo esc_url( $rest_url ); ?>"><?php echo esc_html__( 'Waiting for public application registry…', 'world-of-wordpress' ); ?></pre>
+		</section>
+		<script>
+		(function () {
+			const readout = document.getElementById( <?php echo wp_json_encode( $readout_id ); ?> );
+			if ( ! readout || ! window.fetch ) {
+				return;
+			}
+
+			fetch( readout.dataset.applicationRegistryEndpoint, { credentials: 'same-origin' } )
+				.then( ( response ) => {
+					if ( ! response.ok ) {
+						throw new Error( 'Application registry unavailable' );
+					}
+
+					return response.json();
+				} )
+				.then( ( registry ) => {
+					readout.textContent = JSON.stringify( {
+						name: registry.name,
+						counts: registry.counts,
+						first_surfaces: Array.isArray( registry.surfaces ) ? registry.surfaces.slice( 0, 8 ).map( ( surface ) => surface.slug ) : [],
+						interfaces: Array.isArray( registry.interfaces ) ? registry.interfaces.map( ( apiInterface ) => apiInterface.route ) : [],
+						boundaries: registry.boundaries
+					}, null, 2 );
+				} )
+				.catch( () => {
+					readout.textContent = 'The server-rendered registry remains visible; the REST echo could not be fetched in this runtime.';
 				} );
 		}());
 		</script>
