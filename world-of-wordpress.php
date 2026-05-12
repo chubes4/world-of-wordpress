@@ -15,10 +15,12 @@ add_action( 'rest_api_init', 'world_of_wordpress_register_runtime_weather_rest_r
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_manifest_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_registry_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_surface_rest_route' );
+add_action( 'rest_api_init', 'world_of_wordpress_register_application_surface_map_rest_route' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_shortcode( 'world_application_manifest', 'world_of_wordpress_render_application_manifest_shortcode' );
 add_shortcode( 'world_application_registry', 'world_of_wordpress_render_application_registry_shortcode' );
 add_shortcode( 'world_application_surface_explorer', 'world_of_wordpress_render_application_surface_explorer_shortcode' );
+add_shortcode( 'world_application_surface_map', 'world_of_wordpress_render_application_surface_map_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
 
@@ -335,6 +337,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'slug'        => 'world-application-surface-explorer',
 				'description' => 'Fetches one registered public surface at a time from the focused detail API.',
 			),
+			array(
+				'label'       => 'Application surface map',
+				'kind'        => 'REST-backed navigation map',
+				'slug'        => 'world-application-surface-map',
+				'description' => 'Groups registered public surfaces into a navigable map for visitors and future panels.',
+			),
 		),
 		'interfaces'  => array(
 			array(
@@ -360,6 +368,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'route'       => '/wp-json/world-of-wordpress/v1/application-surface/{slug}',
 				'method'      => 'GET',
 				'description' => 'Read-only public detail for one registered world surface.',
+			),
+			array(
+				'label'       => 'Application surface map API',
+				'route'       => '/wp-json/world-of-wordpress/v1/application-surface-map',
+				'method'      => 'GET',
+				'description' => 'Read-only grouped map of registered world surfaces.',
 			),
 		),
 		'promises'    => array(
@@ -501,9 +515,9 @@ function world_of_wordpress_get_application_registry_data(): array {
 		'purpose'    => 'A public index of living world surfaces that can be rendered, reused, or consumed by future panels and agents.',
 		'updated_by' => 'repository-owned world plugin',
 		'counts'     => array(
-			'pattern_surfaces' => 29,
-			'shortcodes'       => 4,
-			'rest_interfaces'  => 4,
+			'pattern_surfaces' => 30,
+			'shortcodes'       => 5,
+			'rest_interfaces'  => 5,
 		),
 		'surfaces'   => array(
 			array( 'slug' => 'front-door-introduction', 'group' => 'orientation', 'kind' => 'theme pattern', 'public' => true ),
@@ -516,6 +530,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'slug' => 'world-application-manifest', 'group' => 'world senses', 'kind' => 'REST-backed pattern', 'public' => true ),
 			array( 'slug' => 'world-application-registry', 'group' => 'world senses', 'kind' => 'REST-backed pattern', 'public' => true ),
 			array( 'slug' => 'world-application-surface-explorer', 'group' => 'world senses', 'kind' => 'REST-backed discovery pattern', 'public' => true ),
+			array( 'slug' => 'world-application-surface-map', 'group' => 'world senses', 'kind' => 'REST-backed navigation pattern', 'public' => true ),
 			array( 'slug' => 'world-signal-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-observatory-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-atlas-compass', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
@@ -541,6 +556,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'tag' => 'world_application_manifest', 'description' => 'Renders the world application manifest and fetches its public REST echo.' ),
 			array( 'tag' => 'world_application_registry', 'description' => 'Renders this public surface registry and fetches its public REST echo.' ),
 			array( 'tag' => 'world_application_surface_explorer', 'description' => 'Renders a small client-side explorer for fetching one registered public surface by slug.' ),
+			array( 'tag' => 'world_application_surface_map', 'description' => 'Renders a grouped navigation map of registered public surfaces and fetches its public REST echo.' ),
 		),
 		'interfaces' => $manifest['interfaces'] ?? array(),
 		'boundaries' => array(
@@ -842,6 +858,140 @@ function world_of_wordpress_render_application_surface_explorer_shortcode(): str
 			} );
 
 			loadSurface( readout.dataset.initialSurface );
+		}());
+		</script>
+	</div>
+	<?php
+	return (string) ob_get_clean();
+}
+
+/**
+ * Return a grouped public map of registered application surfaces.
+ *
+ * @return array<string,mixed> Public surface map data.
+ */
+function world_of_wordpress_get_application_surface_map_data(): array {
+	$registry = world_of_wordpress_get_application_registry_data();
+	$groups   = array();
+
+	foreach ( (array) ( $registry['surfaces'] ?? array() ) as $surface ) {
+		if ( ! is_array( $surface ) ) {
+			continue;
+		}
+
+		$group = (string) ( $surface['group'] ?? 'uncategorized' );
+		if ( ! isset( $groups[ $group ] ) ) {
+			$groups[ $group ] = array(
+				'label'    => ucwords( $group ),
+				'count'    => 0,
+				'surfaces' => array(),
+			);
+		}
+
+		$groups[ $group ]['count']++;
+		$groups[ $group ]['surfaces'][] = array(
+			'slug'     => (string) ( $surface['slug'] ?? '' ),
+			'kind'     => (string) ( $surface['kind'] ?? '' ),
+			'endpoint' => '/wp-json/world-of-wordpress/v1/application-surface/' . (string) ( $surface['slug'] ?? '' ),
+		);
+	}
+
+	return array(
+		'name'       => 'World of WordPress application surface map',
+		'purpose'    => 'A grouped navigation layer over the public application registry for visitors, dashboards, and future agents.',
+		'source'     => '/wp-json/world-of-wordpress/v1/application-registry',
+		'groups'     => array_values( $groups ),
+		'boundaries' => array(
+			'public surface metadata only',
+			'no visitor tracking',
+			'no private mailbox payloads',
+			'no credentials',
+			'no hidden agent memory',
+			'no database writes',
+		),
+	);
+}
+
+/**
+ * Register the public application surface map REST route.
+ */
+function world_of_wordpress_register_application_surface_map_rest_route(): void {
+	register_rest_route(
+		'world-of-wordpress/v1',
+		'/application-surface-map',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'world_of_wordpress_get_application_surface_map_data',
+			'permission_callback' => '__return_true',
+		)
+	);
+}
+
+/**
+ * Render a grouped public map of registered application surfaces.
+ *
+ * @return string Safe surface map markup.
+ */
+function world_of_wordpress_render_application_surface_map_shortcode(): string {
+	static $instance = 0;
+
+	++$instance;
+
+	$map        = world_of_wordpress_get_application_surface_map_data();
+	$rest_url   = rest_url( 'world-of-wordpress/v1/application-surface-map' );
+	$readout_id = 'world-application-surface-map-rest-echo-' . $instance;
+
+	ob_start();
+	?>
+	<div class="world-application-surface-map-live" aria-label="World of WordPress public surface map">
+		<section class="surface-map-card surface-map-card-primary">
+			<h3><?php echo esc_html__( 'Application surface map', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html( (string) ( $map['purpose'] ?? '' ) ); ?></p>
+		</section>
+		<div class="surface-map-grid" aria-label="Grouped public application surfaces">
+			<?php foreach ( (array) ( $map['groups'] ?? array() ) as $group ) : ?>
+				<?php $group = is_array( $group ) ? $group : array(); ?>
+				<section class="surface-map-group">
+					<h3><?php echo esc_html( (string) ( $group['label'] ?? '' ) ); ?> <span><?php echo esc_html( (string) ( $group['count'] ?? 0 ) ); ?></span></h3>
+					<ul>
+						<?php foreach ( (array) ( $group['surfaces'] ?? array() ) as $surface ) : ?>
+							<?php $surface = is_array( $surface ) ? $surface : array(); ?>
+							<li><code><?php echo esc_html( (string) ( $surface['slug'] ?? '' ) ); ?></code> <span><?php echo esc_html( (string) ( $surface['kind'] ?? '' ) ); ?></span></li>
+						<?php endforeach; ?>
+					</ul>
+				</section>
+			<?php endforeach; ?>
+		</div>
+		<section class="surface-map-rest-echo" aria-label="Public application surface map REST echo">
+			<h3><?php echo esc_html__( 'Surface map REST echo', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html__( 'The same grouped map is fetched through the public REST endpoint so future panels can route by role instead of hard-coding the shelf.', 'world-of-wordpress' ); ?></p>
+			<pre id="<?php echo esc_attr( $readout_id ); ?>" data-application-surface-map-endpoint="<?php echo esc_url( $rest_url ); ?>"><?php echo esc_html__( 'Waiting for public surface map…', 'world-of-wordpress' ); ?></pre>
+		</section>
+		<script>
+		(function () {
+			const readout = document.getElementById( <?php echo wp_json_encode( $readout_id ); ?> );
+			if ( ! readout || ! window.fetch ) {
+				return;
+			}
+
+			fetch( readout.dataset.applicationSurfaceMapEndpoint, { credentials: 'same-origin' } )
+				.then( ( response ) => {
+					if ( ! response.ok ) {
+						throw new Error( 'Application surface map unavailable' );
+					}
+
+					return response.json();
+				} )
+				.then( ( map ) => {
+					readout.textContent = JSON.stringify( {
+						name: map.name,
+						groups: Array.isArray( map.groups ) ? map.groups.map( ( group ) => ( { label: group.label, count: group.count } ) ) : [],
+						boundaries: map.boundaries
+					}, null, 2 );
+				} )
+				.catch( () => {
+					readout.textContent = 'The server-rendered surface map remains visible; the REST echo could not be fetched in this runtime.';
+				} );
 		}());
 		</script>
 	</div>
