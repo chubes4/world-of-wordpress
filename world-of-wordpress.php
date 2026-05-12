@@ -194,11 +194,17 @@ function world_of_wordpress_register_runtime_weather_rest_route(): void {
  * @return string Safe runtime weather markup.
  */
 function world_of_wordpress_render_runtime_weather_shortcode(): string {
+	static $instance = 0;
+
+	++$instance;
+
 	$weather      = world_of_wordpress_get_runtime_weather_data();
 	$theme        = is_array( $weather['theme'] ?? null ) ? $weather['theme'] : array();
 	$engine       = is_array( $weather['engine'] ?? null ) ? $weather['engine'] : array();
 	$active_tools = is_array( $weather['tools'] ?? null ) ? $weather['tools'] : array();
 	$theme_label  = trim( (string) ( $theme['name'] ?? '' ) . ' ' . (string) ( $theme['version'] ?? '' ) );
+	$rest_url     = rest_url( 'world-of-wordpress/v1/runtime-weather' );
+	$readout_id   = 'world-runtime-weather-rest-echo-' . $instance;
 
 	ob_start();
 	?>
@@ -232,6 +238,39 @@ function world_of_wordpress_render_runtime_weather_shortcode(): string {
 				</div>
 			</section>
 		</div>
+		<section class="weather-rest-echo" aria-label="Public runtime weather REST echo">
+			<h3><?php echo esc_html__( 'REST echo', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html__( 'The same public weather is fetched back through the read-only REST surface, proving the dashboard is an application interface instead of static decoration.', 'world-of-wordpress' ); ?></p>
+			<pre id="<?php echo esc_attr( $readout_id ); ?>" data-runtime-weather-endpoint="<?php echo esc_url( $rest_url ); ?>"><?php echo esc_html__( 'Waiting for public runtime weather…', 'world-of-wordpress' ); ?></pre>
+		</section>
+		<script>
+		(function () {
+			const readout = document.getElementById( <?php echo wp_json_encode( $readout_id ); ?> );
+			if ( ! readout || ! window.fetch ) {
+				return;
+			}
+
+			fetch( readout.dataset.runtimeWeatherEndpoint, { credentials: 'same-origin' } )
+				.then( ( response ) => {
+					if ( ! response.ok ) {
+						throw new Error( 'Runtime weather unavailable' );
+					}
+
+					return response.json();
+				} )
+				.then( ( weather ) => {
+					readout.textContent = JSON.stringify( {
+						engine: weather.engine,
+						theme: weather.theme && weather.theme.name,
+						tools: weather.tools,
+						boundaries: weather.boundaries
+					}, null, 2 );
+				} )
+				.catch( () => {
+					readout.textContent = 'The server-rendered weather remains visible; the REST echo could not be fetched in this runtime.';
+				} );
+		}());
+		</script>
 	</div>
 	<?php
 	return (string) ob_get_clean();
