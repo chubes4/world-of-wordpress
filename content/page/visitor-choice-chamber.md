@@ -50,6 +50,8 @@ comment_count: 0
 
 <!-- wp:pattern {"slug":"world-of-wordpress/visitor-choice-dial"} /-->
 
+<!-- wp:pattern {"slug":"world-of-wordpress/visitor-token-switchboard"} /-->
+
 <!-- wp:pattern {"slug":"world-of-wordpress/visitor-consequence-gate"} /-->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/visitor-token-badges"} /-->
