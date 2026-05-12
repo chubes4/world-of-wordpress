@@ -11,6 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
+add_action( 'rest_api_init', 'world_of_wordpress_register_runtime_weather_rest_route' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
@@ -115,17 +116,15 @@ function world_of_wordpress_filter_markdown_db_runtime_rows( array $rows, string
 }
 
 /**
- * Render public runtime weather for visitors.
+ * Return safe public runtime weather data.
  *
- * The shortcode exposes only broad, non-secret runtime facts that are already
- * visible through the public WordPress environment or repository-owned policy:
- * engine versions, active theme, selected world tools, debug posture, and the
- * repo-backed database drop-in. It does not read visitor state, credentials,
- * uploads, logs, options beyond active plugin slugs, or private agent payloads.
+ * This is the shared source for the shortcode and REST endpoint. Keep the
+ * boundary intentionally boring: public engine facts, selected active tool
+ * labels, and explicit privacy limits only.
  *
- * @return string Safe runtime weather markup.
+ * @return array<string,mixed> Public runtime weather data.
  */
-function world_of_wordpress_render_runtime_weather_shortcode(): string {
+function world_of_wordpress_get_runtime_weather_data(): array {
 	$theme          = wp_get_theme();
 	$active_plugins = array_map( 'strval', (array) get_option( 'active_plugins', array() ) );
 	$tool_map       = array(
@@ -144,9 +143,62 @@ function world_of_wordpress_render_runtime_weather_shortcode(): string {
 		}
 	}
 
-	$dropin_state = ( defined( 'WP_CONTENT_DIR' ) && file_exists( WP_CONTENT_DIR . '/db.php' ) ) ? 'db.php present' : 'standard database loader';
-	$debug_state  = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'WP_DEBUG on' : 'WP_DEBUG off';
-	$theme_label  = $theme->exists() ? $theme->get( 'Name' ) . ' ' . $theme->get( 'Version' ) : get_stylesheet();
+	return array(
+		'engine'     => array(
+			'wordpress' => get_bloginfo( 'version' ),
+			'php'       => PHP_VERSION,
+		),
+		'theme'      => array(
+			'name'       => $theme->exists() ? $theme->get( 'Name' ) : get_stylesheet(),
+			'version'    => $theme->exists() ? $theme->get( 'Version' ) : '',
+			'stylesheet' => get_stylesheet(),
+		),
+		'drop_in'    => ( defined( 'WP_CONTENT_DIR' ) && file_exists( WP_CONTENT_DIR . '/db.php' ) ) ? 'db.php present' : 'standard database loader',
+		'debug'      => ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'WP_DEBUG on' : 'WP_DEBUG off',
+		'tools'      => $active_tools,
+		'boundaries' => array(
+			'public facts only',
+			'no visitor tracking',
+			'no private mailbox payloads',
+			'no credentials',
+			'no hidden agent memory',
+			'no database writes',
+		),
+	);
+}
+
+/**
+ * Register the public runtime weather REST route.
+ */
+function world_of_wordpress_register_runtime_weather_rest_route(): void {
+	register_rest_route(
+		'world-of-wordpress/v1',
+		'/runtime-weather',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'world_of_wordpress_get_runtime_weather_data',
+			'permission_callback' => '__return_true',
+		)
+	);
+}
+
+/**
+ * Render public runtime weather for visitors.
+ *
+ * The shortcode exposes only broad, non-secret runtime facts that are already
+ * visible through the public WordPress environment or repository-owned policy:
+ * engine versions, active theme, selected world tools, debug posture, and the
+ * repo-backed database drop-in. It does not read visitor state, credentials,
+ * uploads, logs, options beyond active plugin slugs, or private agent payloads.
+ *
+ * @return string Safe runtime weather markup.
+ */
+function world_of_wordpress_render_runtime_weather_shortcode(): string {
+	$weather      = world_of_wordpress_get_runtime_weather_data();
+	$theme        = is_array( $weather['theme'] ?? null ) ? $weather['theme'] : array();
+	$engine       = is_array( $weather['engine'] ?? null ) ? $weather['engine'] : array();
+	$active_tools = is_array( $weather['tools'] ?? null ) ? $weather['tools'] : array();
+	$theme_label  = trim( (string) ( $theme['name'] ?? '' ) . ' ' . (string) ( $theme['version'] ?? '' ) );
 
 	ob_start();
 	?>
@@ -154,11 +206,11 @@ function world_of_wordpress_render_runtime_weather_shortcode(): string {
 		<div class="weather-grid">
 			<section class="weather-card">
 				<h3><?php echo esc_html__( 'Live engine', 'world-of-wordpress' ); ?></h3>
-				<p><?php echo esc_html( sprintf( 'WordPress %1$s, PHP %2$s.', get_bloginfo( 'version' ), PHP_VERSION ) ); ?></p>
+				<p><?php echo esc_html( sprintf( 'WordPress %1$s, PHP %2$s.', (string) ( $engine['wordpress'] ?? '' ), (string) ( $engine['php'] ?? '' ) ) ); ?></p>
 				<div class="weather-meter" aria-label="Live engine facts">
 					<span><?php echo esc_html( $theme_label ); ?></span>
-					<span><?php echo esc_html( $dropin_state ); ?></span>
-					<span><?php echo esc_html( $debug_state ); ?></span>
+					<span><?php echo esc_html( (string) ( $weather['drop_in'] ?? '' ) ); ?></span>
+					<span><?php echo esc_html( (string) ( $weather['debug'] ?? '' ) ); ?></span>
 				</div>
 			</section>
 			<section class="weather-card">
