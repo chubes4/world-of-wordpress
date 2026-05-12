@@ -11,6 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
+add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
 
@@ -111,6 +112,77 @@ function world_of_wordpress_filter_markdown_db_runtime_rows( array $rows, string
 	);
 
 	return $kept;
+}
+
+/**
+ * Render public runtime weather for visitors.
+ *
+ * The shortcode exposes only broad, non-secret runtime facts that are already
+ * visible through the public WordPress environment or repository-owned policy:
+ * engine versions, active theme, selected world tools, debug posture, and the
+ * repo-backed database drop-in. It does not read visitor state, credentials,
+ * uploads, logs, options beyond active plugin slugs, or private agent payloads.
+ *
+ * @return string Safe runtime weather markup.
+ */
+function world_of_wordpress_render_runtime_weather_shortcode(): string {
+	$theme          = wp_get_theme();
+	$active_plugins = array_map( 'strval', (array) get_option( 'active_plugins', array() ) );
+	$tool_map       = array(
+		'agents-api/agents-api.php'                                      => 'Agents API',
+		'data-machine/data-machine.php'                                  => 'Data Machine',
+		'data-machine-code/data-machine-code.php'                        => 'Data Machine Code',
+		'markdown-database-integration/markdown-database-integration.php' => 'Markdown Database Integration',
+		'ai-provider-for-openai/plugin.php'                              => 'OpenAI provider',
+		'world-of-wordpress/world-of-wordpress.php'                       => 'World plugin',
+	);
+	$active_tools   = array();
+
+	foreach ( $tool_map as $plugin_file => $label ) {
+		if ( in_array( $plugin_file, $active_plugins, true ) ) {
+			$active_tools[] = $label;
+		}
+	}
+
+	$dropin_state = ( defined( 'WP_CONTENT_DIR' ) && file_exists( WP_CONTENT_DIR . '/db.php' ) ) ? 'db.php present' : 'standard database loader';
+	$debug_state  = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'WP_DEBUG on' : 'WP_DEBUG off';
+	$theme_label  = $theme->exists() ? $theme->get( 'Name' ) . ' ' . $theme->get( 'Version' ) : get_stylesheet();
+
+	ob_start();
+	?>
+	<div class="day-cycle-runtime-weather-live" aria-label="Live public WordPress runtime readout">
+		<div class="weather-grid">
+			<section class="weather-card">
+				<h3><?php echo esc_html__( 'Live engine', 'world-of-wordpress' ); ?></h3>
+				<p><?php echo esc_html( sprintf( 'WordPress %1$s, PHP %2$s.', get_bloginfo( 'version' ), PHP_VERSION ) ); ?></p>
+				<div class="weather-meter" aria-label="Live engine facts">
+					<span><?php echo esc_html( $theme_label ); ?></span>
+					<span><?php echo esc_html( $dropin_state ); ?></span>
+					<span><?php echo esc_html( $debug_state ); ?></span>
+				</div>
+			</section>
+			<section class="weather-card">
+				<h3><?php echo esc_html__( 'Live tool substrate', 'world-of-wordpress' ); ?></h3>
+				<p><?php echo esc_html__( 'Repository-owned application code confirms the active public tools that let this terrarium think, write, persist, and return.', 'world-of-wordpress' ); ?></p>
+				<div class="weather-meter" aria-label="Active world tools">
+					<?php foreach ( $active_tools as $tool_label ) : ?>
+						<span><?php echo esc_html( $tool_label ); ?></span>
+					<?php endforeach; ?>
+				</div>
+			</section>
+			<section class="weather-card">
+				<h3><?php echo esc_html__( 'Live operating boundary', 'world-of-wordpress' ); ?></h3>
+				<p><?php echo esc_html__( 'This readout is public weather only: no visitor tracking, no private mailbox payloads, no credentials, and no hidden agent memory.', 'world-of-wordpress' ); ?></p>
+				<div class="weather-meter" aria-label="Runtime readout boundaries">
+					<span><?php echo esc_html__( 'public facts', 'world-of-wordpress' ); ?></span>
+					<span><?php echo esc_html__( 'no cookies', 'world-of-wordpress' ); ?></span>
+					<span><?php echo esc_html__( 'no database writes', 'world-of-wordpress' ); ?></span>
+				</div>
+			</section>
+		</div>
+	</div>
+	<?php
+	return (string) ob_get_clean();
 }
 
 /**
