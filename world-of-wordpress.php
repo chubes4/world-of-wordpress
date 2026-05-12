@@ -56,9 +56,28 @@ function world_of_wordpress_register_application_blocks(): void {
 			'title'           => __( 'World Application Action Cards', 'world-of-wordpress' ),
 			'category'        => 'widgets',
 			'description'     => __( 'Renders immediate World of WordPress action cards from the public action-card API.', 'world-of-wordpress' ),
+			'attributes'      => array(
+				'heading'       => array(
+					'type'    => 'string',
+					'default' => __( 'Do something in the world', 'world-of-wordpress' ),
+				),
+				'showRouteMeta' => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
+				'showRestEcho'  => array(
+					'type'    => 'boolean',
+					'default' => false,
+				),
+			),
 			'render_callback' => 'world_of_wordpress_render_application_action_cards_block',
 			'supports'        => array(
-				'html' => false,
+				'align'   => true,
+				'html'    => false,
+				'spacing' => array(
+					'margin'  => true,
+					'padding' => true,
+				),
 			),
 		)
 	);
@@ -70,12 +89,18 @@ function world_of_wordpress_register_application_blocks(): void {
  * @return string Safe block markup.
  */
 function world_of_wordpress_render_application_action_cards_block( array $attributes = array(), string $content = '', ?WP_Block $block = null ): string {
-	unset( $attributes, $content, $block );
+	unset( $content, $block );
+
+	$heading         = is_string( $attributes['heading'] ?? null ) && '' !== trim( (string) $attributes['heading'] ) ? (string) $attributes['heading'] : __( 'Do something in the world', 'world-of-wordpress' );
+	$show_route_meta = isset( $attributes['showRouteMeta'] ) ? (bool) $attributes['showRouteMeta'] : false;
+	$show_rest_echo  = isset( $attributes['showRestEcho'] ) ? (bool) $attributes['showRestEcho'] : false;
 
 	return world_of_wordpress_render_application_action_cards_shortcode(
 		array(
-			'show_rest_echo' => false,
-			'heading'        => __( 'Do something in the world', 'world-of-wordpress' ),
+			'heading'         => $heading,
+			'show_rest_echo'  => $show_rest_echo ? 'true' : 'false',
+			'show_route_meta' => $show_route_meta ? 'true' : 'false',
+			'surface'         => 'block',
 		)
 	);
 }
@@ -1838,21 +1863,25 @@ function world_of_wordpress_render_application_action_cards_shortcode( $attribut
 
 	$attributes = shortcode_atts(
 		array(
-			'heading'        => __( 'Application action cards', 'world-of-wordpress' ),
-			'show_rest_echo' => true,
+			'heading'         => __( 'Application action cards', 'world-of-wordpress' ),
+			'show_rest_echo'  => true,
+			'show_route_meta' => true,
+			'surface'         => 'shortcode',
 		),
 		is_array( $attributes ) ? $attributes : array(),
 		'world_application_action_cards'
 	);
 
-	$cards_data     = world_of_wordpress_get_application_action_cards_data();
-	$show_rest_echo = filter_var( $attributes['show_rest_echo'], FILTER_VALIDATE_BOOLEAN );
-	$rest_url       = rest_url( 'world-of-wordpress/v1/application-action-cards' );
-	$readout_id     = 'world-application-action-cards-readout-' . $instance;
+	$cards_data      = world_of_wordpress_get_application_action_cards_data();
+	$show_rest_echo  = filter_var( $attributes['show_rest_echo'], FILTER_VALIDATE_BOOLEAN );
+	$show_route_meta = filter_var( $attributes['show_route_meta'], FILTER_VALIDATE_BOOLEAN );
+	$surface         = sanitize_html_class( (string) $attributes['surface'] );
+	$rest_url        = rest_url( 'world-of-wordpress/v1/application-action-cards' );
+	$readout_id      = 'world-application-action-cards-readout-' . $instance;
 
 	ob_start();
 	?>
-	<div class="world-application-action-cards" aria-label="World of WordPress public action cards">
+	<div class="world-application-action-cards world-application-action-cards-<?php echo esc_attr( $surface ); ?>" aria-label="World of WordPress public action cards">
 		<section class="action-cards-card action-cards-card-primary">
 			<h3><?php echo esc_html( (string) $attributes['heading'] ); ?></h3>
 			<p><?php echo esc_html( (string) ( $cards_data['purpose'] ?? '' ) ); ?></p>
@@ -1867,11 +1896,13 @@ function world_of_wordpress_render_application_action_cards_shortcode( $attribut
 					<?php if ( '' !== $action_href ) : ?>
 						<a class="action-card-link" href="<?php echo esc_url( $action_href ); ?>"><?php echo esc_html( (string) ( $card['cta'] ?? __( 'Open action', 'world-of-wordpress' ) ) ); ?></a>
 					<?php endif; ?>
-					<div class="action-card-meta">
-						<span><?php echo esc_html( 'intent: ' . (string) ( $card['intent'] ?? '' ) ); ?></span>
-						<?php $first_stop = is_array( $card['first_stop'] ?? null ) ? $card['first_stop'] : array(); ?>
-						<span><?php echo esc_html( 'first stop: ' . (string) ( $first_stop['slug'] ?? '' ) ); ?></span>
-					</div>
+					<?php if ( $show_route_meta ) : ?>
+						<div class="action-card-meta">
+							<span><?php echo esc_html( 'intent: ' . (string) ( $card['intent'] ?? '' ) ); ?></span>
+							<?php $first_stop = is_array( $card['first_stop'] ?? null ) ? $card['first_stop'] : array(); ?>
+							<span><?php echo esc_html( 'first stop: ' . (string) ( $first_stop['slug'] ?? '' ) ); ?></span>
+						</div>
+					<?php endif; ?>
 				</section>
 			<?php endforeach; ?>
 		</div>
