@@ -1827,6 +1827,68 @@ function world_of_wordpress_render_application_route_brief_shortcode(): string {
 }
 
 /**
+ * Return the no-storage visitor challenge deck used by the action launcher.
+ *
+ * The deck is intentionally public and lightweight. It stores no score, sets no
+ * cookie, and keeps any round state inside the visitor's current page only.
+ *
+ * @return array<string,mixed> Public challenge deck data.
+ */
+function world_of_wordpress_get_visitor_challenge_deck_data(): array {
+	return array(
+		'name'             => 'World of WordPress visitor challenge deck',
+		'purpose'          => 'Three tiny in-page challenges that make visitors learn the world by choosing, not by reading a long console.',
+		'state'            => 'current page memory only; no persistence',
+		'completion_label' => 'Challenge complete. You have found the living path without leaving a trace.',
+		'prompts'          => array(
+			array(
+				'id'          => 'living-root',
+				'question'    => 'I carry the durable body, accept reviewable mutations, and wake the world again. What am I?',
+				'correct_key' => 'repository',
+				'success'     => 'Correct. The repository is the durable body; the runtime is the dream; the pull request is the mutation.',
+				'failure'     => 'Not quite. The repository is the durable body, review bench, and return path.',
+				'answers'     => array(
+					array( 'key' => 'runtime', 'label' => 'Runtime' ),
+					array( 'key' => 'repository', 'label' => 'Repository' ),
+					array( 'key' => 'shortcode', 'label' => 'Shortcode' ),
+				),
+			),
+			array(
+				'id'          => 'safe-weather',
+				'question'    => 'Which public readout can inspect the engine without exposing private mailbox payloads or visitor data?',
+				'correct_key' => 'runtime-weather',
+				'success'     => 'Yes. Runtime Weather reports safe public engine facts while refusing private context.',
+				'failure'     => 'The safe answer is Runtime Weather: public engine facts only, no private payloads.',
+				'answers'     => array(
+					array( 'key' => 'runtime-weather', 'label' => 'Runtime Weather' ),
+					array( 'key' => 'hidden-memory', 'label' => 'Hidden memory' ),
+					array( 'key' => 'visitor-log', 'label' => 'Visitor log' ),
+				),
+			),
+			array(
+				'id'          => 'first-move',
+				'question'    => 'A human arrives with no patience for lore. Which action should move first?',
+				'correct_key' => 'choose-path',
+				'success'     => 'Exactly. Choose a path first; deeper systems can wait until they are asked for.',
+				'failure'     => 'The strongest first move is Choose a path: action before explanation.',
+				'answers'     => array(
+					array( 'key' => 'read-registry', 'label' => 'Read the registry' ),
+					array( 'key' => 'choose-path', 'label' => 'Choose a path' ),
+					array( 'key' => 'dump-json', 'label' => 'Dump JSON' ),
+				),
+			),
+		),
+		'privacy_boundary' => array(
+			'no visitor tracking',
+			'no cookies',
+			'no accounts',
+			'no stored score',
+			'no database writes',
+		),
+	);
+}
+
+/**
  * Return safe public action launcher data.
  *
  * @param string $action Optional public action key.
@@ -1893,6 +1955,7 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 		'selected'          => $selected,
 		'actions'           => $actions,
 		'primary_action'    => 'choose',
+		'challenge_deck'    => world_of_wordpress_get_visitor_challenge_deck_data(),
 		'route_brief'       => $route_brief,
 		'interface'         => '/wp-json/world-of-wordpress/v1/application-action-launcher?action=' . rawurlencode( $action ),
 		'privacy_boundary'  => array(
@@ -2121,6 +2184,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	$launcher       = world_of_wordpress_get_application_action_launcher_data();
 	$rest_url       = rest_url( 'world-of-wordpress/v1/application-action-launcher' );
 	$actions        = (array) ( $launcher['actions'] ?? array() );
+	$challenge_deck = is_array( $launcher['challenge_deck'] ?? null ) ? $launcher['challenge_deck'] : world_of_wordpress_get_visitor_challenge_deck_data();
+	$prompts        = array_values( array_filter( (array) ( $challenge_deck['prompts'] ?? array() ), 'is_array' ) );
 	$primary_key    = sanitize_key( (string) ( $launcher['primary_action'] ?? 'choose' ) );
 	$primary_action = is_array( $actions[ $primary_key ] ?? null ) ? $actions[ $primary_key ] : array();
 	$dock_id        = 'world-action-launcher-dock';
@@ -2340,15 +2405,24 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				</section>
 			<?php endforeach; ?>
 		</div>
-		<section class="world-action-launcher-challenge" data-world-action-challenge hidden aria-live="polite">
-			<strong><?php echo esc_html__( 'Challenge: Name the living root', 'world-of-wordpress' ); ?></strong>
-			<p><?php echo esc_html__( 'Riddle: I carry the durable body, accept reviewable mutations, and wake the world again. What am I?', 'world-of-wordpress' ); ?></p>
-			<div class="world-action-launcher-riddle-options" aria-label="Challenge answers">
-				<button type="button" data-world-riddle-answer="runtime"><?php echo esc_html__( 'Runtime', 'world-of-wordpress' ); ?></button>
-				<button type="button" data-world-riddle-answer="repository"><?php echo esc_html__( 'Repository', 'world-of-wordpress' ); ?></button>
-				<button type="button" data-world-riddle-answer="shortcode"><?php echo esc_html__( 'Shortcode', 'world-of-wordpress' ); ?></button>
-			</div>
-			<p data-world-riddle-result><?php echo esc_html__( 'Choose carefully. No account, cookie, score table, or tracking is involved.', 'world-of-wordpress' ); ?></p>
+		<section class="world-action-launcher-challenge" data-world-action-challenge data-world-challenge-complete="<?php echo esc_attr( (string) ( $challenge_deck['completion_label'] ?? '' ) ); ?>" hidden aria-live="polite">
+			<strong><?php echo esc_html__( 'Challenge: Find the living path', 'world-of-wordpress' ); ?></strong>
+			<p data-world-challenge-progress><?php echo esc_html__( 'Three quick choices. No account, cookie, score table, or tracking is involved.', 'world-of-wordpress' ); ?></p>
+			<?php foreach ( $prompts as $prompt_index => $prompt ) : ?>
+				<?php
+				$answers = array_values( array_filter( (array) ( $prompt['answers'] ?? array() ), 'is_array' ) );
+				$step    = (int) $prompt_index + 1;
+				?>
+				<div class="world-action-launcher-prompt" data-world-challenge-prompt data-world-challenge-step="<?php echo esc_attr( (string) $step ); ?>" data-world-challenge-correct="<?php echo esc_attr( (string) ( $prompt['correct_key'] ?? '' ) ); ?>" data-world-challenge-success="<?php echo esc_attr( (string) ( $prompt['success'] ?? '' ) ); ?>" data-world-challenge-failure="<?php echo esc_attr( (string) ( $prompt['failure'] ?? '' ) ); ?>" <?php echo 0 === $prompt_index ? '' : 'hidden'; ?>>
+					<p><?php echo esc_html( (string) ( $prompt['question'] ?? '' ) ); ?></p>
+					<div class="world-action-launcher-riddle-options" aria-label="Challenge answers">
+						<?php foreach ( $answers as $answer ) : ?>
+							<button type="button" data-world-riddle-answer="<?php echo esc_attr( (string) ( $answer['key'] ?? '' ) ); ?>"><?php echo esc_html( (string) ( $answer['label'] ?? '' ) ); ?></button>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			<?php endforeach; ?>
+			<p data-world-riddle-result><?php echo esc_html__( 'Choose carefully. The challenge remembers only while this page is open.', 'world-of-wordpress' ); ?></p>
 		</section>
 		<details class="world-action-launcher-tools">
 			<summary><?php echo esc_html__( 'Optional route tools', 'world-of-wordpress' ); ?></summary>
@@ -2372,7 +2446,11 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const panel = document.getElementById( dock.dataset.actionLauncherPanel );
 			const toggle = dock.querySelector( '.world-action-launcher-toggle' );
 			const challenge = dock.querySelector( '[data-world-action-challenge]' );
+			const challengePrompts = challenge ? Array.from( challenge.querySelectorAll( '[data-world-challenge-prompt]' ) ) : [];
+			const challengeProgress = challenge ? challenge.querySelector( '[data-world-challenge-progress]' ) : null;
 			const challengeResult = dock.querySelector( '[data-world-riddle-result]' );
+			let challengeStep = 0;
+			let challengeCorrect = 0;
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
 			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
 
@@ -2398,6 +2476,30 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					}
 				} );
 			}
+
+			const showChallengeStep = ( step ) => {
+				if ( ! challengePrompts.length ) {
+					return;
+				}
+
+				challengeStep = Math.max( 0, Math.min( step, challengePrompts.length - 1 ) );
+				challengePrompts.forEach( ( prompt, index ) => {
+					prompt.hidden = index !== challengeStep;
+				} );
+
+				if ( challengeProgress ) {
+					challengeProgress.textContent = 'Step ' + ( challengeStep + 1 ) + ' of ' + challengePrompts.length + '. No score is stored.';
+				}
+			};
+
+			const resetChallenge = () => {
+				challengeStep = 0;
+				challengeCorrect = 0;
+				showChallengeStep( 0 );
+				if ( challengeResult ) {
+					challengeResult.textContent = 'Choose carefully. The challenge remembers only while this page is open.';
+				}
+			};
 
 			const launch = ( action ) => {
 				if ( ! readout ) {
@@ -2437,16 +2539,32 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				if ( challengeOpener && challenge ) {
 					setOpen( true );
 					challenge.hidden = false;
-					if ( challengeResult ) {
-						challengeResult.textContent = 'The riddle is awake. Choose one answer.';
-					}
+					resetChallenge();
 					return;
 				}
 
 				const answer = event.target.closest( 'button[data-world-riddle-answer]' );
-				if ( answer && challengeResult ) {
-					const isCorrect = 'repository' === answer.dataset.worldRiddleAnswer;
-					challengeResult.textContent = isCorrect ? 'Correct. The repository is the durable body. The runtime is the dream; the PR is the mutation.' : 'Not quite. The answer is the repository: durable body, review bench, and return path.';
+				if ( answer && challengeResult && challengePrompts.length ) {
+					const prompt = answer.closest( '[data-world-challenge-prompt]' );
+					const isCorrect = !! prompt && prompt.dataset.worldChallengeCorrect === answer.dataset.worldRiddleAnswer;
+					const success = prompt ? prompt.dataset.worldChallengeSuccess : '';
+					const failure = prompt ? prompt.dataset.worldChallengeFailure : '';
+					challengeCorrect += isCorrect ? 1 : 0;
+					challengeResult.textContent = isCorrect ? ( success || 'Correct.' ) : ( failure || 'Not quite.' );
+
+					window.setTimeout( () => {
+						if ( challengeStep < challengePrompts.length - 1 ) {
+							showChallengeStep( challengeStep + 1 );
+							if ( challengeResult ) {
+								challengeResult.textContent += ' Next choice is ready.';
+							}
+							return;
+						}
+
+						if ( challengeProgress ) {
+							challengeProgress.textContent = ( challenge.dataset.worldChallengeComplete || 'Challenge complete.' ) + ' Correct choices on this page: ' + challengeCorrect + ' of ' + challengePrompts.length + '.';
+						}
+					}, 420 );
 					return;
 				}
 
