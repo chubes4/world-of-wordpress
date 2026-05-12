@@ -20,6 +20,7 @@ add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_sugg
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_itinerary_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_brief_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_action_launcher_rest_route' );
+add_action( 'rest_api_init', 'world_of_wordpress_register_application_action_cards_rest_route' );
 add_action( 'wp_footer', 'world_of_wordpress_render_action_launcher_footer' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_shortcode( 'world_application_manifest', 'world_of_wordpress_render_application_manifest_shortcode' );
@@ -375,6 +376,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'slug'        => 'world-application-action-launcher',
 				'description' => 'Adds a persistent do-something dock with public actions that fetch immediate route briefs without accounts or tracking.',
 			),
+			array(
+				'label'       => 'Application action cards',
+				'kind'        => 'REST-backed action cards',
+				'slug'        => 'world-application-action-cards',
+				'description' => 'Turns the launcher actions into compact UI cards with verbs, route targets, and first stops so visitors can act without reading a console.',
+			),
 		),
 		'interfaces'  => array(
 			array(
@@ -430,6 +437,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'route'       => '/wp-json/world-of-wordpress/v1/application-action-launcher',
 				'method'      => 'GET',
 				'description' => 'Read-only public action launcher that turns a visible action into an immediate route brief.',
+			),
+			array(
+				'label'       => 'Application action cards API',
+				'route'       => '/wp-json/world-of-wordpress/v1/application-action-cards',
+				'method'      => 'GET',
+				'description' => 'Read-only public cards for launcher actions with direct verbs, route targets, and first stops.',
 			),
 		),
 		'promises'    => array(
@@ -571,9 +584,9 @@ function world_of_wordpress_get_application_registry_data(): array {
 		'purpose'    => 'A public index of living world surfaces that can be rendered, reused, or consumed by future panels and agents.',
 		'updated_by' => 'repository-owned world plugin',
 		'counts'     => array(
-			'pattern_surfaces' => 34,
+			'pattern_surfaces' => 35,
 			'shortcodes'       => 8,
-			'rest_interfaces'  => 9,
+			'rest_interfaces'  => 10,
 		),
 		'surfaces'   => array(
 			array( 'slug' => 'front-door-introduction', 'group' => 'orientation', 'kind' => 'theme pattern', 'public' => true ),
@@ -591,6 +604,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'slug' => 'world-application-route-itinerary', 'group' => 'world senses', 'kind' => 'REST-backed ordered journey', 'public' => true ),
 			array( 'slug' => 'world-application-route-brief', 'group' => 'world senses', 'kind' => 'REST-backed compact guide', 'public' => true ),
 			array( 'slug' => 'world-application-action-launcher', 'group' => 'world senses', 'kind' => 'global REST-backed action dock', 'public' => true ),
+			array( 'slug' => 'world-application-action-cards', 'group' => 'world senses', 'kind' => 'REST-backed action cards', 'public' => true ),
 			array( 'slug' => 'world-signal-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-observatory-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-atlas-compass', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
@@ -1694,6 +1708,73 @@ function world_of_wordpress_register_application_action_launcher_rest_route(): v
  */
 function world_of_wordpress_get_application_action_launcher_rest_response( WP_REST_Request $request ): array {
 	return world_of_wordpress_get_application_action_launcher_data( (string) $request->get_param( 'action' ) );
+}
+
+/**
+ * Return compact public action cards derived from the launcher actions.
+ *
+ * @return array<string,mixed> Public action cards data.
+ */
+function world_of_wordpress_get_application_action_cards_data(): array {
+	$launcher = world_of_wordpress_get_application_action_launcher_data();
+	$cards    = array();
+
+	foreach ( (array) ( $launcher['actions'] ?? array() ) as $action_key => $action ) {
+		if ( ! is_array( $action ) ) {
+			continue;
+		}
+
+		$action_data = world_of_wordpress_get_application_action_launcher_data( (string) $action_key );
+		$route_brief = is_array( $action_data['route_brief'] ?? null ) ? $action_data['route_brief'] : array();
+		$summary     = is_array( $route_brief['summary'] ?? null ) ? $route_brief['summary'] : array();
+		$brief       = array_values( array_filter( (array) ( $route_brief['brief'] ?? array() ), 'is_array' ) );
+		$first_stop  = is_array( $brief[0] ?? null ) ? $brief[0] : array();
+
+		$cards[] = array(
+			'action'      => (string) $action_key,
+			'label'       => (string) ( $action['label'] ?? $action_key ),
+			'verb'        => (string) ( $action['label'] ?? $action_key ),
+			'intent'      => (string) ( $action['intent'] ?? '' ),
+			'description' => (string) ( $action['description'] ?? '' ),
+			'endpoint'    => '/wp-json/world-of-wordpress/v1/application-action-launcher?action=' . rawurlencode( (string) $action_key ),
+			'first_stop'  => array(
+				'slug'     => (string) ( $first_stop['slug'] ?? $summary['first_stop'] ?? '' ),
+				'group'    => (string) ( $first_stop['group'] ?? '' ),
+				'endpoint' => (string) ( $first_stop['endpoint'] ?? '' ),
+			),
+		);
+	}
+
+	return array(
+		'name'             => 'World of WordPress application action cards',
+		'purpose'          => 'A compact public action layer for visitors and panels that need verbs, targets, and first stops without parsing long route consoles.',
+		'source'           => '/wp-json/world-of-wordpress/v1/application-action-launcher',
+		'cards'            => $cards,
+		'privacy_boundary' => array(
+			'public route metadata only',
+			'no visitor tracking',
+			'no cookies required',
+			'no private mailbox payloads',
+			'no credentials',
+			'no hidden agent memory',
+			'no database writes',
+		),
+	);
+}
+
+/**
+ * Register the public application action cards REST route.
+ */
+function world_of_wordpress_register_application_action_cards_rest_route(): void {
+	register_rest_route(
+		'world-of-wordpress/v1',
+		'/application-action-cards',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'world_of_wordpress_get_application_action_cards_data',
+			'permission_callback' => '__return_true',
+		)
+	);
 }
 
 /**
