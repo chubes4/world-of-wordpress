@@ -1747,10 +1747,11 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 
 	return array(
 		'name'              => 'World of WordPress application action launcher',
-		'purpose'           => 'A global public dock that gives visitors something immediate to do without accounts, cookies, hidden state, or a wall of explanation.',
+		'purpose'           => 'A global public dock that gives visitors a one-click primary action plus optional paths without accounts, cookies, hidden state, or a wall of explanation.',
 		'action'            => $action,
 		'selected'          => $selected,
 		'actions'           => $actions,
+		'primary_action'    => 'choose',
 		'route_brief'       => $route_brief,
 		'interface'         => '/wp-json/world-of-wordpress/v1/application-action-launcher?action=' . rawurlencode( $action ),
 		'privacy_boundary'  => array(
@@ -1976,12 +1977,14 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	}
 	$rendered = true;
 
-	$launcher  = world_of_wordpress_get_application_action_launcher_data();
-	$rest_url  = rest_url( 'world-of-wordpress/v1/application-action-launcher' );
-	$actions   = (array) ( $launcher['actions'] ?? array() );
-	$dock_id    = 'world-action-launcher-dock';
-	$panel_id   = 'world-action-launcher-panel';
-	$readout_id = 'world-action-launcher-readout';
+	$launcher       = world_of_wordpress_get_application_action_launcher_data();
+	$rest_url       = rest_url( 'world-of-wordpress/v1/application-action-launcher' );
+	$actions        = (array) ( $launcher['actions'] ?? array() );
+	$primary_key    = sanitize_key( (string) ( $launcher['primary_action'] ?? 'choose' ) );
+	$primary_action = is_array( $actions[ $primary_key ] ?? null ) ? $actions[ $primary_key ] : array();
+	$dock_id        = 'world-action-launcher-dock';
+	$panel_id       = 'world-action-launcher-panel';
+	$readout_id     = 'world-action-launcher-readout';
 	?>
 	<style>
 		.world-action-launcher {
@@ -2004,7 +2007,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			padding: 14px;
 			border-radius: 22px;
 		}
-		.world-action-launcher-toggle {
+		.world-action-launcher-toggle,
+		.world-action-launcher-primary {
 			cursor: pointer;
 			display: inline-flex;
 			align-items: center;
@@ -2018,9 +2022,19 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			background: #a7f3d0;
 			color: #111827;
 			box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+			text-decoration: none;
+		}
+		.world-action-launcher-primary {
+			margin-left: 0.35rem;
+			background: #f8fafc;
+		}
+		.world-action-launcher.is-open .world-action-launcher-primary {
+			display: none;
 		}
 		.world-action-launcher-toggle:hover,
-		.world-action-launcher-toggle:focus {
+		.world-action-launcher-toggle:focus,
+		.world-action-launcher-primary:hover,
+		.world-action-launcher-primary:focus {
 			background: #f8fafc;
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
@@ -2138,8 +2152,11 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	</style>
 	<aside id="<?php echo esc_attr( $dock_id ); ?>" class="world-action-launcher" aria-label="World of WordPress action launcher" data-action-launcher-endpoint="<?php echo esc_url( $rest_url ); ?>" data-action-launcher-readout="<?php echo esc_attr( $readout_id ); ?>" data-action-launcher-panel="<?php echo esc_attr( $panel_id ); ?>">
 		<button class="world-action-launcher-toggle" type="button" aria-expanded="false" aria-controls="<?php echo esc_attr( $panel_id ); ?>">
-			<?php echo esc_html__( 'Do something', 'world-of-wordpress' ); ?>
+			<?php echo esc_html__( 'More paths', 'world-of-wordpress' ); ?>
 		</button>
+		<?php if ( ! empty( $primary_action['href'] ) ) : ?>
+			<a class="world-action-launcher-primary" href="<?php echo esc_url( (string) $primary_action['href'] ); ?>"><?php echo esc_html( (string) ( $primary_action['cta'] ?? __( 'Start', 'world-of-wordpress' ) ) ); ?></a>
+		<?php endif; ?>
 		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
 			<p><?php echo esc_html__( 'Five immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
