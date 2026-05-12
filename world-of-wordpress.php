@@ -1840,6 +1840,10 @@ function world_of_wordpress_get_visitor_challenge_deck_data(): array {
 		'purpose'          => 'Three tiny in-page challenges that make visitors learn the world by choosing, not by reading a long console. The deck is directly linkable from public action cards and the footer dock.',
 		'state'            => 'current page memory only; no persistence',
 		'completion_label' => 'Challenge complete. You have found the living path without leaving a trace.',
+		'reward'           => array(
+			'label' => 'Claim next path',
+			'href'  => home_url( '/#visitor-choice-dial' ),
+		),
 		'prompts'          => array(
 			array(
 				'id'          => 'living-root',
@@ -2186,6 +2190,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	$actions        = (array) ( $launcher['actions'] ?? array() );
 	$challenge_deck = is_array( $launcher['challenge_deck'] ?? null ) ? $launcher['challenge_deck'] : world_of_wordpress_get_visitor_challenge_deck_data();
 	$prompts        = array_values( array_filter( (array) ( $challenge_deck['prompts'] ?? array() ), 'is_array' ) );
+	$reward         = is_array( $challenge_deck['reward'] ?? null ) ? $challenge_deck['reward'] : array();
 	$primary_key    = sanitize_key( (string) ( $launcher['primary_action'] ?? 'choose' ) );
 	$primary_action = is_array( $actions[ $primary_key ] ?? null ) ? $actions[ $primary_key ] : array();
 	$dock_id        = 'world-action-launcher-dock';
@@ -2344,8 +2349,19 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			white-space: normal;
 		}
 		.world-action-launcher-output[hidden],
-		.world-action-launcher-challenge[hidden] {
+		.world-action-launcher-challenge[hidden],
+		.world-action-launcher-reward[hidden] {
 			display: none;
+		}
+		.world-action-launcher-reward {
+			display: inline-flex;
+			margin-top: 0.6rem;
+			border-radius: 999px;
+			padding: 0.52rem 0.72rem;
+			background: #f8fafc;
+			color: #111827;
+			font-weight: 900;
+			text-decoration: none;
 		}
 		.world-action-launcher-riddle-options {
 			display: flex;
@@ -2423,6 +2439,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				</div>
 			<?php endforeach; ?>
 			<p data-world-riddle-result><?php echo esc_html__( 'Choose carefully. The challenge remembers only while this page is open.', 'world-of-wordpress' ); ?></p>
+			<?php if ( ! empty( $reward['href'] ) ) : ?>
+				<a class="world-action-launcher-reward" href="<?php echo esc_url( (string) $reward['href'] ); ?>" data-world-challenge-reward hidden><?php echo esc_html( (string) ( $reward['label'] ?? __( 'Claim next path', 'world-of-wordpress' ) ) ); ?></a>
+			<?php endif; ?>
 		</section>
 		<details class="world-action-launcher-tools">
 			<summary><?php echo esc_html__( 'Optional route tools', 'world-of-wordpress' ); ?></summary>
@@ -2449,6 +2468,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const challengePrompts = challenge ? Array.from( challenge.querySelectorAll( '[data-world-challenge-prompt]' ) ) : [];
 			const challengeProgress = challenge ? challenge.querySelector( '[data-world-challenge-progress]' ) : null;
 			const challengeResult = dock.querySelector( '[data-world-riddle-result]' );
+			const challengeReward = dock.querySelector( '[data-world-challenge-reward]' );
 			let challengeStep = 0;
 			let challengeCorrect = 0;
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
@@ -2498,6 +2518,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				showChallengeStep( 0 );
 				if ( challengeResult ) {
 					challengeResult.textContent = 'Choose carefully. The challenge remembers only while this page is open.';
+				}
+				if ( challengeReward ) {
+					challengeReward.hidden = true;
 				}
 			};
 
@@ -2583,6 +2606,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 
 						if ( challengeProgress ) {
 							challengeProgress.textContent = ( challenge.dataset.worldChallengeComplete || 'Challenge complete.' ) + ' Correct choices on this page: ' + challengeCorrect + ' of ' + challengePrompts.length + '.';
+						}
+						if ( challengeReward ) {
+							challengeReward.hidden = false;
 						}
 					}, 420 );
 					return;
