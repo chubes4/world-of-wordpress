@@ -2134,6 +2134,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			background: rgba(255, 255, 255, 0.08);
 			font-size: 0.78rem;
 			line-height: 1.35;
+			white-space: normal;
 		}
 		.world-action-launcher-output[hidden] {
 			display: none;
@@ -2179,7 +2180,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					<button class="world-action-launcher-route" type="button" data-world-action="<?php echo esc_attr( (string) $action_key ); ?>"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></button>
 				<?php endforeach; ?>
 			</div>
-			<pre id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" hidden><?php echo esc_html__( 'Choose an action to receive a route brief.', 'world-of-wordpress' ); ?></pre>
+			<div id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" role="status" aria-live="polite" hidden><?php echo esc_html__( 'Choose an action to receive a route brief.', 'world-of-wordpress' ); ?></div>
 		</details>
 		</div>
 		<script>
@@ -2241,13 +2242,10 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					} )
 					.then( ( data ) => {
 						const brief = data.route_brief || {};
-						readout.textContent = JSON.stringify( {
-							action: data.action,
-							intent: data.selected ? data.selected.intent : '',
-							summary: brief.summary || {},
-							firstStops: Array.isArray( brief.brief ) ? brief.brief.slice( 0, 3 ) : [],
-							privacy: data.privacy_boundary
-						}, null, 2 );
+						const summary = brief.summary || {};
+						const stops = Array.isArray( brief.brief ) ? brief.brief.slice( 0, 3 ).map( ( stop ) => stop.slug ).filter( Boolean ) : [];
+						const intent = data.selected ? data.selected.intent : '';
+						readout.textContent = 'Route: ' + ( data.action || 'choose' ) + ( intent ? ' / ' + intent : '' ) + '. First stop: ' + ( summary.first_stop || stops[0] || 'available path' ) + ( stops.length ? '. Next: ' + stops.join( ' → ' ) : '' ) + '. Public route metadata only.';
 					} )
 					.catch( () => {
 						readout.textContent = 'The action dock is visible, but its public REST route could not be fetched in this runtime.';
