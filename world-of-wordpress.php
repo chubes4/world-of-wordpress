@@ -2185,26 +2185,50 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		<script>
 		(function () {
 			const dock = document.getElementById( <?php echo wp_json_encode( $dock_id ); ?> );
-			if ( ! dock || ! window.fetch ) {
+			if ( ! dock ) {
 				return;
 			}
 
 			const readout = document.getElementById( dock.dataset.actionLauncherReadout );
 			const panel = document.getElementById( dock.dataset.actionLauncherPanel );
 			const toggle = dock.querySelector( '.world-action-launcher-toggle' );
-			if ( ! readout ) {
-				return;
-			}
+			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
+			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
+
+			const setOpen = ( isOpen ) => {
+				dock.classList.toggle( 'is-open', isOpen );
+				if ( panel ) {
+					panel.hidden = ! isOpen;
+				}
+				if ( toggle ) {
+					toggle.setAttribute( 'aria-expanded', isOpen ? 'true' : 'false' );
+					toggle.textContent = isOpen ? openLabel : closedLabel;
+				}
+			};
 
 			if ( panel && toggle ) {
 				toggle.addEventListener( 'click', () => {
-					const isOpen = dock.classList.toggle( 'is-open' );
-					panel.hidden = ! isOpen;
-					toggle.setAttribute( 'aria-expanded', isOpen ? 'true' : 'false' );
+					setOpen( ! dock.classList.contains( 'is-open' ) );
+				} );
+
+				dock.addEventListener( 'keydown', ( event ) => {
+					if ( 'Escape' === event.key ) {
+						setOpen( false );
+					}
 				} );
 			}
 
 			const launch = ( action ) => {
+				if ( ! readout ) {
+					return;
+				}
+
+				if ( ! window.fetch ) {
+					readout.hidden = false;
+					readout.textContent = 'Direct action links remain available; route tools need fetch support in this runtime.';
+					return;
+				}
+
 				const endpoint = dock.dataset.actionLauncherEndpoint + '?action=' + encodeURIComponent( action || 'choose' );
 				readout.hidden = false;
 				readout.textContent = 'Opening ' + ( action || 'choose' ) + ' route…';
