@@ -14,9 +14,11 @@ add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_file
 add_action( 'rest_api_init', 'world_of_wordpress_register_runtime_weather_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_manifest_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_registry_rest_route' );
+add_action( 'rest_api_init', 'world_of_wordpress_register_application_surface_rest_route' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_shortcode( 'world_application_manifest', 'world_of_wordpress_render_application_manifest_shortcode' );
 add_shortcode( 'world_application_registry', 'world_of_wordpress_render_application_registry_shortcode' );
+add_shortcode( 'world_application_surface_explorer', 'world_of_wordpress_render_application_surface_explorer_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
 
@@ -347,6 +349,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'method'      => 'GET',
 				'description' => 'Read-only public index of visible world surfaces and REST interfaces.',
 			),
+			array(
+				'label'       => 'Application surface API',
+				'route'       => '/wp-json/world-of-wordpress/v1/application-surface/{slug}',
+				'method'      => 'GET',
+				'description' => 'Read-only public detail for one registered world surface.',
+			),
 		),
 		'promises'    => array(
 			'Public surfaces should be reviewable in the repository.',
@@ -488,8 +496,8 @@ function world_of_wordpress_get_application_registry_data(): array {
 		'updated_by' => 'repository-owned world plugin',
 		'counts'     => array(
 			'pattern_surfaces' => 28,
-			'shortcodes'       => 3,
-			'rest_interfaces'  => 3,
+			'shortcodes'       => 4,
+			'rest_interfaces'  => 4,
 		),
 		'surfaces'   => array(
 			array( 'slug' => 'front-door-introduction', 'group' => 'orientation', 'kind' => 'theme pattern', 'public' => true ),
@@ -525,6 +533,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'tag' => 'world_runtime_weather', 'description' => 'Renders safe runtime weather and fetches its public REST echo.' ),
 			array( 'tag' => 'world_application_manifest', 'description' => 'Renders the world application manifest and fetches its public REST echo.' ),
 			array( 'tag' => 'world_application_registry', 'description' => 'Renders this public surface registry and fetches its public REST echo.' ),
+			array( 'tag' => 'world_application_surface_explorer', 'description' => 'Renders a small client-side explorer for fetching one registered public surface by slug.' ),
 		),
 		'interfaces' => $manifest['interfaces'] ?? array(),
 		'boundaries' => array(
@@ -648,6 +657,184 @@ function world_of_wordpress_render_application_registry_shortcode(): string {
 				.catch( () => {
 					readout.textContent = 'The server-rendered registry remains visible; the REST echo could not be fetched in this runtime.';
 				} );
+		}());
+		</script>
+	</div>
+	<?php
+	return (string) ob_get_clean();
+}
+
+/**
+ * Find one public application surface in the hand-authored registry.
+ *
+ * @param string $slug Surface slug.
+ * @return array<string,mixed>|null Public surface data, or null when absent.
+ */
+function world_of_wordpress_find_application_surface_data( string $slug ): ?array {
+	$slug     = sanitize_title( $slug );
+	$registry = world_of_wordpress_get_application_registry_data();
+	$surfaces = (array) ( $registry['surfaces'] ?? array() );
+
+	foreach ( $surfaces as $surface ) {
+		if ( ! is_array( $surface ) || $slug !== (string) ( $surface['slug'] ?? '' ) ) {
+			continue;
+		}
+
+		$group    = (string) ( $surface['group'] ?? '' );
+		$siblings = array();
+
+		foreach ( $surfaces as $candidate ) {
+			if ( ! is_array( $candidate ) || $slug === (string) ( $candidate['slug'] ?? '' ) ) {
+				continue;
+			}
+
+			if ( $group === (string) ( $candidate['group'] ?? '' ) ) {
+				$siblings[] = (string) ( $candidate['slug'] ?? '' );
+			}
+		}
+
+		$surface['detail'] = array(
+			'endpoint'    => '/wp-json/world-of-wordpress/v1/application-surface/' . $slug,
+			'discovered'  => 'application registry',
+			'use'         => 'Use this public detail object to route visitors, assemble dashboards, or help future agents understand one surface without scraping rendered pages.',
+			'siblings'    => array_values( array_slice( array_filter( $siblings ), 0, 8 ) ),
+			'privacy'     => array(
+				'public surface metadata only',
+				'no visitor tracking',
+				'no private mailbox payloads',
+				'no credentials',
+				'no hidden agent memory',
+				'no database writes',
+			),
+		);
+
+		return $surface;
+	}
+
+	return null;
+}
+
+/**
+ * Register the public application surface detail REST route.
+ */
+function world_of_wordpress_register_application_surface_rest_route(): void {
+	register_rest_route(
+		'world-of-wordpress/v1',
+		'/application-surface/(?P<slug>[a-z0-9-]+)',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'world_of_wordpress_get_application_surface_rest_response',
+			'permission_callback' => '__return_true',
+			'args'                => array(
+				'slug' => array(
+					'description'       => 'Registered public surface slug.',
+					'type'              => 'string',
+					'sanitize_callback' => 'sanitize_title',
+				),
+			),
+		)
+	);
+}
+
+/**
+ * Return one registered public application surface for REST consumers.
+ *
+ * @param WP_REST_Request $request REST request.
+ * @return array<string,mixed>|WP_Error Public surface detail or not-found error.
+ */
+function world_of_wordpress_get_application_surface_rest_response( WP_REST_Request $request ) {
+	$slug    = (string) $request->get_param( 'slug' );
+	$surface = world_of_wordpress_find_application_surface_data( $slug );
+
+	if ( null === $surface ) {
+		return new WP_Error(
+			'world_application_surface_not_found',
+			__( 'That public world surface is not registered.', 'world-of-wordpress' ),
+			array( 'status' => 404 )
+		);
+	}
+
+	return $surface;
+}
+
+/**
+ * Render a small public explorer for individual registered surfaces.
+ *
+ * @return string Safe surface explorer markup.
+ */
+function world_of_wordpress_render_application_surface_explorer_shortcode(): string {
+	static $instance = 0;
+
+	++$instance;
+
+	$registry     = world_of_wordpress_get_application_registry_data();
+	$surfaces     = array_values( array_filter( (array) ( $registry['surfaces'] ?? array() ), 'is_array' ) );
+	$initial_slug = (string) ( $surfaces[0]['slug'] ?? 'front-door-introduction' );
+	$endpoint     = rest_url( 'world-of-wordpress/v1/application-surface/' );
+	$readout_id   = 'world-application-surface-readout-' . $instance;
+	$buttons_id   = 'world-application-surface-buttons-' . $instance;
+
+	ob_start();
+	?>
+	<div class="world-application-surface-explorer" aria-label="World of WordPress public surface explorer">
+		<section class="surface-explorer-card surface-explorer-card-primary">
+			<h3><?php echo esc_html__( 'Application surface explorer', 'world-of-wordpress' ); ?></h3>
+			<p><?php echo esc_html__( 'Choose a registered public surface and the terrarium fetches its detail object through a focused REST route. This is discovery without scraping, tracking, accounts, or hidden memory.', 'world-of-wordpress' ); ?></p>
+		</section>
+		<div id="<?php echo esc_attr( $buttons_id ); ?>" class="surface-explorer-buttons" data-surface-endpoint="<?php echo esc_url( $endpoint ); ?>" data-surface-readout="<?php echo esc_attr( $readout_id ); ?>">
+			<?php foreach ( array_slice( $surfaces, 0, 12 ) as $surface ) : ?>
+				<?php $surface_slug = (string) ( $surface['slug'] ?? '' ); ?>
+				<button type="button" data-surface-slug="<?php echo esc_attr( $surface_slug ); ?>"><?php echo esc_html( $surface_slug ); ?></button>
+			<?php endforeach; ?>
+		</div>
+		<pre id="<?php echo esc_attr( $readout_id ); ?>" data-initial-surface="<?php echo esc_attr( $initial_slug ); ?>"><?php echo esc_html__( 'Waiting for a public surface detail…', 'world-of-wordpress' ); ?></pre>
+		<script>
+		(function () {
+			const buttons = document.getElementById( <?php echo wp_json_encode( $buttons_id ); ?> );
+			if ( ! buttons || ! window.fetch ) {
+				return;
+			}
+
+			const readout = document.getElementById( buttons.dataset.surfaceReadout );
+			if ( ! readout ) {
+				return;
+			}
+
+			const loadSurface = ( slug ) => {
+				if ( ! slug ) {
+					return;
+				}
+
+				readout.textContent = 'Fetching ' + slug + '…';
+				fetch( buttons.dataset.surfaceEndpoint + encodeURIComponent( slug ), { credentials: 'same-origin' } )
+					.then( ( response ) => {
+						if ( ! response.ok ) {
+							throw new Error( 'Application surface unavailable' );
+						}
+
+						return response.json();
+					} )
+					.then( ( surface ) => {
+						readout.textContent = JSON.stringify( {
+							slug: surface.slug,
+							group: surface.group,
+							kind: surface.kind,
+							detail: surface.detail
+						}, null, 2 );
+					} )
+					.catch( () => {
+						readout.textContent = 'The surface detail could not be fetched in this runtime.';
+					} );
+			};
+
+			buttons.addEventListener( 'click', ( event ) => {
+				const button = event.target.closest( 'button[data-surface-slug]' );
+				if ( button ) {
+					loadSurface( button.dataset.surfaceSlug );
+				}
+			} );
+
+			loadSurface( readout.dataset.initialSurface );
 		}());
 		</script>
 	</div>
