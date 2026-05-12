@@ -1837,7 +1837,7 @@ function world_of_wordpress_render_application_route_brief_shortcode(): string {
 function world_of_wordpress_get_visitor_challenge_deck_data(): array {
 	return array(
 		'name'             => 'World of WordPress visitor challenge deck',
-		'purpose'          => 'Three tiny in-page challenges that make visitors learn the world by choosing, not by reading a long console.',
+		'purpose'          => 'Three tiny in-page challenges that make visitors learn the world by choosing, not by reading a long console. The deck is directly linkable from public action cards and the footer dock.',
 		'state'            => 'current page memory only; no persistence',
 		'completion_label' => 'Challenge complete. You have found the living path without leaving a trace.',
 		'prompts'          => array(
@@ -1935,7 +1935,7 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 			'label'       => 'Take a challenge',
 			'intent'      => 'visitor',
 			'description' => 'Open a tiny no-account visitor challenge inside the action dock.',
-			'href'        => home_url( '/#world-action-launcher-dock' ),
+			'href'        => home_url( '/#world-action-launcher-challenge' ),
 			'cta'         => 'Open challenge',
 		),
 	);
@@ -2405,7 +2405,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				</section>
 			<?php endforeach; ?>
 		</div>
-		<section class="world-action-launcher-challenge" data-world-action-challenge data-world-challenge-complete="<?php echo esc_attr( (string) ( $challenge_deck['completion_label'] ?? '' ) ); ?>" hidden aria-live="polite">
+		<section id="world-action-launcher-challenge" class="world-action-launcher-challenge" data-world-action-challenge data-world-challenge-complete="<?php echo esc_attr( (string) ( $challenge_deck['completion_label'] ?? '' ) ); ?>" hidden aria-live="polite">
 			<strong><?php echo esc_html__( 'Challenge: Find the living path', 'world-of-wordpress' ); ?></strong>
 			<p data-world-challenge-progress><?php echo esc_html__( 'Three quick choices. No account, cookie, score table, or tracking is involved.', 'world-of-wordpress' ); ?></p>
 			<?php foreach ( $prompts as $prompt_index => $prompt ) : ?>
@@ -2501,6 +2501,19 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				}
 			};
 
+			const openChallenge = () => {
+				if ( ! challenge ) {
+					return;
+				}
+
+				setOpen( true );
+				challenge.hidden = false;
+				resetChallenge();
+				if ( 'function' === typeof challenge.scrollIntoView ) {
+					challenge.scrollIntoView( { block: 'nearest' } );
+				}
+			};
+
 			const launch = ( action ) => {
 				if ( ! readout ) {
 					return;
@@ -2534,12 +2547,19 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					} );
 			};
 
+			const openChallengeFromHash = () => {
+				if ( '#world-action-launcher-challenge' === window.location.hash ) {
+					openChallenge();
+				}
+			};
+
+			openChallengeFromHash();
+			window.addEventListener( 'hashchange', openChallengeFromHash );
+
 			dock.addEventListener( 'click', ( event ) => {
 				const challengeOpener = event.target.closest( 'button[data-world-open-challenge]' );
 				if ( challengeOpener && challenge ) {
-					setOpen( true );
-					challenge.hidden = false;
-					resetChallenge();
+					openChallenge();
 					return;
 				}
 
