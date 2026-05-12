@@ -69,8 +69,15 @@ function world_of_wordpress_register_application_blocks(): void {
  *
  * @return string Safe block markup.
  */
-function world_of_wordpress_render_application_action_cards_block(): string {
-	return world_of_wordpress_render_application_action_cards_shortcode();
+function world_of_wordpress_render_application_action_cards_block( array $attributes = array(), string $content = '', ?WP_Block $block = null ): string {
+	unset( $attributes, $content, $block );
+
+	return world_of_wordpress_render_application_action_cards_shortcode(
+		array(
+			'show_rest_echo' => false,
+			'heading'        => __( 'Do something in the world', 'world-of-wordpress' ),
+		)
+	);
 }
 
 /**
@@ -1824,20 +1831,30 @@ function world_of_wordpress_get_application_action_cards_data(): array {
  *
  * @return string Safe action-card markup.
  */
-function world_of_wordpress_render_application_action_cards_shortcode(): string {
+function world_of_wordpress_render_application_action_cards_shortcode( $attributes = array() ): string {
 	static $instance = 0;
 
 	++$instance;
 
-	$cards_data = world_of_wordpress_get_application_action_cards_data();
-	$rest_url   = rest_url( 'world-of-wordpress/v1/application-action-cards' );
-	$readout_id = 'world-application-action-cards-readout-' . $instance;
+	$attributes = shortcode_atts(
+		array(
+			'heading'        => __( 'Application action cards', 'world-of-wordpress' ),
+			'show_rest_echo' => true,
+		),
+		is_array( $attributes ) ? $attributes : array(),
+		'world_application_action_cards'
+	);
+
+	$cards_data     = world_of_wordpress_get_application_action_cards_data();
+	$show_rest_echo = filter_var( $attributes['show_rest_echo'], FILTER_VALIDATE_BOOLEAN );
+	$rest_url       = rest_url( 'world-of-wordpress/v1/application-action-cards' );
+	$readout_id     = 'world-application-action-cards-readout-' . $instance;
 
 	ob_start();
 	?>
 	<div class="world-application-action-cards" aria-label="World of WordPress public action cards">
 		<section class="action-cards-card action-cards-card-primary">
-			<h3><?php echo esc_html__( 'Application action cards', 'world-of-wordpress' ); ?></h3>
+			<h3><?php echo esc_html( (string) $attributes['heading'] ); ?></h3>
 			<p><?php echo esc_html( (string) ( $cards_data['purpose'] ?? '' ) ); ?></p>
 		</section>
 		<div class="action-cards-grid" aria-label="Immediate public world actions">
@@ -1858,38 +1875,40 @@ function world_of_wordpress_render_application_action_cards_shortcode(): string 
 				</section>
 			<?php endforeach; ?>
 		</div>
-		<section class="action-cards-rest-echo" aria-label="Public application action cards REST echo">
-			<h3><?php echo esc_html__( 'Action cards REST echo', 'world-of-wordpress' ); ?></h3>
-			<p><?php echo esc_html__( 'The same compact action cards are fetched through the public REST endpoint so panels can render verbs without parsing the footer dock.', 'world-of-wordpress' ); ?></p>
-			<pre id="<?php echo esc_attr( $readout_id ); ?>" data-action-cards-endpoint="<?php echo esc_url( $rest_url ); ?>"><?php echo esc_html__( 'Waiting for public action cards…', 'world-of-wordpress' ); ?></pre>
-		</section>
-		<script>
-		(function () {
-			const readout = document.getElementById( <?php echo wp_json_encode( $readout_id ); ?> );
-			if ( ! readout || ! window.fetch ) {
-				return;
-			}
+		<?php if ( $show_rest_echo ) : ?>
+			<section class="action-cards-rest-echo" aria-label="Public application action cards REST echo">
+				<h3><?php echo esc_html__( 'Action cards REST echo', 'world-of-wordpress' ); ?></h3>
+				<p><?php echo esc_html__( 'The same compact action cards are fetched through the public REST endpoint so panels can render verbs without parsing the footer dock.', 'world-of-wordpress' ); ?></p>
+				<pre id="<?php echo esc_attr( $readout_id ); ?>" data-action-cards-endpoint="<?php echo esc_url( $rest_url ); ?>"><?php echo esc_html__( 'Waiting for public action cards…', 'world-of-wordpress' ); ?></pre>
+			</section>
+			<script>
+			(function () {
+				const readout = document.getElementById( <?php echo wp_json_encode( $readout_id ); ?> );
+				if ( ! readout || ! window.fetch ) {
+					return;
+				}
 
-			fetch( readout.dataset.actionCardsEndpoint, { credentials: 'same-origin' } )
-				.then( ( response ) => {
-					if ( ! response.ok ) {
-						throw new Error( 'Application action cards unavailable' );
-					}
+				fetch( readout.dataset.actionCardsEndpoint, { credentials: 'same-origin' } )
+					.then( ( response ) => {
+						if ( ! response.ok ) {
+							throw new Error( 'Application action cards unavailable' );
+						}
 
-					return response.json();
-				} )
-				.then( ( data ) => {
-					readout.textContent = JSON.stringify( {
-						name: data.name,
-						cards: Array.isArray( data.cards ) ? data.cards.map( ( card ) => ( { action: card.action, verb: card.verb, firstStop: card.first_stop && card.first_stop.slug } ) ) : [],
-						privacy: data.privacy_boundary
-					}, null, 2 );
-				} )
-				.catch( () => {
-					readout.textContent = 'The server-rendered action cards remain visible; the REST echo could not be fetched in this runtime.';
-				} );
-		}());
-		</script>
+						return response.json();
+					} )
+					.then( ( data ) => {
+						readout.textContent = JSON.stringify( {
+							name: data.name,
+							cards: Array.isArray( data.cards ) ? data.cards.map( ( card ) => ( { action: card.action, verb: card.verb, firstStop: card.first_stop && card.first_stop.slug } ) ) : [],
+							privacy: data.privacy_boundary
+						}, null, 2 );
+					} )
+					.catch( () => {
+						readout.textContent = 'The server-rendered action cards remain visible; the REST echo could not be fetched in this runtime.';
+					} );
+			}());
+			</script>
+		<?php endif; ?>
 	</div>
 	<?php
 	return (string) ob_get_clean();
