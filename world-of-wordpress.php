@@ -1979,7 +1979,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	$launcher  = world_of_wordpress_get_application_action_launcher_data();
 	$rest_url  = rest_url( 'world-of-wordpress/v1/application-action-launcher' );
 	$actions   = (array) ( $launcher['actions'] ?? array() );
-	$dock_id   = 'world-action-launcher-dock';
+	$dock_id    = 'world-action-launcher-dock';
+	$panel_id   = 'world-action-launcher-panel';
 	$readout_id = 'world-action-launcher-readout';
 	?>
 	<style>
@@ -1988,14 +1989,47 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			right: clamp(12px, 3vw, 28px);
 			bottom: clamp(12px, 3vw, 28px);
 			z-index: 40;
-			width: min(420px, calc(100vw - 24px));
-			padding: 14px;
+			width: fit-content;
+			max-width: min(420px, calc(100vw - 24px));
+			padding: 8px;
 			border: 1px solid rgba(255, 255, 255, 0.22);
-			border-radius: 22px;
+			border-radius: 999px;
 			background: rgba(14, 18, 31, 0.92);
 			box-shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
 			color: #f8fafc;
 			backdrop-filter: blur(16px);
+		}
+		.world-action-launcher.is-open {
+			width: min(420px, calc(100vw - 24px));
+			padding: 14px;
+			border-radius: 22px;
+		}
+		.world-action-launcher-toggle {
+			cursor: pointer;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.45rem;
+			border: 0;
+			border-radius: 999px;
+			padding: 0.7rem 0.92rem;
+			font-weight: 900;
+			font-size: 0.86rem;
+			line-height: 1;
+			background: #a7f3d0;
+			color: #111827;
+			box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+		}
+		.world-action-launcher-toggle:hover,
+		.world-action-launcher-toggle:focus {
+			background: #f8fafc;
+			outline: 2px solid rgba(167, 243, 208, 0.55);
+			outline-offset: 2px;
+		}
+		.world-action-launcher-panel {
+			margin-top: 0.7rem;
+		}
+		.world-action-launcher-panel[hidden] {
+			display: none;
 		}
 		.world-action-launcher strong {
 			display: block;
@@ -2069,13 +2103,20 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				left: 12px;
 				right: 12px;
 				bottom: 12px;
+				width: fit-content;
+			}
+			.world-action-launcher.is-open {
 				width: auto;
 			}
 		}
 	</style>
-	<aside id="<?php echo esc_attr( $dock_id ); ?>" class="world-action-launcher" aria-label="World of WordPress action launcher" data-action-launcher-endpoint="<?php echo esc_url( $rest_url ); ?>" data-action-launcher-readout="<?php echo esc_attr( $readout_id ); ?>">
-		<strong><?php echo esc_html__( 'Do something now', 'world-of-wordpress' ); ?></strong>
-		<p><?php echo esc_html__( 'Choose a card and move. The quiet route data stays available only when asked.', 'world-of-wordpress' ); ?></p>
+	<aside id="<?php echo esc_attr( $dock_id ); ?>" class="world-action-launcher" aria-label="World of WordPress action launcher" data-action-launcher-endpoint="<?php echo esc_url( $rest_url ); ?>" data-action-launcher-readout="<?php echo esc_attr( $readout_id ); ?>" data-action-launcher-panel="<?php echo esc_attr( $panel_id ); ?>">
+		<button class="world-action-launcher-toggle" type="button" aria-expanded="false" aria-controls="<?php echo esc_attr( $panel_id ); ?>">
+			<?php echo esc_html__( 'Do something', 'world-of-wordpress' ); ?>
+		</button>
+		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
+			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
+			<p><?php echo esc_html__( 'Five immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
 		<div class="world-action-launcher-grid">
 			<?php foreach ( $actions as $action_key => $action ) : ?>
 				<?php $action = is_array( $action ) ? $action : array(); ?>
@@ -2087,7 +2128,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				</section>
 			<?php endforeach; ?>
 		</div>
-		<pre id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" hidden><?php echo esc_html__( 'Choose an action to receive a route brief.', 'world-of-wordpress' ); ?></pre>
+			<pre id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" hidden><?php echo esc_html__( 'Choose an action to receive a route brief.', 'world-of-wordpress' ); ?></pre>
+		</div>
 		<script>
 		(function () {
 			const dock = document.getElementById( <?php echo wp_json_encode( $dock_id ); ?> );
@@ -2096,8 +2138,18 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			}
 
 			const readout = document.getElementById( dock.dataset.actionLauncherReadout );
+			const panel = document.getElementById( dock.dataset.actionLauncherPanel );
+			const toggle = dock.querySelector( '.world-action-launcher-toggle' );
 			if ( ! readout ) {
 				return;
+			}
+
+			if ( panel && toggle ) {
+				toggle.addEventListener( 'click', () => {
+					const isOpen = dock.classList.toggle( 'is-open' );
+					panel.hidden = ! isOpen;
+					toggle.setAttribute( 'aria-expanded', isOpen ? 'true' : 'false' );
+				} );
 			}
 
 			const launch = ( action ) => {
