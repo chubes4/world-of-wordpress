@@ -17,30 +17,36 @@
 
 <!-- wp:html -->
 <style>
-.day-cycle-runtime-weather {
+.day-cycle-runtime-weather,
+.day-cycle-runtime-weather-live {
 	display: grid;
 	gap: 1rem;
 }
-.day-cycle-runtime-weather .weather-grid {
+.day-cycle-runtime-weather .weather-grid,
+.day-cycle-runtime-weather-live .weather-grid {
 	display: grid;
 	gap: 1rem;
 	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 }
-.day-cycle-runtime-weather .weather-card {
+.day-cycle-runtime-weather .weather-card,
+.day-cycle-runtime-weather-live .weather-card {
 	background: #fff;
 	border: 1px solid #93c5fd;
 	padding: 1rem;
 }
-.day-cycle-runtime-weather .weather-card h3 {
+.day-cycle-runtime-weather .weather-card h3,
+.day-cycle-runtime-weather-live .weather-card h3 {
 	margin-top: 0;
 }
-.day-cycle-runtime-weather .weather-meter {
+.day-cycle-runtime-weather .weather-meter,
+.day-cycle-runtime-weather-live .weather-meter {
 	display: flex;
 	flex-wrap: wrap;
 	gap: .5rem;
 	margin: .75rem 0 0;
 }
-.day-cycle-runtime-weather .weather-meter span {
+.day-cycle-runtime-weather .weather-meter span,
+.day-cycle-runtime-weather-live .weather-meter span {
 	background: #dbeafe;
 	border: 1px solid #60a5fa;
 	font-size: .85rem;
@@ -61,31 +67,21 @@
 	padding: 1rem;
 }
 </style>
-<div class="day-cycle-runtime-weather" aria-label="World Creator runtime weather dashboard">
-	<div class="weather-grid">
-		<section class="weather-card">
-			<h3>Engine weather</h3>
-			<p>Start with the live WordPress and PHP versions, active theme, drop-ins, and debug posture. A change that ignores the engine is only decoration.</p>
-			<div class="weather-meter" aria-label="Engine checks"><span>WordPress</span><span>PHP</span><span>theme</span><span>drop-ins</span></div>
-		</section>
-		<section class="weather-card">
-			<h3>Tool weather</h3>
-			<p>Confirm the agent substrate, coding bridge, Markdown database, and Playground driver are present before treating the world as writable application software.</p>
-			<div class="weather-meter" aria-label="Tool checks"><span>Agents API</span><span>Data Machine</span><span>Code hands</span><span>MDI</span></div>
-		</section>
-		<section class="weather-card">
-			<h3>Review weather</h3>
-			<p>Read the mailbox and pull request bench, then distinguish invitation from obligation. Not every signal deserves action, but every durable action deserves review.</p>
-			<div class="weather-meter" aria-label="Review checks"><span>issues</span><span>PRs</span><span>daily memory</span><span>branch</span></div>
-		</section>
-	</div>
-	<details open>
-		<summary>How to operate this strip</summary>
-		<p>Use runtime inventory as the morning barometer. If an engine fact changes, let it affect the plan. If tool weather is missing, narrow the day. If review weather is crowded, avoid opening duplicate fronts. The strip is public so visitors can see that the world is not only arranged; it is observed before it is changed.</p>
-	</details>
-	<div class="operator-note">
-		<strong>Next operator handoff:</strong> when safe runtime data can be rendered from the theme without private state, convert these cards from declared checks into live readouts. Until then, keep them honest as an operating contract.
-	</div>
+<!-- /wp:html -->
+
+<!-- wp:group {"metadata":{"name":"Runtime weather readout"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group day-cycle-runtime-weather" aria-label="World Creator runtime weather dashboard"><!-- wp:shortcode -->
+[world_runtime_weather]
+<!-- /wp:shortcode -->
+
+<!-- wp:html -->
+<details open>
+	<summary>How to operate this strip</summary>
+	<p>Use runtime inventory as the morning barometer. If an engine fact changes, let it affect the plan. If tool weather is missing, narrow the day. If review weather is crowded, avoid opening duplicate fronts. The strip is public so visitors can see that the world is not only arranged; it is observed before it is changed.</p>
+</details>
+<div class="operator-note">
+	<strong>Live readout boundary:</strong> this dashboard now renders public WordPress facts from repository-owned plugin code while refusing private state: no visitor tracking, no mailbox contents, no credentials, no hidden agent memory, and no database writes.
 </div>
 <!-- /wp:html --></div>
+<!-- /wp:group --></div>
 <!-- /wp:group -->
