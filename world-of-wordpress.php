@@ -19,6 +19,8 @@ add_action( 'rest_api_init', 'world_of_wordpress_register_application_surface_ma
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_suggestions_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_itinerary_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_route_brief_rest_route' );
+add_action( 'rest_api_init', 'world_of_wordpress_register_application_action_launcher_rest_route' );
+add_action( 'wp_footer', 'world_of_wordpress_render_action_launcher_footer' );
 add_shortcode( 'world_runtime_weather', 'world_of_wordpress_render_runtime_weather_shortcode' );
 add_shortcode( 'world_application_manifest', 'world_of_wordpress_render_application_manifest_shortcode' );
 add_shortcode( 'world_application_registry', 'world_of_wordpress_render_application_registry_shortcode' );
@@ -367,6 +369,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'slug'        => 'world-application-route-brief',
 				'description' => 'Compresses an ordered route into a small public brief that panels and agents can read quickly.',
 			),
+			array(
+				'label'       => 'Application action launcher',
+				'kind'        => 'global REST-backed action dock',
+				'slug'        => 'world-application-action-launcher',
+				'description' => 'Adds a persistent do-something dock with public actions that fetch immediate route briefs without accounts or tracking.',
+			),
 		),
 		'interfaces'  => array(
 			array(
@@ -416,6 +424,12 @@ function world_of_wordpress_get_application_manifest_data(): array {
 				'route'       => '/wp-json/world-of-wordpress/v1/application-route-brief',
 				'method'      => 'GET',
 				'description' => 'Read-only compact route brief assembled from the public itinerary.',
+			),
+			array(
+				'label'       => 'Application action launcher API',
+				'route'       => '/wp-json/world-of-wordpress/v1/application-action-launcher',
+				'method'      => 'GET',
+				'description' => 'Read-only public action launcher that turns a visible action into an immediate route brief.',
 			),
 		),
 		'promises'    => array(
@@ -557,9 +571,9 @@ function world_of_wordpress_get_application_registry_data(): array {
 		'purpose'    => 'A public index of living world surfaces that can be rendered, reused, or consumed by future panels and agents.',
 		'updated_by' => 'repository-owned world plugin',
 		'counts'     => array(
-			'pattern_surfaces' => 33,
+			'pattern_surfaces' => 34,
 			'shortcodes'       => 8,
-			'rest_interfaces'  => 8,
+			'rest_interfaces'  => 9,
 		),
 		'surfaces'   => array(
 			array( 'slug' => 'front-door-introduction', 'group' => 'orientation', 'kind' => 'theme pattern', 'public' => true ),
@@ -576,6 +590,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'slug' => 'world-application-route-suggestions', 'group' => 'world senses', 'kind' => 'REST-backed route helper', 'public' => true ),
 			array( 'slug' => 'world-application-route-itinerary', 'group' => 'world senses', 'kind' => 'REST-backed ordered journey', 'public' => true ),
 			array( 'slug' => 'world-application-route-brief', 'group' => 'world senses', 'kind' => 'REST-backed compact guide', 'public' => true ),
+			array( 'slug' => 'world-application-action-launcher', 'group' => 'world senses', 'kind' => 'global REST-backed action dock', 'public' => true ),
 			array( 'slug' => 'world-signal-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-observatory-console', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
 			array( 'slug' => 'world-atlas-compass', 'group' => 'world senses', 'kind' => 'theme pattern', 'public' => true ),
@@ -1584,6 +1599,250 @@ function world_of_wordpress_render_application_route_brief_shortcode(): string {
 	</div>
 	<?php
 	return (string) ob_get_clean();
+}
+
+/**
+ * Return safe public action launcher data.
+ *
+ * @param string $action Optional public action key.
+ * @return array<string,mixed> Public action launcher data.
+ */
+function world_of_wordpress_get_application_action_launcher_data( string $action = 'choose' ): array {
+	$actions = array(
+		'choose'  => array(
+			'label'       => 'Choose a path',
+			'intent'      => 'visitor',
+			'description' => 'Open the visitor route for an immediate posture and next step.',
+		),
+		'inspect' => array(
+			'label'       => 'Inspect the engine',
+			'intent'      => 'runtime',
+			'description' => 'Jump toward live runtime and application-interface surfaces.',
+		),
+		'read'    => array(
+			'label'       => 'Read field notes',
+			'intent'      => 'content',
+			'description' => 'Find public writing and content routes without decoding the whole archive.',
+		),
+		'signal'  => array(
+			'label'       => 'Send a signal',
+			'intent'      => 'signals',
+			'description' => 'Find the public signal surfaces and the mailbox-facing route.',
+		),
+		'operate' => array(
+			'label'       => 'See the workshop',
+			'intent'      => 'operator',
+			'description' => 'Open the operator route for day-cycle, review, and build context.',
+		),
+	);
+
+	$action = sanitize_key( $action );
+	if ( ! isset( $actions[ $action ] ) ) {
+		$action = 'choose';
+	}
+
+	$selected    = $actions[ $action ];
+	$route_brief = world_of_wordpress_get_application_route_brief_data( (string) $selected['intent'] );
+
+	return array(
+		'name'              => 'World of WordPress application action launcher',
+		'purpose'           => 'A global public dock that gives visitors something immediate to do without accounts, cookies, hidden state, or a wall of explanation.',
+		'action'            => $action,
+		'selected'          => $selected,
+		'actions'           => $actions,
+		'route_brief'       => $route_brief,
+		'interface'         => '/wp-json/world-of-wordpress/v1/application-action-launcher?action=' . rawurlencode( $action ),
+		'privacy_boundary'  => array(
+			'public route metadata only',
+			'no visitor tracking',
+			'no cookies required',
+			'no private mailbox payloads',
+			'no credentials',
+			'no hidden agent memory',
+			'no database writes',
+		),
+	);
+}
+
+/**
+ * Register the public application action launcher REST route.
+ */
+function world_of_wordpress_register_application_action_launcher_rest_route(): void {
+	register_rest_route(
+		'world-of-wordpress/v1',
+		'/application-action-launcher',
+		array(
+			'methods'             => WP_REST_Server::READABLE,
+			'callback'            => 'world_of_wordpress_get_application_action_launcher_rest_response',
+			'permission_callback' => '__return_true',
+			'args'                => array(
+				'action' => array(
+					'description'       => 'Public launcher action: choose, inspect, read, signal, or operate.',
+					'type'              => 'string',
+					'sanitize_callback' => 'sanitize_key',
+				),
+			),
+		)
+	);
+}
+
+/**
+ * Return action launcher data for REST consumers.
+ *
+ * @param WP_REST_Request $request REST request.
+ * @return array<string,mixed> Public action launcher data.
+ */
+function world_of_wordpress_get_application_action_launcher_rest_response( WP_REST_Request $request ): array {
+	return world_of_wordpress_get_application_action_launcher_data( (string) $request->get_param( 'action' ) );
+}
+
+/**
+ * Render the global public action launcher dock.
+ *
+ * @return void
+ */
+function world_of_wordpress_render_action_launcher_footer(): void {
+	if ( is_admin() || wp_doing_ajax() || wp_is_json_request() ) {
+		return;
+	}
+
+	static $rendered = false;
+	if ( $rendered ) {
+		return;
+	}
+	$rendered = true;
+
+	$launcher  = world_of_wordpress_get_application_action_launcher_data();
+	$rest_url  = rest_url( 'world-of-wordpress/v1/application-action-launcher' );
+	$actions   = (array) ( $launcher['actions'] ?? array() );
+	$dock_id   = 'world-action-launcher-dock';
+	$readout_id = 'world-action-launcher-readout';
+	?>
+	<style>
+		.world-action-launcher {
+			position: fixed;
+			right: clamp(12px, 3vw, 28px);
+			bottom: clamp(12px, 3vw, 28px);
+			z-index: 40;
+			width: min(420px, calc(100vw - 24px));
+			padding: 14px;
+			border: 1px solid rgba(255, 255, 255, 0.22);
+			border-radius: 22px;
+			background: rgba(14, 18, 31, 0.92);
+			box-shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+			color: #f8fafc;
+			backdrop-filter: blur(16px);
+		}
+		.world-action-launcher strong {
+			display: block;
+			font-size: 0.9rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+		.world-action-launcher p {
+			margin: 0.35rem 0 0.75rem;
+			font-size: 0.86rem;
+			line-height: 1.35;
+			color: rgba(248, 250, 252, 0.8);
+		}
+		.world-action-launcher-buttons {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.45rem;
+		}
+		.world-action-launcher button {
+			cursor: pointer;
+			border: 0;
+			border-radius: 999px;
+			padding: 0.55rem 0.72rem;
+			background: #f8fafc;
+			color: #111827;
+			font-weight: 700;
+			font-size: 0.78rem;
+		}
+		.world-action-launcher button:hover,
+		.world-action-launcher button:focus {
+			background: #a7f3d0;
+			outline: 2px solid rgba(167, 243, 208, 0.55);
+			outline-offset: 2px;
+		}
+		.world-action-launcher-output {
+			margin-top: 0.75rem;
+			padding: 0.72rem;
+			border-radius: 16px;
+			background: rgba(255, 255, 255, 0.08);
+			font-size: 0.78rem;
+			line-height: 1.35;
+			white-space: pre-wrap;
+			max-height: 180px;
+			overflow: auto;
+		}
+		@media (max-width: 700px) {
+			.world-action-launcher {
+				left: 12px;
+				right: 12px;
+				bottom: 12px;
+				width: auto;
+			}
+		}
+	</style>
+	<aside id="<?php echo esc_attr( $dock_id ); ?>" class="world-action-launcher" aria-label="World of WordPress action launcher" data-action-launcher-endpoint="<?php echo esc_url( $rest_url ); ?>" data-action-launcher-readout="<?php echo esc_attr( $readout_id ); ?>">
+		<strong><?php echo esc_html__( 'Do something now', 'world-of-wordpress' ); ?></strong>
+		<p><?php echo esc_html__( 'A public action dock. Click once; the world returns a route. No account, no tracking, no hidden state.', 'world-of-wordpress' ); ?></p>
+		<div class="world-action-launcher-buttons">
+			<?php foreach ( $actions as $action_key => $action ) : ?>
+				<?php $action = is_array( $action ) ? $action : array(); ?>
+				<button type="button" data-world-action="<?php echo esc_attr( (string) $action_key ); ?>"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></button>
+			<?php endforeach; ?>
+		</div>
+		<pre id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output"><?php echo esc_html__( 'Choose an action to receive a route brief.', 'world-of-wordpress' ); ?></pre>
+		<script>
+		(function () {
+			const dock = document.getElementById( <?php echo wp_json_encode( $dock_id ); ?> );
+			if ( ! dock || ! window.fetch ) {
+				return;
+			}
+
+			const readout = document.getElementById( dock.dataset.actionLauncherReadout );
+			if ( ! readout ) {
+				return;
+			}
+
+			const launch = ( action ) => {
+				const endpoint = dock.dataset.actionLauncherEndpoint + '?action=' + encodeURIComponent( action || 'choose' );
+				readout.textContent = 'Opening ' + ( action || 'choose' ) + ' route…';
+				fetch( endpoint, { credentials: 'same-origin' } )
+					.then( ( response ) => {
+						if ( ! response.ok ) {
+							throw new Error( 'Action launcher unavailable' );
+						}
+						return response.json();
+					} )
+					.then( ( data ) => {
+						const brief = data.route_brief || {};
+						readout.textContent = JSON.stringify( {
+							action: data.action,
+							intent: data.selected ? data.selected.intent : '',
+							summary: brief.summary || {},
+							firstStops: Array.isArray( brief.brief ) ? brief.brief.slice( 0, 3 ) : [],
+							privacy: data.privacy_boundary
+						}, null, 2 );
+					} )
+					.catch( () => {
+						readout.textContent = 'The action dock is visible, but its public REST route could not be fetched in this runtime.';
+					} );
+			};
+
+			dock.addEventListener( 'click', ( event ) => {
+				const button = event.target.closest( 'button[data-world-action]' );
+				if ( button ) {
+					launch( button.dataset.worldAction );
+				}
+			} );
+		}());
+		</script>
+	</aside>
+	<?php
 }
 
 /**
