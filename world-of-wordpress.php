@@ -11,6 +11,7 @@
 defined( 'ABSPATH' ) || exit;
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
+add_action( 'init', 'world_of_wordpress_register_application_blocks' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_runtime_weather_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_manifest_rest_route' );
 add_action( 'rest_api_init', 'world_of_wordpress_register_application_registry_rest_route' );
@@ -33,6 +34,44 @@ add_shortcode( 'world_application_route_brief', 'world_of_wordpress_render_appli
 add_shortcode( 'world_application_action_cards', 'world_of_wordpress_render_application_action_cards_shortcode' );
 add_filter( 'markdown_db_table_persistence_policy', 'world_of_wordpress_markdown_db_table_persistence_policy' );
 add_filter( 'markdown_db_persistent_table_rows', 'world_of_wordpress_filter_markdown_db_runtime_rows', 10, 4 );
+
+/**
+ * Register modern dynamic blocks for public application surfaces.
+ *
+ * The world still supports shortcodes because durable markdown content can use
+ * them, but public action surfaces should also exist as first-class Block API
+ * objects. These blocks render the same safe, read-only data as the shortcode
+ * layer: no visitor tracking, no private mailbox payloads, no credentials, no
+ * hidden agent memory, and no database writes.
+ */
+function world_of_wordpress_register_application_blocks(): void {
+	if ( ! function_exists( 'register_block_type' ) ) {
+		return;
+	}
+
+	register_block_type(
+		'world-of-wordpress/application-action-cards',
+		array(
+			'api_version'     => 3,
+			'title'           => __( 'World Application Action Cards', 'world-of-wordpress' ),
+			'category'        => 'widgets',
+			'description'     => __( 'Renders immediate World of WordPress action cards from the public action-card API.', 'world-of-wordpress' ),
+			'render_callback' => 'world_of_wordpress_render_application_action_cards_block',
+			'supports'        => array(
+				'html' => false,
+			),
+		)
+	);
+}
+
+/**
+ * Render the application action cards block.
+ *
+ * @return string Safe block markup.
+ */
+function world_of_wordpress_render_application_action_cards_block(): string {
+	return world_of_wordpress_render_application_action_cards_shortcode();
+}
 
 /**
  * Configure which runtime database tables belong in the repo-backed world.
@@ -587,6 +626,7 @@ function world_of_wordpress_get_application_registry_data(): array {
 		'counts'     => array(
 			'pattern_surfaces' => 35,
 			'shortcodes'       => 9,
+			'dynamic_blocks'   => 1,
 			'rest_interfaces'  => 10,
 		),
 		'surfaces'   => array(
@@ -636,6 +676,9 @@ function world_of_wordpress_get_application_registry_data(): array {
 			array( 'tag' => 'world_application_route_itinerary', 'description' => 'Renders an ordered public route itinerary assembled from suggestions and focused surface detail.' ),
 			array( 'tag' => 'world_application_route_brief', 'description' => 'Renders a compact public route brief assembled from the ordered itinerary.' ),
 			array( 'tag' => 'world_application_action_cards', 'description' => 'Renders compact launcher-derived action cards with verbs, first stops, and a public REST echo.' ),
+		),
+		'blocks'     => array(
+			array( 'name' => 'world-of-wordpress/application-action-cards', 'description' => 'Dynamic Block API renderer for the same immediate public action cards.' ),
 		),
 		'interfaces' => $manifest['interfaces'] ?? array(),
 		'boundaries' => array(

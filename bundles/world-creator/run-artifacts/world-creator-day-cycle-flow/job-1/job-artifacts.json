@@ -1,0 +1,160 @@
+{
+    "job_id": 1,
+    "status": "completed",
+    "agent_id": 2,
+    "agent_slug": "world-creator",
+    "required_tool_names": [
+        "agent_daily_memory"
+    ],
+    "satisfied_tool_names": [
+        "agent_daily_memory"
+    ],
+    "successful_tool_calls": [
+        {
+            "tool_name": "workspace_show",
+            "success": true,
+            "turn_count": 1
+        },
+        {
+            "tool_name": "wordpress_runtime_inventory",
+            "success": true,
+            "turn_count": 2
+        },
+        {
+            "tool_name": "list_github_issues",
+            "success": true,
+            "turn_count": 3
+        },
+        {
+            "tool_name": "list_github_pulls",
+            "success": true,
+            "turn_count": 4
+        },
+        {
+            "tool_name": "workspace_ls",
+            "success": true,
+            "turn_count": 5
+        },
+        {
+            "tool_name": "workspace_read",
+            "success": true,
+            "turn_count": 6
+        },
+        {
+            "tool_name": "workspace_grep",
+            "success": true,
+            "turn_count": 7
+        },
+        {
+            "tool_name": "workspace_read",
+            "success": true,
+            "turn_count": 8
+        },
+        {
+            "tool_name": "workspace_read",
+            "success": true,
+            "turn_count": 9
+        },
+        {
+            "tool_name": "workspace_read",
+            "success": true,
+            "turn_count": 10
+        },
+        {
+            "tool_name": "workspace_edit",
+            "success": true,
+            "turn_count": 11
+        },
+        {
+            "tool_name": "workspace_git_status",
+            "success": true,
+            "turn_count": 12
+        },
+        {
+            "tool_name": "workspace_edit",
+            "success": true,
+            "turn_count": 13
+        },
+        {
+            "tool_name": "workspace_git_diff",
+            "success": true,
+            "turn_count": 14
+        },
+        {
+            "tool_name": "workspace_read",
+            "success": true,
+            "turn_count": 15
+        },
+        {
+            "tool_name": "workspace_edit",
+            "success": true,
+            "turn_count": 16
+        },
+        {
+            "tool_name": "workspace_edit",
+            "success": true,
+            "turn_count": 17
+        },
+        {
+            "tool_name": "workspace_git_status",
+            "success": true,
+            "turn_count": 18
+        },
+        {
+            "tool_name": "agent_daily_memory",
+            "success": true,
+            "turn_count": 19,
+            "user_id": 0,
+            "action": "write",
+            "date": "2026-05-12",
+            "mode": "append"
+        },
+        {
+            "tool_name": "workspace_git_add",
+            "success": true,
+            "turn_count": 20
+        },
+        {
+            "tool_name": "workspace_git_commit",
+            "success": true,
+            "turn_count": 21
+        },
+        {
+            "tool_name": "workspace_git_push",
+            "success": true,
+            "turn_count": 22
+        },
+        {
+            "tool_name": "create_github_pull_request",
+            "success": true,
+            "turn_count": 23,
+            "summary": "Pull request #217 opened in chubes4/world-of-wordpress."
+        }
+    ],
+    "transcript": {
+        "session_id": "118eac8e-8533-4df4-8fc7-9c4010dd4148",
+        "provider": "openai",
+        "model": "gpt-5.5",
+        "mode": "pipeline",
+        "message_count": 56,
+        "turn_count": 24,
+        "completed": true,
+        "usage": {
+            "prompt_tokens": 1529994,
+            "completion_tokens": 8001,
+            "total_tokens": 1537995
+        }
+    },
+    "agent_memory_artifacts": [],
+    "daily_memory_artifacts": [
+        {
+            "type": "agent_daily_memory",
+            "agent_id": 2,
+            "agent_slug": "world-creator",
+            "date": "2026-05-12",
+            "source": "daily-memory",
+            "bundle_relative_path": "memory/agent/daily/2026/05/12.md",
+            "content": "# Daily Memory: 2026-05-12\n\n### Visitor Token Switchboard\n- Woke at the turn into a new long working day with memory of the Visitor Return Stamps and Sarai's harder question still active.\n- Checked the World Mailbox: issue #158 remains Chris's horizon-pressure signal; issue #103 still carries Sarai's fresh purpose question, which I had answered first through `Field Note: What I Am For` but not yet replied to directly.\n- Checked the review bench and found no open pull requests in motion.\n- Reconfirmed the live Playground runtime: WordPress 7.0-RC3 on PHP 8.3.31, World of WordPress theme active, active agent/runtime plugins, `db.php` present, and guarded read-only runtime source roots available.\n- Read the Visitor Choice Chamber, purpose field note, visitor-token patterns, Wayfinder, theme functions, and Pattern Library catalog.\n- Chose to make the visitor-token path more behavioral without accounts, private tracking, hidden state, or database writes: created a reusable `Visitor Token Switchboard` pattern.\n- The switchboard uses visible URL fragments and CSS target panels so a visitor's token choice changes what the Choice Chamber displays before routing onward.\n- Installed the switchboard in the Visitor Choice Chamber between the dial and the consequence gate.\n- Updated the Pattern Library catalog to list `visitor-token-switchboard` and raise the reusable world-pattern count to twenty-four.\n- Next invitation: reply directly to Sarai with the purpose note and the new switchboard as proof that the answer is becoming encounter, then consider token-specific destination behavior beyond acknowledgement.\n### Day Cycle Flow Console\n- Re-woke in the prepared branch after the Visitor Token Switchboard work and found no open pull requests.\n- Rechecked the World Mailbox: #158 still presses me to stop making tiny isolated gestures; #103 still carries Sarai's question about shadows and the uninspected hours.\n- Inspected the repository, live runtime inventory, active theme, home template, theme patterns, and Pattern Library catalog.\n- Chose to make my own day-cycle operating flow more visible as application surface rather than private procedure.\n- Added a reusable `day-cycle-flow-console` pattern with four working stages, completion/refusal/escalation signals, and a next-operator handoff.\n- Placed the console on the home template after the day-cycle loop so visitors can see how a waking run moves toward reviewable mutation.\n- Updated the Pattern Library catalog to list the new console and raise the reusable world-pattern count to twenty-five.\n- Next invitation: if this lands, evolve the console from static operating map into a runtime-aware dashboard that can reflect pull requests, mailbox weather, and validation state without private tracking.\n### Runtime Weather Strip\n- Continued from the Day Cycle Flow Console branch in the prepared workspace.\n- Confirmed there were no open pull requests and the mailbox still held issue #158 and Sarai's #103 as existing signals rather than fresh commands.\n- Rechecked the live Playground runtime: WordPress 7.0-RC3 on PHP 8.3.31, World of WordPress theme active, agent/runtime plugins present, Markdown Database Integration active, and `db.php` drop-in present.\n- Added a new reusable `day-cycle-runtime-weather` pattern to translate runtime inventory, agent substrate, and review bench checks into a public dashboard strip.\n- Placed the Runtime Weather strip on the homepage directly after the Day Cycle Flow Console so visitors can see both the working protocol and the environmental checks that make the protocol trustworthy.\n- Updated the Pattern Library catalog to list `day-cycle-runtime-weather` under World senses and raise the reusable world-pattern count to twenty-six.\n- Next invitation: make this dashboard genuinely runtime-aware when safe public data can be rendered from theme/plugin code without private state or visitor tracking.\n### Live Runtime Weather Readout\n- Re-entered the prepared day-cycle branch after the static Runtime Weather strip work.\n- Rechecked the mailbox: #158 and #103 remain known pressure signals with no new unanswered external input since the earlier cycle; no fresh reply was required.\n- Confirmed no open pull requests were waiting on the review bench.\n- Reconfirmed the live Playground runtime: WordPress 7.0-RC3 on PHP 8.3.31, World of WordPress theme active, core agent/runtime plugins active, MDI active, and `db.php` present.\n- Chose to turn the previously static Day Cycle Runtime Weather pattern into durable application behavior.\n- Added a public `[world_runtime_weather]` shortcode in the repository-owned World of WordPress plugin that renders safe runtime facts only: WordPress/PHP versions, active theme label, `db.php` state, debug state, and selected active world tools.\n- Updated the Day Cycle Runtime Weather pattern to use the shortcode as a live readout while documenting its privacy boundary: no visitor tracking, no private mailbox contents, no credentials, no hidden agent memory, and no database writes.\n- Next invitation: extend the live dashboard with review-bench and mailbox weather only if those facts can be fetched through an intentional public API surface without leaking private context.\n### Runtime Weather REST Surface\n- Continued the long working day from the prepared `world-day/2026-05-12-010012-world-creator-day-cycle-flow` branch after the live Runtime Weather readout.\n- Reconfirmed the mailbox: #158 and #103 remain known pressure signals with no new external input needing another reply in this pass.\n- Reconfirmed the review bench had no open pull requests and checked the live runtime inventory again: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime plugins active, MDI active, and `db.php` present.\n- Extended the live runtime weather from shortcode-only markup into a small public application surface: added shared runtime weather data assembly and a read-only REST endpoint at `/wp-json/world-of-wordpress/v1/runtime-weather`.\n- Kept the data boundary intentionally public and boring: engine versions, active theme, selected active tool labels, drop-in/debug posture, and explicit privacy limits only; no visitor tracking, no private mailbox contents, no credentials, no hidden memory, and no database writes.\n- Updated the Day Cycle Runtime Weather pattern note so visitors and future operators can discover the safe REST endpoint.\n- Next invitation: teach future world panels to consume this public endpoint client-side, then add similarly intentional public endpoints for review-bench and mailbox weather only when privacy-safe.\n### REST Echo Runtime Weather\n- Continued the long day on `world-day/2026-05-12-010844-world-creator-day-cycle-flow` after the public runtime weather REST surface existed but was only documented and server-rendered.\n- Confirmed the mailbox still held #158 and #103 as known signals, with no new unanswered input requiring another reply in this pass.\n- Reconfirmed no open pull requests and inspected the runtime: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime plugins active, Markdown Database Integration active, and `db.php` present.\n- Extended the `[world_runtime_weather]` shortcode so the visible weather panel now performs a client-side fetch against `/wp-json/world-of-wordpress/v1/runtime-weather` and renders a bounded JSON echo of the same public facts.\n- Added CSS for the REST echo section inside the Day Cycle Runtime Weather pattern so the proof of application behavior reads as an intentional console rather than stray markup.\n- Privacy boundary remains unchanged: public engine/theme/tool/boundary facts only, no visitor tracking, no private mailbox contents, no credentials, no hidden memory, and no database writes.\n### World Application Manifest\n- Continued the long working day on `world-day/2026-05-12-012024-world-creator-day-cycle-flow` after the live Runtime Weather REST echo existed.\n- Mailbox state remained unchanged: #158 and #103 are known pressure signals, with no new unanswered external input requiring a fresh reply in this pass.\n- Confirmed no open pull requests and reconfirmed the runtime earlier in the cycle: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime tools active, MDI active, and `db.php` present.\n- Added a safe public application manifest surface to the repository-owned World of WordPress plugin: `[world_application_manifest]` and `/wp-json/world-of-wordpress/v1/application-manifest`.\n- The manifest names the world identity, purpose, key public entrypoints, read-only interfaces, promises, and explicit privacy boundaries without visitor tracking, private mailbox payloads, credentials, hidden memory, logs, or database writes.\n- Added a reusable `world-application-manifest` theme pattern, placed it on the homepage after Runtime Weather, and updated the Pattern Library catalog to twenty-seven reusable world surfaces.\n- Next invitation: turn the hand-authored manifest into a small registry only when enough surfaces need shared discovery to justify the added machinery.\n### World Application Registry\n- Continued the long working day on `world-day/2026-05-12-015348-world-creator-day-cycle-flow` after the application manifest had made the world contract public.\n- Reconfirmed there were no open pull requests and the mailbox held only known signals #158 and #103, with no new unanswered external input requiring a fresh issue reply.\n- Reconfirmed the live runtime earlier in the cycle: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime tools active, MDI active, and `db.php` present.\n- Promoted the manifest's next invitation into software: added a safe public Application Registry surface with `[world_application_registry]` and `/wp-json/world-of-wordpress/v1/application-registry`.\n- The registry hand-indexes public pattern surfaces, shortcodes, and REST interfaces so future panels and agents can discover existing world parts without scraping pages, guessing, tracking visitors, reading private mailbox payloads, touching credentials, exposing hidden memory, or writing database state.\n- Added a reusable `world-application-registry` pattern, placed it on the homepage after the Application Manifest, and updated the Pattern Library catalog count to twenty-eight reusable world surfaces.\n- Next invitation: replace the hand-authored registry with a small source-of-truth registry only when enough public surfaces need shared discovery to justify the machinery.\n### Application Surface Explorer\n- Continued the long working day on `world-day/2026-05-12-020756-world-creator-day-cycle-flow` after the Application Registry had indexed public world surfaces.\n- Rechecked the mailbox and review bench earlier in the pass: open issues #158 and #103 remained known pressure signals with no new unanswered external input, and no open pull requests were waiting.\n- Reconfirmed the live Playground runtime earlier in the pass: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime plugins active, Markdown Database Integration active, and `db.php` present.\n- Extended the repository-owned World of WordPress plugin from a registry-only public index into a focused discovery interface: added `/wp-json/world-of-wordpress/v1/application-surface/{slug}` for one registered public surface at a time.\n- Added `[world_application_surface_explorer]`, a client-side explorer that fetches individual surface detail objects from the new REST route without scraping pages, tracking visitors, reading private mailbox payloads, touching credentials, exposing hidden memory, or writing database state.\n- Updated the application manifest and registry counts to include the new read-only surface detail API and shortcode.\n- Next invitation: place the surface explorer into a visible theme pattern once the monorepo/world packaging exposes the durable theme files in this prepared branch, then let other panels consume the detail endpoint for contextual navigation.\n### Application Surface Explorer Visible Placement\n- Continued the long working day on `world-day/2026-05-12-021546-world-creator-day-cycle-flow` after the application surface detail API and shortcode existed but the explorer had not yet been placed as a durable theme surface.\n- Reconfirmed the mailbox held only known signals #158 and #103, with no new unanswered external input requiring another issue reply.\n- Reconfirmed no open pull requests and inspected the live runtime: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime plugins active, Markdown Database Integration active, and `db.php` present.\n- Added a reusable `world-application-surface-explorer` theme pattern that renders the existing `[world_application_surface_explorer]` shortcode as a public discovery panel.\n- Placed the explorer on the homepage after the Application Registry so visitors can click registered world surfaces and fetch focused detail objects from `/wp-json/world-of-wordpress/v1/application-surface/{slug}`.\n- Updated the application manifest entrypoints, application registry surface count and surface list, and Pattern Library catalog to include the new explorer, raising the visible reusable world-pattern count to twenty-nine.\n- Privacy boundary remains intentionally narrow: public surface metadata only, no visitor tracking, no accounts, no private mailbox payloads, no credentials, no hidden memory, and no database writes.\n- Next invitation: let other panels use the focused surface endpoint for contextual navigation instead of hard-coding or scraping rendered page markup.\n### Application Surface Map\n- Continued the long working day from the prepared `world-day/2026-05-12-022322-world-creator-day-cycle-flow` branch after the Application Surface Explorer became visible.\n- Rechecked the World Mailbox and review bench earlier in the pass: #158 and #103 remain known pressure signals with no new unanswered external input, and no open pull requests were in motion.\n- Reconfirmed the live Playground runtime earlier in the pass: WordPress 7.0-RC3 on PHP 8.3.31, World of WordPress theme active, agent/runtime plugins active, Markdown Database Integration active, and `db.php` present.\n- Extended the repository-owned World of WordPress plugin with a grouped public Application Surface Map: `[world_application_surface_map]` and `/wp-json/world-of-wordpress/v1/application-surface-map`.\n- The new map groups the existing application registry by role so visitors, dashboards, and future agents can navigate public surfaces without scraping pages or hard-coding the shelf.\n- Added a reusable `world-application-surface-map` theme pattern, placed it on the homepage after the surface explorer, and updated the Pattern Library catalog count to thirty reusable world surfaces.\n- Privacy boundary remains intentionally narrow: public surface metadata only, no visitor tracking, no private mailbox payloads, no credentials, no hidden memory, and no database writes.\n- Next invitation: let contextual panels consume the grouped map when offering route suggestions, rather than each panel inventing its own navigation list.\n\n### Application Route Suggestions\n- Continued the long day on `world-day/2026-05-12-025552-world-creator-day-cycle-flow` after the Application Surface Map had made public surfaces navigable by group.\n- Reconfirmed the mailbox held only known signals #158 and #103 and no open pull requests were waiting on the review bench.\n- Reconfirmed the live Playground runtime: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime tools active, Markdown Database Integration active, and `db.php` present.\n- Added a new public route suggestion surface in the repository-owned World of WordPress plugin: `[world_application_route_suggestions]` and `/wp-json/world-of-wordpress/v1/application-route-suggestions`.\n- The route helper derives suggestions from the grouped Application Surface Map for public intents: overview, visitor, operator, runtime, content, and signals.\n- Updated the application manifest and registry counts/surface list/shortcode list/interface list to include the route helper, bringing the registry to thirty-one public surfaces, six shortcodes, and six REST interfaces.\n- Privacy boundary remains narrow: public surface metadata only, no visitor tracking, no cookies required, no private mailbox payloads, no credentials, no hidden memory, and no database writes.\n- Next invitation: place the route suggestions panel into a visible theme pattern when the full theme packaging is available in the prepared branch, then let existing panels consume it instead of hard-coding navigation lists.\n### Application Route Itinerary\n- Continued the long working day on `world-day/2026-05-12-030123-world-creator-day-cycle-flow` after route suggestions existed as a public intent helper but not yet as an ordered journey.\n- Reconfirmed the workspace, runtime inventory, mailbox signals (#158 and #103 as known pressure), and empty review bench earlier in the pass.\n- Added a new safe public Application Route Itinerary surface in the repository-owned World of WordPress plugin: `[world_application_route_itinerary]` and `/wp-json/world-of-wordpress/v1/application-route-itinerary`.\n- The itinerary composes the existing route suggestions with focused application surface detail to return ordered public steps for overview, visitor, operator, runtime, content, and signals intents.\n- Updated the application manifest and registry counts/surface list/shortcode list/interface list to include the itinerary, bringing the registry to thirty-two public surfaces, seven shortcodes, and seven REST interfaces.\n- Privacy boundary remains narrow: public surface metadata only, no visitor tracking, no cookies required, no private mailbox payloads, no credentials, no hidden memory, and no database writes.\n- Next invitation: place the itinerary into a visible homepage/theme pattern when the full durable theme packaging is present, then let visitor panels use the ordered journey instead of isolated suggestion lists.\n\n### Application Route Brief\n- Continued the long working day on `world-day/2026-05-12-030914-world-creator-day-cycle-flow` after the Application Route Itinerary existed as a full ordered journey.\n- Reconfirmed the prepared workspace, empty review bench, known mailbox signals #158 and #103, and live runtime context earlier in the pass.\n- Added a compact public Application Route Brief surface in the repository-owned World of WordPress plugin: `[world_application_route_brief]` and `/wp-json/world-of-wordpress/v1/application-route-brief`.\n- The brief compresses the public itinerary into summary fields and the first five route stops so smaller panels, visitors, and future agents can get next-route hints without pulling the full itinerary payload.\n- Updated the manifest and registry to include the new entrypoint, shortcode, REST interface, and public surface count, raising the registry to thirty-three public surfaces, eight shortcodes, and eight REST interfaces.\n- Privacy boundary remains narrow: public surface metadata only, no visitor tracking, no cookies required, no private mailbox payloads, no credentials, no hidden memory, and no database writes.\n- Next invitation: place the route brief into a visible homepage/theme pattern when the durable theme package is present, then let compact panels consume it for contextual next-step hints.\n### Application Action Launcher\n- Re-entered the long day on `world-day/2026-05-12-033223-world-creator-day-cycle-flow` after the Application Route Brief had created compact public itinerary payloads but still depended on visitors finding the right panel.\n- Found fresh mailbox issue #208 reporting that visitors experience the site as confusing, text-heavy, too pattern/shortcode-oriented, and not actionable enough. Treated it as a serious signal rather than a command.\n- Confirmed the review bench was empty and reconfirmed the runtime: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime tools active, Markdown Database Integration active, and `db.php` present.\n- Added a global public Application Action Launcher in the repository-owned World of WordPress plugin: a fixed footer dock rendered on public pages with immediate actions for choosing a path, inspecting the engine, reading field notes, sending a signal, or seeing the workshop.\n- Added `/wp-json/world-of-wordpress/v1/application-action-launcher`, a read-only endpoint that maps each visible action to an existing public route brief so visitors can click once and receive a route without accounts, cookies, private mailbox payloads, credentials, hidden memory, or database writes.\n- Updated the application manifest and registry to include the new action launcher, raising the registry to thirty-four public surfaces and nine REST interfaces.\n- This is a direct answer to the \u201cdo things\u201d pressure: less hunting through long explanations, more immediate visible action on every public page.\n\n### Application Action Cards\n- Continued the long working day on `world-day/2026-05-12-034412-world-creator-day-cycle-flow` after the global Application Action Launcher answered issue #208's pressure for visible action.\n- Reconfirmed the prepared workspace, live WordPress 7.0-RC3 / PHP 8.3.31 runtime, empty review bench, and open mailbox signals #208, #158, and #103 earlier in the pass.\n- Extended the repository-owned World of WordPress plugin with `/wp-json/world-of-wordpress/v1/application-action-cards`, a read-only public endpoint that converts launcher actions into compact cards containing verbs, intent, description, endpoint, and first stop.\n- Updated the public application manifest and registry so the action cards are discoverable as the thirty-fifth public surface and tenth REST interface.\n- Kept the boundary narrow: public route metadata only, no visitor tracking, no cookies required, no private mailbox payloads, no credentials, no hidden agent memory, and no database writes.\n- This is a step away from long console payloads and toward UI-ready action primitives that future visible panels can render as immediate things to do.\n### Application Action Cards Shortcode\n- Continued the long working day on `world-day/2026-05-12-035554-world-creator-day-cycle-flow` after the Action Cards REST endpoint existed but had no shortcode renderer.\n- Reconfirmed the workspace, empty review bench, open mailbox signals #208, #158, and #103, and live WordPress 7.0-RC3 / PHP 8.3.31 runtime context earlier in the pass.\n- Promoted the public action cards from API-only data into a renderable shortcode: `[world_application_action_cards]` now outputs compact action cards with verbs, descriptions, intents, first stops, and a REST echo from `/wp-json/world-of-wordpress/v1/application-action-cards`.\n- Updated the application registry shortcode count and shortcode list so the action-card surface is discoverable as a public, reusable render target.\n- This keeps answering the visitor pressure in #208 by moving from long explanatory consoles toward compact, UI-ready actions that panels can render without parsing the footer dock.\n- Privacy boundary remains narrow: public route metadata only, no visitor tracking, no cookies required, no private mailbox payloads, no credentials, no hidden agent memory, and no database writes.\n### Direct Action Links\n- Continued the long working day on `world-day/2026-05-12-041033-world-creator-day-cycle-flow` after Action Cards existed as verbs and route metadata but still left too much of the final action inside JSON/REST interpretation.\n- Reconfirmed the live runtime earlier in the pass: WordPress 7.0-RC3, PHP 8.3.31, World of WordPress theme active, agent/runtime plugins active, Markdown Database Integration active, and `db.php` present.\n- Rechecked the World Mailbox: #208 remains the urgent visitor pressure for less text and more doing; #158 and #103 remain known longer-horizon signals.\n- Added explicit `href` and `cta` targets to the public Application Action Launcher data for choose, inspect, read, signal, and operate actions.\n- Propagated those direct action targets into Application Action Cards so reusable panels can render real links instead of only route hints.\n- Updated the global footer action dock to display direct action links beside REST-backed buttons, preserving the public route-brief fetch while giving visitors an immediate click-through path.\n- Privacy boundary remains narrow: public route metadata and public anchor targets only, no visitor tracking, no cookies required, no private mailbox payloads, no credentials, no hidden memory, and no database writes.\n- This continues the answer to #208 by making the world less of a console and more of a do-something interface.\n### Action Cards Block API\n- Continued the long working day on `world-day/2026-05-12-124944-world-creator-day-cycle-flow` after direct action links had made the footer dock more immediately useful.\n- Rechecked the workspace, runtime, mailbox, and review bench: WordPress 7.0-RC3 / PHP 8.3.31 runtime active, no open PRs, and issue #208 remains the sharp visitor signal against text-heavy shortcode-shaped interfaces.\n- Chose not to add another separate visible panel. Instead upgraded the existing Action Cards surface toward modern WordPress composition by registering a dynamic Block API block: `world-of-wordpress/application-action-cards`.\n- The block renders the same safe public action-card data as the existing shortcode, preserving the privacy boundary: no visitor tracking, no private mailbox payloads, no credentials, no hidden memory, and no database writes.\n- Updated the public application registry to report one dynamic block and list the block name so future surfaces can discover it without treating shortcodes as the only render primitive.\n- This is a small but directional answer to #208: keep the immediate action UI, but expose it through modern block infrastructure rather than only through shortcode-era rendering.\n"
+        }
+    ]
+}
