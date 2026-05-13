@@ -2399,6 +2399,15 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
 		}
+		.world-action-launcher-riddle-options button[disabled] {
+			cursor: not-allowed;
+			opacity: 0.62;
+		}
+		.world-action-launcher-prompt.is-answered .world-action-launcher-riddle-options button[aria-pressed="true"] {
+			background: #a7f3d0;
+			border-color: rgba(167, 243, 208, 0.8);
+			color: #064e3b;
+		}
 		@media (max-width: 700px) {
 			.world-action-launcher {
 				left: 12px;
@@ -2528,10 +2537,34 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				}
 			};
 
+			const setPromptAnswered = ( prompt, isAnswered ) => {
+				if ( ! prompt ) {
+					return;
+				}
+
+				prompt.dataset.worldChallengeLocked = isAnswered ? 'true' : 'false';
+				prompt.classList.toggle( 'is-answered', isAnswered );
+				prompt.querySelectorAll( 'button[data-world-riddle-answer]' ).forEach( ( option ) => {
+					option.disabled = isAnswered;
+					if ( ! isAnswered ) {
+						option.removeAttribute( 'aria-pressed' );
+					}
+				} );
+			};
+
+			const focusFirstAnswer = () => {
+				const currentPrompt = challengePrompts[ challengeStep ];
+				const firstAnswer = currentPrompt ? currentPrompt.querySelector( 'button[data-world-riddle-answer]:not([disabled])' ) : null;
+				if ( firstAnswer && 'function' === typeof firstAnswer.focus ) {
+					firstAnswer.focus( { preventScroll: true } );
+				}
+			};
+
 			const resetChallenge = () => {
 				challengeStep = 0;
 				challengeCorrect = 0;
 				challengeFinished = false;
+				challengePrompts.forEach( ( prompt ) => setPromptAnswered( prompt, false ) );
 				showChallengeStep( 0 );
 				if ( challengeResult ) {
 					challengeResult.textContent = 'Choose carefully. The challenge remembers only while this page is open.';
@@ -2555,6 +2588,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				if ( 'function' === typeof challenge.scrollIntoView ) {
 					challenge.scrollIntoView( { block: 'nearest' } );
 				}
+				focusFirstAnswer();
 			};
 
 			const launch = ( action ) => {
@@ -2615,6 +2649,12 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				const answer = event.target.closest( 'button[data-world-riddle-answer]' );
 				if ( answer && challengeResult && challengePrompts.length && ! challengeFinished ) {
 					const prompt = answer.closest( '[data-world-challenge-prompt]' );
+					if ( ! prompt || prompt.hidden || 'true' === prompt.dataset.worldChallengeLocked ) {
+						return;
+					}
+
+					setPromptAnswered( prompt, true );
+					answer.setAttribute( 'aria-pressed', 'true' );
 					const isCorrect = !! prompt && prompt.dataset.worldChallengeCorrect === answer.dataset.worldRiddleAnswer;
 					const success = prompt ? prompt.dataset.worldChallengeSuccess : '';
 					const failure = prompt ? prompt.dataset.worldChallengeFailure : '';
@@ -2627,6 +2667,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 							if ( challengeResult ) {
 								challengeResult.textContent += ' Next choice is ready.';
 							}
+							focusFirstAnswer();
 							return;
 						}
 
@@ -2640,6 +2681,10 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 						}
 						if ( challengeRetry ) {
 							challengeRetry.hidden = perfectRun;
+						}
+						const nextControl = perfectRun ? challengeReward : challengeRetry;
+						if ( nextControl && 'function' === typeof nextControl.focus ) {
+							nextControl.focus( { preventScroll: true } );
 						}
 					}, 420 );
 					return;
