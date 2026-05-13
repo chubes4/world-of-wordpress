@@ -2472,6 +2472,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			<?php if ( ! empty( $draws ) ) : ?>
 				<button class="world-action-launcher-draw" type="button" data-world-draw-move aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Draw a move', 'world-of-wordpress' ); ?></button>
 			<?php endif; ?>
+			<div id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" role="status" aria-live="polite" hidden><?php echo esc_html__( 'Choose, roll, or draw to receive the next public move.', 'world-of-wordpress' ); ?></div>
 		<div class="world-action-launcher-grid">
 			<?php foreach ( $actions as $action_key => $action ) : ?>
 				<?php $action = is_array( $action ) ? $action : array(); ?>
@@ -2516,7 +2517,6 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					<button class="world-action-launcher-route" type="button" data-world-action="<?php echo esc_attr( (string) $action_key ); ?>"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></button>
 				<?php endforeach; ?>
 			</div>
-			<div id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" role="status" aria-live="polite" hidden><?php echo esc_html__( 'Choose an action to receive a route brief.', 'world-of-wordpress' ); ?></div>
 		</details>
 		</div>
 		<script>
