@@ -1846,6 +1846,28 @@ function world_of_wordpress_get_visitor_challenge_deck_data(): array {
 			'label' => 'Claim next path',
 			'href'  => home_url( '/#visitor-choice-dial' ),
 		),
+		'draws'            => array(
+			array(
+				'label'  => 'Touch the dock, then choose one action before reading anything else.',
+				'action' => 'choose',
+			),
+			array(
+				'label'  => 'Inspect the engine and name one runtime fact you can see.',
+				'action' => 'inspect',
+			),
+			array(
+				'label'  => 'Open field notes and skim only the first visible paragraph.',
+				'action' => 'read',
+			),
+			array(
+				'label'  => 'Take the tiny challenge. Leave no account, cookie, score, or trace.',
+				'action' => 'play',
+			),
+			array(
+				'label'  => 'Roll a path and follow the first stop that appears.',
+				'action' => 'random',
+			),
+		),
 		'prompts'          => array(
 			array(
 				'id'          => 'living-root',
@@ -2192,6 +2214,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	$actions        = (array) ( $launcher['actions'] ?? array() );
 	$challenge_deck = is_array( $launcher['challenge_deck'] ?? null ) ? $launcher['challenge_deck'] : world_of_wordpress_get_visitor_challenge_deck_data();
 	$prompts        = array_values( array_filter( (array) ( $challenge_deck['prompts'] ?? array() ), 'is_array' ) );
+	$draws          = array_values( array_filter( (array) ( $challenge_deck['draws'] ?? array() ), 'is_array' ) );
 	$reward         = is_array( $challenge_deck['reward'] ?? null ) ? $challenge_deck['reward'] : array();
 	$primary_key    = sanitize_key( (string) ( $launcher['primary_action'] ?? 'choose' ) );
 	$primary_action = is_array( $actions[ $primary_key ] ?? null ) ? $actions[ $primary_key ] : array();
@@ -2222,7 +2245,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		}
 		.world-action-launcher-toggle,
 		.world-action-launcher-primary,
-		.world-action-launcher-roll {
+		.world-action-launcher-roll,
+		.world-action-launcher-draw {
 			cursor: pointer;
 			display: inline-flex;
 			align-items: center;
@@ -2242,10 +2266,14 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			margin-left: 0.35rem;
 			background: #f8fafc;
 		}
-		.world-action-launcher-roll {
-			margin: 0 0 0.72rem;
+		.world-action-launcher-roll,
+		.world-action-launcher-draw {
+			margin: 0 0.42rem 0.72rem 0;
 			background: #fde68a;
 			box-shadow: none;
+		}
+		.world-action-launcher-draw {
+			background: #c4b5fd;
 		}
 		.world-action-launcher.is-open .world-action-launcher-primary {
 			display: none;
@@ -2255,7 +2283,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-primary:hover,
 		.world-action-launcher-primary:focus,
 		.world-action-launcher-roll:hover,
-		.world-action-launcher-roll:focus {
+		.world-action-launcher-roll:focus,
+		.world-action-launcher-draw:hover,
+		.world-action-launcher-draw:focus {
 			background: #f8fafc;
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
@@ -2439,6 +2469,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
 			<p><?php echo esc_html__( 'Six immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
 			<button class="world-action-launcher-roll" type="button" data-world-roll-path aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Roll a path', 'world-of-wordpress' ); ?></button>
+			<?php if ( ! empty( $draws ) ) : ?>
+				<button class="world-action-launcher-draw" type="button" data-world-draw-move aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Draw a move', 'world-of-wordpress' ); ?></button>
+			<?php endif; ?>
 		<div class="world-action-launcher-grid">
 			<?php foreach ( $actions as $action_key => $action ) : ?>
 				<?php $action = is_array( $action ) ? $action : array(); ?>
@@ -2497,6 +2530,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const panel = document.getElementById( dock.dataset.actionLauncherPanel );
 			const toggle = dock.querySelector( '.world-action-launcher-toggle' );
 			const rollButton = dock.querySelector( '[data-world-roll-path]' );
+			const drawButton = dock.querySelector( '[data-world-draw-move]' );
 			const routeButtons = Array.from( dock.querySelectorAll( 'button[data-world-action]' ) );
 			const challenge = dock.querySelector( '[data-world-action-challenge]' );
 			const challengePrompts = challenge ? Array.from( challenge.querySelectorAll( '[data-world-challenge-prompt]' ) ) : [];
@@ -2509,6 +2543,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			let challengeFinished = false;
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
 			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
+			const drawMoves = <?php echo wp_json_encode( $draws ); ?>;
 
 			const setOpen = ( isOpen ) => {
 				dock.classList.toggle( 'is-open', isOpen );
@@ -2658,6 +2693,37 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 
 			if ( rollButton ) {
 				rollButton.addEventListener( 'click', rollPath );
+			}
+
+			const drawMove = () => {
+				if ( ! drawButton || ! Array.isArray( drawMoves ) || ! drawMoves.length || ! readout ) {
+					return;
+				}
+
+				const selected = drawMoves[ Math.floor( Math.random() * drawMoves.length ) ] || {};
+				const label = selected.label || 'Make one small move now.';
+				const action = selected.action || '';
+				readout.hidden = false;
+				readout.textContent = 'Move: ' + label + ' No account, cookie, score, or database write.';
+				drawButton.textContent = 'Drew a move';
+
+				if ( 'play' === action ) {
+					openChallenge();
+					return;
+				}
+
+				if ( 'random' === action ) {
+					rollPath();
+					return;
+				}
+
+				if ( action ) {
+					launch( action );
+				}
+			};
+
+			if ( drawButton ) {
+				drawButton.addEventListener( 'click', drawMove );
 			}
 
 			openChallengeFromHash();
