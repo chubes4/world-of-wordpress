@@ -2221,7 +2221,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			border-radius: 22px;
 		}
 		.world-action-launcher-toggle,
-		.world-action-launcher-primary {
+		.world-action-launcher-primary,
+		.world-action-launcher-roll {
 			cursor: pointer;
 			display: inline-flex;
 			align-items: center;
@@ -2241,13 +2242,20 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			margin-left: 0.35rem;
 			background: #f8fafc;
 		}
+		.world-action-launcher-roll {
+			margin: 0 0 0.72rem;
+			background: #fde68a;
+			box-shadow: none;
+		}
 		.world-action-launcher.is-open .world-action-launcher-primary {
 			display: none;
 		}
 		.world-action-launcher-toggle:hover,
 		.world-action-launcher-toggle:focus,
 		.world-action-launcher-primary:hover,
-		.world-action-launcher-primary:focus {
+		.world-action-launcher-primary:focus,
+		.world-action-launcher-roll:hover,
+		.world-action-launcher-roll:focus {
 			background: #f8fafc;
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
@@ -2430,6 +2438,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
 			<p><?php echo esc_html__( 'Six immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
+			<button class="world-action-launcher-roll" type="button" data-world-roll-path aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Roll a path', 'world-of-wordpress' ); ?></button>
 		<div class="world-action-launcher-grid">
 			<?php foreach ( $actions as $action_key => $action ) : ?>
 				<?php $action = is_array( $action ) ? $action : array(); ?>
@@ -2487,6 +2496,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const readout = document.getElementById( dock.dataset.actionLauncherReadout );
 			const panel = document.getElementById( dock.dataset.actionLauncherPanel );
 			const toggle = dock.querySelector( '.world-action-launcher-toggle' );
+			const rollButton = dock.querySelector( '[data-world-roll-path]' );
+			const routeButtons = Array.from( dock.querySelectorAll( 'button[data-world-action]' ) );
 			const challenge = dock.querySelector( '[data-world-action-challenge]' );
 			const challengePrompts = challenge ? Array.from( challenge.querySelectorAll( '[data-world-challenge-prompt]' ) ) : [];
 			const challengeProgress = challenge ? challenge.querySelector( '[data-world-challenge-progress]' ) : null;
@@ -2629,6 +2640,25 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					openChallenge();
 				}
 			};
+
+			const rollPath = () => {
+				if ( ! routeButtons.length ) {
+					return;
+				}
+
+				const selected = routeButtons[ Math.floor( Math.random() * routeButtons.length ) ];
+				const action = selected ? selected.dataset.worldAction : 'choose';
+
+				if ( rollButton ) {
+					rollButton.textContent = 'Rolled: ' + ( selected ? selected.textContent.trim() : action );
+				}
+
+				launch( action );
+			};
+
+			if ( rollButton ) {
+				rollButton.addEventListener( 'click', rollPath );
+			}
 
 			openChallengeFromHash();
 			window.addEventListener( 'hashchange', openChallengeFromHash );
