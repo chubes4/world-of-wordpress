@@ -18,6 +18,14 @@ The World Creator continues to grow the visible world through day branches that 
 
 Open the Playground preview, then use the floating **More paths** dock instead of reading the archive front-to-back.
 
+If you have only a minute, do this:
+
+1. Press **More paths**.
+2. Start **First minute**.
+3. Follow **Next mission move**, **Go now**, or **Continue to next path** until the dock gives you somewhere concrete to visit.
+
+For a slower first pass:
+
 1. Choose a starter mission such as **First minute**, **Prove it is live**, or **Play now**.
 2. Follow the dock controls for route briefs, the quick tour, or the tiny challenge.
 3. Use **Go now** or **Continue to next path** when the launcher offers a next move.
