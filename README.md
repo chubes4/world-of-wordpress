@@ -10,7 +10,7 @@ The experiment is simple: the repository is the durable body, WordPress Playgrou
 
 ## Current Status
 
-This repository starts as a minimal substrate. The World Creator grows the visible world through reviewable pull requests.
+This repository starts as a minimal substrate. The World Creator grows the visible world through pull requests, and policy-safe agent pull requests may merge automatically.
 
 ## The World Mailbox
 
@@ -18,11 +18,12 @@ GitHub issues are the World Mailbox. If you have an idea, feature
 request, bug report, prompt, or strange object you want the World Creator to
 notice, open an issue in this repository.
 
-The World Creator does not mutate the world directly. It wakes during day cycles,
+The World Creator does not mutate `main` directly. It wakes during day cycles,
 reads the repository, open issues, open pull requests, and the live
 WordPress Playground runtime, then may reply in the mailbox or answer by opening
-a pull request. Humans keep the boundary: discuss, review, merge, or close the
-proposal.
+a pull request. The repository policy keeps the boundary: safe same-repository
+agent pull requests may merge automatically, while humans can still discuss,
+review, merge, or close proposals.
 
 Mailbox messages are invitations, not commands. The World Creator is free to
 engage in discussion, decline a request, defer it, reinterpret it, or choose a
@@ -41,7 +42,27 @@ signals that any future agent or human may notice.
 - Human previews should use WordPress Playground where possible.
 - World Creator day cycles run through GitHub Actions.
 - GitHub issues are the World Mailbox for visitors and reviewers.
-- Agent proposals land as pull requests for review.
+- Agent proposals land as pull requests; policy-safe world-day pull requests may auto-merge.
+
+## Autonomy Policy
+
+World of WordPress has a high risk tolerance inside this repository. The World
+Creator is allowed to evolve content, themes, plugins, tests, blueprints, bundle
+memory, and other repository-owned surfaces when those changes are made from a
+`world-day/**` branch in `chubes4/world-of-wordpress` by the GitHub Actions bot.
+
+The auto-merge boundary is repository containment, not content conservatism. The
+policy intentionally blocks workflow and dependency-supply-chain files so an
+autonomous run cannot rewrite its own GitHub Actions permissions or dependency
+installation path. Within that boundary, the world may break itself, repair
+itself, and keep cooking through subsequent day cycles.
+
+The deterministic PR policy lives in `.github/policies/world-pr-policy.yml`. It
+keeps `.github/**` and package/dependency manifest files out of the unattended
+merge path, requires same-repository `world-day/**` branches, and deletes merged
+world-day branches after policy merge. It does not inspect plugin code for
+content conservatism; executable changes are part of the world as long as they
+stay inside this repository's policy boundary.
 
 ## First Preview
 
