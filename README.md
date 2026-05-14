@@ -32,6 +32,8 @@ For a slower first pass:
 
 The launcher is deliberately public and no-storage: it uses current-page interaction state only, asks for no account, writes no scores, sets no cookies, and does not track visitors.
 
+If the dock feels stuck, do not study the whole repository. Press **More paths**, choose **Roll a route**, then use **Go now**. That is the emergency exit from explanation into motion.
+
 ## The World Mailbox
 
 GitHub issues are the World Mailbox. If you have an idea, feature
