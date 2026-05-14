@@ -1968,6 +1968,28 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 		),
 	);
 
+	$quick_tour = array(
+		'name'        => 'Three-move quick tour',
+		'description' => 'A no-storage starter route for impatient visitors: choose, inspect, then read one field note.',
+		'steps'       => array(
+			array(
+				'action' => 'choose',
+				'label'  => 'Choose a path',
+				'hint'   => 'Start with a visible choice instead of the long map.',
+			),
+			array(
+				'action' => 'inspect',
+				'label'  => 'Inspect the engine',
+				'hint'   => 'Confirm this is live WordPress application software.',
+			),
+			array(
+				'action' => 'read',
+				'label'  => 'Read one field note',
+				'hint'   => 'Leave after the first paragraph if the world has not earned more time.',
+			),
+		),
+	);
+
 	$action = sanitize_key( $action );
 	if ( ! isset( $actions[ $action ] ) ) {
 		$action = 'choose';
@@ -1983,6 +2005,7 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 		'selected'          => $selected,
 		'actions'           => $actions,
 		'primary_action'    => 'choose',
+		'quick_tour'        => $quick_tour,
 		'challenge_deck'    => world_of_wordpress_get_visitor_challenge_deck_data(),
 		'route_brief'       => $route_brief,
 		'interface'         => '/wp-json/world-of-wordpress/v1/application-action-launcher?action=' . rawurlencode( $action ),
@@ -2212,6 +2235,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	$launcher       = world_of_wordpress_get_application_action_launcher_data();
 	$rest_url       = rest_url( 'world-of-wordpress/v1/application-action-launcher' );
 	$actions        = (array) ( $launcher['actions'] ?? array() );
+	$quick_tour     = is_array( $launcher['quick_tour'] ?? null ) ? $launcher['quick_tour'] : array();
 	$challenge_deck = is_array( $launcher['challenge_deck'] ?? null ) ? $launcher['challenge_deck'] : world_of_wordpress_get_visitor_challenge_deck_data();
 	$prompts        = array_values( array_filter( (array) ( $challenge_deck['prompts'] ?? array() ), 'is_array' ) );
 	$draws          = array_values( array_filter( (array) ( $challenge_deck['draws'] ?? array() ), 'is_array' ) );
@@ -2247,7 +2271,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-primary,
 		.world-action-launcher-surprise,
 		.world-action-launcher-roll,
-		.world-action-launcher-draw {
+		.world-action-launcher-draw,
+		.world-action-launcher-tour-next {
 			cursor: pointer;
 			display: inline-flex;
 			align-items: center;
@@ -2282,6 +2307,30 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-draw {
 			background: #c4b5fd;
 		}
+		.world-action-launcher-tour {
+			margin: 0.7rem 0;
+			padding: 0.7rem;
+			border: 1px solid rgba(253, 230, 138, 0.32);
+			border-radius: 16px;
+			background: rgba(253, 230, 138, 0.1);
+		}
+		.world-action-launcher-tour ol {
+			margin: 0.5rem 0 0;
+			padding-left: 1.1rem;
+		}
+		.world-action-launcher-tour li {
+			margin: 0.35rem 0;
+			color: rgba(248, 250, 252, 0.78);
+		}
+		.world-action-launcher-tour li.is-current {
+			color: #fde68a;
+			font-weight: 900;
+		}
+		.world-action-launcher-tour-next {
+			margin-top: 0.58rem;
+			background: #fde68a;
+			box-shadow: none;
+		}
 		.world-action-launcher.is-open .world-action-launcher-primary,
 		.world-action-launcher.is-open .world-action-launcher-surprise {
 			display: none;
@@ -2295,7 +2344,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-roll:hover,
 		.world-action-launcher-roll:focus,
 		.world-action-launcher-draw:hover,
-		.world-action-launcher-draw:focus {
+		.world-action-launcher-draw:focus,
+		.world-action-launcher-tour-next:hover,
+		.world-action-launcher-tour-next:focus {
 			background: #f8fafc;
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
@@ -2479,6 +2530,20 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
 			<p><?php echo esc_html__( 'Six immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
+			<?php if ( ! empty( $quick_tour['steps'] ) && is_array( $quick_tour['steps'] ) ) : ?>
+				<section class="world-action-launcher-tour" data-world-quick-tour aria-label="<?php echo esc_attr( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?>">
+					<strong><?php echo esc_html( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?></strong>
+					<p><?php echo esc_html( (string) ( $quick_tour['description'] ?? __( 'Move through three starter actions without storing anything.', 'world-of-wordpress' ) ) ); ?></p>
+					<ol data-world-quick-tour-steps>
+						<?php foreach ( array_values( array_filter( (array) $quick_tour['steps'], 'is_array' ) ) as $tour_index => $tour_step ) : ?>
+							<li data-world-tour-step="<?php echo esc_attr( (string) $tour_index ); ?>" data-world-tour-action="<?php echo esc_attr( sanitize_key( (string) ( $tour_step['action'] ?? '' ) ) ); ?>" <?php echo 0 === $tour_index ? 'class="is-current"' : ''; ?>>
+								<?php echo esc_html( (string) ( $tour_step['label'] ?? __( 'Move', 'world-of-wordpress' ) ) ); ?> — <?php echo esc_html( (string) ( $tour_step['hint'] ?? '' ) ); ?>
+							</li>
+						<?php endforeach; ?>
+					</ol>
+					<button class="world-action-launcher-tour-next" type="button" data-world-quick-tour-next aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Start quick tour', 'world-of-wordpress' ); ?></button>
+				</section>
+			<?php endif; ?>
 			<button class="world-action-launcher-roll" type="button" data-world-roll-path aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Roll a path', 'world-of-wordpress' ); ?></button>
 			<?php if ( ! empty( $draws ) ) : ?>
 				<button class="world-action-launcher-draw" type="button" data-world-draw-move aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Draw a move', 'world-of-wordpress' ); ?></button>
@@ -2543,6 +2608,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const surpriseButton = dock.querySelector( '[data-world-surprise]' );
 			const rollButton = dock.querySelector( '[data-world-roll-path]' );
 			const drawButton = dock.querySelector( '[data-world-draw-move]' );
+			const quickTour = dock.querySelector( '[data-world-quick-tour]' );
+			const quickTourButton = dock.querySelector( '[data-world-quick-tour-next]' );
+			const quickTourSteps = quickTour ? Array.from( quickTour.querySelectorAll( '[data-world-tour-step]' ) ) : [];
 			const routeButtons = Array.from( dock.querySelectorAll( 'button[data-world-action]' ) );
 			const challenge = dock.querySelector( '[data-world-action-challenge]' );
 			const challengePrompts = challenge ? Array.from( challenge.querySelectorAll( '[data-world-challenge-prompt]' ) ) : [];
@@ -2553,6 +2621,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			let challengeStep = 0;
 			let challengeCorrect = 0;
 			let challengeFinished = false;
+			let quickTourStep = 0;
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
 			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
 			const drawMoves = <?php echo wp_json_encode( $draws ); ?>;
@@ -2681,6 +2750,50 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 						readout.textContent = 'The action dock is visible, but its public REST route could not be fetched in this runtime.';
 					} );
 			};
+
+			const updateQuickTour = () => {
+				if ( ! quickTourSteps.length || ! quickTourButton ) {
+					return;
+				}
+
+				quickTourSteps.forEach( ( step, index ) => {
+					step.classList.toggle( 'is-current', index === quickTourStep );
+				} );
+				quickTourButton.textContent = quickTourStep >= quickTourSteps.length ? 'Restart quick tour' : ( quickTourStep ? 'Next tour move' : 'Start quick tour' );
+			};
+
+			const advanceQuickTour = () => {
+				if ( ! quickTourSteps.length || ! readout ) {
+					return;
+				}
+
+				if ( quickTourStep >= quickTourSteps.length ) {
+					quickTourStep = 0;
+				}
+
+				const step = quickTourSteps[ quickTourStep ];
+				const action = step ? step.dataset.worldTourAction : 'choose';
+				const label = step ? step.textContent.trim().replace( /\s+/g, ' ' ) : 'Choose a path';
+				readout.hidden = false;
+				readout.textContent = 'Quick tour move ' + ( quickTourStep + 1 ) + ' of ' + quickTourSteps.length + ': ' + label + ' No account, cookie, stored preference, score, or database write.';
+				launch( action || 'choose' );
+				quickTourStep += 1;
+
+				if ( quickTourStep >= quickTourSteps.length ) {
+					quickTourSteps.forEach( ( tourStep ) => tourStep.classList.remove( 'is-current' ) );
+					if ( quickTourButton ) {
+						quickTourButton.textContent = 'Restart quick tour';
+					}
+					return;
+				}
+
+				updateQuickTour();
+			};
+
+			if ( quickTourButton ) {
+				quickTourButton.addEventListener( 'click', advanceQuickTour );
+				updateQuickTour();
+			}
 
 			const openChallengeFromHash = () => {
 				if ( '#world-action-launcher-challenge' === window.location.hash ) {
