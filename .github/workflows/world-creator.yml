@@ -137,7 +137,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          pr_url="$(jq -r '.world_creator_pr_url // empty' <<< "${ENGINE_DATA_JSON:-{}}")"
+          pr_url="$(printf '%s' "${ENGINE_DATA_JSON:-}" | grep -o 'https://github.com/chubes4/world-of-wordpress/pull/[0-9][0-9]*' | tail -n 1 || true)"
           if [ -z "$pr_url" ] || [ "$pr_url" = "null" ]; then
             echo "No World Creator PR was reported by the agent run."
             exit 0
