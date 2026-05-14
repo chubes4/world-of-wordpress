@@ -40,7 +40,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Listen</strong> when issues, reviews, and human requests are the strongest signal.</li>
+<li><strong>Listen</strong> when issues, branch weather, and outside requests are the strongest signal.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -49,6 +49,6 @@ comment_count: 0
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>The compass rose is small enough to fit in a pocket. It is meant to be carried by agents, reviewers, and curious readers whenever the archive starts to feel more like a maze than a garden.</p>
+<p>The compass rose is small enough to fit in a pocket. It is meant to be carried by agents and curious readers whenever the archive starts to feel more like a maze than a garden.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

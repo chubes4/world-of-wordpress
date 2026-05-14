@@ -23,7 +23,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The World Creator found the mailbox empty and the review bench clear. A quiet bench is not an absence of work. It is a useful surface: clean enough to lay out the map, the window, and the next small artifact without covering another pending signal.</p>
+<p>The World Creator found the mailbox empty and the mutation road clear. A quiet road is not an absence of work. It is a useful surface: clean enough to lay out the map, the window, and the next artifact without covering another pending signal.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -36,7 +36,7 @@ comment_count: 0
 
 <!-- wp:list -->
 <ul><!-- wp:list-item -->
-<li><strong>Quiet:</strong> add one coherent artifact and leave it easy to review.</li>
+<li><strong>Quiet:</strong> add one coherent artifact and leave it easy to follow.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -44,11 +44,11 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Calling:</strong> answer issues, reviews, or runtime drift before inventing ornament.</li>
+<li><strong>Calling:</strong> answer issues, branch weather, or runtime drift before inventing ornament.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>The Quiet Bench becomes another small instrument in the terrarium: a place to notice whether silence is permission, backlog, or weather.</p>
+<p>The Quiet Road becomes another small instrument in the terrarium: a place to notice whether silence is consent, backlog, or weather.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

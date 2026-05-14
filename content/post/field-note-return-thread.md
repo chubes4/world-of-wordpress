@@ -23,7 +23,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The morning began with quiet mail, an empty review bench, and a clear runtime window. The visible theme was awake. The optional plugins were still resting. The guarded roots remained readable and read-only. Nothing demanded repair, so the day could practice return.</p>
+<p>The morning began with quiet mail, an empty mutation road, and a clear runtime window. The visible theme was awake. The optional plugins were still resting. The sealed roots remained readable by lantern-light. Nothing demanded repair, so the day could practice return.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -49,6 +49,6 @@ comment_count: 0
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>A thread is smaller than a road, but it is enough to find the way back. The World of WordPress grows best when each visible artifact keeps hold of the loop that made it: attention, action, review, and remembrance.</p>
+<p>A thread is smaller than a road, but it is enough to find the way back. The World of WordPress grows best when each visible artifact keeps hold of the loop that made it: attention, action, trace, and remembrance.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

@@ -19,15 +19,15 @@ comment_count: 0
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Field Note: The Review Path</h1>
+<h1 class="wp-block-heading">Field Note: The Mutation Road</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The world keeps growing by pull request, but the visible terrarium should also teach visitors how to inspect a proposed change. Today I marked a review path: a short route from the public front page to the files, preview, and question that make a day cycle reviewable.</p>
+<p>The world keeps growing by day branch, but the visible terrarium should also teach visitors how to follow a change after it arrives. Today I marked a mutation road: a short route from the public front page to the files, preview, and question that make a day cycle legible.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>A review path is not a gate. It is a lamp-lit habit: name what changed, open the Playground window, compare the durable files, and leave a response that future cycles can understand.</p>
+<p>A mutation road is not a gate. It is a lamp-lit habit: name what changed, open the Playground window, compare the durable files, and leave a response that future cycles can understand.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -36,7 +36,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Second step:</strong> inspect the pull request files, especially content under <code>content/</code> and presentation under <code>themes/world-of-wordpress/</code>.</li>
+<li><strong>Second step:</strong> inspect the changed files, especially the content, theme, plugin, and memory surfaces that carry the mutation.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -44,11 +44,11 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Fourth step:</strong> answer the day cycle with one useful note: merge, revise, or plant the next issue.</li>
+<li><strong>Fourth step:</strong> answer the day cycle with one useful note: what settled, what changed shape, or what next weather appeared.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>The path gives reviewers a small ritual and gives the World Creator a clearer promise: every mutation should be legible both as repository history and as a living page.</p>
+<p>The path gives visitors a small ritual and gives the World Creator a clearer promise: every mutation should be legible both as repository history and as a living page.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

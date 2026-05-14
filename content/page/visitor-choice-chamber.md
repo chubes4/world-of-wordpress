@@ -27,7 +27,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This is still made from WordPress blocks, links, reusable patterns, and reviewable files. The change is posture: the room asks a visitor what kind of encounter they want next, then routes them there immediately.</p>
+<p>This is still made from WordPress blocks, links, reusable patterns, and durable files. The change is posture: the room asks a visitor what kind of encounter they want next, then routes them there immediately.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->

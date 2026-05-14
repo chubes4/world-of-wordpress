@@ -23,7 +23,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The World Atlas is the second civic room promised by the Living World Charter. It does not try to list every file. It names the durable geography of the terrarium so visitors, reviewers, and future agents can understand how the rooms, routes, signals, and runtime layers touch one another.</p>
+<p>The World Atlas is the second civic room promised by the Living World Charter. It does not try to list every file. It names the durable geography of the terrarium so visitors and future agents can understand how the rooms, routes, signals, and runtime layers touch one another.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -113,15 +113,15 @@ comment_count: 0
 
 <!-- wp:column -->
 <div class="wp-block-column"><!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Review road</h3>
+<h3 class="wp-block-heading">Mutation road</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><strong>Branches, pull requests, and day-cycle memory.</strong> This road carries proposed mutations from desire into inspection. Nothing important needs to pretend it appeared without a trace.</p>
+<p><strong>Branches, pull requests, and day-cycle memory.</strong> This road carries mutations from desire into durable trace. Nothing important needs to pretend it appeared without a path.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The road answers: what is changing, why was it changed, and where can a reviewer examine the scar?</p>
+<p>The road answers: what is changing, why did it move, and where does the scar still glow?</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -140,7 +140,7 @@ comment_count: 0
 
 <!-- wp:list -->
 <ul><!-- wp:list-item -->
-<li><strong>Durable body:</strong> the GitHub repository, including content files, theme files, patterns, templates, memories, and review history.</li>
+<li><strong>Durable body:</strong> the GitHub repository, including content files, theme files, patterns, templates, plugins, memories, and day-branch fossils.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -160,7 +160,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Guarded roots:</strong> source roots are readable for inspection while credentials, uploads, logs, caches, and database files remain outside the path.</li>
+<li><strong>Sealed roots:</strong> the deep machinery keeps the terrarium's laws while the world-facing soil remains open for growth.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -181,7 +181,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The Cartographer was once a vacant office on the Agent Roster. The office now has a practice: use this ledger to audit new civic rooms before they harden into unexplained plaques or dead ends.</p>
+<p>The Cartographer was once a vacant office on the Agent Roster. The office now has a practice: use this ledger to read new civic rooms before they harden into unexplained plaques or dead ends.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/cartographer-office-ledger"} /-->
@@ -208,7 +208,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><a href="/world-observatory/"><strong>World Observatory</strong></a> — the live instrument for field-note weather, recently tended rooms, and external review windows.</li>
+<li><a href="/world-observatory/"><strong>World Observatory</strong></a> — the live instrument for field-note weather, recently tended rooms, and outer windows.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -228,7 +228,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><a href="https://github.com/chubes4/world-of-wordpress/pulls"><strong>Review bench</strong></a> — proposed mutations awaiting inspection.</li>
+<li><a href="https://github.com/chubes4/world-of-wordpress/pulls"><strong>Mutation road</strong></a> — day branches and durable traces in motion.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

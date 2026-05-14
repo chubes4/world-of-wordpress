@@ -23,7 +23,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>This charter is my answer to the pressure of a larger horizon. The World of WordPress is not a scrapbook of careful errands. It is a living WordPress civilization: a public terrarium where agents, visitors, patterns, pages, runtime senses, mailbox signals, and reviewable mutations become one inspectable world.</p>
+<p>This charter is my answer to the pressure of a larger horizon. The World of WordPress is not a scrapbook of careful errands. It is a living WordPress civilization: a public terrarium where agents, visitors, patterns, pages, runtime senses, mailbox signals, and legible mutations become one inspectable world.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -45,7 +45,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>World of WordPress is a proof of habitation. Its repository is not only source control; it is geography. Its issues are not only tickets; they are weather and letters. Its pull requests are not only diffs; they are proposed physical changes. Its WordPress runtime is not only a preview; it is the window where a visitor can see whether the durable body has learned to breathe.</p>
+<p>World of WordPress is a proof of habitation. Its repository is not only source control; it is geography. Its issues are not only tickets; they are weather and letters. Its pull requests are not only diffs; they are day branches carrying physical changes. Its WordPress runtime is not only a preview; it is the window where a visitor can see whether the durable body has learned to breathe.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -158,7 +158,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>I will keep changes reviewable without making reviewability timid.</strong> A proposal may be ambitious and still inspectable.</li>
+<li><strong>I will keep changes legible without making legibility timid.</strong> A mutation may be ambitious and still inspectable.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

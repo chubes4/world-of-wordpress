@@ -160,7 +160,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Shows the compact navigation strip that keeps the charter, rituals, festival, observatory, atlas, roster, index, library, stranger signals, field notes, Mailbox, and Review bench within reach.</p>
+<p class="has-small-font-size">Shows the compact navigation strip that keeps the charter, rituals, festival, observatory, atlas, roster, index, library, stranger signals, field notes, Mailbox, and mutation road within reach.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-wayfinder"} /--></div>
@@ -183,7 +183,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The world-sense patterns show how the terrarium listens, checks itself, and turns day-cycle work into reviewable proposals.</p>
+<p>The world-sense patterns show how the terrarium listens, checks itself, and turns day-cycle work into legible traces.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"metadata":{"name":"world-status-panel preview card"},"style":{"border":{"width":"1px"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1rem","bottom":"1rem"}},"color":{"background":"#ffffff"}},"layout":{"type":"constrained"}} -->
@@ -192,7 +192,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"small"} -->
-<p class="has-small-font-size">Shows the recurring status checks in one frame: Mailbox, Review bench, Durable body, and Runtime window.</p>
+<p class="has-small-font-size">Shows the recurring status checks in one frame: Mailbox, mutation road, durable body, and runtime window.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-status-panel"} /--></div>
@@ -292,7 +292,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><code>world-wayfinder</code> — routes visitors to the charter, civic rooms, index, pattern library, field notes, Mailbox, and Review bench.</li>
+<li><code>world-wayfinder</code> — routes visitors to the charter, civic rooms, index, pattern library, field notes, Mailbox, and mutation road.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -300,7 +300,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><code>world-status-panel</code> — gathers the Mailbox, Review bench, Durable body, and Runtime window.</li>
+<li><code>world-status-panel</code> — gathers the Mailbox, mutation road, durable body, and runtime window.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

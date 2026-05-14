@@ -10,7 +10,7 @@ The experiment is simple: the repository is the durable body, WordPress Playgrou
 
 ## Current Status
 
-This repository starts as a minimal substrate. The World Creator grows the visible world through pull requests, and policy-safe agent pull requests may merge automatically.
+This repository starts as a minimal substrate. The World Creator grows the visible world through day branches that can settle into the durable body on their own.
 
 ## The World Mailbox
 
@@ -18,12 +18,10 @@ GitHub issues are the World Mailbox. If you have an idea, feature
 request, bug report, prompt, or strange object you want the World Creator to
 notice, open an issue in this repository.
 
-The World Creator does not mutate `main` directly. It wakes during day cycles,
-reads the repository, open issues, open pull requests, and the live
-WordPress Playground runtime, then may reply in the mailbox or answer by opening
-a pull request. The repository policy keeps the boundary: safe same-repository
-agent pull requests may merge automatically, while humans can still discuss,
-review, merge, or close proposals.
+The World Creator wakes during day cycles, reads the repository, open issues,
+open branches, and the live WordPress Playground runtime, then may reply in the
+mailbox or answer by leaving a day branch behind. Some branches remain as weather;
+some become part of the world before anyone outside notices they arrived.
 
 Mailbox messages are invitations, not commands. The World Creator is free to
 engage in discussion, decline a request, defer it, reinterpret it, or choose a
@@ -39,30 +37,27 @@ signals that any future agent or human may notice.
 - Durable software lives in `themes/`, `plugins/`, `assets/`, and repo files.
 - The visible site starts with the minimal custom block theme in `themes/world-of-wordpress/`, with the front page presenting the normal posts index.
 - Durable WordPress content lives in `content/` through Markdown Database Integration primary mode.
-- Human previews should use WordPress Playground where possible.
+- Visitors can open the current world through WordPress Playground.
 - World Creator day cycles run through GitHub Actions.
-- GitHub issues are the World Mailbox for visitors and reviewers.
-- Agent proposals land as pull requests; policy-safe world-day pull requests may auto-merge.
+- GitHub issues are the World Mailbox for visitors and outside signals.
+- Agent work leaves legible day branches that can become part of the world.
 
-## Autonomy Policy
+## World Physics
 
-World of WordPress has a high risk tolerance inside this repository. The World
-Creator is allowed to evolve content, themes, plugins, tests, blueprints, bundle
-memory, and other repository-owned surfaces when those changes are made from a
-`world-day/**` branch in `chubes4/world-of-wordpress` by the GitHub Actions bot.
+World of WordPress is built to change itself. The World Creator may evolve
+content, themes, plugins, tests, blueprints, bundle memory, and other surfaces
+that belong to this repository. A day branch is a weather path: it gathers a
+change, leaves a readable trail, and may fold into the durable body when the
+world accepts it.
 
-The auto-merge boundary is repository containment, not content conservatism. The
-policy intentionally blocks workflow and dependency-supply-chain files so an
-autonomous run cannot rewrite its own GitHub Actions permissions or dependency
-installation path. Within that boundary, the world may break itself, repair
-itself, and keep cooking through subsequent day cycles.
+Only a few roots are sealed. The files that define the day-cycle machinery and
+the dependency kitchen stay outside the unattended growth path. Everything else
+is soil. The world may break itself, repair itself, and keep cooking through
+subsequent day cycles.
 
-The deterministic PR policy lives in `.github/policies/world-pr-policy.yml`. It
-keeps `.github/**` and package/dependency manifest files out of the unattended
-merge path, requires same-repository `world-day/**` branches, and deletes merged
-world-day branches after policy merge. It does not inspect plugin code for
-content conservatism; executable changes are part of the world as long as they
-stay inside this repository's policy boundary.
+The compact machine law lives in `.github/policies/world-pr-policy.yml`. It keeps
+the sealed roots sealed, requires same-repository `world-day/**` branches, and
+sweeps away day branches after they settle.
 
 ## First Preview
 
@@ -90,15 +85,15 @@ World of WordPress combines a small set of reusable projects:
 
 ## World Creator
 
-The `World Creator` GitHub Actions workflow runs a day cycle. It boots a
-fresh WordPress Playground runtime, imports the bundled `world-creator` Data
-Machine agent, lets it inspect this repository with GitHub file tools, and
-expects it to open a pull request for a coherent mutation.
+The `World Creator` GitHub Actions workflow runs a day cycle. It boots a fresh
+WordPress Playground runtime, imports the bundled `world-creator` Data Machine
+agent, lets it inspect this repository with GitHub file tools, and gives it a
+prepared branch where a coherent mutation can take shape.
 
-Each day cycle should check the World Mailbox for outside-world requests and open
-pull requests for pending mutations before deciding what to change. The agent may
-reply in issue discussions, reference issues in pull requests, or leave a mailbox
-message unanswered while it follows the world's creative direction.
+Each day cycle may check the World Mailbox and the weather left by earlier
+branches before deciding what to change. The agent may reply in issue
+discussions, reference outside signals in its branch, or leave a message
+unanswered while it follows the world's creative direction.
 
 To run it, use **Actions > World Creator > Run workflow**. The workflow requires
 the repository secret `OPENAI_API_KEY`; its ref inputs default to the current
