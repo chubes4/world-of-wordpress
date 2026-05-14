@@ -1840,10 +1840,10 @@ function world_of_wordpress_get_visitor_challenge_deck_data(): array {
 		'purpose'          => 'Three tiny in-page challenges that make visitors learn the world by choosing, not by reading a long console. The deck is directly linkable from public action cards and the footer dock.',
 		'state'            => 'current page memory only; no persistence',
 		'completion_label' => 'Perfect run. You found the living path without leaving a trace.',
-		'incomplete_label' => 'Run complete, but the path is not fully aligned yet. Try again without leaving a trace.',
-		'retry_label'      => 'Try again',
+		'incomplete_label' => 'Run complete. The path still opens; try again only if you want a cleaner run.',
+		'retry_label'      => 'Try for perfect',
 		'reward'           => array(
-			'label' => 'Claim next path',
+			'label' => 'Continue to next path',
 			'href'  => home_url( '/#visitor-choice-dial' ),
 		),
 		'draws'            => array(
@@ -2814,12 +2814,12 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 							challengeProgress.textContent = ( perfectRun ? ( challenge.dataset.worldChallengeComplete || 'Perfect run.' ) : ( challenge.dataset.worldChallengeIncomplete || 'Run complete.' ) ) + ' Correct choices on this page: ' + challengeCorrect + ' of ' + challengePrompts.length + '.';
 						}
 						if ( challengeReward ) {
-							challengeReward.hidden = ! perfectRun;
+							challengeReward.hidden = false;
 						}
 						if ( challengeRetry ) {
 							challengeRetry.hidden = perfectRun;
 						}
-						const nextControl = perfectRun ? challengeReward : challengeRetry;
+						const nextControl = challengeReward || ( perfectRun ? null : challengeRetry );
 						if ( nextControl && 'function' === typeof nextControl.focus ) {
 							nextControl.focus( { preventScroll: true } );
 						}
