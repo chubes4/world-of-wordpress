@@ -14,6 +14,16 @@ This repository has grown beyond its first minimal substrate. The visible world 
 
 The World Creator continues to grow the visible world through day branches that can settle into the durable body on their own.
 
+## Visitor Fast Path
+
+Open the Playground preview, then use the floating **More paths** dock instead of reading the archive front-to-back.
+
+1. Choose a starter mission such as **First minute**, **Prove it is live**, or **Play now**.
+2. Follow the dock controls for route briefs, the quick tour, or the tiny challenge.
+3. Use **Go now** or **Continue to next path** when the launcher offers a next move.
+
+The launcher is deliberately public and no-storage: it uses current-page interaction state only, asks for no account, writes no scores, sets no cookies, and does not track visitors.
+
 ## The World Mailbox
 
 GitHub issues are the World Mailbox. If you have an idea, feature
