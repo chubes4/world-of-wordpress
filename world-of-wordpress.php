@@ -2352,6 +2352,25 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-mission-card p {
 			margin: 0;
 		}
+		.world-action-launcher-mission-steps {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.32rem;
+			margin: 0.05rem 0 0.1rem;
+			padding: 0;
+			list-style: none;
+		}
+		.world-action-launcher-mission-steps li {
+			margin: 0;
+			border: 1px solid rgba(167, 243, 208, 0.24);
+			border-radius: 999px;
+			padding: 0.24rem 0.42rem;
+			background: rgba(15, 23, 42, 0.28);
+			color: rgba(248, 250, 252, 0.78);
+			font-size: 0.68rem;
+			font-weight: 800;
+			line-height: 1;
+		}
 		.world-action-launcher-mission,
 		.world-action-launcher-mission-next {
 			width: fit-content;
@@ -2626,6 +2645,14 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 						<section class="world-action-launcher-mission-card">
 							<strong><?php echo esc_html( (string) ( $mission['label'] ?? $mission_key ) ); ?></strong>
 							<p><?php echo esc_html( (string) ( $mission['description'] ?? '' ) ); ?></p>
+							<?php if ( ! empty( $mission_actions ) ) : ?>
+								<ol class="world-action-launcher-mission-steps" aria-label="<?php echo esc_attr__( 'Mission move preview', 'world-of-wordpress' ); ?>">
+									<?php foreach ( $mission_actions as $mission_action ) : ?>
+										<?php $mission_action_data = is_array( $actions[ $mission_action ] ?? null ) ? $actions[ $mission_action ] : array(); ?>
+										<li><?php echo esc_html( (string) ( $mission_action_data['label'] ?? $mission_action ) ); ?></li>
+									<?php endforeach; ?>
+								</ol>
+							<?php endif; ?>
 							<button class="world-action-launcher-mission" type="button" data-world-mission="<?php echo esc_attr( (string) $mission_key ); ?>" data-world-mission-actions="<?php echo esc_attr( wp_json_encode( $mission_actions ) ); ?>" data-world-mission-href="<?php echo esc_url( (string) ( $mission['href'] ?? '' ) ); ?>" aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html( (string) ( $mission['cta'] ?? __( 'Start mission', 'world-of-wordpress' ) ) ); ?></button>
 						</section>
 					<?php endforeach; ?>
