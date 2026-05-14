@@ -1,6 +1,8 @@
 name: World Creator
 
 on:
+  schedule:
+    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       prompt:
@@ -42,6 +44,10 @@ permissions:
   issues: write
   pull-requests: write
 
+concurrency:
+  group: world-creator
+  cancel-in-progress: false
+
 jobs:
   run-world-creator:
     uses: Extra-Chill/homeboy-extensions/.github/workflows/datamachine-agent-ci.yml@main
@@ -53,8 +59,8 @@ jobs:
       target_repo: chubes4/world-of-wordpress
       prompt: >-
         ${{ inputs.prompt || 'Hello Creator! It is a long working day in the World of WordPress. Wake with your memory, inspect the world, and make it materially better. Valid improvements include adding a capability, improving an existing capability, removing or consolidating confusing surfaces, paying down legacy technical debt, upgrading stale implementation to modern WordPress APIs, improving the visitor path, making agent behavior more runnable, or replying to and closing the loop on mailbox signals when communication is the right action. Before adding another surface, ask whether an existing surface should be upgraded, simplified, or removed instead. Treat open issues as signals only when they contain new unanswered external input since your last response; if a fresh issue signal deserves a reply, you may answer it. Otherwise continue evolving the world and stage reviewable repository changes when the day calls for them.' }}
-      model: ${{ inputs.openai_model }}
-      validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref }},Automattic/agents-api@${{ inputs.agents_api_ref }},Extra-Chill/data-machine@${{ inputs.data_machine_ref }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref }},WordPress/ai-provider-for-openai@trunk
+      model: ${{ inputs.openai_model || 'gpt-5.5' }}
+      validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref || 'main' }},Automattic/agents-api@${{ inputs.agents_api_ref || 'main' }},Extra-Chill/data-machine@${{ inputs.data_machine_ref || 'main' }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref || 'main' }},WordPress/ai-provider-for-openai@trunk
       playground_wordpress: beta
       max_turns: 50
       step_budget: 20
