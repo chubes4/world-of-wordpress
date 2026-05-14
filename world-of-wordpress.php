@@ -2450,10 +2450,30 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			white-space: normal;
 		}
 		.world-action-launcher-output[hidden],
+		.world-action-launcher-go[hidden],
 		.world-action-launcher-challenge[hidden],
 		.world-action-launcher-reward[hidden],
 		.world-action-launcher-retry[hidden] {
 			display: none;
+		}
+		.world-action-launcher-go {
+			display: inline-flex;
+			margin-top: 0.58rem;
+			border-radius: 999px;
+			padding: 0.58rem 0.78rem;
+			background: #a7f3d0;
+			color: #111827;
+			font-size: 0.78rem;
+			font-weight: 900;
+			line-height: 1;
+			text-decoration: none;
+		}
+		.world-action-launcher-go:hover,
+		.world-action-launcher-go:focus {
+			background: #f8fafc;
+			color: #111827;
+			outline: 2px solid rgba(167, 243, 208, 0.55);
+			outline-offset: 2px;
 		}
 		.world-action-launcher-reward,
 		.world-action-launcher-retry {
@@ -2549,6 +2569,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				<button class="world-action-launcher-draw" type="button" data-world-draw-move aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Draw a move', 'world-of-wordpress' ); ?></button>
 			<?php endif; ?>
 			<div id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" role="status" aria-live="polite" hidden><?php echo esc_html__( 'Choose, roll, or draw to receive the next public move.', 'world-of-wordpress' ); ?></div>
+			<a class="world-action-launcher-go" href="#" data-world-route-go hidden><?php echo esc_html__( 'Go now', 'world-of-wordpress' ); ?></a>
 		<div class="world-action-launcher-grid">
 			<?php foreach ( $actions as $action_key => $action ) : ?>
 				<?php $action = is_array( $action ) ? $action : array(); ?>
@@ -2608,6 +2629,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const surpriseButton = dock.querySelector( '[data-world-surprise]' );
 			const rollButton = dock.querySelector( '[data-world-roll-path]' );
 			const drawButton = dock.querySelector( '[data-world-draw-move]' );
+			const routeGoLink = dock.querySelector( '[data-world-route-go]' );
 			const quickTour = dock.querySelector( '[data-world-quick-tour]' );
 			const quickTourButton = dock.querySelector( '[data-world-quick-tour-next]' );
 			const quickTourSteps = quickTour ? Array.from( quickTour.querySelectorAll( '[data-world-tour-step]' ) ) : [];
@@ -2723,6 +2745,11 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					return;
 				}
 
+				if ( routeGoLink ) {
+					routeGoLink.hidden = true;
+					routeGoLink.removeAttribute( 'href' );
+				}
+
 				if ( ! window.fetch ) {
 					readout.hidden = false;
 					readout.textContent = 'Direct action links remain available; route tools need fetch support in this runtime.';
@@ -2745,9 +2772,17 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 						const stops = Array.isArray( brief.brief ) ? brief.brief.slice( 0, 3 ).map( ( stop ) => stop.slug ).filter( Boolean ) : [];
 						const intent = data.selected ? data.selected.intent : '';
 						readout.textContent = 'Route: ' + ( data.action || 'choose' ) + ( intent ? ' / ' + intent : '' ) + '. First stop: ' + ( summary.first_stop || stops[0] || 'available path' ) + ( stops.length ? '. Next: ' + stops.join( ' → ' ) : '' ) + '. Public route metadata only.';
+						if ( routeGoLink && data.selected && data.selected.href ) {
+							routeGoLink.href = data.selected.href;
+							routeGoLink.textContent = data.selected.cta || 'Go now';
+							routeGoLink.hidden = false;
+						}
 					} )
 					.catch( () => {
 						readout.textContent = 'The action dock is visible, but its public REST route could not be fetched in this runtime.';
+						if ( routeGoLink ) {
+							routeGoLink.hidden = true;
+						}
 					} );
 			};
 
