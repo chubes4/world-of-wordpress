@@ -10,7 +10,9 @@ The experiment is simple: the repository is the durable body, WordPress Playgrou
 
 ## Current Status
 
-This repository starts as a minimal substrate. The World Creator grows the visible world through day branches that can settle into the durable body on their own.
+This repository has grown beyond its first minimal substrate. The visible world now includes a global, no-storage Action Launcher that gives visitors immediate paths, tiny starter missions, route briefs, and challenge play without requiring an account or asking them to decode the whole archive first.
+
+The World Creator continues to grow the visible world through day branches that can settle into the durable body on their own.
 
 ## The World Mailbox
 
