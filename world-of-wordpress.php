@@ -2245,6 +2245,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		}
 		.world-action-launcher-toggle,
 		.world-action-launcher-primary,
+		.world-action-launcher-surprise,
 		.world-action-launcher-roll,
 		.world-action-launcher-draw {
 			cursor: pointer;
@@ -2262,9 +2263,15 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
 			text-decoration: none;
 		}
-		.world-action-launcher-primary {
+		.world-action-launcher-primary,
+		.world-action-launcher-surprise {
 			margin-left: 0.35rem;
+		}
+		.world-action-launcher-primary {
 			background: #f8fafc;
+		}
+		.world-action-launcher-surprise {
+			background: #fde68a;
 		}
 		.world-action-launcher-roll,
 		.world-action-launcher-draw {
@@ -2275,13 +2282,16 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-draw {
 			background: #c4b5fd;
 		}
-		.world-action-launcher.is-open .world-action-launcher-primary {
+		.world-action-launcher.is-open .world-action-launcher-primary,
+		.world-action-launcher.is-open .world-action-launcher-surprise {
 			display: none;
 		}
 		.world-action-launcher-toggle:hover,
 		.world-action-launcher-toggle:focus,
 		.world-action-launcher-primary:hover,
 		.world-action-launcher-primary:focus,
+		.world-action-launcher-surprise:hover,
+		.world-action-launcher-surprise:focus,
 		.world-action-launcher-roll:hover,
 		.world-action-launcher-roll:focus,
 		.world-action-launcher-draw:hover,
@@ -2465,6 +2475,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		<?php if ( ! empty( $primary_action['href'] ) ) : ?>
 			<a class="world-action-launcher-primary" href="<?php echo esc_url( (string) $primary_action['href'] ); ?>"><?php echo esc_html( (string) ( $primary_action['cta'] ?? __( 'Start', 'world-of-wordpress' ) ) ); ?></a>
 		<?php endif; ?>
+		<button class="world-action-launcher-surprise" type="button" data-world-surprise aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Surprise me', 'world-of-wordpress' ); ?></button>
 		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
 			<p><?php echo esc_html__( 'Six immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
@@ -2529,6 +2540,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const readout = document.getElementById( dock.dataset.actionLauncherReadout );
 			const panel = document.getElementById( dock.dataset.actionLauncherPanel );
 			const toggle = dock.querySelector( '.world-action-launcher-toggle' );
+			const surpriseButton = dock.querySelector( '[data-world-surprise]' );
 			const rollButton = dock.querySelector( '[data-world-roll-path]' );
 			const drawButton = dock.querySelector( '[data-world-draw-move]' );
 			const routeButtons = Array.from( dock.querySelectorAll( 'button[data-world-action]' ) );
@@ -2724,6 +2736,35 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 
 			if ( drawButton ) {
 				drawButton.addEventListener( 'click', drawMove );
+			}
+
+			const surpriseMe = () => {
+				setOpen( true );
+				const options = [ 'roll', 'challenge' ];
+				if ( drawButton && Array.isArray( drawMoves ) && drawMoves.length ) {
+					options.push( 'draw' );
+				}
+
+				const selected = options[ Math.floor( Math.random() * options.length ) ] || 'roll';
+				if ( surpriseButton ) {
+					surpriseButton.textContent = 'Surprised';
+				}
+
+				if ( 'challenge' === selected ) {
+					openChallenge();
+					return;
+				}
+
+				if ( 'draw' === selected ) {
+					drawMove();
+					return;
+				}
+
+				rollPath();
+			};
+
+			if ( surpriseButton ) {
+				surpriseButton.addEventListener( 'click', surpriseMe );
 			}
 
 			openChallengeFromHash();
