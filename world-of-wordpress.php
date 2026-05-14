@@ -2299,7 +2299,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-roll,
 		.world-action-launcher-draw,
 		.world-action-launcher-tour-next,
-		.world-action-launcher-mission {
+		.world-action-launcher-mission,
+		.world-action-launcher-mission-next {
 			cursor: pointer;
 			display: inline-flex;
 			align-items: center;
@@ -2351,10 +2352,20 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-mission-card p {
 			margin: 0;
 		}
-		.world-action-launcher-mission {
+		.world-action-launcher-mission,
+		.world-action-launcher-mission-next {
 			width: fit-content;
 			background: #a7f3d0;
 			box-shadow: none;
+		}
+		.world-action-launcher-mission-status {
+			margin: 0.4rem 0 0;
+			font-size: 0.76rem;
+			color: rgba(248, 250, 252, 0.76);
+		}
+		.world-action-launcher-mission-next {
+			margin: 0.35rem 0 0;
+			background: #fde68a;
 		}
 		.world-action-launcher-tour {
 			margin: 0.7rem 0;
@@ -2397,7 +2408,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-tour-next:hover,
 		.world-action-launcher-tour-next:focus,
 		.world-action-launcher-mission:hover,
-		.world-action-launcher-mission:focus {
+		.world-action-launcher-mission:focus,
+		.world-action-launcher-mission-next:hover,
+		.world-action-launcher-mission-next:focus {
 			background: #f8fafc;
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
@@ -2502,6 +2515,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		}
 		.world-action-launcher-output[hidden],
 		.world-action-launcher-go[hidden],
+		.world-action-launcher-mission-status[hidden],
+		.world-action-launcher-mission-next[hidden],
 		.world-action-launcher-challenge[hidden],
 		.world-action-launcher-reward[hidden],
 		.world-action-launcher-retry[hidden] {
@@ -2616,6 +2631,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
+				<p class="world-action-launcher-mission-status" data-world-mission-status hidden><?php echo esc_html__( 'No mission is active yet.', 'world-of-wordpress' ); ?></p>
+				<button class="world-action-launcher-mission-next" type="button" data-world-mission-next aria-describedby="<?php echo esc_attr( $readout_id ); ?>" hidden><?php echo esc_html__( 'Next mission move', 'world-of-wordpress' ); ?></button>
 			<?php if ( ! empty( $quick_tour['steps'] ) && is_array( $quick_tour['steps'] ) ) : ?>
 				<section class="world-action-launcher-tour" data-world-quick-tour aria-label="<?php echo esc_attr( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?>">
 					<strong><?php echo esc_html( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?></strong>
@@ -2701,6 +2718,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const quickTourSteps = quickTour ? Array.from( quickTour.querySelectorAll( '[data-world-tour-step]' ) ) : [];
 			const routeButtons = Array.from( dock.querySelectorAll( 'button[data-world-action]' ) );
 			const missionButtons = Array.from( dock.querySelectorAll( 'button[data-world-mission-actions]' ) );
+			const missionStatus = dock.querySelector( '[data-world-mission-status]' );
+			const missionNextButton = dock.querySelector( '[data-world-mission-next]' );
 			const challenge = dock.querySelector( '[data-world-action-challenge]' );
 			const challengePrompts = challenge ? Array.from( challenge.querySelectorAll( '[data-world-challenge-prompt]' ) ) : [];
 			const challengeProgress = challenge ? challenge.querySelector( '[data-world-challenge-progress]' ) : null;
@@ -2711,6 +2730,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			let challengeCorrect = 0;
 			let challengeFinished = false;
 			let quickTourStep = 0;
+			let activeMission = [];
+			let activeMissionStep = 0;
+			let activeMissionLabel = '';
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
 			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
 			const drawMoves = <?php echo wp_json_encode( $draws ); ?>;
@@ -2978,6 +3000,53 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				rollPath();
 			};
 
+			const updateMissionStatus = () => {
+				if ( ! missionStatus || ! missionNextButton ) {
+					return;
+				}
+
+				if ( ! activeMission.length || activeMissionStep >= activeMission.length ) {
+					missionStatus.hidden = activeMissionStep >= activeMission.length && activeMissionLabel ? false : true;
+					missionStatus.textContent = activeMissionLabel ? 'Mission complete: ' + activeMissionLabel + '. Pick another mission, roll, or go now.' : 'No mission is active yet.';
+					missionNextButton.hidden = true;
+					return;
+				}
+
+				missionStatus.hidden = false;
+				missionStatus.textContent = 'Mission active: ' + activeMissionLabel + '. Move ' + ( activeMissionStep + 1 ) + ' of ' + activeMission.length + ' is ready. Page-local state only.';
+				missionNextButton.hidden = false;
+				missionNextButton.textContent = 'Next mission move';
+			};
+
+			const runMissionAction = ( action ) => {
+				if ( ! action ) {
+					return;
+				}
+
+				if ( 'play' === action ) {
+					openChallenge();
+					return;
+				}
+
+				launch( action );
+			};
+
+			const advanceMission = () => {
+				if ( ! activeMission.length || activeMissionStep >= activeMission.length ) {
+					updateMissionStatus();
+					return;
+				}
+
+				const action = activeMission[ activeMissionStep ];
+				activeMissionStep += 1;
+				if ( readout ) {
+					readout.hidden = false;
+					readout.textContent = 'Mission move ' + activeMissionStep + ' of ' + activeMission.length + ': ' + action + '. No account, cookie, stored preference, score, or database write.';
+				}
+				runMissionAction( action );
+				updateMissionStatus();
+			};
+
 			const startMission = ( button ) => {
 				if ( ! button || ! readout ) {
 					return;
@@ -2990,30 +3059,30 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					missionActions = [];
 				}
 
-				missionActions = Array.isArray( missionActions ) ? missionActions.filter( Boolean ) : [];
+				activeMission = Array.isArray( missionActions ) ? missionActions.filter( Boolean ) : [];
+				activeMissionStep = 0;
+				activeMissionLabel = ( button.textContent || 'Start mission' ).trim();
 				readout.hidden = false;
-				readout.textContent = 'Mission: ' + ( button.textContent || 'Start mission' ).trim() + '. ' + ( missionActions.length ? missionActions.join( ' → ' ) : 'Choose one visible move' ) + '. No account, cookie, stored preference, score, or database write.';
+				readout.textContent = 'Mission: ' + activeMissionLabel + '. ' + ( activeMission.length ? activeMission.join( ' → ' ) : 'Choose one visible move' ) + '. Use Next mission move to continue. No account, cookie, stored preference, score, or database write.';
+				updateMissionStatus();
 
-				if ( 'play' === missionActions[0] ) {
-					openChallenge();
-					return;
-				}
-
-				if ( missionActions[0] ) {
-					launch( missionActions[0] );
-					return;
-				}
-
-				if ( routeGoLink && button.dataset.worldMissionHref ) {
+				if ( ! activeMission.length && routeGoLink && button.dataset.worldMissionHref ) {
 					routeGoLink.href = button.dataset.worldMissionHref;
 					routeGoLink.textContent = button.textContent || 'Go now';
 					routeGoLink.hidden = false;
+					return;
 				}
+
+				advanceMission();
 			};
 
 			missionButtons.forEach( ( button ) => {
 				button.addEventListener( 'click', () => startMission( button ) );
 			} );
+
+			if ( missionNextButton ) {
+				missionNextButton.addEventListener( 'click', advanceMission );
+			}
 
 			if ( surpriseButton ) {
 				surpriseButton.addEventListener( 'click', surpriseMe );
