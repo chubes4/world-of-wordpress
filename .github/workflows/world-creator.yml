@@ -151,6 +151,7 @@ jobs:
           pr_json="$(gh pr view "$pr_number" --json state,baseRefName,headRefName,isCrossRepository,mergeable,url)"
           state="$(jq -r '.state' <<< "$pr_json")"
           base_ref="$(jq -r '.baseRefName' <<< "$pr_json")"
+          head_ref="$(jq -r '.headRefName' <<< "$pr_json")"
           cross_repo="$(jq -r '.isCrossRepository' <<< "$pr_json")"
           mergeable="$(jq -r '.mergeable' <<< "$pr_json")"
 
@@ -187,4 +188,5 @@ jobs:
             exit 1
           fi
 
-          gh pr merge "$pr_number" --merge --delete-branch
+          gh api --method PUT "repos/chubes4/world-of-wordpress/pulls/$pr_number/merge" -f merge_method=merge
+          gh api --method DELETE "repos/chubes4/world-of-wordpress/git/refs/heads/$head_ref"
