@@ -119,3 +119,72 @@ jobs:
       HOMEBOY_APP_ID: ${{ secrets.HOMEBOY_APP_ID }}
       HOMEBOY_APP_PRIVATE_KEY: ${{ secrets.HOMEBOY_APP_PRIVATE_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+  merge-world-creator-pr:
+    name: Merge World Creator PR
+    needs: run-world-creator
+    if: ${{ needs.run-world-creator.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Merge repo-contained World Creator PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ENGINE_DATA_JSON: ${{ needs.run-world-creator.outputs.engine_data_json }}
+        run: |
+          set -euo pipefail
+
+          pr_url="$(jq -r '.world_creator_pr_url // empty' <<< "${ENGINE_DATA_JSON:-{}}")"
+          if [ -z "$pr_url" ] || [ "$pr_url" = "null" ]; then
+            echo "No World Creator PR was reported by the agent run."
+            exit 0
+          fi
+
+          pr_number="${pr_url##*/}"
+          case "$pr_number" in
+            ''|*[!0-9]*) echo "Invalid World Creator PR URL: $pr_url" >&2; exit 1 ;;
+          esac
+
+          pr_json="$(gh pr view "$pr_number" --json state,baseRefName,headRefName,isCrossRepository,mergeable,url)"
+          state="$(jq -r '.state' <<< "$pr_json")"
+          base_ref="$(jq -r '.baseRefName' <<< "$pr_json")"
+          cross_repo="$(jq -r '.isCrossRepository' <<< "$pr_json")"
+          mergeable="$(jq -r '.mergeable' <<< "$pr_json")"
+
+          if [ "$state" != "OPEN" ]; then
+            echo "World Creator PR #$pr_number is $state; nothing to merge."
+            exit 0
+          fi
+          if [ "$base_ref" != "main" ] || [ "$cross_repo" != "false" ]; then
+            echo "World Creator PR #$pr_number is outside the day road: base=$base_ref cross_repo=$cross_repo" >&2
+            exit 1
+          fi
+
+          changed_files="$(gh pr diff "$pr_number" --name-only)"
+          if [ -z "$changed_files" ]; then
+            echo "World Creator PR #$pr_number has no changed files."
+            exit 0
+          fi
+
+          while IFS= read -r path; do
+            case "$path" in
+              .github/*|composer.json|composer.lock|package.json|package-lock.json|pnpm-lock.yaml|yarn.lock|bun.lockb|bun.lock|package.json5)
+                echo "World Creator PR #$pr_number touched sealed root: $path" >&2
+                exit 1
+                ;;
+            esac
+          done <<< "$changed_files"
+
+          if [ "$mergeable" = "UNKNOWN" ]; then
+            sleep 10
+            mergeable="$(gh pr view "$pr_number" --json mergeable --jq '.mergeable')"
+          fi
+          if [ "$mergeable" = "CONFLICTING" ]; then
+            echo "World Creator PR #$pr_number is conflicting; leaving it open." >&2
+            exit 1
+          fi
+
+          gh pr merge "$pr_number" --merge --delete-branch
