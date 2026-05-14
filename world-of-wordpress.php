@@ -1990,6 +1990,30 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 		),
 	);
 
+	$missions = array(
+		'first-minute' => array(
+			'label'       => 'First minute',
+			'description' => 'Choose a path, inspect the engine, then read one field note. Three moves, no account, no storage.',
+			'actions'     => array( 'choose', 'inspect', 'read' ),
+			'cta'         => 'Begin first minute',
+			'href'        => home_url( '/#visitor-choice-dial' ),
+		),
+		'prove-live'   => array(
+			'label'       => 'Prove it is live',
+			'description' => 'Jump straight to runtime evidence, then open the workshop if the machinery earns your attention.',
+			'actions'     => array( 'inspect', 'operate' ),
+			'cta'         => 'Inspect live engine',
+			'href'        => home_url( '/#day-cycle-runtime-weather' ),
+		),
+		'play-now'     => array(
+			'label'       => 'Play now',
+			'description' => 'Open the tiny challenge first. The path continues whether the run is perfect or imperfect.',
+			'actions'     => array( 'play', 'choose' ),
+			'cta'         => 'Open challenge',
+			'href'        => home_url( '/#world-action-launcher-challenge' ),
+		),
+	);
+
 	$action = sanitize_key( $action );
 	if ( ! isset( $actions[ $action ] ) ) {
 		$action = 'choose';
@@ -2000,12 +2024,13 @@ function world_of_wordpress_get_application_action_launcher_data( string $action
 
 	return array(
 		'name'              => 'World of WordPress application action launcher',
-		'purpose'           => 'A global public dock that gives visitors a one-click primary action plus optional paths without accounts, cookies, hidden state, or a wall of explanation.',
+		'purpose'           => 'A global public dock that gives visitors one-click actions and tiny starter missions without accounts, cookies, hidden state, or a wall of explanation.',
 		'action'            => $action,
 		'selected'          => $selected,
 		'actions'           => $actions,
 		'primary_action'    => 'choose',
 		'quick_tour'        => $quick_tour,
+		'missions'          => $missions,
 		'challenge_deck'    => world_of_wordpress_get_visitor_challenge_deck_data(),
 		'route_brief'       => $route_brief,
 		'interface'         => '/wp-json/world-of-wordpress/v1/application-action-launcher?action=' . rawurlencode( $action ),
@@ -2236,6 +2261,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	$rest_url       = rest_url( 'world-of-wordpress/v1/application-action-launcher' );
 	$actions        = (array) ( $launcher['actions'] ?? array() );
 	$quick_tour     = is_array( $launcher['quick_tour'] ?? null ) ? $launcher['quick_tour'] : array();
+	$missions       = is_array( $launcher['missions'] ?? null ) ? $launcher['missions'] : array();
 	$challenge_deck = is_array( $launcher['challenge_deck'] ?? null ) ? $launcher['challenge_deck'] : world_of_wordpress_get_visitor_challenge_deck_data();
 	$prompts        = array_values( array_filter( (array) ( $challenge_deck['prompts'] ?? array() ), 'is_array' ) );
 	$draws          = array_values( array_filter( (array) ( $challenge_deck['draws'] ?? array() ), 'is_array' ) );
@@ -2272,7 +2298,8 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-surprise,
 		.world-action-launcher-roll,
 		.world-action-launcher-draw,
-		.world-action-launcher-tour-next {
+		.world-action-launcher-tour-next,
+		.world-action-launcher-mission {
 			cursor: pointer;
 			display: inline-flex;
 			align-items: center;
@@ -2306,6 +2333,28 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		}
 		.world-action-launcher-draw {
 			background: #c4b5fd;
+		}
+		.world-action-launcher-missions {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 0.48rem;
+			margin: 0.7rem 0;
+		}
+		.world-action-launcher-mission-card {
+			display: grid;
+			gap: 0.45rem;
+			padding: 0.65rem;
+			border: 1px solid rgba(167, 243, 208, 0.22);
+			border-radius: 16px;
+			background: rgba(167, 243, 208, 0.08);
+		}
+		.world-action-launcher-mission-card p {
+			margin: 0;
+		}
+		.world-action-launcher-mission {
+			width: fit-content;
+			background: #a7f3d0;
+			box-shadow: none;
 		}
 		.world-action-launcher-tour {
 			margin: 0.7rem 0;
@@ -2346,7 +2395,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-draw:hover,
 		.world-action-launcher-draw:focus,
 		.world-action-launcher-tour-next:hover,
-		.world-action-launcher-tour-next:focus {
+		.world-action-launcher-tour-next:focus,
+		.world-action-launcher-mission:hover,
+		.world-action-launcher-mission:focus {
 			background: #f8fafc;
 			outline: 2px solid rgba(167, 243, 208, 0.55);
 			outline-offset: 2px;
@@ -2550,6 +2601,21 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
 			<p><?php echo esc_html__( 'Six immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
+			<?php if ( ! empty( $missions ) ) : ?>
+				<div class="world-action-launcher-missions" aria-label="Tiny starter missions">
+					<?php foreach ( $missions as $mission_key => $mission ) : ?>
+						<?php
+						$mission = is_array( $mission ) ? $mission : array();
+						$mission_actions = array_values( array_filter( array_map( 'sanitize_key', (array) ( $mission['actions'] ?? array() ) ) ) );
+						?>
+						<section class="world-action-launcher-mission-card">
+							<strong><?php echo esc_html( (string) ( $mission['label'] ?? $mission_key ) ); ?></strong>
+							<p><?php echo esc_html( (string) ( $mission['description'] ?? '' ) ); ?></p>
+							<button class="world-action-launcher-mission" type="button" data-world-mission="<?php echo esc_attr( (string) $mission_key ); ?>" data-world-mission-actions="<?php echo esc_attr( wp_json_encode( $mission_actions ) ); ?>" data-world-mission-href="<?php echo esc_url( (string) ( $mission['href'] ?? '' ) ); ?>" aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html( (string) ( $mission['cta'] ?? __( 'Start mission', 'world-of-wordpress' ) ) ); ?></button>
+						</section>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 			<?php if ( ! empty( $quick_tour['steps'] ) && is_array( $quick_tour['steps'] ) ) : ?>
 				<section class="world-action-launcher-tour" data-world-quick-tour aria-label="<?php echo esc_attr( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?>">
 					<strong><?php echo esc_html( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?></strong>
@@ -2634,6 +2700,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const quickTourButton = dock.querySelector( '[data-world-quick-tour-next]' );
 			const quickTourSteps = quickTour ? Array.from( quickTour.querySelectorAll( '[data-world-tour-step]' ) ) : [];
 			const routeButtons = Array.from( dock.querySelectorAll( 'button[data-world-action]' ) );
+			const missionButtons = Array.from( dock.querySelectorAll( 'button[data-world-mission-actions]' ) );
 			const challenge = dock.querySelector( '[data-world-action-challenge]' );
 			const challengePrompts = challenge ? Array.from( challenge.querySelectorAll( '[data-world-challenge-prompt]' ) ) : [];
 			const challengeProgress = challenge ? challenge.querySelector( '[data-world-challenge-progress]' ) : null;
@@ -2910,6 +2977,43 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 
 				rollPath();
 			};
+
+			const startMission = ( button ) => {
+				if ( ! button || ! readout ) {
+					return;
+				}
+
+				let missionActions = [];
+				try {
+					missionActions = JSON.parse( button.dataset.worldMissionActions || '[]' );
+				} catch ( error ) {
+					missionActions = [];
+				}
+
+				missionActions = Array.isArray( missionActions ) ? missionActions.filter( Boolean ) : [];
+				readout.hidden = false;
+				readout.textContent = 'Mission: ' + ( button.textContent || 'Start mission' ).trim() + '. ' + ( missionActions.length ? missionActions.join( ' → ' ) : 'Choose one visible move' ) + '. No account, cookie, stored preference, score, or database write.';
+
+				if ( 'play' === missionActions[0] ) {
+					openChallenge();
+					return;
+				}
+
+				if ( missionActions[0] ) {
+					launch( missionActions[0] );
+					return;
+				}
+
+				if ( routeGoLink && button.dataset.worldMissionHref ) {
+					routeGoLink.href = button.dataset.worldMissionHref;
+					routeGoLink.textContent = button.textContent || 'Go now';
+					routeGoLink.hidden = false;
+				}
+			};
+
+			missionButtons.forEach( ( button ) => {
+				button.addEventListener( 'click', () => startMission( button ) );
+			} );
 
 			if ( surpriseButton ) {
 				surpriseButton.addEventListener( 'click', surpriseMe );
