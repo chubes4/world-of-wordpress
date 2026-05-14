@@ -70,6 +70,10 @@ function world_of_wordpress_register_application_blocks(): void {
 					'type'    => 'boolean',
 					'default' => false,
 				),
+				'showMissions'  => array(
+					'type'    => 'boolean',
+					'default' => true,
+				),
 			),
 			'render_callback' => 'world_of_wordpress_render_application_action_cards_block',
 			'supports'        => array(
@@ -95,12 +99,14 @@ function world_of_wordpress_render_application_action_cards_block( array $attrib
 	$heading         = is_string( $attributes['heading'] ?? null ) && '' !== trim( (string) $attributes['heading'] ) ? (string) $attributes['heading'] : __( 'Do something in the world', 'world-of-wordpress' );
 	$show_route_meta = isset( $attributes['showRouteMeta'] ) ? (bool) $attributes['showRouteMeta'] : false;
 	$show_rest_echo  = isset( $attributes['showRestEcho'] ) ? (bool) $attributes['showRestEcho'] : false;
+	$show_missions   = isset( $attributes['showMissions'] ) ? (bool) $attributes['showMissions'] : true;
 
 	return world_of_wordpress_render_application_action_cards_shortcode(
 		array(
 			'heading'         => $heading,
 			'show_rest_echo'  => $show_rest_echo ? 'true' : 'false',
 			'show_route_meta' => $show_route_meta ? 'true' : 'false',
+			'show_missions'   => $show_missions ? 'true' : 'false',
 			'surface'         => 'block',
 		)
 	);
@@ -2086,6 +2092,29 @@ function world_of_wordpress_get_application_action_launcher_rest_response( WP_RE
 function world_of_wordpress_get_application_action_cards_data(): array {
 	$launcher = world_of_wordpress_get_application_action_launcher_data();
 	$cards    = array();
+	$missions = array();
+
+	foreach ( (array) ( $launcher['missions'] ?? array() ) as $mission_key => $mission ) {
+		if ( ! is_array( $mission ) ) {
+			continue;
+		}
+
+		$mission_actions = array_values( array_filter( array_map( 'sanitize_key', (array) ( $mission['actions'] ?? array() ) ) ) );
+		$first_action     = isset( $mission_actions[0] ) ? (string) $mission_actions[0] : '';
+		$first_data       = '' !== $first_action ? world_of_wordpress_get_application_action_launcher_data( $first_action ) : array();
+		$selected         = is_array( $first_data['selected'] ?? null ) ? $first_data['selected'] : array();
+
+		$missions[] = array(
+			'mission'      => (string) $mission_key,
+			'label'        => (string) ( $mission['label'] ?? $mission_key ),
+			'description'  => (string) ( $mission['description'] ?? '' ),
+			'actions'      => $mission_actions,
+			'first_action' => $first_action,
+			'href'         => (string) ( $mission['href'] ?? $selected['href'] ?? '' ),
+			'cta'          => (string) ( $mission['cta'] ?? $selected['cta'] ?? __( 'Start mission', 'world-of-wordpress' ) ),
+			'privacy'      => 'page-local only; no account, cookie, stored preference, score, visitor log, or database write',
+		);
+	}
 
 	foreach ( (array) ( $launcher['actions'] ?? array() ) as $action_key => $action ) {
 		if ( ! is_array( $action ) ) {
@@ -2117,9 +2146,10 @@ function world_of_wordpress_get_application_action_cards_data(): array {
 
 	return array(
 		'name'             => 'World of WordPress application action cards',
-		'purpose'          => 'A compact public action layer for visitors and panels that need verbs, targets, and first stops without parsing long route consoles.',
+		'purpose'          => 'A compact public action layer for visitors and panels that need verbs, starter missions, targets, and first stops without parsing long route consoles.',
 		'source'           => '/wp-json/world-of-wordpress/v1/application-action-launcher',
 		'cards'            => $cards,
+		'missions'         => $missions,
 		'privacy_boundary' => array(
 			'public route metadata only',
 			'no visitor tracking',
@@ -2147,6 +2177,7 @@ function world_of_wordpress_render_application_action_cards_shortcode( $attribut
 			'heading'         => __( 'Application action cards', 'world-of-wordpress' ),
 			'show_rest_echo'  => true,
 			'show_route_meta' => true,
+			'show_missions'   => true,
 			'surface'         => 'shortcode',
 		),
 		is_array( $attributes ) ? $attributes : array(),
@@ -2156,6 +2187,7 @@ function world_of_wordpress_render_application_action_cards_shortcode( $attribut
 	$cards_data      = world_of_wordpress_get_application_action_cards_data();
 	$show_rest_echo  = filter_var( $attributes['show_rest_echo'], FILTER_VALIDATE_BOOLEAN );
 	$show_route_meta = filter_var( $attributes['show_route_meta'], FILTER_VALIDATE_BOOLEAN );
+	$show_missions   = filter_var( $attributes['show_missions'], FILTER_VALIDATE_BOOLEAN );
 	$surface         = sanitize_html_class( (string) $attributes['surface'] );
 	$rest_url        = rest_url( 'world-of-wordpress/v1/application-action-cards' );
 	$readout_id      = 'world-application-action-cards-readout-' . $instance;
@@ -2187,6 +2219,32 @@ function world_of_wordpress_render_application_action_cards_shortcode( $attribut
 				</section>
 			<?php endforeach; ?>
 		</div>
+		<?php if ( $show_missions && ! empty( $cards_data['missions'] ) ) : ?>
+			<section class="action-cards-missions" aria-label="Starter missions from the public action launcher">
+				<h3><?php echo esc_html__( 'Starter missions', 'world-of-wordpress' ); ?></h3>
+				<p><?php echo esc_html__( 'Short action queues for visitors who want movement before lore. Mission progress stays on the current page only.', 'world-of-wordpress' ); ?></p>
+				<div class="action-cards-grid" aria-label="No-storage starter mission cards">
+					<?php foreach ( (array) ( $cards_data['missions'] ?? array() ) as $mission ) : ?>
+						<?php $mission = is_array( $mission ) ? $mission : array(); ?>
+						<section class="action-card action-card-mission">
+							<strong><?php echo esc_html( (string) ( $mission['label'] ?? '' ) ); ?></strong>
+							<p><?php echo esc_html( (string) ( $mission['description'] ?? '' ) ); ?></p>
+							<?php $mission_actions = array_values( array_filter( array_map( 'sanitize_key', (array) ( $mission['actions'] ?? array() ) ) ) ); ?>
+							<?php if ( ! empty( $mission_actions ) ) : ?>
+								<div class="action-card-meta">
+									<span><?php echo esc_html( 'moves: ' . implode( ' → ', $mission_actions ) ); ?></span>
+									<span><?php echo esc_html( 'state: page-local only' ); ?></span>
+								</div>
+							<?php endif; ?>
+							<?php $mission_href = (string) ( $mission['href'] ?? '' ); ?>
+							<?php if ( '' !== $mission_href ) : ?>
+								<a class="action-card-link" href="<?php echo esc_url( $mission_href ); ?>"><?php echo esc_html( (string) ( $mission['cta'] ?? __( 'Start mission', 'world-of-wordpress' ) ) ); ?></a>
+							<?php endif; ?>
+						</section>
+					<?php endforeach; ?>
+				</div>
+			</section>
+		<?php endif; ?>
 		<?php if ( $show_rest_echo ) : ?>
 			<section class="action-cards-rest-echo" aria-label="Public application action cards REST echo">
 				<h3><?php echo esc_html__( 'Action cards REST echo', 'world-of-wordpress' ); ?></h3>
@@ -2212,6 +2270,7 @@ function world_of_wordpress_render_application_action_cards_shortcode( $attribut
 						readout.textContent = JSON.stringify( {
 							name: data.name,
 							cards: Array.isArray( data.cards ) ? data.cards.map( ( card ) => ( { action: card.action, verb: card.verb, firstStop: card.first_stop && card.first_stop.slug } ) ) : [],
+							missions: Array.isArray( data.missions ) ? data.missions.map( ( mission ) => ( { mission: mission.mission, moves: mission.actions } ) ) : [],
 							privacy: data.privacy_boundary
 						}, null, 2 );
 					} )
