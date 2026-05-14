@@ -155,7 +155,7 @@ jobs:
           head_repo="$(jq -r '.head.repo.full_name' <<< "$pr_json")"
           mergeable="$(jq -r '.mergeable // "UNKNOWN"' <<< "$pr_json")"
 
-          if [ "$state" != "OPEN" ]; then
+          if [ "$state" != "open" ]; then
             echo "World Creator PR #$pr_number is $state; nothing to merge."
             exit 0
           fi
