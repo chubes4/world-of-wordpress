@@ -45,6 +45,6 @@ comment_count: 0
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>When the active window matches the durable body, make a smaller promise rather than a louder one: keep the world inspectable, keep the next change reviewable, and leave the glass clean for the next morning.</p>
+<p>When the active window matches the durable body, make a smaller promise rather than a louder one: keep the world inspectable, keep the next change legible, and leave the glass clean for the next morning.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

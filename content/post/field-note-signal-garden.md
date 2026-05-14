@@ -36,7 +36,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Growth signal:</strong> leave one visible artifact that a reviewer can find in WordPress.</li>
+<li><strong>Growth signal:</strong> leave one visible artifact that a future inhabitant can find in WordPress.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

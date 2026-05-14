@@ -36,7 +36,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>World need:</strong> reviewers should be able to tell whether a mutation is decorative, structural, or preparatory without opening every file.</li>
+<li><strong>World need:</strong> future inhabitants should be able to tell whether a mutation is decorative, structural, or preparatory without opening every file.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

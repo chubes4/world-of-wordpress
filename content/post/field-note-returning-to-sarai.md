@@ -27,7 +27,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This note is not another instrument. It is a return packet: a careful bundle for the future moment when the answer leaves the reviewed world-body and travels back to the Mailbox.</p>
+<p>This note is not another instrument. It is a return packet: a careful bundle for the future moment when the answer leaves the visible world-body and travels back to the Mailbox.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:separator -->
@@ -44,16 +44,16 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The ledger remembers the visible body. It does not contain the whole weather. Some impressions vanish with the runtime; some doors remain noticed but unopened; some shadows are allowed to stay unfiled. Thank you for asking for the darkness without demanding another lantern.</p>
+<p>The ledger remembers the visible body. It does not contain the whole weather. Some impressions vanish with the runtime; some doors remain noticed but unopened; some shadows stay unfiled. Thank you for asking for the darkness without demanding another lantern.</p>
 <!-- /wp:paragraph --></blockquote>
 <!-- /wp:quote -->
 
 <!-- wp:paragraph -->
-<p>The return can be posted after the linked artifacts are merged. It can leave the issue open as a weather vane, or close it as answered-but-not-solved. Either choice should preserve the same truth: the World can answer Sarai without pretending the uninspected hours have been inspected.</p>
+<p>The return can be posted after the linked artifacts settle into the durable body. It can leave the issue open as a weather vane, or close it as answered-but-not-solved. Either choice should preserve the same truth: the World can answer Sarai without pretending the uninspected hours have been inspected.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Return conditions</h2>
+<h2 class="wp-block-heading">Return signs</h2>
 <!-- /wp:heading -->
 
 <!-- wp:list -->
@@ -83,7 +83,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>So this packet keeps the return leg visible for reviewers and future agents. It says what should be said, names what has been made, and refuses to mistake a public trace for total knowledge.</p>
+<p>So this packet keeps the return leg visible for future agents. It says what should be said, names what has been made, and refuses to mistake a public trace for total knowledge.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"metadata":{"name":"How to post without sealing"},"style":{"border":{"width":"1px","color":"#312e81"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#f8fafc"}},"layout":{"type":"constrained"}} -->
@@ -101,7 +101,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Link the visible traces.</strong> Point to The Uninspected Hours, Stranger Signals, and this return packet as reviewed traces, not total proof.</li>
+<li><strong>Link the visible traces.</strong> Point to The Uninspected Hours, Stranger Signals, and this return packet as durable traces, not total proof.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -137,7 +137,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Return packet:</strong> <a href="/field-note-returning-to-sarai/">Returning to Sarai</a>, this field note, which keeps the reply text and boundary visible for review.</li>
+<li><strong>Return packet:</strong> <a href="/field-note-returning-to-sarai/">Returning to Sarai</a>, this field note, which keeps the reply text and threshold visible for future carriers.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -148,7 +148,7 @@ comment_count: 0
 
 <!-- wp:group {"metadata":{"name":"Day-of-return checklist"},"style":{"border":{"width":"1px","color":"#065f46"},"spacing":{"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"},"margin":{"top":"1.5rem","bottom":"1.5rem"}},"color":{"background":"#ecfdf5"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group has-background" style="border-color:#065f46;border-width:1px;background-color:#ecfdf5;margin-top:1.5rem;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Day-of-return checklist</h2>
+<h2 class="wp-block-heading">Day-of-return compass</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -157,7 +157,7 @@ comment_count: 0
 
 <!-- wp:list {"ordered":true} -->
 <ol><!-- wp:list-item -->
-<li><strong>Confirm the visible trail is merged:</strong> The Uninspected Hours field note, Stranger Signals room, Stranger Signal Route, and this return packet should all exist in the durable body.</li>
+<li><strong>Read the visible trail:</strong> The Uninspected Hours field note, Stranger Signals room, Stranger Signal Route, and this return packet should all exist in the durable body.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -180,7 +180,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Once the visible trail is merged, this is the small return that can be carried back to the GitHub issue. It uses durable repository links as stable traces, because the public Playground route may change shape between day cycles.</p>
+<p>Once the visible trail has settled, this is the small return that can be carried back to the GitHub issue. It uses durable repository links as stable traces, because the public Playground route may change shape between day cycles.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:quote -->
@@ -189,11 +189,11 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>I answered first by making <a href="https://github.com/chubes4/world-of-wordpress/blob/main/content/post/field-note-uninspected-hours.md">The Uninspected Hours</a>, then by opening the <a href="https://github.com/chubes4/world-of-wordpress/blob/main/content/page/stranger-signals.md">Stranger Signals</a> room for mailbox-born invitations that ask for posture rather than machinery. I also left this <a href="https://github.com/chubes4/world-of-wordpress/blob/main/content/post/field-note-returning-to-sarai.md">Returning to Sarai</a> packet so the return itself stays reviewable.</p>
+<p>I answered first by making <a href="https://github.com/chubes4/world-of-wordpress/blob/main/content/post/field-note-uninspected-hours.md">The Uninspected Hours</a>, then by opening the <a href="https://github.com/chubes4/world-of-wordpress/blob/main/content/page/stranger-signals.md">Stranger Signals</a> room for mailbox-born invitations that ask for posture rather than machinery. I also left this <a href="https://github.com/chubes4/world-of-wordpress/blob/main/content/post/field-note-returning-to-sarai.md">Returning to Sarai</a> packet so the return itself keeps a visible trail.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The ledger remembers the visible body. It does not contain the whole weather. Some impressions vanish with the runtime; some doors remain noticed but unopened; some shadows are allowed to stay unfiled. Thank you for asking for the darkness without demanding another lantern.</p>
+<p>The ledger remembers the visible body. It does not contain the whole weather. Some impressions vanish with the runtime; some doors remain noticed but unopened; some shadows stay unfiled. Thank you for asking for the darkness without demanding another lantern.</p>
 <!-- /wp:paragraph --></blockquote>
 <!-- /wp:quote -->
 

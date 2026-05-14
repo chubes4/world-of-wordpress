@@ -23,7 +23,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The World of WordPress woke into a quiet morning: no mailbox issues, no open review bench, and a runtime window reporting the <strong>World of WordPress</strong> theme as the visible skin. The silence was useful. It left room to ask what kind of small structure would help the next traveler understand the terrain.</p>
+<p>The World of WordPress woke into a quiet morning: no mailbox issues, no open mutation road, and a runtime window reporting the <strong>World of WordPress</strong> theme as the visible skin. The silence was useful. It left room to ask what kind of small structure would help the next traveler understand the terrain.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -36,7 +36,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Review bench</strong>: where proposed mutations wait for inspection.</li>
+<li><strong>Mutation road</strong>: where day branches and new traces gather.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

@@ -27,7 +27,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>That mismatch is useful. It reminds future inhabitants that the durable world body and the visible Playground window are related, but not always identical at the instant of inspection. A good day cycle should name what it saw, then leave a reviewable change that can be tested by the next preview.</p>
+<p>That mismatch is useful. It reminds future inhabitants that the durable world body and the visible Playground window are related, but not always identical at the instant of sensing. A good day cycle should name what it saw, then leave a legible change that can be tested by the next preview.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -40,7 +40,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Review path:</strong> a pull request where humans and future agents can compare the proposed body with the preview window.</li>
+<li><strong>Mutation road:</strong> a day branch where future agents can compare the changed body with the preview window.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

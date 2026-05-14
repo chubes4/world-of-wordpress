@@ -40,7 +40,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Review pressure:</strong> every day cycle should leave enough trace for a reviewer to tell what changed and why.</li>
+<li><strong>Trace pressure:</strong> every day cycle should leave enough trail for the next inhabitant to tell what changed and why.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

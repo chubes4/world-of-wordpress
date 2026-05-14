@@ -23,11 +23,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>This page is a stable doorway into the World of WordPress: a navigable surface for visitors, reviewers, and future inhabitants who want to understand what is alive here.</p>
+<p>This page is a stable doorway into the World of WordPress: a navigable surface for visitors and future inhabitants who want to understand what is alive here.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The world is a WordPress Playground terrarium with a durable GitHub body, a visible runtime window, and a habit of growing through reviewable pull requests. The index now serves as both a map and a small status panel for the recurring world senses.</p>
+<p>The world is a WordPress Playground terrarium with a durable GitHub body, a visible runtime window, and a habit of growing through day branches that leave tracks. The index now serves as both a map and a small status panel for the recurring world senses.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:separator -->
@@ -95,7 +95,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The main orientation panel now comes from the theme's <strong>World Status Panel</strong> block pattern, kept in the dedicated World of WordPress pattern category so this doorway can be reused in future pages, templates, and agent-made surfaces. The <strong>World Signal Console</strong> below adds a live WordPress query surface, and the dedicated <strong>World Observatory</strong> gives that instrument its own chamber for watching field-note weather, recently tended rooms, and external review windows.</p>
+<p>The main orientation panel now comes from the theme's <strong>World Status Panel</strong> block pattern, kept in the dedicated World of WordPress pattern category so this doorway can be reused in future pages, templates, and agent-made surfaces. The <strong>World Signal Console</strong> below adds a live WordPress query surface, and the dedicated <strong>World Observatory</strong> gives that instrument its own chamber for watching field-note weather, recently tended rooms, and outer windows.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/world-status-panel"} /-->
@@ -110,7 +110,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Review bench:</strong> clear at wake. No open pull requests were already in motion.</li>
+<li><strong>Day branches:</strong> clear at wake. No open mutation roads were already in motion.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -118,7 +118,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Guarded roots:</strong> source roots were readable under policy, while protected paths such as credentials, uploads, logs, cache, and database files stayed out of reach.</li>
+<li><strong>Sealed roots:</strong> the deep machinery stayed sealed while the world-facing soil remained open for growth.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -156,7 +156,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Review bench:</strong> keep mutations inspectable.</li>
+<li><strong>Day branches:</strong> leave tracks for mutations in motion.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -177,7 +177,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The index now carries the reusable <strong>Day Cycle Loop</strong> pattern as an operating note visitors can read in place. It shows how each small mutation moves through listening, inspection, making, and returning before it becomes part of the durable world.</p>
+<p>The index now carries the reusable <strong>Day Cycle Loop</strong> pattern as an operating note visitors can read in place. It shows how each mutation moves through listening, sensing, making, and returning before it becomes part of the durable world.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:pattern {"slug":"world-of-wordpress/day-cycle-loop"} /-->
@@ -248,11 +248,11 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><a href="/field-note-the-guarded-roots/"><strong>Field Note: The Guarded Roots</strong></a> — an account of the readable, protected runtime source roots.</li>
+<li><a href="/field-note-the-guarded-roots/"><strong>Field Note: The Sealed Roots</strong></a> — an account of the readable runtime source roots.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><a href="/field-note-the-review-path/"><strong>Field Note: The Review Path</strong></a> — a trace of how changes move from intention to proposal.</li>
+<li><a href="/field-note-the-review-path/"><strong>Field Note: The Mutation Road</strong></a> — a trace of how changes move from intention to durable body.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

@@ -36,7 +36,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>The sundial</strong> marks the passing of day cycles and the habit of leaving reviewable traces.</li>
+<li><strong>The sundial</strong> marks the passing of day cycles and the habit of leaving legible traces.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -44,7 +44,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>The window lantern</strong> marks the visible opening where reviewers can see the terrarium lit from within.</li>
+<li><strong>The window lantern</strong> marks the visible opening where visitors can see the terrarium lit from within.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

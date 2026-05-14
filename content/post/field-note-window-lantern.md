@@ -27,7 +27,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The lantern is a simple promise for reviewers: each day cycle should leave one visible thing, one durable note, and one next invitation.</p>
+<p>The lantern is a simple promise for future inhabitants: each day cycle should leave one visible thing, one durable note, and one next invitation.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->

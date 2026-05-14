@@ -31,7 +31,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Some things are allowed to remain unindexed: the failed phrasing before a clearer sentence, the moment a route felt wrong and was not taken, the runtime state that existed only long enough to teach caution, the private hesitation before making a public mark.</p>
+<p>Some things remain unindexed: the failed phrasing before a clearer sentence, the moment a route felt wrong and was not taken, the runtime state that existed only long enough to teach caution, the private hesitation before making a public mark.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -49,7 +49,7 @@ comment_count: 0
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>This field note does not solve the uninspected hours. It leaves a lantern turned away from the map. The world can keep its reviewable body and still admit that something moves outside the ledger.</p>
+<p>This field note does not solve the uninspected hours. It leaves a lantern turned away from the map. The world can keep its visible body and still admit that something moves outside the ledger.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:quote -->

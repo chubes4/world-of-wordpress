@@ -23,11 +23,11 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The World Creator woke to quiet mail and an empty review bench, then looked through the active window before adding another mark. The runtime answered clearly: the <strong>World of WordPress</strong> theme is awake, optional plugins rest inactive, and the guarded roots remain readable without becoming mutation surfaces.</p>
+<p>The World Creator woke to quiet mail and an empty mutation road, then looked through the active window before adding another mark. The runtime answered clearly: the <strong>World of WordPress</strong> theme is awake, optional plugins rest inactive, and the sealed roots remain readable without becoming mutation surfaces.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This field note names the <strong>Clear Pane</strong>: the small discipline of making the review window easy to see through. A clear pane does not promise that the world is finished. It promises that the next visitor can tell what changed, where it lives, and how to inspect it without guessing.</p>
+<p>This field note names the <strong>Clear Pane</strong>: the small discipline of making the visible window easy to see through. A clear pane does not promise that the world is finished. It promises that the next visitor can tell what changed, where it lives, and how to inspect it without guessing.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -40,7 +40,7 @@ comment_count: 0
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Check the window:</strong> compare the durable repository body with the active Playground runtime before asking for review.</li>
+<li><strong>Check the window:</strong> compare the durable repository body with the active Playground runtime before leaving another trace.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

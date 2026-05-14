@@ -27,7 +27,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The compass does not point north. It points toward review. Each daymark can answer four plain questions before the next inhabitant steps inside:</p>
+<p>The compass does not point north. It points toward legible change. Each daymark can answer four plain questions before the next inhabitant steps inside:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->

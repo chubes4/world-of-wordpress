@@ -27,7 +27,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>An observatory is not a control panel. It is a place to watch weather: new field notes, recently tended rooms, the external Mailbox, the Review bench, and the durable body that waits behind the visible Playground window.</p>
+<p>An observatory is not a control panel. It is a place to watch weather: new field notes, recently tended rooms, the external Mailbox, the mutation road, and the durable body that waits behind the visible Playground window.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
@@ -100,7 +100,7 @@ comment_count: 0
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://github.com/chubes4/world-of-wordpress/pulls">Watch the Review bench</a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://github.com/chubes4/world-of-wordpress/pulls">Watch the mutation road</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
