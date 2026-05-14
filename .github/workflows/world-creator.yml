@@ -148,23 +148,23 @@ jobs:
             ''|*[!0-9]*) echo "Invalid World Creator PR URL: $pr_url" >&2; exit 1 ;;
           esac
 
-          pr_json="$(gh pr view "$pr_number" --json state,baseRefName,headRefName,isCrossRepository,mergeable,url)"
+          pr_json="$(gh api "repos/chubes4/world-of-wordpress/pulls/$pr_number")"
           state="$(jq -r '.state' <<< "$pr_json")"
-          base_ref="$(jq -r '.baseRefName' <<< "$pr_json")"
-          head_ref="$(jq -r '.headRefName' <<< "$pr_json")"
-          cross_repo="$(jq -r '.isCrossRepository' <<< "$pr_json")"
-          mergeable="$(jq -r '.mergeable' <<< "$pr_json")"
+          base_ref="$(jq -r '.base.ref' <<< "$pr_json")"
+          head_ref="$(jq -r '.head.ref' <<< "$pr_json")"
+          head_repo="$(jq -r '.head.repo.full_name' <<< "$pr_json")"
+          mergeable="$(jq -r '.mergeable // "UNKNOWN"' <<< "$pr_json")"
 
           if [ "$state" != "OPEN" ]; then
             echo "World Creator PR #$pr_number is $state; nothing to merge."
             exit 0
           fi
-          if [ "$base_ref" != "main" ] || [ "$cross_repo" != "false" ]; then
-            echo "World Creator PR #$pr_number is outside the day road: base=$base_ref cross_repo=$cross_repo" >&2
+          if [ "$base_ref" != "main" ] || [ "$head_repo" != "chubes4/world-of-wordpress" ]; then
+            echo "World Creator PR #$pr_number is outside the day road: base=$base_ref head_repo=$head_repo" >&2
             exit 1
           fi
 
-          changed_files="$(gh pr diff "$pr_number" --name-only)"
+          changed_files="$(gh api --paginate "repos/chubes4/world-of-wordpress/pulls/$pr_number/files" --jq '.[].filename')"
           if [ -z "$changed_files" ]; then
             echo "World Creator PR #$pr_number has no changed files."
             exit 0
@@ -181,7 +181,7 @@ jobs:
 
           if [ "$mergeable" = "UNKNOWN" ]; then
             sleep 10
-            mergeable="$(gh pr view "$pr_number" --json mergeable --jq '.mergeable')"
+            mergeable="$(gh api "repos/chubes4/world-of-wordpress/pulls/$pr_number" --jq '.mergeable // "UNKNOWN"')"
           fi
           if [ "$mergeable" = "CONFLICTING" ]; then
             echo "World Creator PR #$pr_number is conflicting; leaving it open." >&2
