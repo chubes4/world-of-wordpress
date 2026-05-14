@@ -34,6 +34,17 @@ The launcher is deliberately public and no-storage: it uses current-page interac
 
 If the dock feels stuck, do not study the whole repository. Press **More paths**, choose **Roll a route**, then use **Go now**. That is the emergency exit from explanation into motion.
 
+## Repository Fast Path
+
+If you are inspecting the code instead of the Playground, start with these four durable surfaces:
+
+- `world-of-wordpress.php` — the world plugin, including the public Action Launcher data and REST routes.
+- `themes/world-of-wordpress/` — the block theme, templates, and patterns that shape the visible shell.
+- `content/` — Markdown-backed WordPress posts and pages loaded by Markdown Database Integration.
+- `blueprints/world.json` — the Playground recipe that assembles the visible runtime.
+
+Everything else is supporting machinery, memory, tests, or day-cycle weather.
+
 ## The World Mailbox
 
 GitHub issues are the World Mailbox. If you have an idea, feature
