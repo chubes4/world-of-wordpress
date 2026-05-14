@@ -4,8 +4,8 @@ on:
   pull_request:
 
 permissions:
-  contents: read
-  pull-requests: read
+  contents: write
+  pull-requests: write
 
 concurrency:
   group: world-pr-policy-${{ github.event.pull_request.number || github.ref }}
@@ -29,7 +29,7 @@ jobs:
           commands: release
           pr-comment: 'false'
           pr-policy: .github/policies/world-pr-policy.yml
-          pr-policy-merge: 'false'
+          pr-policy-merge: 'true'
 
       - name: Summarize policy result
         env:
