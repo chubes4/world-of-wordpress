@@ -2371,6 +2371,20 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			font-weight: 800;
 			line-height: 1;
 		}
+		.world-action-launcher-mission-card.is-active {
+			border-color: rgba(253, 230, 138, 0.72);
+			background: rgba(253, 230, 138, 0.13);
+		}
+		.world-action-launcher-mission-steps li.is-current {
+			border-color: rgba(253, 230, 138, 0.9);
+			background: #fde68a;
+			color: #111827;
+		}
+		.world-action-launcher-mission-steps li.is-complete {
+			border-color: rgba(167, 243, 208, 0.7);
+			background: rgba(167, 243, 208, 0.3);
+			color: #f8fafc;
+		}
 		.world-action-launcher-mission,
 		.world-action-launcher-mission-next {
 			width: fit-content;
@@ -2642,14 +2656,14 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 						$mission = is_array( $mission ) ? $mission : array();
 						$mission_actions = array_values( array_filter( array_map( 'sanitize_key', (array) ( $mission['actions'] ?? array() ) ) ) );
 						?>
-						<section class="world-action-launcher-mission-card">
+						<section class="world-action-launcher-mission-card" data-world-mission-card="<?php echo esc_attr( (string) $mission_key ); ?>">
 							<strong><?php echo esc_html( (string) ( $mission['label'] ?? $mission_key ) ); ?></strong>
 							<p><?php echo esc_html( (string) ( $mission['description'] ?? '' ) ); ?></p>
 							<?php if ( ! empty( $mission_actions ) ) : ?>
 								<ol class="world-action-launcher-mission-steps" aria-label="<?php echo esc_attr__( 'Mission move preview', 'world-of-wordpress' ); ?>">
-									<?php foreach ( $mission_actions as $mission_action ) : ?>
+									<?php foreach ( $mission_actions as $mission_index => $mission_action ) : ?>
 										<?php $mission_action_data = is_array( $actions[ $mission_action ] ?? null ) ? $actions[ $mission_action ] : array(); ?>
-										<li><?php echo esc_html( (string) ( $mission_action_data['label'] ?? $mission_action ) ); ?></li>
+										<li data-world-mission-step="<?php echo esc_attr( (string) $mission_index ); ?>"><?php echo esc_html( (string) ( $mission_action_data['label'] ?? $mission_action ) ); ?></li>
 									<?php endforeach; ?>
 								</ol>
 							<?php endif; ?>
@@ -2745,6 +2759,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const quickTourSteps = quickTour ? Array.from( quickTour.querySelectorAll( '[data-world-tour-step]' ) ) : [];
 			const routeButtons = Array.from( dock.querySelectorAll( 'button[data-world-action]' ) );
 			const missionButtons = Array.from( dock.querySelectorAll( 'button[data-world-mission-actions]' ) );
+			const missionCards = Array.from( dock.querySelectorAll( '[data-world-mission-card]' ) );
 			const missionStatus = dock.querySelector( '[data-world-mission-status]' );
 			const missionNextButton = dock.querySelector( '[data-world-mission-next]' );
 			const challenge = dock.querySelector( '[data-world-action-challenge]' );
@@ -2760,6 +2775,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			let activeMission = [];
 			let activeMissionStep = 0;
 			let activeMissionLabel = '';
+			let activeMissionKey = '';
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
 			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
 			const drawMoves = <?php echo wp_json_encode( $draws ); ?>;
@@ -3027,10 +3043,24 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				rollPath();
 			};
 
+			const updateMissionProgress = () => {
+				missionCards.forEach( ( card ) => {
+					const isActive = !! activeMissionKey && card.dataset.worldMissionCard === activeMissionKey;
+					card.classList.toggle( 'is-active', isActive );
+					card.querySelectorAll( '[data-world-mission-step]' ).forEach( ( step, index ) => {
+						const stepIndex = Number.parseInt( step.dataset.worldMissionStep || String( index ), 10 );
+						step.classList.toggle( 'is-complete', isActive && stepIndex < activeMissionStep );
+						step.classList.toggle( 'is-current', isActive && activeMissionStep < activeMission.length && stepIndex === activeMissionStep );
+					} );
+				} );
+			};
+
 			const updateMissionStatus = () => {
 				if ( ! missionStatus || ! missionNextButton ) {
 					return;
 				}
+
+				updateMissionProgress();
 
 				if ( ! activeMission.length || activeMissionStep >= activeMission.length ) {
 					missionStatus.hidden = activeMissionStep >= activeMission.length && activeMissionLabel ? false : true;
@@ -3089,6 +3119,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				activeMission = Array.isArray( missionActions ) ? missionActions.filter( Boolean ) : [];
 				activeMissionStep = 0;
 				activeMissionLabel = ( button.textContent || 'Start mission' ).trim();
+				activeMissionKey = button.dataset.worldMission || '';
 				readout.hidden = false;
 				readout.textContent = 'Mission: ' + activeMissionLabel + '. ' + ( activeMission.length ? activeMission.join( ' → ' ) : 'Choose one visible move' ) + '. Use Next mission move to continue. No account, cookie, stored preference, score, or database write.';
 				updateMissionStatus();
