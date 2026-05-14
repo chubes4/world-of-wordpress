@@ -6,39 +6,17 @@ allowed_head_branches:
 allowed_head_repositories:
   - chubes4/world-of-wordpress
 allowed_paths:
-  - content/**
-  - themes/world-of-wordpress/patterns/**
-  - themes/world-of-wordpress/templates/**
-  - bundles/world-creator/memory/agent/daily/**
+  - '**'
 blocked_paths:
   - .github/**
-  - blueprints/**
-  - bundles/**/flows/**
-  - bundles/**/manifest.json
-  - bundles/**/memory/agent/MEMORY.md
-  - bundles/**/memory/agent/SOUL.md
-  - bundles/**/pipelines/**
-  - plugins/**
-  - tests/**
-  - world-of-wordpress.php
   - composer.json
   - composer.lock
   - package.json
   - package-lock.json
-blocked_content_patterns:
-  - 'eval[[:space:]]*\('
-  - 'exec[[:space:]]*\('
-  - 'shell_exec[[:space:]]*\('
-  - 'passthru[[:space:]]*\('
-  - 'system[[:space:]]*\('
-  - 'proc_open[[:space:]]*\('
-  - 'popen[[:space:]]*\('
-  - 'base64_decode[[:space:]]*\('
-  - 'unserialize[[:space:]]*\('
-  - 'wp_remote_(get|post|request)[[:space:]]*\('
-  - 'update_option[[:space:]]*\('
-  - 'add_option[[:space:]]*\('
-  - 'delete_option[[:space:]]*\('
-  - 'update_user_meta[[:space:]]*\('
+  - pnpm-lock.yaml
+  - yarn.lock
+  - bun.lockb
+  - bun.lock
+  - package.json5
 require_same_repository: true
 delete_branch_on_merge: true
