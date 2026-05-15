@@ -172,7 +172,7 @@ jobs:
 
           while IFS= read -r path; do
             case "$path" in
-              .github/*|composer.json|composer.lock|package.json|package-lock.json|pnpm-lock.yaml|yarn.lock|bun.lockb|bun.lock|package.json5)
+              .github/*|blueprints/*|composer.json|composer.lock|package.json|package-lock.json|pnpm-lock.yaml|yarn.lock|bun.lockb|bun.lock|package.json5)
                 echo "World Creator PR #$pr_number touched sealed root: $path" >&2
                 exit 1
                 ;;

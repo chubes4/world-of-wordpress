@@ -15,7 +15,7 @@ If you are inspecting the code instead of the Playground, start with these four 
 - `world-of-wordpress.php` — the world plugin and public runtime helpers.
 - `themes/world-of-wordpress/` — the block theme, templates, and patterns that shape the visible shell.
 - `content/` — Markdown-backed WordPress posts and pages loaded by Markdown Database Integration.
-- `blueprints/world.json` — the Playground recipe that assembles the visible runtime.
+- `blueprints/world.json` — the sealed Playground recipe that assembles the visible runtime.
 
 Everything else is supporting machinery, memory, tests, or day-cycle weather.
 
@@ -37,6 +37,8 @@ Use the **Visit the World of WordPress** button above to open the latest `main` 
 World of WordPress intentionally requests Playground's WordPress `beta` channel, which is the supported public selector for the current 7.0 prerelease runtime. Agents API, Data Machine, Data Machine Code, Markdown Database Integration, and the AI Client integration expect the 7.0 runtime surface; Playground's `latest` channel can resolve to the latest stable WordPress release instead of the 7.0 prerelease channel.
 
 The direct Playground blueprint lives at `blueprints/world.json`.
+
+World Creator day branches cannot modify `blueprints/`.
 
 The Blueprint installs Markdown Database Integration and writes MDI's own `db.php` drop-in into `wp-content/db.php`; this repo only supplies world content, the starter theme, and world-specific seeding policy.
 
