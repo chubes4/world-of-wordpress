@@ -2688,39 +2688,48 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			<?php endif; ?>
 				<p class="world-action-launcher-mission-status" data-world-mission-status hidden><?php echo esc_html__( 'No mission is active yet.', 'world-of-wordpress' ); ?></p>
 				<button class="world-action-launcher-mission-next" type="button" data-world-mission-next aria-describedby="<?php echo esc_attr( $readout_id ); ?>" hidden><?php echo esc_html__( 'Next mission move', 'world-of-wordpress' ); ?></button>
-			<?php if ( ! empty( $quick_tour['steps'] ) && is_array( $quick_tour['steps'] ) ) : ?>
-				<section class="world-action-launcher-tour" data-world-quick-tour aria-label="<?php echo esc_attr( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?>">
-					<strong><?php echo esc_html( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?></strong>
-					<p><?php echo esc_html( (string) ( $quick_tour['description'] ?? __( 'Move through three starter actions without storing anything.', 'world-of-wordpress' ) ) ); ?></p>
-					<ol data-world-quick-tour-steps>
-						<?php foreach ( array_values( array_filter( (array) $quick_tour['steps'], 'is_array' ) ) as $tour_index => $tour_step ) : ?>
-							<li data-world-tour-step="<?php echo esc_attr( (string) $tour_index ); ?>" data-world-tour-action="<?php echo esc_attr( sanitize_key( (string) ( $tour_step['action'] ?? '' ) ) ); ?>" <?php echo 0 === $tour_index ? 'class="is-current"' : ''; ?>>
-								<?php echo esc_html( (string) ( $tour_step['label'] ?? __( 'Move', 'world-of-wordpress' ) ) ); ?> — <?php echo esc_html( (string) ( $tour_step['hint'] ?? '' ) ); ?>
-							</li>
-						<?php endforeach; ?>
-					</ol>
-					<button class="world-action-launcher-tour-next" type="button" data-world-quick-tour-next aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Start quick tour', 'world-of-wordpress' ); ?></button>
-				</section>
-			<?php endif; ?>
-			<button class="world-action-launcher-roll" type="button" data-world-roll-path aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Roll a path', 'world-of-wordpress' ); ?></button>
-			<?php if ( ! empty( $draws ) ) : ?>
-				<button class="world-action-launcher-draw" type="button" data-world-draw-move aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Draw a move', 'world-of-wordpress' ); ?></button>
-			<?php endif; ?>
-			<div id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" role="status" aria-live="polite" hidden><?php echo esc_html__( 'Choose, roll, or draw to receive the next public move.', 'world-of-wordpress' ); ?></div>
+			<div id="<?php echo esc_attr( $readout_id ); ?>" class="world-action-launcher-output" role="status" aria-live="polite" hidden><?php echo esc_html__( 'Choose a mission to receive the next public move.', 'world-of-wordpress' ); ?></div>
 			<a class="world-action-launcher-go" href="#" data-world-route-go hidden><?php echo esc_html__( 'Go now', 'world-of-wordpress' ); ?></a>
-		<div class="world-action-launcher-grid">
-			<?php foreach ( $actions as $action_key => $action ) : ?>
-				<?php $action = is_array( $action ) ? $action : array(); ?>
-				<section class="world-action-launcher-card">
-					<span class="world-action-launcher-card-label"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></span>
-					<?php if ( 'play' === (string) $action_key ) : ?>
-						<button class="world-action-launcher-link" type="button" data-world-open-challenge><?php echo esc_html( (string) ( $action['cta'] ?? __( 'Open challenge', 'world-of-wordpress' ) ) ); ?></button>
-					<?php elseif ( ! empty( $action['href'] ) ) : ?>
-						<a class="world-action-launcher-link" href="<?php echo esc_url( (string) $action['href'] ); ?>"><?php echo esc_html( (string) ( $action['cta'] ?? __( 'Open', 'world-of-wordpress' ) ) ); ?></a>
-					<?php endif; ?>
-				</section>
-			<?php endforeach; ?>
-		</div>
+			<details class="world-action-launcher-tools">
+				<summary><?php echo esc_html__( 'Optional route tools', 'world-of-wordpress' ); ?></summary>
+				<?php if ( ! empty( $quick_tour['steps'] ) && is_array( $quick_tour['steps'] ) ) : ?>
+					<section class="world-action-launcher-tour" data-world-quick-tour aria-label="<?php echo esc_attr( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?>">
+						<strong><?php echo esc_html( (string) ( $quick_tour['name'] ?? __( 'Quick tour', 'world-of-wordpress' ) ) ); ?></strong>
+						<p><?php echo esc_html( (string) ( $quick_tour['description'] ?? __( 'Move through three starter actions without storing anything.', 'world-of-wordpress' ) ) ); ?></p>
+						<ol data-world-quick-tour-steps>
+							<?php foreach ( array_values( array_filter( (array) $quick_tour['steps'], 'is_array' ) ) as $tour_index => $tour_step ) : ?>
+								<li data-world-tour-step="<?php echo esc_attr( (string) $tour_index ); ?>" data-world-tour-action="<?php echo esc_attr( sanitize_key( (string) ( $tour_step['action'] ?? '' ) ) ); ?>" <?php echo 0 === $tour_index ? 'class="is-current"' : ''; ?>>
+									<?php echo esc_html( (string) ( $tour_step['label'] ?? __( 'Move', 'world-of-wordpress' ) ) ); ?> — <?php echo esc_html( (string) ( $tour_step['hint'] ?? '' ) ); ?>
+								</li>
+							<?php endforeach; ?>
+						</ol>
+						<button class="world-action-launcher-tour-next" type="button" data-world-quick-tour-next aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Start quick tour', 'world-of-wordpress' ); ?></button>
+					</section>
+				<?php endif; ?>
+				<button class="world-action-launcher-roll" type="button" data-world-roll-path aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Roll a path', 'world-of-wordpress' ); ?></button>
+				<?php if ( ! empty( $draws ) ) : ?>
+					<button class="world-action-launcher-draw" type="button" data-world-draw-move aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Draw a move', 'world-of-wordpress' ); ?></button>
+				<?php endif; ?>
+				<div class="world-action-launcher-grid" aria-label="Direct action links">
+					<?php foreach ( $actions as $action_key => $action ) : ?>
+						<?php $action = is_array( $action ) ? $action : array(); ?>
+						<section class="world-action-launcher-card">
+							<span class="world-action-launcher-card-label"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></span>
+							<?php if ( 'play' === (string) $action_key ) : ?>
+								<button class="world-action-launcher-link" type="button" data-world-open-challenge><?php echo esc_html( (string) ( $action['cta'] ?? __( 'Open challenge', 'world-of-wordpress' ) ) ); ?></button>
+							<?php elseif ( ! empty( $action['href'] ) ) : ?>
+								<a class="world-action-launcher-link" href="<?php echo esc_url( (string) $action['href'] ); ?>"><?php echo esc_html( (string) ( $action['cta'] ?? __( 'Open', 'world-of-wordpress' ) ) ); ?></a>
+							<?php endif; ?>
+						</section>
+					<?php endforeach; ?>
+				</div>
+				<div class="world-action-launcher-route-grid" aria-label="Route readout buttons">
+					<?php foreach ( $actions as $action_key => $action ) : ?>
+						<?php $action = is_array( $action ) ? $action : array(); ?>
+						<button class="world-action-launcher-route" type="button" data-world-action="<?php echo esc_attr( (string) $action_key ); ?>"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></button>
+					<?php endforeach; ?>
+				</div>
+			</details>
 		<section id="world-action-launcher-challenge" class="world-action-launcher-challenge" data-world-action-challenge data-world-challenge-complete="<?php echo esc_attr( (string) ( $challenge_deck['completion_label'] ?? '' ) ); ?>" data-world-challenge-incomplete="<?php echo esc_attr( (string) ( $challenge_deck['incomplete_label'] ?? '' ) ); ?>" hidden aria-live="polite">
 			<strong><?php echo esc_html__( 'Challenge: Find the living path', 'world-of-wordpress' ); ?></strong>
 			<p data-world-challenge-progress><?php echo esc_html__( 'Three quick choices. No account, cookie, score table, or tracking is involved.', 'world-of-wordpress' ); ?></p>
@@ -2744,15 +2753,6 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				<a class="world-action-launcher-reward" href="<?php echo esc_url( (string) $reward['href'] ); ?>" data-world-challenge-reward hidden><?php echo esc_html( (string) ( $reward['label'] ?? __( 'Claim next path', 'world-of-wordpress' ) ) ); ?></a>
 			<?php endif; ?>
 		</section>
-		<details class="world-action-launcher-tools">
-			<summary><?php echo esc_html__( 'Optional route tools', 'world-of-wordpress' ); ?></summary>
-			<div class="world-action-launcher-route-grid">
-				<?php foreach ( $actions as $action_key => $action ) : ?>
-					<?php $action = is_array( $action ) ? $action : array(); ?>
-					<button class="world-action-launcher-route" type="button" data-world-action="<?php echo esc_attr( (string) $action_key ); ?>"><?php echo esc_html( (string) ( $action['label'] ?? $action_key ) ); ?></button>
-				<?php endforeach; ?>
-			</div>
-		</details>
 		</div>
 		<script>
 		(function () {
