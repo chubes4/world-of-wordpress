@@ -23,6 +23,18 @@
           "color": "#3858e9",
           "name": "WordPress Blue",
           "slug": "wordpress-blue"
+        },
+        {
+          "color": "#dbe4ff",
+          "name": "Mist",
+          "slug": "mist"
+        }
+      ],
+      "gradients": [
+        {
+          "gradient": "linear-gradient(135deg, #eef4ff 0%, #f8fafc 42%, #dbe4ff 100%)",
+          "name": "Dawn Glow",
+          "slug": "dawn-glow"
         }
       ]
     },
