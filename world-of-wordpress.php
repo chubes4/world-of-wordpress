@@ -2266,8 +2266,6 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 	$prompts        = array_values( array_filter( (array) ( $challenge_deck['prompts'] ?? array() ), 'is_array' ) );
 	$draws          = array_values( array_filter( (array) ( $challenge_deck['draws'] ?? array() ), 'is_array' ) );
 	$reward         = is_array( $challenge_deck['reward'] ?? null ) ? $challenge_deck['reward'] : array();
-	$primary_key    = sanitize_key( (string) ( $launcher['primary_action'] ?? 'choose' ) );
-	$primary_action = is_array( $actions[ $primary_key ] ?? null ) ? $actions[ $primary_key ] : array();
 	$dock_id        = 'world-action-launcher-dock';
 	$panel_id       = 'world-action-launcher-panel';
 	$readout_id     = 'world-action-launcher-readout';
@@ -2295,7 +2293,6 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		}
 		.world-action-launcher-toggle,
 		.world-action-launcher-start-now,
-		.world-action-launcher-primary,
 		.world-action-launcher-surprise,
 		.world-action-launcher-roll,
 		.world-action-launcher-draw,
@@ -2318,15 +2315,11 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			text-decoration: none;
 		}
 		.world-action-launcher-start-now,
-		.world-action-launcher-primary,
 		.world-action-launcher-surprise {
 			margin-left: 0.35rem;
 		}
 		.world-action-launcher-start-now {
 			background: #a7f3d0;
-		}
-		.world-action-launcher-primary {
-			background: #f8fafc;
 		}
 		.world-action-launcher-surprise {
 			background: #fde68a;
@@ -2430,7 +2423,6 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			box-shadow: none;
 		}
 		.world-action-launcher.is-open .world-action-launcher-start-now,
-		.world-action-launcher.is-open .world-action-launcher-primary,
 		.world-action-launcher.is-open .world-action-launcher-surprise {
 			display: none;
 		}
@@ -2438,8 +2430,6 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		.world-action-launcher-toggle:focus,
 		.world-action-launcher-start-now:hover,
 		.world-action-launcher-start-now:focus,
-		.world-action-launcher-primary:hover,
-		.world-action-launcher-primary:focus,
 		.world-action-launcher-surprise:hover,
 		.world-action-launcher-surprise:focus,
 		.world-action-launcher-roll:hover,
@@ -2651,9 +2641,6 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			<?php echo esc_html__( 'More paths', 'world-of-wordpress' ); ?>
 		</button>
 		<button class="world-action-launcher-start-now" type="button" data-world-start-now aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Start now', 'world-of-wordpress' ); ?></button>
-		<?php if ( ! empty( $primary_action['href'] ) ) : ?>
-			<a class="world-action-launcher-primary" href="<?php echo esc_url( (string) $primary_action['href'] ); ?>"><?php echo esc_html( (string) ( $primary_action['cta'] ?? __( 'Start', 'world-of-wordpress' ) ) ); ?></a>
-		<?php endif; ?>
 		<button class="world-action-launcher-surprise" type="button" data-world-surprise aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Surprise me', 'world-of-wordpress' ); ?></button>
 		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
