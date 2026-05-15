@@ -2674,7 +2674,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 									<?php endforeach; ?>
 								</ol>
 							<?php endif; ?>
-							<button class="world-action-launcher-mission" type="button" data-world-mission="<?php echo esc_attr( (string) $mission_key ); ?>" data-world-mission-actions="<?php echo esc_attr( wp_json_encode( $mission_actions ) ); ?>" data-world-mission-labels="<?php echo esc_attr( wp_json_encode( $mission_action_labels ) ); ?>" data-world-mission-href="<?php echo esc_url( (string) ( $mission['href'] ?? '' ) ); ?>" aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html( (string) ( $mission['cta'] ?? __( 'Start mission', 'world-of-wordpress' ) ) ); ?></button>
+							<button class="world-action-launcher-mission" type="button" data-world-mission="<?php echo esc_attr( (string) $mission_key ); ?>" data-world-mission-title="<?php echo esc_attr( (string) ( $mission['label'] ?? $mission_key ) ); ?>" data-world-mission-actions="<?php echo esc_attr( wp_json_encode( $mission_actions ) ); ?>" data-world-mission-labels="<?php echo esc_attr( wp_json_encode( $mission_action_labels ) ); ?>" data-world-mission-href="<?php echo esc_url( (string) ( $mission['href'] ?? '' ) ); ?>" aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html( (string) ( $mission['cta'] ?? __( 'Start mission', 'world-of-wordpress' ) ) ); ?></button>
 						</section>
 					<?php endforeach; ?>
 				</div>
@@ -3149,7 +3149,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				activeMission = Array.isArray( missionActions ) ? missionActions.filter( Boolean ) : [];
 				activeMissionLabels = Array.isArray( missionLabels ) ? missionLabels.map( ( label ) => String( label || '' ) ).filter( Boolean ) : [];
 				activeMissionStep = 0;
-				activeMissionLabel = ( button.textContent || 'Start mission' ).trim();
+				activeMissionLabel = ( button.dataset.worldMissionTitle || button.textContent || 'Start mission' ).trim();
 				activeMissionKey = button.dataset.worldMission || '';
 				readout.hidden = false;
 				readout.textContent = 'Mission: ' + activeMissionLabel + '. ' + ( activeMissionLabels.length ? activeMissionLabels.join( ' → ' ) : ( activeMission.length ? activeMission.join( ' → ' ) : 'Choose one visible move' ) ) + '. Use Next mission move to continue. No account, cookie, stored preference, score, or database write.';
