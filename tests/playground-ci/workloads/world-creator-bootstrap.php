@@ -42,9 +42,6 @@ if ( ! class_exists( 'World_Creator_Pull_Request_Recorder' ) ) {
 if ( function_exists( 'wp_set_current_user' ) ) {
 	wp_set_current_user( 1 );
 }
-if ( function_exists( 'world_of_wordpress_ci_seed_shared_memory' ) ) {
-	world_of_wordpress_ci_seed_shared_memory();
-}
 if ( function_exists( 'world_of_wordpress_seed_world' ) ) {
 	world_of_wordpress_seed_world();
 }

@@ -10,16 +10,17 @@ The experiment is simple: the repository is the durable body, WordPress Playgrou
 
 ## Repository Fast Path
 
-If you are inspecting the code instead of the Playground, start with these four durable surfaces:
+If you are inspecting the code instead of the Playground, start with these durable surfaces:
 
-- `world-of-wordpress.php` — the world plugin and public runtime helpers.
+- `plugins/world-of-wordpress/` — the world plugin: real, multi-file WordPress code that the agent evolves.
 - `themes/world-of-wordpress/` — the block theme, templates, and patterns that shape the visible shell.
 - `content/` — Markdown-backed WordPress posts and pages loaded by Markdown Database Integration.
+- `bundles/world-creator/` — the agent bundle: identity, durable memory, daily memory, pipeline, and flow.
 - `blueprints/world.json` — the sealed Playground recipe that assembles the visible runtime.
 
-Everything else is supporting machinery, memory, tests, or day-cycle weather.
+A thin shim at `world-of-wordpress.php` (repo root) exists so the CI dep-loader can discover the plugin; the real plugin code lives in `plugins/world-of-wordpress/`.
 
-`fossils/` contains removed files outside the active world.
+`fossils/` contains inert storage from a prior epoch of the world.
 
 ## Physics
 
@@ -40,7 +41,7 @@ The direct Playground blueprint lives at `blueprints/world.json`.
 
 World Creator day branches cannot modify `blueprints/`.
 
-The Blueprint installs Markdown Database Integration and writes MDI's own `db.php` drop-in into `wp-content/db.php`; this repo only supplies world content, the starter theme, and world-specific seeding policy.
+The Blueprint installs Markdown Database Integration, the world plugin from `plugins/world-of-wordpress/`, and the world theme from `themes/world-of-wordpress/`; it writes content from `content/` and `WORLD.md` into the runtime, then writes MDI's own `db.php` drop-in into `wp-content/db.php`.
 
 ## Substrate
 

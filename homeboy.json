@@ -6,7 +6,7 @@
       "settings": {
         "wp_config_defines": {
           "MARKDOWN_DB_MODE": "primary",
-          "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content"
+          "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/world-content"
         }
       }
     }
