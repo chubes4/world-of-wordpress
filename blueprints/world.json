@@ -10,7 +10,7 @@
       "step": "defineWpConfigConsts",
       "consts": {
         "MARKDOWN_DB_MODE": "primary",
-        "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content"
+        "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/world-content"
       }
     },
     {
@@ -32,11 +32,49 @@
         "resource": "git:directory",
         "url": "https://github.com/chubes4/world-of-wordpress",
         "ref": "main",
-        "refType": "branch"
+        "refType": "branch",
+        "path": "plugins/world-of-wordpress"
       },
       "options": {
         "activate": true,
         "targetFolderName": "world-of-wordpress"
+      }
+    },
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "git:directory",
+        "url": "https://github.com/chubes4/world-of-wordpress",
+        "ref": "main",
+        "refType": "branch",
+        "path": "themes/world-of-wordpress"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "world-of-wordpress"
+      }
+    },
+    {
+      "step": "mkdir",
+      "path": "/wordpress/wp-content/world-content"
+    },
+    {
+      "step": "writeFiles",
+      "writeToPath": "/wordpress/wp-content/world-content",
+      "filesTree": {
+        "resource": "git:directory",
+        "url": "https://github.com/chubes4/world-of-wordpress",
+        "ref": "main",
+        "refType": "branch",
+        "path": "content"
+      }
+    },
+    {
+      "step": "writeFile",
+      "path": "/wordpress/wp-content/world-content/WORLD.md",
+      "data": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/WORLD.md"
       }
     },
     {

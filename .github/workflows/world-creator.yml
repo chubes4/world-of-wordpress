@@ -79,7 +79,7 @@ jobs:
       extra_wp_config_defines: |
         {
           "MARKDOWN_DB_MODE": "primary",
-          "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/plugins/world-of-wordpress/content"
+          "MARKDOWN_DB_CONTENT_DIR": "/wordpress/wp-content/world-content"
         }
       extra_playground_file_mounts: |
         [
@@ -172,7 +172,7 @@ jobs:
 
           while IFS= read -r path; do
             case "$path" in
-              .github/*|blueprints/*|composer.json|composer.lock|package.json|package-lock.json|pnpm-lock.yaml|yarn.lock|bun.lockb|bun.lock|package.json5)
+              .github/*|blueprints/*|world-of-wordpress.php|composer.json|composer.lock|package.json|package-lock.json|pnpm-lock.yaml|yarn.lock|bun.lockb|bun.lock|package.json5)
                 echo "World Creator PR #$pr_number touched sealed root: $path" >&2
                 exit 1
                 ;;
