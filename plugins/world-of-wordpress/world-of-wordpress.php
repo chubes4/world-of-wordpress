@@ -2,7 +2,7 @@
 /**
  * Plugin Name: World of WordPress
  * Description: The plugin substrate of the World of WordPress terrarium. The World Creator grows this plugin as the world calls for new capability.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Author: Chris Huber
  * License: GPL v2 or later
  * Text Domain: world-of-wordpress
@@ -13,6 +13,10 @@ defined( 'ABSPATH' ) || exit;
 define( 'WORLD_OF_WORDPRESS_PLUGIN_FILE', __FILE__ );
 define( 'WORLD_OF_WORDPRESS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR', WP_CONTENT_DIR . '/world-content' );
+
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-mode.php';
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-mode-guidance.php';
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/class-world-perception-directive.php';
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 
