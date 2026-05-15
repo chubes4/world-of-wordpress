@@ -2276,6 +2276,11 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			right: clamp(12px, 3vw, 28px);
 			bottom: clamp(12px, 3vw, 28px);
 			z-index: 40;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 0.35rem;
 			width: fit-content;
 			max-width: min(420px, calc(100vw - 24px));
 			padding: 8px;
@@ -2287,6 +2292,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			backdrop-filter: blur(16px);
 		}
 		.world-action-launcher.is-open {
+			display: block;
 			width: min(420px, calc(100vw - 24px));
 			padding: 14px;
 			border-radius: 22px;
