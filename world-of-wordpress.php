@@ -2802,7 +2802,14 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				return true;
 			};
 
-			const setOpen = ( isOpen ) => {
+			const focusFirstMission = () => {
+				const firstMission = missionButtons.length ? missionButtons[0] : null;
+				if ( firstMission && 'function' === typeof firstMission.focus ) {
+					firstMission.focus( { preventScroll: true } );
+				}
+			};
+
+			const setOpen = ( isOpen, shouldFocusMission = false ) => {
 				dock.classList.toggle( 'is-open', isOpen );
 				if ( panel ) {
 					panel.hidden = ! isOpen;
@@ -2811,11 +2818,15 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 					toggle.setAttribute( 'aria-expanded', isOpen ? 'true' : 'false' );
 					toggle.textContent = isOpen ? openLabel : closedLabel;
 				}
+				if ( isOpen && shouldFocusMission ) {
+					focusFirstMission();
+				}
 			};
 
 			if ( panel && toggle ) {
 				toggle.addEventListener( 'click', () => {
-					setOpen( ! dock.classList.contains( 'is-open' ) );
+					const willOpen = ! dock.classList.contains( 'is-open' );
+					setOpen( willOpen, willOpen );
 				} );
 
 				dock.addEventListener( 'keydown', ( event ) => {
