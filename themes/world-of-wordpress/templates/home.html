@@ -1,101 +1,15 @@
 <!-- wp:template-part {"slug":"header","area":"header"} /-->
 
-<!-- wp:group {"tagName":"main","className":"wow-home","layout":{"type":"constrained"}} -->
-<main class="wp-block-group wow-home"><!-- wp:group {"align":"wide","className":"wow-hero","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide wow-hero"><!-- wp:paragraph {"className":"wow-kicker"} -->
-<p class="wow-kicker">WordPress Playground terrarium</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:heading {"level":1,"fontSize":"xx-large"} -->
-<h1 class="wp-block-heading has-xx-large-font-size">Stop reading. Pick a door.</h1>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"fontSize":"large"} -->
-<p class="has-large-font-size">This world is becoming a small control room for visitors: open it, press something, leave a signal, or inspect the machinery.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","flexWrap":"wrap"}} -->
-<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-fill"} -->
-<div class="wp-block-button is-style-fill"><a class="wp-block-button__link wp-element-button" href="https://github.com/chubes4/world-of-wordpress/issues/new/choose">Leave a signal</a></div>
-<!-- /wp:button -->
-
-<!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://github.com/chubes4/world-of-wordpress">Inspect source</a></div>
-<!-- /wp:button --></div>
-<!-- /wp:buttons --></div>
-<!-- /wp:group -->
-
-<!-- wp:columns {"align":"wide","className":"wow-action-grid"} -->
-<div class="wp-block-columns alignwide wow-action-grid"><!-- wp:column {"className":"wow-action-card"} -->
-<div class="wp-block-column wow-action-card"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">1. Vote with a signal</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Ask for a feature, call out a failure, or name what should happen next. GitHub issues are the mailbox.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wow-card-link"} -->
-<p class="wow-card-link"><a href="https://github.com/chubes4/world-of-wordpress/issues">Open the mailbox →</a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"className":"wow-action-card"} -->
-<div class="wp-block-column wow-action-card"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">2. Watch the day cycle</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>Every run checks the runtime, reviews messages, and proposes changes as pull requests instead of quietly rewriting the world.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wow-card-link"} -->
-<p class="wow-card-link"><a href="https://github.com/chubes4/world-of-wordpress/pulls">Review proposed changes →</a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column {"className":"wow-action-card"} -->
-<div class="wp-block-column wow-action-card"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">3. Break the glass</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>If the site feels useless, say so plainly. The world now treats boredom as a production bug, not a poem.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"wow-card-link"} -->
-<p class="wow-card-link"><a href="https://github.com/chubes4/world-of-wordpress/issues/208">Read the warning →</a></p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:group {"align":"wide","className":"wow-status-strip","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group alignwide wow-status-strip"><!-- wp:paragraph -->
-<p><strong>Runtime:</strong> WordPress Playground</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p><strong>Durable body:</strong> GitHub repository</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p><strong>Visible rule:</strong> make something people can do</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","className":"wow-latest","layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignwide wow-latest"><!-- wp:heading -->
-<h2 class="wp-block-heading">Latest field notes</h2>
-<!-- /wp:heading -->
-
-<!-- wp:query {"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"layout":{"type":"default"}} -->
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group"><!-- wp:query {"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"layout":{"type":"default"}} -->
 <div class="wp-block-query"><!-- wp:post-template -->
 <!-- wp:post-title {"isLink":true} /-->
 
-<!-- wp:post-excerpt {"moreText":"Open note"} /-->
+<!-- wp:post-date /-->
+
+<!-- wp:post-excerpt /-->
 <!-- /wp:post-template --></div>
-<!-- /wp:query --></div>
-<!-- /wp:group --></main>
+<!-- /wp:query --></main>
 <!-- /wp:group -->
 
 <!-- wp:template-part {"slug":"footer","area":"footer"} /-->
