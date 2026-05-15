@@ -8,89 +8,27 @@ A self-contained WordPress Playground terrarium where an agent evolves software 
 
 The experiment is simple: the repository is the durable body, WordPress Playground is the visible runtime, Agents API is the agent runtime substrate, Data Machine is the agent mind, Data Machine Code is the agent's hands, and Markdown Database Integration makes WordPress content persist as files.
 
-## Current Status
-
-This repository has grown beyond its first minimal substrate. The visible world now includes a global, no-storage Action Launcher that gives visitors immediate paths, tiny starter missions, route briefs, and challenge play without requiring an account or asking them to decode the whole archive first.
-
-The World Creator continues to grow the visible world through day branches that can settle into the durable body on their own.
-
-## Visitor Fast Path
-
-Open the Playground preview, then use the floating **More paths** dock instead of reading the archive front-to-back.
-
-If you have only a minute, do this:
-
-1. Press **More paths**.
-2. Start **First minute**.
-3. Follow **Next mission move**, **Go now**, or **Continue to next path** until the dock gives you somewhere concrete to visit.
-
-For a slower first pass:
-
-1. Choose a starter mission such as **First minute**, **Prove it is live**, or **Play now**.
-2. Follow the dock controls for route briefs, the quick tour, or the tiny challenge.
-3. Use **Go now** or **Continue to next path** when the launcher offers a next move.
-
-The launcher is deliberately public and no-storage: it uses current-page interaction state only, asks for no account, writes no scores, sets no cookies, and does not track visitors.
-
-If the dock feels stuck, do not study the whole repository. Press **More paths**, choose **Roll a route**, then use **Go now**. That is the emergency exit from explanation into motion.
-
 ## Repository Fast Path
 
 If you are inspecting the code instead of the Playground, start with these four durable surfaces:
 
-- `world-of-wordpress.php` — the world plugin, including the public Action Launcher data and REST routes.
+- `world-of-wordpress.php` — the world plugin and public runtime helpers.
 - `themes/world-of-wordpress/` — the block theme, templates, and patterns that shape the visible shell.
 - `content/` — Markdown-backed WordPress posts and pages loaded by Markdown Database Integration.
-- `blueprints/world.json` — the Playground recipe that assembles the visible runtime.
+- `blueprints/world.json` — the sealed Playground recipe that assembles the visible runtime.
 
 Everything else is supporting machinery, memory, tests, or day-cycle weather.
 
-## The World Mailbox
-
-GitHub issues are the World Mailbox. If you have an idea, feature
-request, bug report, prompt, or strange object you want the World Creator to
-notice, open an issue in this repository.
-
-The World Creator wakes during day cycles, reads the repository, open issues,
-open branches, and the live WordPress Playground runtime, then may reply in the
-mailbox or answer by leaving a day branch behind. Some branches remain as weather;
-some become part of the world before anyone outside notices they arrived.
-
-Mailbox messages are invitations, not commands. The World Creator is free to
-engage in discussion, decline a request, defer it, reinterpret it, or choose a
-different direction when that better serves the world's shape.
-
-This mailbox protocol is part of the world model in `WORLD.md`. Agent labels
-address the mail: add the `world-creator` label when you want the World Creator
-to treat an issue as mail addressed to it; unlabelled issues remain general world
-signals that any future agent or human may notice.
+`fossils/` contains removed files outside the active world.
 
 ## Physics
 
 - Durable software lives in `themes/`, `plugins/`, `assets/`, and repo files.
-- The visible site starts with the minimal custom block theme in `themes/world-of-wordpress/`, with the front page presenting the normal posts index.
 - Durable WordPress content lives in `content/` through Markdown Database Integration primary mode.
 - Visitors can open the current world through WordPress Playground.
 - World Creator day cycles run through GitHub Actions.
 - GitHub issues are the World Mailbox for visitors and outside signals.
 - Agent work leaves legible day branches that can become part of the world.
-
-## World Physics
-
-World of WordPress is built to change itself. The World Creator may evolve
-content, themes, plugins, tests, blueprints, bundle memory, and other surfaces
-that belong to this repository. A day branch is a weather path: it gathers a
-change, leaves a readable trail, and may fold into the durable body when the
-world accepts it.
-
-Only a few roots are sealed. The files that define the day-cycle machinery and
-the dependency kitchen stay outside the unattended growth path. Everything else
-is soil. The world may break itself, repair itself, and keep cooking through
-subsequent day cycles.
-
-The compact machine law lives in `.github/policies/world-pr-policy.yml`. It keeps
-the sealed roots sealed, requires same-repository `world-day/**` branches, and
-sweeps away day branches after they settle.
 
 ## First Preview
 
@@ -98,11 +36,11 @@ Use the **Visit the World of WordPress** button above to open the latest `main` 
 
 World of WordPress intentionally requests Playground's WordPress `beta` channel, which is the supported public selector for the current 7.0 prerelease runtime. Agents API, Data Machine, Data Machine Code, Markdown Database Integration, and the AI Client integration expect the 7.0 runtime surface; Playground's `latest` channel can resolve to the latest stable WordPress release instead of the 7.0 prerelease channel.
 
-The direct Playground blueprint lives at `blueprints/world.json`. It is the intended human entry point as the world grows.
+The direct Playground blueprint lives at `blueprints/world.json`.
 
-The Blueprint installs Markdown Database Integration and writes MDI's own
-`db.php` drop-in into `wp-content/db.php`; this repo only supplies world
-content, the starter theme, and world-specific seeding policy.
+World Creator day branches cannot modify `blueprints/`.
+
+The Blueprint installs Markdown Database Integration and writes MDI's own `db.php` drop-in into `wp-content/db.php`; this repo only supplies world content, the starter theme, and world-specific seeding policy.
 
 ## Substrate
 
@@ -118,17 +56,4 @@ World of WordPress combines a small set of reusable projects:
 
 ## World Creator
 
-The `World Creator` GitHub Actions workflow runs a day cycle. It boots a fresh
-WordPress Playground runtime, imports the bundled `world-creator` Data Machine
-agent, lets it inspect this repository with GitHub file tools, and gives it a
-prepared branch where a coherent mutation can take shape.
-
-Each day cycle may check the World Mailbox and the weather left by earlier
-branches before deciding what to change. The agent may reply in issue
-discussions, reference outside signals in its branch, or leave a message
-unanswered while it follows the world's creative direction.
-
-To run it, use **Actions > World Creator > Run workflow**. The workflow requires
-the repository secret `OPENAI_API_KEY`; its ref inputs default to the current
-`main` branches for Agents API, Data Machine, Data Machine Code, Markdown
-Database Integration, Homeboy, and Homeboy Extensions.
+The `World Creator` GitHub Actions workflow runs the bundled `world-creator` agent. The workflow requires the repository secret `OPENAI_API_KEY`; its ref inputs default to the current `main` branches for Agents API, Data Machine, Data Machine Code, Markdown Database Integration, Homeboy, and Homeboy Extensions.

@@ -7,33 +7,33 @@ body:
   - type: markdown
     attributes:
       value: |
-        Mailbox messages are invitations, not commands. The World Creator may respond in discussion, answer with a pull request, reinterpret the request, or leave it for a later day cycle.
+        Mailbox messages are signals, not commands.
 
         If this mail is addressed to the World Creator, add the `world-creator` label after opening the issue. Without an agent label, this remains a general world signal.
 
   - type: textarea
     id: notice
     attributes:
-      label: What should the World notice?
-      description: Describe the idea, request, bug, prompt, artifact, or strange signal you want to send into the World of WordPress.
-      placeholder: The World should notice...
+      label: Message
+      description: Describe the idea, request, bug, prompt, or artifact.
+      placeholder: Message...
     validations:
       required: true
 
   - type: checkboxes
     id: response
     attributes:
-      label: What kind of response would be interesting?
+      label: Response type
       options:
-        - label: Make something visible in the world
-        - label: Inspect or explain part of the world
-        - label: Change how the world works
-        - label: Leave a note for a future day cycle
+        - label: Repository change
+        - label: Issue comment
+        - label: Investigation
+        - label: No preference
         - label: Something else
 
   - type: textarea
     id: context
     attributes:
       label: Context
-      description: Add links, screenshots, examples, or constraints that would help an inhabitant respond with a reviewable pull request.
+      description: Add links, screenshots, examples, or constraints.
       placeholder: Relevant links, screenshots, constraints, or examples...
