@@ -7,7 +7,10 @@
   "slug": "world-creator-day-cycle-flow",
   "steps": [
     {
-      "agent_mode": "world",
+      "agent_modes": [
+        "pipeline",
+        "world"
+      ],
       "enabled_tools": [
         "list_github_issues",
         "get_github_issue",
