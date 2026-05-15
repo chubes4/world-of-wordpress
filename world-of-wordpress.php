@@ -2294,6 +2294,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			border-radius: 22px;
 		}
 		.world-action-launcher-toggle,
+		.world-action-launcher-start-now,
 		.world-action-launcher-primary,
 		.world-action-launcher-surprise,
 		.world-action-launcher-roll,
@@ -2316,9 +2317,13 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
 			text-decoration: none;
 		}
+		.world-action-launcher-start-now,
 		.world-action-launcher-primary,
 		.world-action-launcher-surprise {
 			margin-left: 0.35rem;
+		}
+		.world-action-launcher-start-now {
+			background: #a7f3d0;
 		}
 		.world-action-launcher-primary {
 			background: #f8fafc;
@@ -2424,12 +2429,15 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			background: #fde68a;
 			box-shadow: none;
 		}
+		.world-action-launcher.is-open .world-action-launcher-start-now,
 		.world-action-launcher.is-open .world-action-launcher-primary,
 		.world-action-launcher.is-open .world-action-launcher-surprise {
 			display: none;
 		}
 		.world-action-launcher-toggle:hover,
 		.world-action-launcher-toggle:focus,
+		.world-action-launcher-start-now:hover,
+		.world-action-launcher-start-now:focus,
 		.world-action-launcher-primary:hover,
 		.world-action-launcher-primary:focus,
 		.world-action-launcher-surprise:hover,
@@ -2642,6 +2650,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		<button class="world-action-launcher-toggle" type="button" aria-expanded="false" aria-controls="<?php echo esc_attr( $panel_id ); ?>">
 			<?php echo esc_html__( 'More paths', 'world-of-wordpress' ); ?>
 		</button>
+		<button class="world-action-launcher-start-now" type="button" data-world-start-now aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Start now', 'world-of-wordpress' ); ?></button>
 		<?php if ( ! empty( $primary_action['href'] ) ) : ?>
 			<a class="world-action-launcher-primary" href="<?php echo esc_url( (string) $primary_action['href'] ); ?>"><?php echo esc_html( (string) ( $primary_action['cta'] ?? __( 'Start', 'world-of-wordpress' ) ) ); ?></a>
 		<?php endif; ?>
@@ -2755,6 +2764,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const readout = document.getElementById( dock.dataset.actionLauncherReadout );
 			const panel = document.getElementById( dock.dataset.actionLauncherPanel );
 			const toggle = dock.querySelector( '.world-action-launcher-toggle' );
+			const startNowButton = dock.querySelector( '[data-world-start-now]' );
 			const surpriseButton = dock.querySelector( '[data-world-surprise]' );
 			const rollButton = dock.querySelector( '[data-world-roll-path]' );
 			const drawButton = dock.querySelector( '[data-world-draw-move]' );
@@ -3157,6 +3167,18 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			missionButtons.forEach( ( button ) => {
 				button.addEventListener( 'click', () => startMission( button ) );
 			} );
+
+			if ( startNowButton ) {
+				startNowButton.addEventListener( 'click', () => {
+					setOpen( true );
+					if ( missionButtons.length ) {
+						startMission( missionButtons[0] );
+						return;
+					}
+
+					rollPath();
+				} );
+			}
 
 			if ( missionNextButton ) {
 				missionNextButton.addEventListener( 'click', advanceMission );
