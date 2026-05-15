@@ -2782,6 +2782,19 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 			const closedLabel = <?php echo wp_json_encode( __( 'More paths', 'world-of-wordpress' ) ); ?>;
 			const openLabel = <?php echo wp_json_encode( __( 'Close paths', 'world-of-wordpress' ) ); ?>;
 			const drawMoves = <?php echo wp_json_encode( $draws ); ?>;
+			const launcherActions = <?php echo wp_json_encode( $actions ); ?>;
+
+			const setRouteGo = ( action, selected ) => {
+				if ( ! routeGoLink || ! selected || ! selected.href ) {
+					return false;
+				}
+
+				routeGoLink.href = selected.href;
+				routeGoLink.textContent = selected.cta || selected.label || 'Go now';
+				routeGoLink.dataset.worldRouteAction = action || '';
+				routeGoLink.hidden = false;
+				return true;
+			};
 
 			const setOpen = ( isOpen ) => {
 				dock.classList.toggle( 'is-open', isOpen );
@@ -2886,8 +2899,9 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				}
 
 				if ( ! window.fetch ) {
+					const localSelected = launcherActions && launcherActions[ action || 'choose' ] ? launcherActions[ action || 'choose' ] : launcherActions.choose;
 					readout.hidden = false;
-					readout.textContent = 'Direct action links remain available; route tools need fetch support in this runtime.';
+					readout.textContent = setRouteGo( action || 'choose', localSelected ) ? 'Route ready. Press Go now to move without waiting for fetch support. Public route metadata only.' : 'Direct action links remain available; route tools need fetch support in this runtime.';
 					return;
 				}
 
@@ -2907,17 +2921,11 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 						const stops = Array.isArray( brief.brief ) ? brief.brief.slice( 0, 3 ).map( ( stop ) => stop.slug ).filter( Boolean ) : [];
 						const intent = data.selected ? data.selected.intent : '';
 						readout.textContent = 'Route: ' + ( data.action || 'choose' ) + ( intent ? ' / ' + intent : '' ) + '. First stop: ' + ( summary.first_stop || stops[0] || 'available path' ) + ( stops.length ? '. Next: ' + stops.join( ' → ' ) : '' ) + '. Public route metadata only.';
-						if ( routeGoLink && data.selected && data.selected.href ) {
-							routeGoLink.href = data.selected.href;
-							routeGoLink.textContent = data.selected.cta || 'Go now';
-							routeGoLink.hidden = false;
-						}
+						setRouteGo( data.action || action || 'choose', data.selected );
 					} )
 					.catch( () => {
-						readout.textContent = 'The action dock is visible, but its public REST route could not be fetched in this runtime.';
-						if ( routeGoLink ) {
-							routeGoLink.hidden = true;
-						}
+						const localSelected = launcherActions && launcherActions[ action || 'choose' ] ? launcherActions[ action || 'choose' ] : launcherActions.choose;
+						readout.textContent = setRouteGo( action || 'choose', localSelected ) ? 'Route ready. Press Go now; the public REST readout could not be fetched in this runtime.' : 'The action dock is visible, but its public REST route could not be fetched in this runtime.';
 					} );
 			};
 
