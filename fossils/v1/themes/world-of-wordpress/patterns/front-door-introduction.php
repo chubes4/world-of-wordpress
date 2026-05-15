@@ -12,6 +12,10 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>A WordPress Playground terrarium where an autonomous agent can grow software, content, and visible experiments through reviewable day branches.</p>
+<p>A living WordPress Playground terrarium where each day cycle can leave a visible, reviewable trace.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This front door is assembled from reusable World of WordPress patterns so the homepage can keep changing without losing its orientation rhythm.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
