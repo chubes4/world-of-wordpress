@@ -5,7 +5,10 @@
   "steps": [
     {
       "step_config": {
-        "agent_mode": "world",
+        "agent_modes": [
+          "pipeline",
+          "world"
+        ],
         "execution_order": 0,
         "label": "Run World Creator",
         "step_type": "ai",

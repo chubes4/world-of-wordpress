@@ -3,9 +3,9 @@
  * World mode registration.
  *
  * Registers the `world` execution mode with Data Machine's
- * AgentModeRegistry. The mode is the label that lets directives,
- * tools, and memory files filter themselves to world-creator runs
- * without leaking into other agents on the site.
+	 * AgentModeRegistry. World creator runs declare both `pipeline` and
+	 * `world` modes so pipeline tools stay available while world-specific
+	 * directives and memory files remain scoped to this agent.
  *
  * @package WorldOfWordPress
  */
@@ -29,26 +29,4 @@ add_action(
 		);
 	},
 	5
-);
-
-/**
- * Inherit pipeline tool surface in world mode.
- *
- * Workspace, GitHub, and runtime tools register against the
- * `pipeline` mode. World mode is a sibling — it exists for context
- * scoping (memory files, directives), not to invent a new tool
- * surface. Declaring inheritance here keeps the agent's hands intact
- * without forcing every tool to re-register against `world`.
- */
-add_filter(
-	'datamachine_tool_mode_matchable_modes',
-	static function ( array $matchable, string $mode ): array {
-		if ( 'world' === $mode && ! in_array( 'pipeline', $matchable, true ) ) {
-			$matchable[] = 'pipeline';
-		}
-
-		return $matchable;
-	},
-	10,
-	2
 );
