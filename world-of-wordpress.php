@@ -2657,7 +2657,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 		<button class="world-action-launcher-surprise" type="button" data-world-surprise aria-describedby="<?php echo esc_attr( $readout_id ); ?>"><?php echo esc_html__( 'Surprise me', 'world-of-wordpress' ); ?></button>
 		<div id="<?php echo esc_attr( $panel_id ); ?>" class="world-action-launcher-panel" hidden>
 			<strong><?php echo esc_html__( 'Choose and move', 'world-of-wordpress' ); ?></strong>
-			<p><?php echo esc_html__( 'Six immediate paths. Route data appears only when you ask for it.', 'world-of-wordpress' ); ?></p>
+			<p><?php echo esc_html__( 'Pick one tiny mission. Extra route tools stay folded until you ask for them.', 'world-of-wordpress' ); ?></p>
 			<?php if ( ! empty( $missions ) ) : ?>
 				<div class="world-action-launcher-missions" aria-label="Tiny starter missions">
 					<?php foreach ( $missions as $mission_key => $mission ) : ?>
