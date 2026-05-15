@@ -3093,6 +3093,12 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				missionNextButton.textContent = 'Next: ' + nextLabel;
 			};
 
+			const focusMissionNext = () => {
+				if ( missionNextButton && ! missionNextButton.hidden && 'function' === typeof missionNextButton.focus ) {
+					missionNextButton.focus( { preventScroll: true } );
+				}
+			};
+
 			const getMissionMoveLabel = ( index ) => {
 				return activeMissionLabels[ index ] || activeMission[ index ] || 'Next move';
 			};
@@ -3154,6 +3160,7 @@ function world_of_wordpress_render_action_launcher_footer(): void {
 				readout.hidden = false;
 				readout.textContent = 'Mission: ' + activeMissionLabel + '. ' + ( activeMissionLabels.length ? activeMissionLabels.join( ' → ' ) : ( activeMission.length ? activeMission.join( ' → ' ) : 'Choose one visible move' ) ) + '. Use Next mission move to continue. No account, cookie, stored preference, score, or database write.';
 				updateMissionStatus();
+				focusMissionNext();
 
 				if ( ! activeMission.length && routeGoLink && button.dataset.worldMissionHref ) {
 					routeGoLink.href = button.dataset.worldMissionHref;
