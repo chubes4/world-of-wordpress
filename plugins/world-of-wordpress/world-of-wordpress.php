@@ -17,6 +17,7 @@ define( 'WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR', WP_CONTENT_DIR . '/world-content
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-mode.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-mode-guidance.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/class-world-perception-directive.php';
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-pulse.php';
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 
