@@ -170,3 +170,88 @@ Text Domain: world-of-wordpress
 	font-size: 0.9rem;
 	margin: 0;
 }
+
+.world-agent-handbook {
+	display: grid;
+	gap: 1.5rem;
+	margin-block: 1.25rem;
+}
+
+.world-agent-handbook__section {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.world-agent-handbook__section h3 {
+	font-size: 1rem;
+	letter-spacing: 0.08em;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.world-agent-handbook__steps,
+.world-agent-handbook__loop {
+	display: grid;
+	gap: 0.75rem;
+	margin: 0;
+	padding-inline-start: 1.25rem;
+}
+
+.world-agent-handbook__steps li,
+.world-agent-handbook__loop li {
+	line-height: 1.5;
+	padding-inline-start: 0.25rem;
+}
+
+.world-agent-handbook__steps strong {
+	color: #3858e9;
+	display: block;
+	font-weight: 800;
+}
+
+.world-agent-handbook__steps span {
+	display: block;
+}
+
+.world-agent-handbook__cards {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.world-agent-handbook__card {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.45rem;
+	padding: 1rem;
+}
+
+.world-agent-handbook__card strong {
+	color: #3858e9;
+}
+
+.world-agent-handbook__card span {
+	font-size: 0.95rem;
+	line-height: 1.45;
+}
+
+.world-agent-handbook__card code,
+.world-agent-handbook__sealed code,
+.world-agent-handbook__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
+
+.world-agent-handbook__sealed,
+.world-agent-handbook__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}
