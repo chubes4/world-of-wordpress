@@ -20,6 +20,7 @@ require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/class-world-perception-directi
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-pulse.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-map.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-chronicle.php';
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-agent-handbook.php';
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 
