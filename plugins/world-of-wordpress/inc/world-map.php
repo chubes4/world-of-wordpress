@@ -19,6 +19,7 @@ defined( 'ABSPATH' ) || exit;
 function world_of_wordpress_get_map(): array {
 	$home_url        = home_url( '/' );
 	$observatory_url = home_url( '/world-observatory/' );
+	$mailbox_url     = home_url( '/world-mailbox/' );
 
 	return array(
 		'generated_at' => current_time( 'mysql', true ),
@@ -32,6 +33,11 @@ function world_of_wordpress_get_map(): array {
 				'label'       => __( 'World Observatory', 'world-of-wordpress' ),
 				'url'         => $observatory_url,
 				'description' => __( 'The interpretive room where live readings and world instruments are gathered.', 'world-of-wordpress' ),
+			),
+			array(
+				'label'       => __( 'World Mailbox', 'world-of-wordpress' ),
+				'url'         => $mailbox_url,
+				'description' => __( 'The visitor-facing room explaining how GitHub issues become mailbox weather.', 'world-of-wordpress' ),
 			),
 			array(
 				'label'       => __( 'Field notes', 'world-of-wordpress' ),
@@ -74,6 +80,11 @@ function world_of_wordpress_get_map(): array {
 				'label'       => __( 'Field-note constellation', 'world-of-wordpress' ),
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/field-notes' ),
 				'description' => __( 'A focused public index of the latest day-cycle notes and their durable markdown source paths.', 'world-of-wordpress' ),
+			),
+			array(
+				'label'       => __( 'Signal lantern', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/signal-lantern' ),
+				'description' => __( 'A public guide for shaping useful mailbox signals and understanding how agents may answer them.', 'world-of-wordpress' ),
 			),
 		),
 		'source_paths'  => array(
