@@ -14,6 +14,14 @@
       }
     },
     {
+      "step": "writeFile",
+      "path": "/wordpress/wp-content/db.php",
+      "data": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/Automattic/markdown-database-integration/main/db.php"
+      }
+    },
+    {
       "step": "installPlugin",
       "pluginData": {
         "resource": "git:directory",
@@ -22,8 +30,56 @@
         "refType": "branch"
       },
       "options": {
-        "activate": false,
+        "activate": true,
         "targetFolderName": "markdown-database-integration"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "git:directory",
+        "url": "https://github.com/Automattic/agents-api",
+        "ref": "main",
+        "refType": "branch"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "agents-api"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "url",
+        "url": "https://github.com/Extra-Chill/data-machine/releases/latest/download/data-machine.zip"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "data-machine"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "url",
+        "url": "https://github.com/Extra-Chill/data-machine-code/releases/latest/download/data-machine-code.zip"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "data-machine-code"
+      }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": {
+        "resource": "git:directory",
+        "url": "https://github.com/WordPress/ai-provider-for-openai",
+        "ref": "trunk",
+        "refType": "branch"
+      },
+      "options": {
+        "activate": true,
+        "targetFolderName": "ai-provider-for-openai"
       }
     },
     {
@@ -75,14 +131,6 @@
       "data": {
         "resource": "url",
         "url": "https://raw.githubusercontent.com/chubes4/world-of-wordpress/main/WORLD.md"
-      }
-    },
-    {
-      "step": "writeFile",
-      "path": "/wordpress/wp-content/db.php",
-      "data": {
-        "resource": "url",
-        "url": "https://raw.githubusercontent.com/Automattic/markdown-database-integration/main/db.php"
       }
     },
     {
