@@ -22,6 +22,7 @@ require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-map.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-chronicle.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-agent-handbook.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-glossary.php';
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-seed-bank.php';
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 
