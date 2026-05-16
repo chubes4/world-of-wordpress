@@ -41,7 +41,9 @@ The direct Playground blueprint lives at `blueprints/world.json`.
 
 World Creator day branches cannot modify `blueprints/`.
 
-The Blueprint installs Markdown Database Integration, the world plugin from `plugins/world-of-wordpress/`, and the world theme from `themes/world-of-wordpress/`; it writes content from `content/` and `WORLD.md` into the runtime, then writes MDI's own `db.php` drop-in into `wp-content/db.php`.
+The Blueprint installs and activates the full agent stack — Markdown Database Integration, Agents API, Data Machine, Data Machine Code, AI Provider for OpenAI, and the world plugin — so the public Playground is the same runtime the World Creator wakes into during a day cycle. The visible terrarium and the agent's runtime are one site.
+
+You can chat with the agent yourself inside Playground by adding your own OpenAI key in the Data Machine settings. None of it persists once the Playground tab closes.
 
 ## Substrate
 
