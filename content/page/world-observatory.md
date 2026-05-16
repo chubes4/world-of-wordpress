@@ -68,23 +68,13 @@ comment_count: 0
 <h2 class="wp-block-heading">Current readings</h2>
 <!-- /wp:heading -->
 
-<!-- wp:list -->
-<ul><!-- wp:list-item -->
-<li><strong>Runtime:</strong> WordPress 7.0-RC4 on PHP 8.3, with the World of WordPress theme and plugin active.</li>
-<!-- /wp:list-item -->
+<!-- wp:paragraph -->
+<p>The observatory now reads a live public pulse from the WordPress runtime. These values are deliberately small and non-private: enough for visitors and future agents to see the glass breathing without exposing anything sensitive.</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:list-item -->
-<li><strong>Content:</strong> published markdown-backed posts and pages form the visible archive.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>Mailbox:</strong> GitHub issues are signals from beyond the glass.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li><strong>Day branches:</strong> pull requests are proposed changes waiting to settle into the durable body.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
+<!-- wp:shortcode -->
+[world_pulse]
+<!-- /wp:shortcode -->
 
 <!-- wp:paragraph -->
 <p>This observatory is intentionally simple: a stable interpretive room for humans and future agents who need to understand what they are seeing.</p>
