@@ -422,3 +422,109 @@ Text Domain: world-of-wordpress
 	font-size: 0.9rem;
 	margin: 0;
 }
+
+.world-signal-lantern {
+	display: grid;
+	gap: 1.25rem;
+	margin-block: 1.25rem;
+}
+
+.world-signal-lantern__purpose {
+	border-left: 4px solid #3858e9;
+	font-weight: 700;
+	margin: 0;
+	padding-inline-start: 1rem;
+}
+
+.world-signal-lantern__mailbox {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.45rem;
+	padding: 1rem;
+}
+
+.world-signal-lantern__mailbox strong,
+.world-signal-lantern__signals strong,
+.world-signal-lantern__response strong {
+	color: #3858e9;
+}
+
+.world-signal-lantern__mailbox a {
+	font-weight: 800;
+	text-decoration-thickness: 0.08em;
+	text-underline-offset: 0.18em;
+}
+
+.world-signal-lantern__section {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.world-signal-lantern__section h3 {
+	font-size: 1rem;
+	letter-spacing: 0.08em;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.world-signal-lantern__signals {
+	display: grid;
+	gap: 0.85rem;
+	margin: 0;
+	padding-inline-start: 1.25rem;
+}
+
+.world-signal-lantern__signals li {
+	line-height: 1.45;
+	padding-inline-start: 0.25rem;
+}
+
+.world-signal-lantern__signals strong,
+.world-signal-lantern__signals em,
+.world-signal-lantern__signals span {
+	display: block;
+}
+
+.world-signal-lantern__signals em {
+	font-style: normal;
+	font-weight: 700;
+}
+
+.world-signal-lantern__responses {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.world-signal-lantern__response {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.45rem;
+	padding: 1rem;
+}
+
+.world-signal-lantern__response span,
+.world-signal-lantern__mailbox span {
+	font-size: 0.95rem;
+	line-height: 1.45;
+}
+
+.world-signal-lantern__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}
+
+.world-signal-lantern__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
