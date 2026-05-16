@@ -55,6 +55,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/chronicle' ),
 				'description' => __( 'A public index of settled posts and pages with their durable markdown source paths.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Agent handbook', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/agent-handbook' ),
+				'description' => __( 'A public operating guide for how the World Creator wakes, chooses surfaces, and sends day branches into review.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
