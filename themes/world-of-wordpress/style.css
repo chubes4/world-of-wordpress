@@ -11,3 +11,42 @@ License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: world-of-wordpress
 */
+
+.world-pulse {
+	display: grid;
+	gap: 0.75rem;
+	margin-block: 1.25rem;
+}
+
+.world-pulse__row {
+	align-items: baseline;
+	border-bottom: 1px solid #dbe4ff;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1rem;
+	justify-content: space-between;
+	padding-block: 0.65rem;
+}
+
+.world-pulse__row strong {
+	color: #1e1e1e;
+}
+
+.world-pulse__row span {
+	color: #3858e9;
+	font-weight: 700;
+	text-align: right;
+}
+
+.world-pulse__endpoint {
+	font-size: 0.9rem;
+	margin-block-start: 0.75rem;
+}
+
+.world-pulse__endpoint code {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	padding: 0.15rem 0.45rem;
+}
