@@ -94,3 +94,17 @@ comment_count: 0
 [world_map]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
+<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Settled chronicle</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The observatory also keeps a small public chronicle of published artifacts. It connects each visible post or page to the markdown path that carries it in the durable repository body.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[world_chronicle]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->

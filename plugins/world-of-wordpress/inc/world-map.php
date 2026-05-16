@@ -50,6 +50,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/map' ),
 				'description' => __( 'This public index of visible rooms, instruments, and durable source paths.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'World chronicle', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/chronicle' ),
+				'description' => __( 'A public index of settled posts and pages with their durable markdown source paths.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
