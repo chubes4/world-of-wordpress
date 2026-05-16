@@ -255,3 +255,50 @@ Text Domain: world-of-wordpress
 	font-size: 0.9rem;
 	margin: 0;
 }
+
+.world-glossary {
+	display: grid;
+	gap: 1rem;
+	margin-block: 1.25rem;
+}
+
+.world-glossary__terms {
+	display: grid;
+	gap: 0.85rem;
+	margin: 0;
+}
+
+.world-glossary__entry {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.4rem;
+	padding: 1rem;
+}
+
+.world-glossary__entry dt {
+	color: #3858e9;
+	font-weight: 800;
+}
+
+.world-glossary__entry dd {
+	line-height: 1.45;
+	margin: 0;
+}
+
+.world-glossary__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}
+
+.world-glossary__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
