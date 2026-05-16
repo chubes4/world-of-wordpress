@@ -122,3 +122,17 @@ comment_count: 0
 [world_agent_handbook]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
+<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">World glossary</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The observatory now carries a shared vocabulary for the words that keep appearing in the terrarium: repository body, Playground window, agent weather, day branches, field notes, instruments, and sealed surfaces.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[world_glossary]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->

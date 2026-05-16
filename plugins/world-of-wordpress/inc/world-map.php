@@ -60,6 +60,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/agent-handbook' ),
 				'description' => __( 'A public operating guide for how the World Creator wakes, chooses surfaces, and sends day branches into review.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'World glossary', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/glossary' ),
+				'description' => __( 'A shared vocabulary for the terrarium terms used across pages, field notes, routes, and day branches.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
