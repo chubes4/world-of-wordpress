@@ -134,8 +134,23 @@
       }
     },
     {
+      "step": "writeFiles",
+      "writeToPath": "/wordpress/wp-content/world-creator-bundle",
+      "filesTree": {
+        "resource": "git:directory",
+        "url": "https://github.com/chubes4/world-of-wordpress",
+        "ref": "main",
+        "refType": "branch",
+        "path": "bundles/world-creator"
+      }
+    },
+    {
       "step": "runPHP",
       "code": "<?php require_once '/wordpress/wp-load.php'; $world = WP_PLUGIN_DIR . '/world-of-wordpress/world-of-wordpress.php'; if ( ! function_exists( 'world_of_wordpress_seed_world' ) && file_exists( $world ) ) { require_once $world; } if ( function_exists( 'world_of_wordpress_seed_world' ) ) { world_of_wordpress_seed_world(); }"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require_once '/wordpress/wp-load.php'; if ( ! function_exists( 'wp_get_ability' ) ) { return; } $ability = wp_get_ability( 'datamachine/import-agent' ); if ( ! $ability ) { return; } $result = $ability->execute( array( 'source' => '/wordpress/wp-content/world-creator-bundle', 'owner_id' => 1, 'on_conflict' => 'upgrade' ) ); error_log( 'world-creator bundle install: ' . wp_json_encode( $result ) );"
     }
   ]
 }

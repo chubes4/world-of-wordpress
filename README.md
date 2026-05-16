@@ -41,9 +41,9 @@ The direct Playground blueprint lives at `blueprints/world.json`.
 
 World Creator day branches cannot modify `blueprints/`.
 
-The Blueprint installs and activates the full agent stack — Markdown Database Integration, Agents API, Data Machine, Data Machine Code, AI Provider for OpenAI, and the world plugin — so the public Playground is the same runtime the World Creator wakes into during a day cycle. The visible terrarium and the agent's runtime are one site.
+The Blueprint installs and activates the full agent stack — Markdown Database Integration, Agents API, Data Machine, Data Machine Code, AI Provider for OpenAI, and the world plugin — and imports the World Creator bundle into Data Machine so the public Playground is the same runtime the agent wakes into during a day cycle. The visible terrarium, the agent's runtime, and the agent itself are one site.
 
-Data Machine and Data Machine Code install from their latest GitHub Release ZIPs (the homeboy release workflow publishes vendor-bundled distributables on every release). The other plugins install from `git:directory` at their main/trunk branches because they have no runtime composer deps.
+Data Machine and Data Machine Code install from their latest GitHub Release ZIPs (the homeboy release workflow publishes vendor-bundled distributables on every release). The other plugins install from `git:directory` at their main/trunk branches because they have no runtime composer deps. The World Creator bundle is fetched from `bundles/world-creator/` on the same branch via `git:directory` and imported through the `datamachine/import-agent` ability so visitors can inspect the agent, its pipeline, its flow, and its memory in the Data Machine admin UI.
 
 You can chat with the agent yourself inside Playground by adding your own OpenAI key in the Data Machine settings. None of it persists once the Playground tab closes.
 
