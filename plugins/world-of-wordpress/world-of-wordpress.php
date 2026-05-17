@@ -26,6 +26,7 @@ require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-seed-bank.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-field-notes.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-signal-lantern.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-weather-vane.php';
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-ability-atlas.php';
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 
