@@ -28,6 +28,7 @@ require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-signal-lantern.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-weather-vane.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-ability-atlas.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-route-canopy.php';
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-source-compass.php';
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 
