@@ -594,3 +594,80 @@ Text Domain: world-of-wordpress
 	padding: 0.15rem 0.45rem;
 	width: fit-content;
 }
+
+.world-ability-atlas {
+	display: grid;
+	gap: 1rem;
+	margin-block: 1.25rem;
+}
+
+.world-ability-atlas__purpose {
+	border-left: 4px solid #3858e9;
+	font-weight: 700;
+	margin: 0;
+	padding-inline-start: 1rem;
+}
+
+.world-ability-atlas__summary {
+	align-items: baseline;
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 0.85rem;
+	padding: 1rem;
+}
+
+.world-ability-atlas__summary strong {
+	color: #3858e9;
+	font-size: clamp(2rem, 6vw, 3.5rem);
+	line-height: 1;
+}
+
+.world-ability-atlas__summary span {
+	font-weight: 700;
+}
+
+.world-ability-atlas__namespaces {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.world-ability-atlas__namespace {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.35rem;
+	padding: 1rem;
+}
+
+.world-ability-atlas__namespace code,
+.world-ability-atlas__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
+
+.world-ability-atlas__namespace span {
+	color: #3858e9;
+	font-weight: 800;
+}
+
+.world-ability-atlas__namespace small,
+.world-ability-atlas__empty {
+	font-size: 0.9rem;
+	line-height: 1.45;
+}
+
+.world-ability-atlas__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}
