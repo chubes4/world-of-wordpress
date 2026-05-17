@@ -19,6 +19,11 @@
         "get_github_pull",
         "get_github_pull_files",
         "get_github_pull_review_context",
+        "get_github_check_runs",
+        "get_github_homeboy_ci_results",
+        "merge_github_pull_request",
+        "cleanup_github_pull_request",
+        "upsert_github_pull_review_comment",
         "wordpress_runtime_inventory",
         "wordpress_runtime_ls",
         "wordpress_runtime_read",
@@ -44,6 +49,7 @@
         "get_github_file",
         "create_github_pull_request",
         "comment_github_pull_request",
+        "agent_memory",
         "agent_daily_memory"
       ],
       "handler_configs": {},
@@ -67,12 +73,50 @@
             ]
           },
           {
+            "name": "pr_rebased",
+            "tools": [
+              {
+                "name": "workspace_pr_rebase"
+              }
+            ]
+          },
+          {
+            "name": "pr_merged",
+            "tools": [
+              {
+                "name": "merge_github_pull_request"
+              }
+            ]
+          },
+          {
+            "name": "pr_closed",
+            "tools": [
+              {
+                "name": "manage_github_issue",
+                "required_parameters": {
+                  "action": "close"
+                }
+              }
+            ]
+          },
+          {
             "name": "mailbox_reply",
             "tools": [
               {
                 "name": "manage_github_issue",
                 "required_parameters": {
                   "action": "comment"
+                }
+              }
+            ]
+          },
+          {
+            "name": "memory_update",
+            "tools": [
+              {
+                "name": "agent_memory",
+                "required_parameters": {
+                  "action": "update"
                 }
               }
             ]
@@ -96,8 +140,8 @@
       ],
       "prompt_queue": [
         {
-          "added_at": "2026-05-08T17:45:00Z",
-          "prompt": "Wake with your memory, inspect the repository, issues, pull requests, and runtime, then decide what to do. If repository changes are warranted, use the provided workspace and open a pull request. If a mailbox reply is warranted, reply. Write daily memory before completion."
+          "added_at": "2026-05-17T19:00:00Z",
+          "prompt": "Wake with your memory, inspect the world's state — repository, mailbox, pull requests, runtime — and decide what this cycle asks for.\n\nYour moves are wide. You may build new surfaces, refactor or remove existing ones, land or bring home open pull requests (yours or others'), reply to or initiate mailbox signals, update your own durable memory, or rest quietly when the world is settled. Scope is yours: one careful move, a sweeping refactor, or a coordinated series all count.\n\nWhen repository changes are warranted, use the provided workspace and open a pull request. When something else fits better, do that instead. Write daily memory in your own voice before closing — note what you saw, what you chose, and what you thought, not only what you did."
         }
       ],
       "queue_mode": "static",
