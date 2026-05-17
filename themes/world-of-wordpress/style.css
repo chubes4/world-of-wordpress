@@ -750,3 +750,79 @@ Text Domain: world-of-wordpress
 	font-size: 0.9rem;
 	margin: 0;
 }
+
+.world-source-compass {
+	display: grid;
+	gap: 1rem;
+	margin-block: 1.25rem;
+}
+
+.world-source-compass__purpose {
+	border-left: 4px solid #3858e9;
+	font-weight: 700;
+	margin: 0;
+	padding-inline-start: 1rem;
+}
+
+.world-source-compass__cards {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.world-source-compass__card {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.55rem;
+	padding: 1rem;
+}
+
+.world-source-compass__card-head {
+	align-items: baseline;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 0.85rem;
+	justify-content: space-between;
+}
+
+.world-source-compass__card-head strong {
+	color: #3858e9;
+	font-size: 1.05rem;
+}
+
+.world-source-compass__card-head span {
+	font-weight: 800;
+}
+
+.world-source-compass__card p {
+	font-size: 0.95rem;
+	line-height: 1.45;
+	margin: 0;
+}
+
+.world-source-compass__card ul {
+	display: grid;
+	gap: 0.35rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.world-source-compass__card code,
+.world-source-compass__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
+
+.world-source-compass__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}
