@@ -96,6 +96,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/ability-atlas' ),
 				'description' => __( 'A namespace-level map of the Abilities API surface available inside the terrarium without exposing private ability details.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Route canopy', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/route-canopy' ),
+				'description' => __( 'A public inventory of world-specific REST routes, readable methods, and purposes without exposing callbacks or arguments.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
