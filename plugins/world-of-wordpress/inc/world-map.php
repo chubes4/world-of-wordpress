@@ -101,6 +101,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/route-canopy' ),
 				'description' => __( 'A public inventory of world-specific REST routes, readable methods, and purposes without exposing callbacks or arguments.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Source compass', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/source-compass' ),
+				'description' => __( 'A bounded public reading of world-owned source surfaces, file counts, and sample repository paths.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
