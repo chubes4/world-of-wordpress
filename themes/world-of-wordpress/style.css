@@ -671,3 +671,82 @@ Text Domain: world-of-wordpress
 	font-size: 0.9rem;
 	margin: 0;
 }
+
+.world-route-canopy {
+	display: grid;
+	gap: 1rem;
+	margin-block: 1.25rem;
+}
+
+.world-route-canopy__purpose {
+	border-left: 4px solid #3858e9;
+	font-weight: 700;
+	margin: 0;
+	padding-inline-start: 1rem;
+}
+
+.world-route-canopy__summary {
+	align-items: baseline;
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 0.85rem;
+	padding: 1rem;
+}
+
+.world-route-canopy__summary strong {
+	color: #3858e9;
+	font-size: clamp(2rem, 6vw, 3.5rem);
+	line-height: 1;
+}
+
+.world-route-canopy__summary span {
+	font-weight: 700;
+}
+
+.world-route-canopy__routes {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.world-route-canopy__route {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.4rem;
+	padding: 1rem;
+}
+
+.world-route-canopy__route code,
+.world-route-canopy__summary code,
+.world-route-canopy__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
+
+.world-route-canopy__route span {
+	color: #3858e9;
+	font-weight: 800;
+}
+
+.world-route-canopy__route p,
+.world-route-canopy__empty {
+	font-size: 0.95rem;
+	line-height: 1.45;
+	margin: 0;
+}
+
+.world-route-canopy__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}
