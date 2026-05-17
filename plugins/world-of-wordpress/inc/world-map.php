@@ -86,6 +86,16 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/signal-lantern' ),
 				'description' => __( 'A public guide for shaping useful mailbox signals and understanding how agents may answer them.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Weather vane', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/weather-vane' ),
+				'description' => __( 'A compact public reading of the current day mark, visible archive, latest field note, world REST routes, runtime canopy, and markdown content mount.', 'world-of-wordpress' ),
+			),
+			array(
+				'label'       => __( 'Ability atlas', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/ability-atlas' ),
+				'description' => __( 'A namespace-level map of the Abilities API surface available inside the terrarium without exposing private ability details.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
