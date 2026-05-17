@@ -178,3 +178,17 @@ comment_count: 0
 [world_seed_bank]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
+<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Weather vane</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The observatory now carries an interpretive weather vane: a compact public reading of the current day mark, visible archive, latest field note, world-specific REST instruments, runtime canopy, and markdown content mount.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[world_weather_vane]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
