@@ -75,6 +75,39 @@ Text Domain: world-of-wordpress
 	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
 }
 
+.world-map__legend {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+}
+
+.world-map__legend-item {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.35rem;
+	padding: 1rem;
+}
+
+.world-map__legend-item strong {
+	color: #3858e9;
+}
+
+.world-map__legend-item em {
+	color: #1e1e1e;
+	font-size: 0.85rem;
+	font-style: normal;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.world-map__legend-item span {
+	font-size: 0.95rem;
+	line-height: 1.45;
+}
+
 .world-map__card {
 	background: #f4f7ff;
 	border: 1px solid #dbe4ff;
