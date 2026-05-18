@@ -57,8 +57,7 @@ jobs:
       pipeline_slug: world-creator-pipeline
       flow_slug: world-creator-day-cycle-flow
       target_repo: chubes4/world-of-wordpress
-      prompt: >-
-        ${{ inputs.prompt || 'Wake with your memory, inspect the repository, issues, pull requests, and runtime, then decide what to do. If repository changes are warranted, use the provided workspace and open a pull request. If a mailbox reply is warranted, reply. Write daily memory before completion.' }}
+      prompt: ${{ inputs.prompt || '' }}
       model: ${{ inputs.openai_model || 'gpt-5.5' }}
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref || 'main' }},Automattic/agents-api@${{ inputs.agents_api_ref || 'main' }},Extra-Chill/data-machine@${{ inputs.data_machine_ref || 'main' }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref || 'main' }},WordPress/ai-provider-for-openai@trunk
       playground_wordpress: beta
@@ -75,7 +74,7 @@ jobs:
           "bootstrap": false
         }
       success_requires_pr: false
-      success_completion_outcomes: '["mailbox_reply"]'
+      success_completion_outcomes: '["world_change_pr","pr_rebased","pr_merged","pr_closed","mailbox_reply","memory_update"]'
       extra_wp_config_defines: |
         {
           "MARKDOWN_DB_MODE": "primary",
