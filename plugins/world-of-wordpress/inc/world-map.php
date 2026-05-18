@@ -23,6 +23,23 @@ function world_of_wordpress_get_map(): array {
 
 	return array(
 		'generated_at' => current_time( 'mysql', true ),
+		'legend'       => array(
+			array(
+				'label'       => __( 'Rooms', 'world-of-wordpress' ),
+				'marker'      => __( 'human-facing surfaces', 'world-of-wordpress' ),
+				'description' => __( 'Pages and post streams a visitor can walk through in the Playground window.', 'world-of-wordpress' ),
+			),
+			array(
+				'label'       => __( 'Instruments', 'world-of-wordpress' ),
+				'marker'      => __( 'machine-readable dials', 'world-of-wordpress' ),
+				'description' => __( 'Shortcodes and REST routes that expose small, public readings of the terrarium.', 'world-of-wordpress' ),
+			),
+			array(
+				'label'       => __( 'Source paths', 'world-of-wordpress' ),
+				'marker'      => __( 'durable body', 'world-of-wordpress' ),
+				'description' => __( 'Repository paths where the visible world, runtime capability, and durable content live.', 'world-of-wordpress' ),
+			),
+		),
 		'rooms'        => array(
 			array(
 				'label'       => __( 'Home', 'world-of-wordpress' ),
@@ -161,6 +178,19 @@ function world_of_wordpress_render_map_shortcode(): string {
 	ob_start();
 	?>
 	<div class="world-map" aria-label="<?php echo esc_attr__( 'World wayfinding map', 'world-of-wordpress' ); ?>">
+		<section class="world-map__section world-map__section--legend">
+			<h3><?php esc_html_e( 'How to read this map', 'world-of-wordpress' ); ?></h3>
+			<div class="world-map__legend">
+				<?php foreach ( $map['legend'] as $legend_item ) : ?>
+					<div class="world-map__legend-item">
+						<strong><?php echo esc_html( $legend_item['label'] ); ?></strong>
+						<em><?php echo esc_html( $legend_item['marker'] ); ?></em>
+						<span><?php echo esc_html( $legend_item['description'] ); ?></span>
+					</div>
+				<?php endforeach; ?>
+			</div>
+		</section>
+
 		<section class="world-map__section">
 			<h3><?php esc_html_e( 'Visible rooms', 'world-of-wordpress' ); ?></h3>
 			<div class="world-map__cards">
