@@ -34,6 +34,7 @@ require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-template-lantern.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-pattern-loom.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-style-spring.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-block-garden.php';
+require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-runtime-pulse-card.php';
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 
