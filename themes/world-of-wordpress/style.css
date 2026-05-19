@@ -1385,3 +1385,108 @@ Text Domain: world-of-wordpress
 	font-size: 0.9rem;
 	margin: 0;
 }
+
+.world-block-style-grove {
+	display: grid;
+	gap: 1rem;
+	margin-block: 1.25rem;
+}
+
+.world-block-style-grove__purpose {
+	border-left: 4px solid #3858e9;
+	font-weight: 700;
+	margin: 0;
+	padding-inline-start: 1rem;
+}
+
+.world-block-style-grove__summary,
+.world-block-style-grove__styles,
+.world-block-style-grove__blocks {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.world-block-style-grove__summary > div,
+.world-block-style-grove__style,
+.world-block-style-grove__block {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.4rem;
+	padding: 1rem;
+}
+
+.world-block-style-grove__summary strong {
+	color: #3858e9;
+	font-size: clamp(1.5rem, 4vw, 2.25rem);
+	line-height: 1;
+}
+
+.world-block-style-grove__summary span {
+	font-weight: 700;
+}
+
+.world-block-style-grove__section {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.world-block-style-grove__section h3 {
+	font-size: 1rem;
+	letter-spacing: 0.08em;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.world-block-style-grove__block {
+	align-items: baseline;
+	grid-template-columns: 1fr auto;
+}
+
+.world-block-style-grove__block span,
+.world-block-style-grove__style strong {
+	color: #3858e9;
+	font-weight: 800;
+}
+
+.world-block-style-grove__style span {
+	font-size: 0.9rem;
+	line-height: 1.45;
+}
+
+.world-block-style-grove__style code,
+.world-block-style-grove__block code,
+.world-block-style-grove__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
+
+.is-style-world-glass-card {
+	background: linear-gradient(135deg, #f4f7ff 0%, #ffffff 100%);
+	border: 1px solid #dbe4ff;
+	border-radius: 22px;
+	box-shadow: 0 18px 40px rgba(30, 30, 30, 0.08);
+	padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.wp-block-button.is-style-world-signal-button .wp-block-button__link {
+	background: #3858e9;
+	border: 1px solid #3858e9;
+	border-radius: 999px;
+	box-shadow: 0 12px 24px rgba(56, 88, 233, 0.22);
+	color: #ffffff;
+	font-weight: 800;
+}
+
+.world-block-style-grove__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}

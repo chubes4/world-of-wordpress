@@ -30,7 +30,8 @@ function world_of_wordpress_get_route_canopy_descriptions(): array {
 		'/world-of-wordpress/v1/template-lantern'  => __( 'Template lantern: active block-theme templates, template parts, and theme.json signals.', 'world-of-wordpress' ),
 		'/world-of-wordpress/v1/pattern-loom'      => __( 'Pattern loom: world-owned block patterns available for posts, pages, and future rooms.', 'world-of-wordpress' ),
 		'/world-of-wordpress/v1/style-spring'      => __( 'Style spring: active block-theme design tokens, palette, typography, layout, and spacing.', 'world-of-wordpress' ),
-		'/world-of-wordpress/v1/block-garden'      => __( 'Block garden: registered block-type namespaces, world blocks, and safe core composition samples.', 'world-of-wordpress' ),
+		'/world-of-wordpress/v1/block-garden'       => __( 'Block garden: registered block-type namespaces, world blocks, and safe core composition samples.', 'world-of-wordpress' ),
+		'/world-of-wordpress/v1/block-style-grove' => __( 'Block style grove: registered block style variations and world-owned editor dressings.', 'world-of-wordpress' ),
 	);
 }
 
