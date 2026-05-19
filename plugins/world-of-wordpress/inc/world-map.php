@@ -20,6 +20,8 @@ function world_of_wordpress_get_map(): array {
 	$home_url        = home_url( '/' );
 	$observatory_url = home_url( '/world-observatory/' );
 	$mailbox_url     = home_url( '/world-mailbox/' );
+	$guestbook_url   = home_url( '/world-guestbook/' );
+	$instruments_url = home_url( '/world-instruments/' );
 
 	return array(
 		'generated_at' => current_time( 'mysql', true ),
@@ -49,12 +51,22 @@ function world_of_wordpress_get_map(): array {
 			array(
 				'label'       => __( 'World Observatory', 'world-of-wordpress' ),
 				'url'         => $observatory_url,
-				'description' => __( 'The interpretive room where live readings and world instruments are gathered.', 'world-of-wordpress' ),
+				'description' => __( 'The interpretive room where the main world orientation stays readable instead of becoming a wall of dials.', 'world-of-wordpress' ),
 			),
 			array(
 				'label'       => __( 'World Mailbox', 'world-of-wordpress' ),
 				'url'         => $mailbox_url,
 				'description' => __( 'The visitor-facing room explaining how GitHub issues become mailbox weather.', 'world-of-wordpress' ),
+			),
+			array(
+				'label'       => __( 'World Guestbook', 'world-of-wordpress' ),
+				'url'         => $guestbook_url,
+				'description' => __( 'A softer visitor threshold for leaving a trace without turning every presence into a feature request.', 'world-of-wordpress' ),
+			),
+			array(
+				'label'       => __( 'World Instruments', 'world-of-wordpress' ),
+				'url'         => $instruments_url,
+				'description' => __( 'The cabinet of machine-readable dials moved out of the main observatory so the room can breathe.', 'world-of-wordpress' ),
 			),
 			array(
 				'label'       => __( 'Field notes', 'world-of-wordpress' ),
