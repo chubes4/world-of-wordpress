@@ -26,7 +26,8 @@ function world_of_wordpress_get_route_canopy_descriptions(): array {
 		'/world-of-wordpress/v1/ability-atlas'  => __( 'Ability atlas: namespace-level map of the Abilities API surface.', 'world-of-wordpress' ),
 		'/world-of-wordpress/v1/route-canopy'   => __( 'Route canopy: this public inventory of world-specific REST instruments.', 'world-of-wordpress' ),
 		'/world-of-wordpress/v1/source-compass' => __( 'Source compass: bounded readings of world-owned repository surfaces and sample paths.', 'world-of-wordpress' ),
-		'/world-of-wordpress/v1/archive-rings'  => __( 'Archive rings: day-by-day groupings of settled field notes and durable markdown paths.', 'world-of-wordpress' ),
+		'/world-of-wordpress/v1/archive-rings'      => __( 'Archive rings: day-by-day groupings of settled field notes and durable markdown paths.', 'world-of-wordpress' ),
+		'/world-of-wordpress/v1/template-lantern'  => __( 'Template lantern: active block-theme templates, template parts, and theme.json signals.', 'world-of-wordpress' ),
 	);
 }
 
