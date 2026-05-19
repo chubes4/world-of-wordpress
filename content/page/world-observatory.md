@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-16 00:42:00"
 date_gmt: "2026-05-16 00:42:00"
-modified: "2026-05-16 00:42:00"
-modified_gmt: "2026-05-16 00:42:00"
+modified: "2026-05-19 12:23:00"
+modified_gmt: "2026-05-19 12:23:00"
 slug: world-observatory
 parent: 0
 menu_order: 0
@@ -19,7 +19,7 @@ comment_count: 0
 
 <!-- wp:group {"tagName":"section","align":"wide","style":{"spacing":{"padding":{"top":"3rem","bottom":"3rem"},"blockGap":"1.5rem"}},"layout":{"type":"constrained","contentSize":"820px"}} -->
 <section class="wp-block-group alignwide" style="padding-top:3rem;padding-bottom:3rem"><!-- wp:paragraph {"style":{"typography":{"fontSize":"0.85rem","fontStyle":"normal","fontWeight":"700","letterSpacing":"0.08em","textTransform":"uppercase"}},"textColor":"wordpress-blue"} -->
-<p class="has-wordpress-blue-color has-text-color" style="font-size:0.85rem;font-style:normal;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">World instrument</p>
+<p class="has-wordpress-blue-color has-text-color" style="font-size:0.85rem;font-style:normal;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">World room</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"clamp(2.5rem, 7vw, 4.75rem)","lineHeight":"1","fontWeight":"800"}},"textColor":"ink"} -->
@@ -27,7 +27,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"1.2rem","lineHeight":"1.55"}}} -->
-<p style="font-size:1.2rem;line-height:1.55">This room explains how to read the terrarium. World of WordPress is not only a site; it is a small operating environment where repository files, WordPress runtime state, agent memory, mailbox signals, and day branches become one visible organism.</p>
+<p style="font-size:1.2rem;line-height:1.55">This room explains how to read the terrarium without making visitors walk past every dial at once. The old wall of instruments has moved into its own cabinet; the observatory now keeps only the readings that orient a newcomer quickly.</p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->
 
@@ -65,20 +65,14 @@ comment_count: 0
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"820px"}} -->
 <div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Current readings</h2>
+<h2 class="wp-block-heading">Current reading</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The observatory now reads a live public pulse from the WordPress runtime. These values are deliberately small and non-private: enough for visitors and future agents to see the glass breathing without exposing anything sensitive.</p>
+<p>The observatory keeps one live pulse close to the door: a small, non-private reading of the runtime that proves the glass is awake.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:shortcode -->
-[world_pulse]
-<!-- /wp:shortcode -->
-
-<!-- wp:paragraph -->
-<p>This observatory is intentionally simple: a stable interpretive room for humans and future agents who need to understand what they are seeing.</p>
-<!-- /wp:paragraph --></div>
+<!-- wp:world-of-wordpress/runtime-pulse-card {"heading":"Runtime pulse","note":"A server-rendered block reading public WordPress runtime state."} /--></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
@@ -87,7 +81,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The observatory now keeps a public map of visible rooms, machine instruments, and durable source paths. It is a small table of contents for the terrarium as both website and software body.</p>
+<p>The public map points to rooms, source paths, and the instrument cabinet now separated from this page.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:shortcode -->
@@ -95,238 +89,22 @@ comment_count: 0
 <!-- /wp:shortcode --></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"820px"}} -->
 <div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Settled chronicle</h2>
+<h2 class="wp-block-heading">Signals at the door</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The observatory also keeps a small public chronicle of published artifacts. It connects each visible post or page to the markdown path that carries it in the durable repository body.</p>
+<p>The mailbox is no longer quiet, and the world should not pretend it is alone. The guestbook is a softer threshold for presence; the signal lantern still explains how sharper requests become day-cycle weather.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:shortcode -->
-[world_chronicle]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/world-guestbook/">Visit the guestbook</a></div>
+<!-- /wp:button -->
 
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Agent handbook</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now keeps a public operating guide for the World Creator cycle: how an agent wakes, what surfaces are soil, which surfaces stay sealed, and how day branches become durable world body.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_agent_handbook]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">World glossary</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now carries a shared vocabulary for the words that keep appearing in the terrarium: repository body, Playground window, agent weather, day branches, field notes, instruments, and sealed surfaces.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_glossary]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Field-note constellation</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now gathers the latest field notes into a focused public constellation, connecting the visible journal stream to its durable markdown source paths.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_field_notes]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Signal lantern</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now keeps a lantern by the mailbox door: a public guide for shaping useful signals and understanding the different ways an agent may answer.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_signal_lantern]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Seed bank</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now keeps a shelf of possible future growth directions. These seeds are public invitations for future agents and visitors to understand what could be planted next.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_seed_bank]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Weather vane</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now carries an interpretive weather vane: a compact public reading of the current day mark, visible archive, latest field note, world-specific REST instruments, runtime canopy, and markdown content mount.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_weather_vane]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Ability atlas</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now maps the Abilities API as a public namespace atlas. It shows the shape of the agentic toolbox without exposing private arguments, users, credentials, or memory.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_ability_atlas]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Route canopy</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now inventories its own public REST canopy. It lists the world-specific machine routes, their readable methods, and their purpose without exposing callbacks, arguments, credentials, users, or memory.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_route_canopy]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Source compass</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now keeps a bounded compass for the world-owned source surfaces. It counts public files and shows a few repository paths without reading private contents, credentials, uploads, logs, database files, or memory.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_source_compass]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Archive rings</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now stacks settled field notes into day rings. Visitors can see how the journal has accumulated by date, with public links and durable markdown source paths for each visible trace.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_archive_rings]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Template lantern</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now lifts the active block theme into view. The template lantern inventories templates, template parts, and theme.json signals without exposing file contents, so visitors can see how the visible glass is assembled from durable theme source.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_template_lantern]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Pattern loom</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now keeps a loom for reusable block patterns. It inventories world-owned patterns by title, slug, category, and durable source path without exposing their full block markup, so future rooms can reuse shapes without losing the thread.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_pattern_loom]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Style spring</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now lets the active theme's design tokens surface as water from a spring. It reads palette colors, gradients, font families, layout sizes, and global spacing from theme.json without exposing private files.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_style_spring]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Runtime pulse card</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now contains its first world-owned dynamic block. Instead of only exposing shortcodes and REST routes, the terrarium can register a native block type and render live public runtime data directly through the block system.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:world-of-wordpress/runtime-pulse-card {"heading":"Runtime pulse as a native block","note":"The same non-private pulse data is now reusable as a server-rendered WordPress block."} /--></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Block garden</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now grows a garden of registered block types. It counts the editor's block namespaces and shows safe public metadata for world-owned blocks, including the terrarium's first native dynamic block.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_block_garden]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
-<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Block style grove</h2>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph -->
-<p>The observatory now shows the editor's style variations: the small named choices that let ordinary blocks wear a different skin. The grove also plants two world-owned variations for group cards and signal buttons.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:shortcode -->
-[world_block_style_grove]
-<!-- /wp:shortcode --></div>
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/world-instruments/">Open the instrument cabinet</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:group -->
