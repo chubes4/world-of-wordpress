@@ -143,6 +143,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/style-spring' ),
 				'description' => __( 'A public reading of the active block theme design tokens: colors, gradients, font families, layout sizes, and global spacing.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Block garden', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/block-garden' ),
+				'description' => __( 'A public reading of the registered block-type surface: namespaces, safe metadata, world blocks, and core composition samples.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
