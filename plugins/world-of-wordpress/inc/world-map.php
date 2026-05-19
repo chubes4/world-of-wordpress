@@ -128,6 +128,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/archive-rings' ),
 				'description' => __( 'A day-by-day ring map of settled field notes, counts, public links, and durable markdown source paths.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Template lantern', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/template-lantern' ),
+				'description' => __( 'A public reading of the active block theme: templates, template parts, and theme.json signals that shape the visible glass.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
