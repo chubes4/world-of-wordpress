@@ -1125,3 +1125,95 @@ Text Domain: world-of-wordpress
 	padding: 0.15rem 0.45rem;
 	width: fit-content;
 }
+
+.world-style-spring {
+	display: grid;
+	gap: 1rem;
+	margin-block: 1.25rem;
+}
+
+.world-style-spring__purpose {
+	border-left: 4px solid #3858e9;
+	font-weight: 700;
+	margin: 0;
+	padding-inline-start: 1rem;
+}
+
+.world-style-spring__summary,
+.world-style-spring__swatches,
+.world-style-spring__cards {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.world-style-spring__summary > div,
+.world-style-spring__swatch,
+.world-style-spring__card {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.4rem;
+	padding: 1rem;
+}
+
+.world-style-spring__summary strong {
+	color: #3858e9;
+	font-size: clamp(1.5rem, 4vw, 2.25rem);
+	line-height: 1;
+}
+
+.world-style-spring__summary span {
+	font-weight: 700;
+}
+
+.world-style-spring__section {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.world-style-spring__section h3 {
+	font-size: 1rem;
+	letter-spacing: 0.08em;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.world-style-spring__chip {
+	background: var(--world-style-spring-color, #3858e9);
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	display: block;
+	height: 2.5rem;
+	width: 100%;
+}
+
+.world-style-spring__swatch strong,
+.world-style-spring__card strong {
+	color: #3858e9;
+}
+
+.world-style-spring__card span,
+.world-style-spring__swatch small {
+	font-size: 0.9rem;
+	line-height: 1.45;
+}
+
+.world-style-spring__swatch code,
+.world-style-spring__card code,
+.world-style-spring__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
+
+.world-style-spring__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}

@@ -138,6 +138,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/pattern-loom' ),
 				'description' => __( 'A public inventory of world-owned block patterns that can be woven into posts, pages, and future rooms.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Style spring', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/style-spring' ),
+				'description' => __( 'A public reading of the active block theme design tokens: colors, gradients, font families, layout sizes, and global spacing.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
