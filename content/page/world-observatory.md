@@ -262,3 +262,17 @@ comment_count: 0
 [world_template_lantern]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
+<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Pattern loom</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The observatory now keeps a loom for reusable block patterns. It inventories world-owned patterns by title, slug, category, and durable source path without exposing their full block markup, so future rooms can reuse shapes without losing the thread.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[world_pattern_loom]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
