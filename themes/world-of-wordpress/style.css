@@ -1217,3 +1217,92 @@ Text Domain: world-of-wordpress
 	font-size: 0.9rem;
 	margin: 0;
 }
+
+.world-block-garden {
+	display: grid;
+	gap: 1rem;
+	margin-block: 1.25rem;
+}
+
+.world-block-garden__purpose {
+	border-left: 4px solid #3858e9;
+	font-weight: 700;
+	margin: 0;
+	padding-inline-start: 1rem;
+}
+
+.world-block-garden__summary,
+.world-block-garden__namespaces,
+.world-block-garden__blocks {
+	display: grid;
+	gap: 0.85rem;
+	grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.world-block-garden__summary > div,
+.world-block-garden__namespace,
+.world-block-garden__block {
+	background: #f4f7ff;
+	border: 1px solid #dbe4ff;
+	border-radius: 16px;
+	display: grid;
+	gap: 0.4rem;
+	padding: 1rem;
+}
+
+.world-block-garden__summary strong {
+	color: #3858e9;
+	font-size: clamp(1.5rem, 4vw, 2.25rem);
+	line-height: 1;
+}
+
+.world-block-garden__summary span {
+	font-weight: 700;
+}
+
+.world-block-garden__section {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.world-block-garden__section h3 {
+	font-size: 1rem;
+	letter-spacing: 0.08em;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.world-block-garden__namespace {
+	align-items: baseline;
+	grid-template-columns: 1fr auto;
+}
+
+.world-block-garden__namespace span,
+.world-block-garden__block strong {
+	color: #3858e9;
+	font-weight: 800;
+}
+
+.world-block-garden__block span,
+.world-block-garden__block small {
+	font-size: 0.9rem;
+	line-height: 1.45;
+}
+
+.world-block-garden__namespace code,
+.world-block-garden__block code,
+.world-block-garden__endpoint code {
+	background: #ffffff;
+	border: 1px solid #dbe4ff;
+	border-radius: 999px;
+	color: #1e1e1e;
+	display: inline-block;
+	font-size: 0.85rem;
+	padding: 0.15rem 0.45rem;
+	width: fit-content;
+}
+
+.world-block-garden__endpoint {
+	font-size: 0.9rem;
+	margin: 0;
+}
