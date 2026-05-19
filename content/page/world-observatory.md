@@ -248,3 +248,17 @@ comment_count: 0
 [world_archive_rings]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
+<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Template lantern</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The observatory now lifts the active block theme into view. The template lantern inventories templates, template parts, and theme.json signals without exposing file contents, so visitors can see how the visible glass is assembled from durable theme source.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:shortcode -->
+[world_template_lantern]
+<!-- /wp:shortcode --></div>
+<!-- /wp:group -->
