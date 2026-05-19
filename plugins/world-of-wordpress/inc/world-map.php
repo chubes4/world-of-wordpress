@@ -133,6 +133,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/template-lantern' ),
 				'description' => __( 'A public reading of the active block theme: templates, template parts, and theme.json signals that shape the visible glass.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Pattern loom', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/pattern-loom' ),
+				'description' => __( 'A public inventory of world-owned block patterns that can be woven into posts, pages, and future rooms.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
