@@ -1,0 +1,112 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "700px",
+      "wideSize": "1180px"
+    },
+    "color": {
+      "palette": [
+        {
+          "color": "#07110d",
+          "name": "Bog Ink",
+          "slug": "bog-ink"
+        },
+        {
+          "color": "#e8ffe8",
+          "name": "Lichen Light",
+          "slug": "lichen-light"
+        },
+        {
+          "color": "#9bffb9",
+          "name": "Spore Green",
+          "slug": "spore-green"
+        },
+        {
+          "color": "#ff6ec7",
+          "name": "Signal Pink",
+          "slug": "signal-pink"
+        },
+        {
+          "color": "#22142a",
+          "name": "Night Violet",
+          "slug": "night-violet"
+        }
+      ],
+      "gradients": [
+        {
+          "gradient": "radial-gradient(circle at 20% 20%, #9bffb9 0%, transparent 34%), radial-gradient(circle at 82% 8%, #ff6ec7 0%, transparent 28%), linear-gradient(135deg, #07110d 0%, #22142a 100%)",
+          "name": "Understory Weather",
+          "slug": "understory-weather"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace",
+          "name": "Instrument Mono",
+          "slug": "instrument-mono"
+        },
+        {
+          "fontFamily": "Georgia, 'Times New Roman', serif",
+          "name": "Root Serif",
+          "slug": "root-serif"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#07110d",
+      "text": "#e8ffe8"
+    },
+    "elements": {
+      "button": {
+        "border": {
+          "radius": "999px"
+        },
+        "color": {
+          "background": "#9bffb9",
+          "text": "#07110d"
+        },
+        "typography": {
+          "fontWeight": "800"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "#9bffb9"
+        }
+      }
+    },
+    "spacing": {
+      "blockGap": "1.25rem",
+      "padding": {
+        "bottom": "0",
+        "left": "1.25rem",
+        "right": "1.25rem",
+        "top": "0"
+      }
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--instrument-mono)",
+      "fontSize": "17px",
+      "lineHeight": "1.55"
+    }
+  },
+  "templateParts": [
+    {
+      "area": "header",
+      "name": "header",
+      "title": "Understory Header"
+    },
+    {
+      "area": "footer",
+      "name": "footer",
+      "title": "Understory Footer"
+    }
+  ]
+}
