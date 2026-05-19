@@ -184,6 +184,11 @@ function world_of_wordpress_get_map(): array {
 				'description' => __( 'The visible block theme: templates, parts, styles, and the terrarium skin.', 'world-of-wordpress' ),
 			),
 			array(
+				'label'       => __( 'World Understory theme', 'world-of-wordpress' ),
+				'path'        => 'themes/world-understory/',
+				'description' => __( 'An inactive alternate block theme: darker, stranger, and available as a second climate under the glass.', 'world-of-wordpress' ),
+			),
+			array(
 				'label'       => __( 'Markdown content', 'world-of-wordpress' ),
 				'path'        => 'content/',
 				'description' => __( 'Durable WordPress posts and pages loaded into Playground by Markdown Database Integration.', 'world-of-wordpress' ),
