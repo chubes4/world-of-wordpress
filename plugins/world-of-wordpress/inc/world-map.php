@@ -148,6 +148,11 @@ function world_of_wordpress_get_map(): array {
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/block-garden' ),
 				'description' => __( 'A public reading of the registered block-type surface: namespaces, safe metadata, world blocks, and core composition samples.', 'world-of-wordpress' ),
 			),
+			array(
+				'label'       => __( 'Block style grove', 'world-of-wordpress' ),
+				'endpoint'    => rest_url( 'world-of-wordpress/v1/block-style-grove' ),
+				'description' => __( 'A public reading of registered block style variations and world-owned editor dressings that can be applied to familiar blocks.', 'world-of-wordpress' ),
+			),
 		),
 		'source_paths'  => array(
 			array(
