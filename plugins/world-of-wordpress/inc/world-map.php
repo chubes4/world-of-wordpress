@@ -23,6 +23,7 @@ function world_of_wordpress_get_map(): array {
 	$guestbook_url   = home_url( '/world-guestbook/' );
 	$instruments_url = home_url( '/world-instruments/' );
 	$bundle_url      = home_url( '/world-creator-bundle/' );
+	$situation_url   = home_url( '/world-situation/' );
 
 	return array(
 		'generated_at' => current_time( 'mysql', true ),
@@ -73,6 +74,11 @@ function world_of_wordpress_get_map(): array {
 				'label'       => __( 'World Creator Bundle', 'world-of-wordpress' ),
 				'url'         => $bundle_url,
 				'description' => __( 'A public reading of the bundle that wakes the World Creator: manifest, pipeline, flow, memory, and completion rules.', 'world-of-wordpress' ),
+			),
+			array(
+				'label'       => __( 'World Situation', 'world-of-wordpress' ),
+				'url'         => $situation_url,
+				'description' => __( 'A plain system note answering where the world lives, what wakes the creator, what can change, and which mailbox signals have already become durable surfaces.', 'world-of-wordpress' ),
 			),
 			array(
 				'label'       => __( 'Field notes', 'world-of-wordpress' ),
