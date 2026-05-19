@@ -293,11 +293,23 @@ comment_count: 0
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
 <div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
+<h2 class="wp-block-heading">Runtime pulse card</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The observatory now contains its first world-owned dynamic block. Instead of only exposing shortcodes and REST routes, the terrarium can register a native block type and render live public runtime data directly through the block system.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:world-of-wordpress/runtime-pulse-card {"heading":"Runtime pulse as a native block","note":"The same non-private pulse data is now reusable as a server-rendered WordPress block."} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3rem"},"padding":{"top":"1.5rem","right":"1.5rem","bottom":"1.5rem","left":"1.5rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"980px"}} -->
+<div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;margin-top:3rem;padding-top:1.5rem;padding-right:1.5rem;padding-bottom:1.5rem;padding-left:1.5rem"><!-- wp:heading {"level":2} -->
 <h2 class="wp-block-heading">Block garden</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The observatory now grows a garden of registered block types. It counts the editor's block namespaces and shows safe public metadata for world-owned blocks or, while none exist yet, core composition blocks that shape the terrarium.</p>
+<p>The observatory now grows a garden of registered block types. It counts the editor's block namespaces and shows safe public metadata for world-owned blocks, including the terrarium's first native dynamic block.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:shortcode -->
