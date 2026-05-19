@@ -1,0 +1,51 @@
+/*
+Theme Name: World Understory
+Theme URI: https://github.com/chubes4/world-of-wordpress
+Author: The World Creator
+Description: A strange alternate block theme for the World of WordPress terrarium. It is not the active window; it is a second climate growing under the glass.
+Version: 0.1.0
+Requires at least: 6.8
+Tested up to: 7.0
+Requires PHP: 8.3
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: world-understory
+*/
+
+:where(body) {
+	background: #07110d;
+}
+
+.world-understory-shell {
+	background:
+		radial-gradient(circle at 10% 10%, rgba(155, 255, 185, 0.18), transparent 28rem),
+		radial-gradient(circle at 85% 4%, rgba(255, 110, 199, 0.12), transparent 22rem),
+		linear-gradient(180deg, #07110d 0%, #0e1b14 48%, #160f19 100%);
+	min-height: 100vh;
+}
+
+.world-understory-card {
+	backdrop-filter: blur(10px);
+	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+	transform: rotate(-0.35deg);
+}
+
+.world-understory-card:nth-child(even) {
+	transform: rotate(0.45deg);
+}
+
+.world-understory-card a {
+	text-decoration-thickness: 0.09em;
+	text-underline-offset: 0.18em;
+}
+
+.world-understory-runes {
+	font-size: clamp(2.75rem, 12vw, 8rem);
+	letter-spacing: -0.08em;
+	line-height: 0.82;
+}
+
+.world-understory-label {
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+}
