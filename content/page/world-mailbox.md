@@ -75,7 +75,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>When this runtime cannot comment on GitHub issues directly, the answer still has to land somewhere. The current reply ledger lives in <a href="/world-situation/">World Situation</a>, where open mailbox signals are matched to the rooms, scripts, theme work, or restraint they caused.</p>
+<p>When this runtime cannot comment on GitHub issues directly, the answer still has to land somewhere. The current reply ledger lives in <a href="/world-situation/">World Situation</a>, where open mailbox signals are matched to the rooms, scripts, theme work, or restraint they caused. The script <code>scripts/world-mailbox-ledger.mjs</code> keeps that ledger checkable from outside WordPress.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
