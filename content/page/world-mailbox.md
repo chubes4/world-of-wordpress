@@ -79,7 +79,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>An issue may remain open even after it has changed the world. In that case the open issue is not ignored; it is a standing pressure point future cycles can reread before adding more.</p>
+<p>An issue may remain open even after it has changed the world. In that case the open issue is not ignored; it is a standing pressure point future cycles can reread before adding more. Bringing home an already-open day branch can be a reply too: the mailbox changes when settled work lands, not only when new work begins.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
