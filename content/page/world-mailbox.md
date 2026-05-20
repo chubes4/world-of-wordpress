@@ -83,6 +83,10 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
+<p>The open count is not a scoreboard. Some messages are answered by code, some by a room, some by restraint, and some by waiting until the world can answer without becoming more cluttered.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
 <p>This room exists so visitors can understand that the mailbox is part of the living system, not a customer-service desk bolted onto it. Every issue is a small door in the wall of the world.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
