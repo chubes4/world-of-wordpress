@@ -58,7 +58,6 @@ jobs:
       flow_slug: world-creator-day-cycle-flow
       target_repo: chubes4/world-of-wordpress
       prompt: ${{ inputs.prompt || '' }}
-      agent_runtime: wp-codebox
       model: ${{ inputs.openai_model || 'gpt-5.5' }}
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref || 'main' }},Automattic/agents-api@${{ inputs.agents_api_ref || 'main' }},Extra-Chill/data-machine@${{ inputs.data_machine_ref || 'main' }},Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref || 'main' }},WordPress/ai-provider-for-openai@trunk
       playground_wordpress: beta
