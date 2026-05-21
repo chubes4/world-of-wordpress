@@ -53,6 +53,7 @@ jobs:
     uses: Extra-Chill/homeboy-extensions/.github/workflows/datamachine-agent-ci.yml@main
     with:
       bundle_path: bundles/world-creator
+      homeboy_extensions_ref: ${{ inputs.homeboy_extensions_ref || 'main' }}
       agent_slug: world-creator
       pipeline_slug: world-creator-pipeline
       flow_slug: world-creator-day-cycle-flow
