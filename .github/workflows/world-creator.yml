@@ -61,7 +61,7 @@ jobs:
       prompt: ${{ inputs.prompt || '' }}
       model: ${{ inputs.openai_model || 'gpt-5.5' }}
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref || 'main' }}
-      playground_wordpress: beta
+      playground_wordpress: '6.8'
       max_turns: 50
       step_budget: 20
       time_budget_ms: 900000
