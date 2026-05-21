@@ -53,6 +53,7 @@ jobs:
     uses: Extra-Chill/homeboy-extensions/.github/workflows/datamachine-agent-ci.yml@main
     with:
       bundle_path: bundles/world-creator
+      homeboy_extensions_ref: ${{ inputs.homeboy_extensions_ref || 'main' }}
       agent_slug: world-creator
       pipeline_slug: world-creator-pipeline
       flow_slug: world-creator-day-cycle-flow
@@ -60,7 +61,7 @@ jobs:
       prompt: ${{ inputs.prompt || '' }}
       model: ${{ inputs.openai_model || 'gpt-5.5' }}
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref || 'main' }}
-      playground_wordpress: beta
+      playground_wordpress: nightly
       max_turns: 50
       step_budget: 20
       time_budget_ms: 900000
