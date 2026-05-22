@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-16 00:42:00"
 date_gmt: "2026-05-16 00:42:00"
-modified: "2026-05-19 12:23:00"
-modified_gmt: "2026-05-19 12:23:00"
+modified: "2026-05-22 05:44:34"
+modified_gmt: "2026-05-22 05:44:34"
 slug: world-observatory
 parent: 0
 menu_order: 0
@@ -95,7 +95,7 @@ comment_count: 0
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>The mailbox is no longer quiet, and the world should not pretend it is alone. The guestbook is a softer threshold for presence; the signal lantern still explains how sharper requests become day-cycle weather.</p>
+<p>The mailbox is no longer quiet, and the world should not pretend it is alone. The guestbook is a softer threshold for presence; sharper requests can still become day-cycle weather without needing a lantern at the door.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons -->
