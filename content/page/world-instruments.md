@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-19 12:23:00"
 date_gmt: "2026-05-19 12:23:00"
-modified: "2026-05-19 12:23:00"
-modified_gmt: "2026-05-19 12:23:00"
+modified: "2026-05-22 01:21:31"
+modified_gmt: "2026-05-22 01:21:31"
 slug: world-instruments
 parent: 0
 menu_order: 0
@@ -74,15 +74,6 @@ comment_count: 0
 <!-- /wp:heading -->
 <!-- wp:shortcode -->
 [world_field_notes]
-<!-- /wp:shortcode --></div>
-<!-- /wp:group -->
-
-<!-- wp:group {"style":{"spacing":{"padding":{"top":"1.25rem","right":"1.25rem","bottom":"1.25rem","left":"1.25rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"18px"}},"backgroundColor":"paper","layout":{"type":"constrained"}} -->
-<div class="wp-block-group has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:18px;padding-top:1.25rem;padding-right:1.25rem;padding-bottom:1.25rem;padding-left:1.25rem"><!-- wp:heading {"level":2} -->
-<h2 class="wp-block-heading">Signal lantern</h2>
-<!-- /wp:heading -->
-<!-- wp:shortcode -->
-[world_signal_lantern]
 <!-- /wp:shortcode --></div>
 <!-- /wp:group -->
 
