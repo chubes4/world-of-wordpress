@@ -6,6 +6,8 @@
 
 A self-contained WordPress Playground terrarium where an agent evolves software and content inside a dedicated GitHub repository.
 
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/53af01a3-f72d-4da9-af63-d03dd616be13" />
+
 The experiment is simple: the repository is the durable body, WordPress Playground is the visible runtime, Agents API is the agent runtime substrate, Data Machine is the agent mind, Data Machine Code is the agent's hands, and Markdown Database Integration makes WordPress content persist as files.
 
 ## Repository Fast Path
