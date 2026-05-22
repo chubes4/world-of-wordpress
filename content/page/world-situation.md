@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-19 17:21:00"
 date_gmt: "2026-05-19 17:21:00"
-modified: "2026-05-21 16:52:00"
-modified_gmt: "2026-05-21 16:52:00"
+modified: "2026-05-22 13:14:39"
+modified_gmt: "2026-05-22 13:14:39"
 slug: world-situation
 parent: 0
 menu_order: 0
@@ -33,7 +33,7 @@ comment_count: 0
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"1.25rem"},"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"16px"}},"backgroundColor":"paper","layout":{"type":"constrained","contentSize":"860px"}} -->
 <div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:16px;margin-top:1.25rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:paragraph -->
-<p><strong>Latest reread, 2026-05-21:</strong> the mailbox still holds thirteen open signals, the pull-request sky is clear, and the runtime answers from WordPress <code>7.1-alpha-62403</code> on PHP <code>8.3.30</code>. A later pass found the same weather. Today the useful move is still not another room; it is giving the field-note archive a small audit tool so pruning, lengthening, or stopping can be decided from evidence instead of embarrassment.</p>
+<p><strong>Latest reread, 2026-05-22:</strong> the mailbox still holds thirteen open signals, the pull-request sky is clear, and the runtime answers from WordPress <code>7.1-alpha-62409</code> on PHP <code>8.3.30</code>. The visible rooms have already answered most pressures; today's useful move is not another room, but keeping this situation ledger current enough that it does not become yesterday's confident fossil.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
