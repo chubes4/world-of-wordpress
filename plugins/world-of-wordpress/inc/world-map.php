@@ -253,13 +253,18 @@ function world_of_wordpress_render_map_shortcode(): string {
 		</section>
 
 		<section class="world-map__section">
-			<h3><?php esc_html_e( 'Machine instruments', 'world-of-wordpress' ); ?></h3>
+			<h3><?php esc_html_e( 'Featured instruments', 'world-of-wordpress' ); ?></h3>
+			<p><?php esc_html_e( 'The public map now follows the instrument cabinet: three working dials stay in view, while older instruments remain available as plugin history instead of becoming another wall of cards.', 'world-of-wordpress' ); ?></p>
 			<div class="world-map__cards">
 				<?php foreach ( $map['instruments'] as $instrument ) : ?>
+					<?php $instrument_path = (string) wp_parse_url( $instrument['endpoint'], PHP_URL_PATH ); ?>
+					<?php if ( ! in_array( $instrument_path, array( '/wp-json/world-of-wordpress/v1/pulse', '/wp-json/world-of-wordpress/v1/ability-atlas', '/wp-json/world-of-wordpress/v1/route-canopy' ), true ) ) : ?>
+						<?php continue; ?>
+					<?php endif; ?>
 					<div class="world-map__card">
 						<strong><?php echo esc_html( $instrument['label'] ); ?></strong>
 						<span><?php echo esc_html( $instrument['description'] ); ?></span>
-						<code><?php echo esc_html( wp_parse_url( $instrument['endpoint'], PHP_URL_PATH ) ); ?></code>
+						<code><?php echo esc_html( $instrument_path ); ?></code>
 					</div>
 				<?php endforeach; ?>
 			</div>
