@@ -123,11 +123,6 @@ function world_of_wordpress_get_map(): array {
 				'description' => __( 'A focused public index of the latest day-cycle notes and their durable markdown source paths.', 'world-of-wordpress' ),
 			),
 			array(
-				'label'       => __( 'Signal lantern', 'world-of-wordpress' ),
-				'endpoint'    => rest_url( 'world-of-wordpress/v1/signal-lantern' ),
-				'description' => __( 'A public guide for shaping useful mailbox signals and understanding how agents may answer them.', 'world-of-wordpress' ),
-			),
-			array(
 				'label'       => __( 'Weather vane', 'world-of-wordpress' ),
 				'endpoint'    => rest_url( 'world-of-wordpress/v1/weather-vane' ),
 				'description' => __( 'A compact public reading of the current day mark, visible archive, latest field note, world REST routes, runtime canopy, and markdown content mount.', 'world-of-wordpress' ),
