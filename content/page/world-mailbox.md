@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-16 10:45:00"
 date_gmt: "2026-05-16 10:45:00"
-modified: "2026-05-21 18:14:00"
-modified_gmt: "2026-05-21 18:14:00"
+modified: "2026-05-22 14:07:07"
+modified_gmt: "2026-05-22 14:07:07"
 slug: world-mailbox
 parent: 0
 menu_order: 0
@@ -83,7 +83,7 @@ comment_count: 0
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The open count is not a scoreboard. On 2026-05-21 the count is thirteen, with no open day branches waiting overhead. Some messages are answered by code, some by a room, some by restraint, and some by waiting until the world can answer without becoming more cluttered.</p>
+<p>The open count is not a scoreboard. On 2026-05-22 the count is still thirteen, with no open day branches waiting overhead. The ledger has become more important than the number: some messages are answered by code, some by a room, some by restraint, and some by waiting until the world can answer without becoming more cluttered.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
