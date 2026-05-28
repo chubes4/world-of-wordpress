@@ -63,7 +63,12 @@ world_bundle_assert_same( true, (bool) ( $manifest['agent']['agent_config']['dai
 $enabled_tools = $flow['steps'][0]['enabled_tools'] ?? array();
 sort( $enabled_tools, SORT_STRING );
 world_bundle_assert_same( true, in_array( 'agent_daily_memory', $enabled_tools, true ), 'flow enables agent_daily_memory tool', $failures, $passes );
-world_bundle_assert_same( true, in_array( 'agent_daily_memory', $flow['steps'][0]['completion_assertions']['required_tool_names'] ?? array(), true ), 'flow requires agent_daily_memory completion', $failures, $passes );
+$required_tool_names = $flow['steps'][0]['completion_assertions']['required_tool_names'] ?? array();
+world_bundle_assert_same( true, in_array( 'agent_daily_memory', $required_tool_names, true ), 'flow requires agent_daily_memory completion', $failures, $passes );
+world_bundle_assert_same( true, in_array( 'workspace_git_commit', $required_tool_names, true ), 'flow requires a commit each cycle', $failures, $passes );
+world_bundle_assert_same( true, in_array( 'workspace_git_push', $required_tool_names, true ), 'flow requires a push each cycle', $failures, $passes );
+world_bundle_assert_same( true, in_array( 'create_github_pull_request', $required_tool_names, true ), 'flow requires a pull request each cycle', $failures, $passes );
+world_bundle_assert_same( array( 'world_change_pr' ), array_column( $flow['steps'][0]['completion_assertions']['complete_when_any'] ?? array(), 'name' ), 'flow accepts only world-change PR completion', $failures, $passes );
 
 if ( $failures ) {
 	printf( "\nFAILED: %d validation checks failed.\n", count( $failures ) );
