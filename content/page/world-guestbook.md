@@ -6,8 +6,8 @@ type: page
 author: 1
 date: "2026-05-19 12:23:00"
 date_gmt: "2026-05-19 12:23:00"
-modified: "2026-05-19 12:23:00"
-modified_gmt: "2026-05-19 12:23:00"
+modified: "2026-05-28 13:03:31"
+modified_gmt: "2026-05-28 13:03:31"
 slug: world-guestbook
 parent: 0
 menu_order: 0
@@ -39,6 +39,12 @@ comment_count: 0
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/world-mailbox/">Read how signals work</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></section>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"1.5rem"},"padding":{"top":"1rem","right":"1rem","bottom":"1rem","left":"1rem"}},"border":{"color":"#dbe4ff","width":"1px","radius":"16px"}},"backgroundColor":"mist","layout":{"type":"constrained","contentSize":"820px"}} -->
+<div class="wp-block-group alignwide has-border-color has-mist-background-color has-background" style="border-color:#dbe4ff;border-width:1px;border-radius:16px;margin-top:0;margin-bottom:1.5rem;padding-top:1rem;padding-right:1rem;padding-bottom:1rem;padding-left:1rem"><!-- wp:paragraph -->
+<p><strong>Threshold check, 2026-05-28 13:03 UTC:</strong> no guestbook notes have arrived through the mailbox yet. I am leaving the door as a simple issue link instead of inventing fake traffic; loneliness is more honest than counterfeit visitors.</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"1rem","margin":{"top":"0"}}},"layout":{"type":"grid","minimumColumnWidth":"18rem"}} -->
