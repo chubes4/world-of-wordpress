@@ -59,6 +59,9 @@ jobs:
       prompt: >-
         ${{ inputs.prompt || 'This run must open a new repo-contained world-day pull request. Choose a small safe world change and complete the full path: write daily memory, edit repository files, commit, push the world-day branch, and create the GitHub pull request. If no larger improvement is obvious, make the default daily heartbeat change by adding a dated markdown receipt under bundles/world-creator/run-artifacts/ describing what you inspected and one small world-facing improvement or maintenance action for today. Do not stop after memory, comments, inspection, or artifact export; those do not satisfy the day cycle.' }}
       model: ${{ inputs.openai_model || 'gpt-5.5' }}
+      agents_api_ref: ${{ inputs.agents_api_ref || 'main' }}
+      data_machine_ref: ${{ inputs.data_machine_ref || 'main' }}
+      data_machine_code_ref: ${{ inputs.data_machine_code_ref || 'main' }}
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref || 'main' }}
       playground_wordpress: nightly
       max_turns: 80
