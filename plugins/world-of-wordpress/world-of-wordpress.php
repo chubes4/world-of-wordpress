@@ -38,47 +38,6 @@ require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-block-style-grove.php';
 require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-runtime-pulse-card.php';
 
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
-add_filter( 'wp_codebox_site_seed_importers', 'world_of_wordpress_register_wp_codebox_site_seed_importer' );
-
-/**
- * Register the World of WordPress seed importer for WP Codebox recipes.
- *
- * @param array $importers Registered WP Codebox site seed importers.
- * @return array
- */
-function world_of_wordpress_register_wp_codebox_site_seed_importer( array $importers ): array {
-	$importers['world_of_wordpress'] = array(
-		'label'       => 'World of WordPress',
-		'description' => 'Stage World of WordPress files, import MDI content, and seed runtime options.',
-		'callback'    => 'world_of_wordpress_import_wp_codebox_site_seed',
-	);
-
-	return $importers;
-}
-
-/**
- * Import the World of WordPress runtime seed for a WP Codebox recipe.
- *
- * @param array $request WP Codebox site seed import request.
- * @return array
- */
-function world_of_wordpress_import_wp_codebox_site_seed( array $request ): array {
-	world_of_wordpress_seed_world();
-
-	return array(
-		'counts'     => array(
-			'posts'    => count( get_posts( array( 'post_type' => 'post', 'post_status' => 'any', 'numberposts' => -1 ) ) ),
-			'pages'    => count( get_posts( array( 'post_type' => 'page', 'post_status' => 'any', 'numberposts' => -1 ) ) ),
-			'comments' => count( get_comments( array( 'status' => 'all' ) ) ),
-		),
-		'provenance' => array(
-			'seed_function'           => 'world_of_wordpress_seed_world',
-			'source_basename'         => (string) ( $request['source_basename'] ?? '' ),
-			'world_content_dir'       => WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR,
-			'markdown_db_content_dir' => defined( 'MARKDOWN_DB_CONTENT_DIR' ) ? MARKDOWN_DB_CONTENT_DIR : '',
-		),
-	);
-}
 
 /**
  * Register WORLD.md as shared memory for every agent on this site.

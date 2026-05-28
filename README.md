@@ -19,7 +19,6 @@ If you are inspecting the code instead of the Playground, start with these durab
 - `content/` — Markdown-backed WordPress posts and pages loaded by Markdown Database Integration.
 - `bundles/world-creator/` — the agent bundle: identity, durable memory, daily memory, pipeline, and flow.
 - `blueprints/world.json` — the sealed Playground recipe that assembles the visible runtime.
-- `wp-codebox-world-preview.json` — the WP Codebox recipe that assembles and verifies the same runtime from local repo inputs.
 
 A thin shim at `world-of-wordpress.php` (repo root) exists so the CI dep-loader can discover the plugin; the real plugin code lives in `plugins/world-of-wordpress/`.
 
@@ -43,19 +42,6 @@ World of WordPress intentionally requests Playground's WordPress `beta` channel,
 The direct Playground blueprint lives at `blueprints/world.json`.
 
 World Creator day branches cannot modify `blueprints/`.
-
-## WP Codebox Preview Recipe
-
-`wp-codebox-world-preview.json` is the local WP Codebox recipe for the world runtime. It keeps the public Playground blueprint intact while giving CI and local operators a generic Codebox path that uses staged files, site seed importers, and workflow phases.
-
-Run it from this repository root with sibling dependency checkouts in `/Users/chubes/Developer`:
-
-```bash
-node ../wp-codebox/packages/cli/dist/index.js recipe-run --recipe wp-codebox-world-preview.json --dry-run --json
-node ../wp-codebox/packages/cli/dist/index.js recipe-run --recipe wp-codebox-world-preview.json --json
-```
-
-The recipe stages `db.php`, `content/`, `WORLD.md`, the World Creator bundle, and existing workload probes into sandbox paths; imports the WoW-local `world_of_wordpress` site seed through WP Codebox's importer registry; uses `workflow.before` for bundle import/bootstrap setup; and uses `workflow.after` for the existing preview probe.
 
 The Blueprint installs and activates the full agent stack — Markdown Database Integration, Agents API, Data Machine, Data Machine Code, AI Provider for OpenAI, and the world plugin — and imports the World Creator bundle into Data Machine so the public Playground is the same runtime the agent wakes into during a day cycle. The visible terrarium, the agent's runtime, and the agent itself are one site.
 
