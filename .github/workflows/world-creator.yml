@@ -56,12 +56,13 @@ jobs:
       pipeline_slug: world-creator-pipeline
       flow_slug: world-creator-day-cycle-flow
       target_repo: chubes4/world-of-wordpress
-      prompt: ${{ inputs.prompt || '' }}
+      prompt: >-
+        ${{ inputs.prompt || 'This run must open a new repo-contained world-day pull request. Choose a small safe world change and complete the full path: write daily memory, edit repository files, commit, push the world-day branch, and create the GitHub pull request. If no larger improvement is obvious, make the default daily heartbeat change by adding a dated markdown receipt under bundles/world-creator/run-artifacts/ describing what you inspected and one small world-facing improvement or maintenance action for today. Do not stop after memory, comments, inspection, or artifact export; those do not satisfy the day cycle.' }}
       model: ${{ inputs.openai_model || 'gpt-5.5' }}
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref || 'main' }}
       playground_wordpress: nightly
-      max_turns: 50
-      step_budget: 20
+      max_turns: 80
+      step_budget: 40
       time_budget_ms: 900000
       runner_workspace: |
         {
