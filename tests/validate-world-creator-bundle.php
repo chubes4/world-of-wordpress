@@ -74,6 +74,9 @@ world_bundle_assert_same( array( 'world_change_pr' ), array_column( $flow['steps
 world_bundle_assert_same( true, str_contains( (string) ( $flow['steps'][0]['prompt_queue'][0]['prompt'] ?? '' ), 'bundles/world-creator/run-artifacts/' ), 'flow prompt includes a deterministic daily heartbeat fallback', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'This run must open a new repo-contained world-day pull request' ), 'workflow prompt requires a PR in run context', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'step_budget: 40' ), 'workflow gives the day cycle enough tool budget for PR creation', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'agents_api_ref: ${{ inputs.agents_api_ref' ), 'workflow forwards Agents API ref to reusable runner', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'data_machine_ref: ${{ inputs.data_machine_ref' ), 'workflow forwards Data Machine ref to reusable runner', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'data_machine_code_ref: ${{ inputs.data_machine_code_ref' ), 'workflow forwards Data Machine Code ref to reusable runner', $failures, $passes );
 
 if ( $failures ) {
 	printf( "\nFAILED: %d validation checks failed.\n", count( $failures ) );
