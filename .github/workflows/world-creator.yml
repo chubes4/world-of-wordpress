@@ -1,8 +1,6 @@
 name: World Creator
 
 on:
-  schedule:
-    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       prompt:
