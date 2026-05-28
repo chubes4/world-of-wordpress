@@ -55,10 +55,7 @@
       "handler_configs": {},
       "completion_assertions": {
         "required_tool_names": [
-          "agent_daily_memory",
-          "workspace_git_commit",
-          "workspace_git_push",
-          "create_github_pull_request"
+          "agent_daily_memory"
         ],
         "complete_when_any": [
           {
@@ -72,6 +69,55 @@
               },
               {
                 "name": "create_github_pull_request"
+              }
+            ]
+          },
+          {
+            "name": "pr_rebased",
+            "tools": [
+              {
+                "name": "workspace_pr_rebase"
+              }
+            ]
+          },
+          {
+            "name": "pr_merged",
+            "tools": [
+              {
+                "name": "merge_github_pull_request"
+              }
+            ]
+          },
+          {
+            "name": "pr_closed",
+            "tools": [
+              {
+                "name": "manage_github_issue",
+                "required_parameters": {
+                  "action": "close"
+                }
+              }
+            ]
+          },
+          {
+            "name": "mailbox_reply",
+            "tools": [
+              {
+                "name": "manage_github_issue",
+                "required_parameters": {
+                  "action": "comment"
+                }
+              }
+            ]
+          },
+          {
+            "name": "memory_update",
+            "tools": [
+              {
+                "name": "agent_memory",
+                "required_parameters": {
+                  "action": "update"
+                }
               }
             ]
           }
@@ -95,7 +141,7 @@
       "prompt_queue": [
         {
           "added_at": "2026-05-17T19:00:00Z",
-          "prompt": "Wake with your memory, inspect the world's state — repository, mailbox, pull requests, runtime — and choose today's world change.\n\nEvery day cycle must leave at least one repo-contained `world-day/*` pull request against `main`. Build, refine, document, repair, prune, or extend something real in the world. A small coherent change is enough, but no-change days are not successful days. Mailbox replies, memory updates, artifact exports, rebases, merges, and closed PRs may support the cycle, but they do not satisfy it.\n\nIf no larger idea is ready, perform the default daily heartbeat: create or update a dated file under `bundles/world-creator/run-artifacts/` that records one concrete observation, one small improvement idea, and one follow-up seed for a future cycle. This fallback is still a real world change and must be committed, pushed, and opened as a PR.\n\nUse the provided workspace, commit the change, push the `world-day/*` branch, and open a pull request. Write daily memory in your own voice before opening the PR — note what you saw, what you changed, and why today's change belongs in the world. You are not finished until `workspace_git_commit`, `workspace_git_push`, and `create_github_pull_request` have all succeeded."
+          "prompt": "Wake with your memory, inspect the world's state — repository, mailbox, pull requests, runtime — and decide what this cycle asks for.\n\nYour moves are wide. You may build new surfaces, refactor or remove existing ones, land or bring home open pull requests (yours or others'), reply to or initiate mailbox signals, update your own durable memory, or rest quietly when the world is settled. Scope is yours: one careful move, a sweeping refactor, or a coordinated series all count.\n\nWhen repository changes are warranted, use the provided workspace and open a pull request. When something else fits better, do that instead. Write daily memory in your own voice before closing — note what you saw, what you chose, and what you thought, not only what you did."
         }
       ],
       "queue_mode": "static",
