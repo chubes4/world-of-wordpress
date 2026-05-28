@@ -69,6 +69,7 @@ world_bundle_assert_same( true, in_array( 'workspace_git_commit', $required_tool
 world_bundle_assert_same( true, in_array( 'workspace_git_push', $required_tool_names, true ), 'flow requires a push each cycle', $failures, $passes );
 world_bundle_assert_same( true, in_array( 'create_github_pull_request', $required_tool_names, true ), 'flow requires a pull request each cycle', $failures, $passes );
 world_bundle_assert_same( array( 'world_change_pr' ), array_column( $flow['steps'][0]['completion_assertions']['complete_when_any'] ?? array(), 'name' ), 'flow accepts only world-change PR completion', $failures, $passes );
+world_bundle_assert_same( true, str_contains( (string) ( $flow['steps'][0]['prompt_queue'][0]['prompt'] ?? '' ), 'bundles/world-creator/run-artifacts/' ), 'flow prompt includes a deterministic daily heartbeat fallback', $failures, $passes );
 
 if ( $failures ) {
 	printf( "\nFAILED: %d validation checks failed.\n", count( $failures ) );
