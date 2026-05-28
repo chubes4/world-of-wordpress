@@ -70,7 +70,7 @@ world_bundle_assert_same( true, in_array( 'agent_daily_memory', $required_tool_n
 world_bundle_assert_same( array( 'agent_daily_memory' ), $required_tool_names, 'flow preserves broad day-cycle completion contract', $failures, $passes );
 world_bundle_assert_same( false, str_contains( (string) ( $flow['steps'][0]['prompt_queue'][0]['prompt'] ?? '' ), 'bundles/world-creator/run-artifacts/' ), 'flow prompt has no deterministic heartbeat fallback', $failures, $passes );
 world_bundle_assert_same( false, str_contains( $workflow, 'This run must open a new repo-contained world-day pull request' ), 'workflow does not override the bundled flow prompt', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, "- cron: '17 * * * *'" ), 'workflow runs on the hourly day-cycle schedule', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, "- cron: '17 * * * *'" ), 'workflow remains paused unless manually dispatched', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'step_budget: 40' ), 'workflow gives the day cycle enough tool budget for PR creation', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'agents_api_ref: ${{ inputs.agents_api_ref' ), 'workflow forwards Agents API ref to reusable runner', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'data_machine_ref: ${{ inputs.data_machine_ref' ), 'workflow forwards Data Machine ref to reusable runner', $failures, $passes );
