@@ -72,8 +72,8 @@ jobs:
           "from": "origin/main",
           "bootstrap": false
         }
-      success_requires_pr: false
-      success_completion_outcomes: '["world_change_pr","pr_rebased","pr_merged","pr_closed","mailbox_reply","memory_update"]'
+      success_requires_pr: true
+      success_completion_outcomes: '["world_change_pr"]'
       extra_wp_config_defines: |
         {
           "MARKDOWN_DB_MODE": "primary",
@@ -141,7 +141,7 @@ jobs:
               --jq '[.[] | select(.head.repo.full_name == "chubes4/world-of-wordpress") | select(.head.ref | startswith("world-day/")) | select(.user.login == "homeboy-ci[bot]" or .user.login == "app/homeboy-ci")] | .[0].number // ""')"
             if [ -z "$pr_number" ] || [ "$pr_number" = "null" ]; then
               echo "No World Creator PR was reported by the agent run."
-              exit 0
+              exit 1
             fi
             echo "Falling back to latest open homeboy-ci world-day PR #$pr_number."
           else
@@ -161,7 +161,7 @@ jobs:
 
           if [ "$state" != "open" ]; then
             echo "World Creator PR #$pr_number is $state; nothing to merge."
-            exit 0
+            exit 1
           fi
           if [ "$base_ref" != "main" ] || [ "$head_repo" != "chubes4/world-of-wordpress" ]; then
             echo "World Creator PR #$pr_number is outside the day road: base=$base_ref head_repo=$head_repo" >&2
@@ -171,7 +171,7 @@ jobs:
           changed_files="$(gh api --paginate "repos/chubes4/world-of-wordpress/pulls/$pr_number/files" --jq '.[].filename')"
           if [ -z "$changed_files" ]; then
             echo "World Creator PR #$pr_number has no changed files."
-            exit 0
+            exit 1
           fi
 
           while IFS= read -r path; do
