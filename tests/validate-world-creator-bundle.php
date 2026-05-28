@@ -77,6 +77,8 @@ world_bundle_assert_same( true, str_contains( $workflow, 'step_budget: 40' ), 'w
 world_bundle_assert_same( true, str_contains( $workflow, 'agents_api_ref: ${{ inputs.agents_api_ref' ), 'workflow forwards Agents API ref to reusable runner', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'data_machine_ref: ${{ inputs.data_machine_ref' ), 'workflow forwards Data Machine ref to reusable runner', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'data_machine_code_ref: ${{ inputs.data_machine_code_ref' ), 'workflow forwards Data Machine Code ref to reusable runner', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'does not point to a world-day branch' ), 'workflow rejects artifact PR output before merging', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'latest_world_day_pr' ), 'workflow can fall back to the opened world-day PR', $failures, $passes );
 
 if ( $failures ) {
 	printf( "\nFAILED: %d validation checks failed.\n", count( $failures ) );
