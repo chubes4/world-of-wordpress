@@ -72,9 +72,12 @@ world_bundle_assert_same( false, str_contains( (string) ( $flow['steps'][0]['pro
 world_bundle_assert_same( false, str_contains( $workflow, 'This run must open a new repo-contained world-day pull request' ), 'workflow does not override the bundled flow prompt', $failures, $passes );
 world_bundle_assert_same( false, str_contains( $workflow, "- cron: '17 * * * *'" ), 'workflow remains paused unless manually dispatched', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'step_budget: 40' ), 'workflow gives the day cycle enough tool budget for PR creation', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'agents_api_ref: ${{ inputs.agents_api_ref' ), 'workflow forwards Agents API ref to reusable runner', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'data_machine_ref: ${{ inputs.data_machine_ref' ), 'workflow forwards Data Machine ref to reusable runner', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'data_machine_code_ref: ${{ inputs.data_machine_code_ref' ), 'workflow forwards Data Machine Code ref to reusable runner', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'runtime-agent-full-run.yml@main' ), 'workflow uses the generic runtime full-run reusable workflow', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"Automattic/agents-api@${{ inputs.agents_api_ref' ), 'workflow forwards Agents API ref as a runtime dependency', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"Extra-Chill/data-machine@${{ inputs.data_machine_ref' ), 'workflow forwards Data Machine ref as a runtime dependency', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref' ), 'workflow forwards Data Machine Code ref as a runtime dependency', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, 'wp_codebox_wordpress_version:' ), 'workflow does not use deprecated WP Codebox WordPress version input', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, 'engine_data_outputs:' ), 'workflow does not use deprecated engine data output input', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'does not point to a world-day branch' ), 'workflow rejects artifact PR output before merging', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'latest_world_day_pr' ), 'workflow can fall back to the opened world-day PR', $failures, $passes );
 
