@@ -69,7 +69,7 @@ $required_tool_names = $flow['steps'][0]['completion_assertions']['required_tool
 world_bundle_assert_same( true, in_array( 'agent_daily_memory', $required_tool_names, true ), 'flow requires agent_daily_memory completion', $failures, $passes );
 world_bundle_assert_same( array( 'agent_daily_memory' ), $required_tool_names, 'flow preserves broad day-cycle completion contract', $failures, $passes );
 world_bundle_assert_same( false, str_contains( (string) ( $flow['steps'][0]['prompt_queue'][0]['prompt'] ?? '' ), 'bundles/world-creator/run-artifacts/' ), 'flow prompt has no deterministic heartbeat fallback', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'This run must open a new repo-contained world-day pull request' ), 'workflow does not override the bundled flow prompt', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, 'repo-contained world-day pull request' ), 'workflow uses the bundled flow prompt', $failures, $passes );
 world_bundle_assert_same( false, str_contains( $workflow, "- cron: '17 * * * *'" ), 'workflow remains paused unless manually dispatched', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'step_budget: 40' ), 'workflow gives the day cycle enough tool budget for PR creation', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'datamachine-agent-ci.yml@main' ), 'workflow uses the Homeboy Data Machine Agent CI wrapper', $failures, $passes );
@@ -83,14 +83,14 @@ world_bundle_assert_same( false, str_contains( $workflow, 'runtime_execution:' )
 world_bundle_assert_same( false, str_contains( $workflow, 'wp_codebox_wordpress_version:' ), 'workflow does not use deprecated WP Codebox WordPress version input', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'engine_data_outputs:' ), 'workflow projects World Creator PR URL through the wrapper output contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'tool_recorders:' ), 'workflow declares PR capture through the wrapper recorder contract', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'does not point to a world-day branch' ), 'workflow rejects artifact PR output before merging', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'points outside the world-day branch path' ), 'workflow validates artifact PR output before merging', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'latest_world_day_pr' ), 'workflow can fall back to the opened world-day PR', $failures, $passes );
 
 $bootstrap = is_file( $repo_root . '/tests/playground-ci/workloads/world-creator-bootstrap.php' ) ? (string) file_get_contents( $repo_root . '/tests/playground-ci/workloads/world-creator-bootstrap.php' ) : '';
 $preview   = is_file( $repo_root . '/tests/playground-ci/workloads/world-preview-probe.php' ) ? (string) file_get_contents( $repo_root . '/tests/playground-ci/workloads/world-preview-probe.php' ) : '';
 $readme    = is_file( $repo_root . '/README.md' ) ? (string) file_get_contents( $repo_root . '/README.md' ) : '';
 
-world_bundle_assert_same( false, str_contains( $bootstrap, 'DataMachineCode\\Tools\\GitHubPullRequestTool' ), 'bootstrap does not instantiate Data Machine Code internals', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $bootstrap, 'DataMachineCode\\Tools\\GitHubPullRequestTool' ), 'bootstrap runs through the wrapper PR recorder contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $bootstrap, 'terrarium_contract' ), 'bootstrap reports the day-cycle terrarium contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $preview, 'world_creator_preview' ), 'preview probe reports the terrarium preview contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $readme, 'public preview recipe' ), 'README documents the Playground blueprint as a preview recipe', $failures, $passes );

@@ -6,7 +6,7 @@
 
 A self-contained WordPress Playground terrarium where an agent evolves software and content inside a dedicated GitHub repository.
 
-The experiment is simple: the repository is the durable body, WordPress Playground is the visible runtime, Agents API is the agent runtime substrate, Data Machine is the agent mind, Data Machine Code is the agent's hands, and Markdown Database Integration makes WordPress content persist as files.
+The experiment is simple: the repository is the durable body, WordPress Playground is the visible runtime, Agents API runs the agent, Data Machine is the agent mind, Data Machine Code is the agent's hands, and Markdown Database Integration makes WordPress content persist as files.
 
 <img width="1024" height="1024" alt="wapuu-emperor-wapuu-looks-over-his-kingdom-in-the-world-of-wordpress-861b9b27" src="https://github.com/user-attachments/assets/e8000b8d-825c-4ec4-8d80-82a4cc6b9fd0" />
 
@@ -41,7 +41,7 @@ World of WordPress intentionally requests Playground's WordPress `beta` channel,
 
 The direct Playground blueprint lives at `blueprints/world.json`. It is a public preview recipe for visitors, not the consumer runtime contract for the World Creator day cycle. The day cycle runs through the Homeboy Extensions Data Machine Agent CI wrapper, which owns the Codebox/Homeboy substrate assembly.
 
-World Creator day branches cannot modify `blueprints/`.
+World Creator day branches focus on plugin, theme, content, and bundle changes; blueprint changes stay human-reviewed.
 
 The Blueprint installs and activates the full agent stack — Markdown Database Integration, Agents API, Data Machine, Data Machine Code, AI Provider for OpenAI, and the world plugin — and imports the World Creator bundle into Data Machine so visitors can preview the same terrarium shape the agent wakes into during a day cycle.
 
@@ -49,19 +49,19 @@ Data Machine and Data Machine Code install from their latest GitHub Release ZIPs
 
 You can chat with the agent yourself inside Playground by adding your own OpenAI key in the Data Machine settings. None of it persists once the Playground tab closes.
 
-## Substrate
+## Runtime Stack
 
 World of WordPress combines a small set of reusable projects:
 
 - [WordPress Playground](https://github.com/WordPress/wordpress-playground) is the browser runtime.
-- [Agents API](https://github.com/Automattic/agents-api) provides the WordPress-native agent runtime substrate.
+- [Agents API](https://github.com/Automattic/agents-api) provides the WordPress-native agent runtime.
 - [Markdown Database Integration](https://github.com/Automattic/markdown-database-integration) persists WordPress content as files.
 - [Data Machine](https://github.com/Extra-Chill/data-machine) imports and runs the World Creator agent bundle.
 - [Data Machine Code](https://github.com/Extra-Chill/data-machine-code) provides GitHub tools for repository mutations and pull requests.
 - [Homeboy Extensions](https://github.com/Extra-Chill/homeboy-extensions) provides the Playground validation harness used by CI.
 - [AI Provider for OpenAI](https://github.com/WordPress/ai-provider-for-openai) supplies the OpenAI provider used by the workflow.
 
-See [Runtime Boundaries](docs/runtime-boundaries.md) for the current coupling inventory and the terrarium/day-cycle wrapper direction.
+See [Runtime Boundaries](docs/runtime-boundaries.md) for the current day-cycle wrapper contract.
 
 ## World Creator
 
