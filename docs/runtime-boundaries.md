@@ -17,7 +17,7 @@ This note records the current boundary map for the World Creator day cycle.
 - `plugins/world-of-wordpress/world-of-wordpress.php` registers `WORLD.md` with
   Data Machine memory and seeds MDI-backed content when the runtime boots.
 - World Creator PR capture uses the wrapper's tool recorder and engine-data
-  projection contract.
+  projection contract instead of direct Data Machine Code tool classes.
 - `tests/playground-ci/component/world-of-wordpress-ci-driver.php` duplicates a
   small amount of Data Machine memory registration for CI-only bootstrapping.
 - `plugins/world-of-wordpress/inc/world-ability-atlas.php` reports
@@ -49,8 +49,9 @@ Creator policy.
 ## Guardrails
 
 - World Creator PR capture uses the shared wrapper's declarative
-  recorder/projection contract.
+  recorder/projection contract instead of direct Data Machine Code tool classes.
 - Public runtime introspection reports namespace-level or purpose-level
   summaries.
 - The public blueprint and day-cycle wrapper assemble the agent runtime.
-- `blueprints/` and `.github/` changes stay human-reviewed runtime surfaces.
+- `blueprints/` and `.github/` changes stay human-reviewed sealed runtime
+  surfaces.

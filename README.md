@@ -18,7 +18,7 @@ If you are inspecting the code instead of the Playground, start with these durab
 - `themes/world-of-wordpress/` — the block theme, templates, and patterns that shape the visible shell.
 - `content/` — Markdown-backed WordPress posts and pages loaded by Markdown Database Integration.
 - `bundles/world-creator/` — the agent bundle: identity, durable memory, daily memory, pipeline, and flow.
-- `blueprints/world.json` — the public Playground preview recipe.
+- `blueprints/world.json` — the sealed public Playground preview recipe.
 
 A thin shim at `world-of-wordpress.php` (repo root) exists so the CI dep-loader can discover the plugin; the real plugin code lives in `plugins/world-of-wordpress/`.
 
@@ -39,7 +39,7 @@ Use the **Visit the World of WordPress** button above to open the latest `main` 
 
 World of WordPress intentionally requests Playground's WordPress `beta` channel, which is the supported public selector for the current 7.0 prerelease runtime. Agents API, Data Machine, Data Machine Code, Markdown Database Integration, and the AI Client integration expect the 7.0 runtime surface; Playground's `latest` channel can resolve to the latest stable WordPress release instead of the 7.0 prerelease channel.
 
-The direct Playground blueprint lives at `blueprints/world.json`. It is the public preview recipe for visitors. The World Creator day cycle runs through the Homeboy Extensions Data Machine Agent CI wrapper with the World Creator bundle, recorder/output projection, and bootstrap hooks declared by this repository.
+The direct Playground blueprint lives at `blueprints/world.json`. It is a public preview recipe for visitors, not the consumer runtime contract for the World Creator day cycle. The day cycle runs through the Homeboy Extensions Data Machine Agent CI wrapper, which owns the Codebox/Homeboy substrate assembly.
 
 World Creator day branches focus on plugin, theme, content, and bundle changes; blueprint changes stay human-reviewed.
 

@@ -76,11 +76,11 @@ world_bundle_assert_same( true, str_contains( $workflow, 'datamachine-agent-ci.y
 world_bundle_assert_same( true, str_contains( $workflow, 'bundle_path: bundles/world-creator' ), 'workflow declares the World Creator bundle path', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'agent_slug: world-creator' ), 'workflow declares the World Creator agent', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'flow_slug: world-creator-day-cycle-flow' ), 'workflow declares the World Creator day-cycle flow', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'runtime_profiles:' ), 'workflow uses the wrapper runtime profile configuration', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'runtime_dependencies:' ), 'workflow uses the wrapper runtime dependency manifest', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'required_abilities:' ), 'workflow uses the wrapper Data Machine ability contract', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'runtime_execution:' ), 'workflow uses the wrapper runtime execution payload', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'wp_codebox_wordpress_version:' ), 'workflow uses the current runtime WordPress version input', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, 'runtime_profiles:' ), 'workflow does not inline runtime profile internals', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, 'runtime_dependencies:' ), 'workflow does not inline runtime dependency manifests', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, 'required_abilities:' ), 'workflow does not assert low-level Data Machine abilities', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, 'runtime_execution:' ), 'workflow does not expose low-level runtime execution payloads', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $workflow, 'wp_codebox_wordpress_version:' ), 'workflow does not use deprecated WP Codebox WordPress version input', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'engine_data_outputs:' ), 'workflow projects World Creator PR URL through the wrapper output contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'tool_recorders:' ), 'workflow declares PR capture through the wrapper recorder contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'points outside the world-day branch path' ), 'workflow validates artifact PR output before merging', $failures, $passes );
