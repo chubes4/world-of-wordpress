@@ -31,10 +31,6 @@ on:
         description: Homeboy Extensions ref.
         required: true
         default: main
-      homeboy_ref:
-        description: Homeboy core ref.
-        required: true
-        default: main
 
 permissions:
   actions: read
@@ -48,37 +44,23 @@ concurrency:
 
 jobs:
   run-world-creator:
-    uses: Extra-Chill/homeboy-extensions/.github/workflows/runtime-agent-full-run.yml@main
+    uses: Extra-Chill/homeboy-extensions/.github/workflows/datamachine-agent-ci.yml@main
     with:
       homeboy_extensions_ref: ${{ inputs.homeboy_extensions_ref || 'main' }}
-      runtime_provider: wp-codebox
-      runtime_ref: main
+      agent_runtime: wp-codebox
+      agent_runtime_ref: main
       runtime_wordpress_version: nightly
-      runtime_profile: datamachine-agent-ci
-      runtime_profiles: |
-        {
-          "datamachine-agent-ci": {
-            "id": "datamachine-agent-ci",
-            "runtime_task_ability": "datamachine/run-agent-bundle",
-            "runtime_bundle_ability": "datamachine/run-agent-bundle",
-            "runtime_workflow_ability": "datamachine/execute-workflow",
-            "ability_requirements": ["datamachine/run-agent-bundle"]
-          }
-        }
-      runtime_dependencies: |
-        [
-          "Automattic/agents-api@${{ inputs.agents_api_ref || 'main' }}",
-          "Extra-Chill/data-machine@${{ inputs.data_machine_ref || 'main' }}",
-          "Extra-Chill/data-machine-code@${{ inputs.data_machine_code_ref || 'main' }}"
-        ]
-      workload_id: world-creator-day-cycle-flow
-      workload_label: Run world-creator Data Machine agent
-      component_id: datamachine-agent-ci-driver
+      agents_api_ref: ${{ inputs.agents_api_ref || 'main' }}
+      data_machine_ref: ${{ inputs.data_machine_ref || 'main' }}
+      data_machine_code_ref: ${{ inputs.data_machine_code_ref || 'main' }}
+      bundle_path: bundles/world-creator
+      agent_slug: world-creator
+      pipeline_slug: world-creator-pipeline
+      flow_slug: world-creator-day-cycle-flow
       target_repo: chubes4/world-of-wordpress
       prompt: ${{ inputs.prompt || '' }}
       provider: openai
       model: ${{ inputs.openai_model || 'gpt-5.5' }}
-      runtime_execution: '{"kind":"bundle","source":"bundles/world-creator"}'
       validation_dependencies: chubes4/world-of-wordpress@main,Automattic/markdown-database-integration@${{ inputs.markdown_database_integration_ref || 'main' }}
       max_turns: 80
       step_budget: 40
@@ -94,6 +76,7 @@ jobs:
         }
       success_requires_pr: false
       success_completion_outcomes: '["world_change_pr","pr_rebased","pr_merged","pr_closed","mailbox_reply","memory_update"]'
+      daily_memory_enabled: true
       extra_wp_config_defines: |
         {
           "MARKDOWN_DB_MODE": "primary",
@@ -113,29 +96,26 @@ jobs:
         [
           { "type": "php", "file": "world-preview-probe.php" }
         ]
-      runtime_config: |
-        {
-          "agent_slug": "world-creator",
-          "pipeline_slug": "world-creator-pipeline",
-          "daily_memory_enabled": true
-        }
-      required_abilities: |
+      engine_key: world_creator
+      tool_recorders: |
         [
-          "datamachine/import-agent",
-          "datamachine/run-flow",
-          "datamachine/drain-job",
-          "datamachine/workspace-worktree-add",
-          "datamachine/daily-memory-write"
+          {
+            "tool": "create_github_pull_request",
+            "record": {
+              "engine_key": "world_creator",
+              "tool_results_key": "github_tool_results",
+              "fields": {
+                "success": "response.success",
+                "pr_url": ["response.data.html_url", "response.html_url", "response.url", "data.html_url", "data.url"],
+                "head": ["response.data.head", "parameters.head"],
+                "pull_number": ["response.data.pull_number", "response.data.number", "response.pull_number", "response.number"],
+                "title": ["response.data.title", "parameters.title"],
+                "error": "response.error"
+              }
+            }
+          }
         ]
-      runtime_output_projections: '{"world_creator_pr_url":"metadata.engine_data.world_creator.pr_url"}'
-      callback_data: |
-        {
-          "agent_slug": "world-creator",
-          "pipeline_slug": "world-creator-pipeline",
-          "workload_id": "world-creator-day-cycle-flow",
-          "runtime_execution": { "kind": "bundle", "source": "bundles/world-creator" },
-          "target_repo": "chubes4/world-of-wordpress"
-        }
+      engine_data_outputs: '{"world_creator_pr_url":"metadata.engine_data.world_creator.pr_url"}'
       app_token_repos: chubes4/world-of-wordpress
       require_homeboy_app_token: true
       transcript_artifact_name: world-creator-transcript-${{ github.run_id }}
@@ -158,7 +138,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           ENGINE_DATA_JSON: ${{ needs.run-world-creator.outputs.engine_data_json }}
-          CALLBACK_DATA_JSON: ${{ needs.run-world-creator.outputs.callback_data_json }}
         run: |
           set -euo pipefail
 
@@ -167,7 +146,7 @@ jobs:
               --jq '[.[] | select(.head.repo.full_name == "chubes4/world-of-wordpress") | select(.head.ref | startswith("world-day/")) | select(.user.login == "homeboy-ci[bot]" or .user.login == "app/homeboy-ci")] | .[0].number // ""'
           }
 
-          pr_url="$(printf '%s\n%s' "${ENGINE_DATA_JSON:-}" "${CALLBACK_DATA_JSON:-}" | grep -o 'https://github.com/chubes4/world-of-wordpress/pull/[0-9][0-9]*' | tail -n 1 || true)"
+          pr_url="$(jq -r '.world_creator_pr_url // ""' <<< "${ENGINE_DATA_JSON:-{}}")"
           if [ -z "$pr_url" ] || [ "$pr_url" = "null" ]; then
             pr_number="$(latest_world_day_pr)"
             if [ -z "$pr_number" ] || [ "$pr_number" = "null" ]; then

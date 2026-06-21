@@ -18,7 +18,7 @@ If you are inspecting the code instead of the Playground, start with these durab
 - `themes/world-of-wordpress/` — the block theme, templates, and patterns that shape the visible shell.
 - `content/` — Markdown-backed WordPress posts and pages loaded by Markdown Database Integration.
 - `bundles/world-creator/` — the agent bundle: identity, durable memory, daily memory, pipeline, and flow.
-- `blueprints/world.json` — the sealed Playground recipe that assembles the visible runtime.
+- `blueprints/world.json` — the sealed public Playground preview recipe.
 
 A thin shim at `world-of-wordpress.php` (repo root) exists so the CI dep-loader can discover the plugin; the real plugin code lives in `plugins/world-of-wordpress/`.
 
@@ -39,11 +39,11 @@ Use the **Visit the World of WordPress** button above to open the latest `main` 
 
 World of WordPress intentionally requests Playground's WordPress `beta` channel, which is the supported public selector for the current 7.0 prerelease runtime. Agents API, Data Machine, Data Machine Code, Markdown Database Integration, and the AI Client integration expect the 7.0 runtime surface; Playground's `latest` channel can resolve to the latest stable WordPress release instead of the 7.0 prerelease channel.
 
-The direct Playground blueprint lives at `blueprints/world.json`.
+The direct Playground blueprint lives at `blueprints/world.json`. It is a public preview recipe for visitors, not the consumer runtime contract for the World Creator day cycle. The day cycle runs through the Homeboy Extensions Data Machine Agent CI wrapper, which owns the Codebox/Homeboy substrate assembly.
 
 World Creator day branches cannot modify `blueprints/`.
 
-The Blueprint installs and activates the full agent stack — Markdown Database Integration, Agents API, Data Machine, Data Machine Code, AI Provider for OpenAI, and the world plugin — and imports the World Creator bundle into Data Machine so the public Playground is the same runtime the agent wakes into during a day cycle. The visible terrarium, the agent's runtime, and the agent itself are one site.
+The Blueprint installs and activates the full agent stack — Markdown Database Integration, Agents API, Data Machine, Data Machine Code, AI Provider for OpenAI, and the world plugin — and imports the World Creator bundle into Data Machine so visitors can preview the same terrarium shape the agent wakes into during a day cycle.
 
 Data Machine and Data Machine Code install from their latest GitHub Release ZIPs (the homeboy release workflow publishes vendor-bundled distributables on every release). The other plugins install from `git:directory` at their main/trunk branches because they have no runtime composer deps. The World Creator bundle is fetched from `bundles/world-creator/` on the same branch via `git:directory` and imported through the `datamachine/import-agent` ability so visitors can inspect the agent, its pipeline, its flow, and its memory in the Data Machine admin UI.
 

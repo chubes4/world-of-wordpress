@@ -12,14 +12,13 @@ toward a terrarium wrapper without growing repo-specific infrastructure APIs.
 - `blueprints/world.json` assembles the public Playground runtime, installs the
   substrate plugins, writes the Markdown Database Integration `db.php` drop-in,
   and imports the World Creator bundle through `datamachine/import-agent`.
-- `.github/workflows/world-creator.yml` selects the `wp-codebox` runtime provider,
-  declares Data Machine / Agents API / Data Machine Code dependencies, mounts the
-  MDI drop-in for CI, and asks the generic runtime workflow to execute the bundle.
+- `.github/workflows/world-creator.yml` calls the Homeboy Extensions Data Machine
+  Agent CI wrapper with World Creator domain inputs, the MDI preview drop-in, and
+  the world bootstrap/probe hooks.
 - `plugins/world-of-wordpress/world-of-wordpress.php` registers `WORLD.md` with
   Data Machine memory and seeds MDI-backed content when the runtime boots.
-- `tests/playground-ci/workloads/world-creator-bootstrap.php` adapts the day cycle
-  by wrapping Data Machine Code's pull request tool so the workflow can recover
-  the created World Creator PR URL.
+- World Creator PR capture uses the wrapper's tool recorder and engine-data
+  projection contract instead of direct Data Machine Code tool classes.
 - `tests/playground-ci/component/world-of-wordpress-ci-driver.php` duplicates a
   small amount of Data Machine memory registration for CI-only bootstrapping.
 - `plugins/world-of-wordpress/inc/world-ability-atlas.php` exposes only safe,
@@ -34,7 +33,7 @@ repo. World of WordPress should supply domain inputs only:
 - the repo and branch policy for day branches;
 - the World Creator bundle source;
 - the world bootstrap and preview probe files;
-- the visible runtime content, plugin, theme, and blueprint;
+- the visible runtime content, plugin, theme, and public preview blueprint;
 - completion policy such as whether a PR is required and which outcomes count.
 
 Substrate details should remain behind that wrapper:
@@ -51,9 +50,9 @@ the world plugin, theme, content, or bundle memory.
 
 ## Guardrails
 
-- Do not add new direct calls to Data Machine Code tool classes from the world
-  plugin. Keep them in CI/day-cycle bootstrap code or move them upstream into the
-  shared wrapper.
+- Do not add new direct calls to Data Machine Code tool classes from this repo.
+  Use the shared wrapper's declarative recorder/projection contract for PR
+  capture.
 - Do not expose raw ability names, arguments, credentials, or memory through
   public routes. Public runtime introspection should stay at namespace-level or
   purpose-level summaries.
