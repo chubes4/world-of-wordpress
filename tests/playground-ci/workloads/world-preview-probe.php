@@ -1,17 +1,13 @@
 <?php
 /**
- * Verify the World of WordPress terrarium boots with MDI-backed content.
+ * Verify the World Creator terrarium boots into the expected visible world.
  */
 
 if ( function_exists( 'wp_set_current_user' ) ) {
 	wp_set_current_user( 1 );
 }
 
-$metadata = array(
-	'markdown_db_dropin'      => defined( 'MARKDOWN_DB_DROPIN' ),
-	'markdown_db_mode'        => defined( 'MARKDOWN_DB_MODE' ) ? MARKDOWN_DB_MODE : '',
-	'markdown_db_content_dir' => defined( 'MARKDOWN_DB_CONTENT_DIR' ) ? MARKDOWN_DB_CONTENT_DIR : '',
-);
+$metadata = array( 'terrarium_contract' => 'world_creator_preview' );
 
 if ( function_exists( 'world_of_wordpress_seed_world' ) ) {
 	world_of_wordpress_seed_world();
@@ -38,8 +34,6 @@ $metadata['show_on_front']     = $show_on_front;
 
 return array(
 	'metrics'  => array(
-		'markdown_db_dropin_loaded' => defined( 'MARKDOWN_DB_DROPIN' ) ? 1 : 0,
-		'markdown_db_primary_mode'  => defined( 'MARKDOWN_DB_MODE' ) && 'primary' === MARKDOWN_DB_MODE ? 1 : 0,
 		'world_theme_active'       => 'world-of-wordpress' === $stylesheet ? 1 : 0,
 		'posts_front_page'         => 'posts' === $show_on_front ? 1 : 0,
 		'site_title_seeded'        => 'World of WordPress' === $site_title ? 1 : 0,
