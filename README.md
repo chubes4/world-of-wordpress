@@ -61,6 +61,8 @@ World of WordPress combines a small set of reusable projects:
 - [Homeboy Extensions](https://github.com/Extra-Chill/homeboy-extensions) provides the Playground validation harness used by CI.
 - [AI Provider for OpenAI](https://github.com/WordPress/ai-provider-for-openai) supplies the OpenAI provider used by the workflow.
 
+See [Runtime Boundaries](docs/runtime-boundaries.md) for the current coupling inventory and the terrarium/day-cycle wrapper direction.
+
 ## World Creator
 
 The `World Creator` GitHub Actions workflow runs the bundled `world-creator` agent. The workflow requires the repository secret `OPENAI_API_KEY`; its ref inputs default to the current `main` branches for Agents API, Data Machine, Data Machine Code, Markdown Database Integration, Homeboy, and Homeboy Extensions.
