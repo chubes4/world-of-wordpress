@@ -1,16 +1,15 @@
 # Runtime Boundaries
 
 World of WordPress is intentionally small: the repository owns the world plugin,
-theme, content, World Creator bundle, and day-cycle policy. The runtime substrate
-comes from other projects.
+theme, content, World Creator bundle, and day-cycle policy. The runtime comes
+from the shared Homeboy Data Machine Agent CI path.
 
-This note records the current boundary map so future day-cycle work can move
-toward a terrarium wrapper without growing repo-specific infrastructure APIs.
+This note records the current boundary map for the World Creator day cycle.
 
-## Current Coupling
+## Current Contract
 
 - `blueprints/world.json` assembles the public Playground runtime, installs the
-  substrate plugins, writes the Markdown Database Integration `db.php` drop-in,
+  runtime plugins, writes the Markdown Database Integration `db.php` drop-in,
   and imports the World Creator bundle through `datamachine/import-agent`.
 - `.github/workflows/world-creator.yml` calls the Homeboy Extensions Data Machine
   Agent CI wrapper with World Creator domain inputs, the MDI preview drop-in, and
@@ -18,17 +17,15 @@ toward a terrarium wrapper without growing repo-specific infrastructure APIs.
 - `plugins/world-of-wordpress/world-of-wordpress.php` registers `WORLD.md` with
   Data Machine memory and seeds MDI-backed content when the runtime boots.
 - World Creator PR capture uses the wrapper's tool recorder and engine-data
-  projection contract instead of direct Data Machine Code tool classes.
+  projection contract.
 - `tests/playground-ci/component/world-of-wordpress-ci-driver.php` duplicates a
   small amount of Data Machine memory registration for CI-only bootstrapping.
-- `plugins/world-of-wordpress/inc/world-ability-atlas.php` exposes only safe,
-  namespace-level ability counts. It does not expose ability arguments,
-  credentials, user data, memory content, or private runtime state.
+- `plugins/world-of-wordpress/inc/world-ability-atlas.php` reports
+  namespace-level ability counts for public runtime introspection.
 
-## Boundary Direction
+## Day-Cycle Inputs
 
-The desired seam is a terrarium/day-cycle runtime wrapper owned outside this
-repo. World of WordPress should supply domain inputs only:
+World of WordPress supplies these domain inputs to the day-cycle wrapper:
 
 - the repo and branch policy for day branches;
 - the World Creator bundle source;
@@ -36,7 +33,7 @@ repo. World of WordPress should supply domain inputs only:
 - the visible runtime content, plugin, theme, and public preview blueprint;
 - completion policy such as whether a PR is required and which outcomes count.
 
-Substrate details should remain behind that wrapper:
+The Homeboy Data Machine Agent CI wrapper provides the runtime path for:
 
 - WP Codebox provider selection and mount mechanics;
 - Data Machine bundle execution ability names;
@@ -44,19 +41,16 @@ Substrate details should remain behind that wrapper:
 - Markdown Database Integration drop-in placement;
 - Agents API installation order and runtime readiness checks.
 
-Until the wrapper exists, keep direct coupling narrow, visible, and runtime-only.
-Prefer one explicit bootstrap/probe file over scattering substrate calls through
-the world plugin, theme, content, or bundle memory.
+The workflow keeps runtime assembly in `.github/workflows/world-creator.yml` and
+the two workload hooks in `tests/playground-ci/workloads/`. The world plugin,
+theme, content, and bundle memory stay focused on the visible world and World
+Creator policy.
 
 ## Guardrails
 
-- Do not add new direct calls to Data Machine Code tool classes from this repo.
-  Use the shared wrapper's declarative recorder/projection contract for PR
-  capture.
-- Do not expose raw ability names, arguments, credentials, or memory through
-  public routes. Public runtime introspection should stay at namespace-level or
-  purpose-level summaries.
-- Do not make the world plugin responsible for installing or validating the full
-  agent stack. The blueprint and day-cycle wrapper own runtime assembly.
-- Keep `blueprints/` and `.github/` changes human-reviewed; unattended world-day
-  PRs should continue to treat them as sealed surfaces.
+- World Creator PR capture uses the shared wrapper's declarative
+  recorder/projection contract.
+- Public runtime introspection reports namespace-level or purpose-level
+  summaries.
+- The public blueprint and day-cycle wrapper assemble the agent runtime.
+- `blueprints/` and `.github/` changes stay human-reviewed runtime surfaces.
