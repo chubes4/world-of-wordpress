@@ -15,8 +15,6 @@ if ( 'world-of-wordpress' !== $stylesheet ) {
 	throw new RuntimeException( 'World of WordPress theme was not active before the day cycle; active stylesheet: ' . $stylesheet );
 }
 
-update_option( 'datamachine_persist_pipeline_transcripts', true, false );
-
 return array(
 	'metrics'  => array(
 		'world_bootstrap_succeeded' => 1,

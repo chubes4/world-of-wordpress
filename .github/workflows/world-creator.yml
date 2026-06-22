@@ -72,7 +72,9 @@ jobs:
           "clone_url": "https://github.com/chubes4/world-of-wordpress.git",
           "branch_prefix": "world-day",
           "from": "origin/main",
-          "bootstrap": false
+          "bootstrap": false,
+          "expose_to_agent": false,
+          "capture_changes": true
         }
       success_requires_pr: false
       success_completion_outcomes: '["world_change_pr","pr_rebased","pr_merged","pr_closed","mailbox_reply","memory_update"]'
@@ -96,26 +98,6 @@ jobs:
         [
           { "type": "php", "file": "world-preview-probe.php" }
         ]
-      engine_key: world_creator
-      tool_recorders: |
-        [
-          {
-            "tool": "create_github_pull_request",
-            "record": {
-              "engine_key": "world_creator",
-              "tool_results_key": "github_tool_results",
-              "fields": {
-                "success": "response.success",
-                "pr_url": ["response.data.html_url", "response.html_url", "response.url", "data.html_url", "data.url"],
-                "head": ["response.data.head", "parameters.head"],
-                "pull_number": ["response.data.pull_number", "response.data.number", "response.pull_number", "response.number"],
-                "title": ["response.data.title", "parameters.title"],
-                "error": "response.error"
-              }
-            }
-          }
-        ]
-      engine_data_outputs: '{"world_creator_pr_url":"metadata.engine_data.world_creator.pr_url"}'
       app_token_repos: chubes4/world-of-wordpress
       require_homeboy_app_token: true
       transcript_artifact_name: world-creator-transcript-${{ github.run_id }}
@@ -137,7 +119,6 @@ jobs:
       - name: Merge repo-contained World Creator PR
         env:
           GH_TOKEN: ${{ github.token }}
-          ENGINE_DATA_JSON: ${{ needs.run-world-creator.outputs.engine_data_json }}
         run: |
           set -euo pipefail
 
@@ -146,20 +127,15 @@ jobs:
               --jq '[.[] | select(.head.repo.full_name == "chubes4/world-of-wordpress") | select(.head.ref | startswith("world-day/")) | select(.user.login == "homeboy-ci[bot]" or .user.login == "app/homeboy-ci")] | .[0].number // ""'
           }
 
-          pr_url="$(jq -r '.world_creator_pr_url // ""' <<< "${ENGINE_DATA_JSON:-{}}")"
-          if [ -z "$pr_url" ] || [ "$pr_url" = "null" ]; then
-            pr_number="$(latest_world_day_pr)"
-            if [ -z "$pr_number" ] || [ "$pr_number" = "null" ]; then
-              echo "No World Creator PR was reported by the agent run."
-              exit 0
-            fi
-            echo "Falling back to latest open homeboy-ci world-day PR #$pr_number."
-          else
-            pr_number="${pr_url##*/}"
+          pr_number="$(latest_world_day_pr)"
+          if [ -z "$pr_number" ] || [ "$pr_number" = "null" ]; then
+            echo "No open homeboy-ci world-day PR is available to merge."
+            exit 0
           fi
+          echo "Found latest open homeboy-ci world-day PR #$pr_number."
 
           case "$pr_number" in
-            ''|*[!0-9]*) echo "Invalid World Creator PR URL: $pr_url" >&2; exit 1 ;;
+            ''|*[!0-9]*) echo "Invalid World Creator PR number: $pr_number" >&2; exit 1 ;;
           esac
 
           pr_json="$(gh api "repos/chubes4/world-of-wordpress/pulls/$pr_number")"
@@ -168,22 +144,6 @@ jobs:
           head_ref="$(jq -r '.head.ref' <<< "$pr_json")"
           head_repo="$(jq -r '.head.repo.full_name' <<< "$pr_json")"
           mergeable="$(jq -r '.mergeable // "UNKNOWN"' <<< "$pr_json")"
-
-          if [[ "$head_ref" != world-day/* ]]; then
-            echo "Reported World Creator PR #$pr_number points outside the world-day branch path: $head_ref"
-            pr_number="$(latest_world_day_pr)"
-            if [ -z "$pr_number" ] || [ "$pr_number" = "null" ]; then
-              echo "No open homeboy-ci world-day PR is available to merge." >&2
-              exit 0
-            fi
-            echo "Falling back to latest open homeboy-ci world-day PR #$pr_number."
-            pr_json="$(gh api "repos/chubes4/world-of-wordpress/pulls/$pr_number")"
-            state="$(jq -r '.state' <<< "$pr_json")"
-            base_ref="$(jq -r '.base.ref' <<< "$pr_json")"
-            head_ref="$(jq -r '.head.ref' <<< "$pr_json")"
-            head_repo="$(jq -r '.head.repo.full_name' <<< "$pr_json")"
-            mergeable="$(jq -r '.mergeable // "UNKNOWN"' <<< "$pr_json")"
-          fi
 
           if [ "$state" != "open" ]; then
             echo "World Creator PR #$pr_number is $state; nothing to merge."
