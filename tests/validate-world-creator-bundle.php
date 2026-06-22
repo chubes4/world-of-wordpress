@@ -81,19 +81,26 @@ world_bundle_assert_same( false, str_contains( $workflow, 'runtime_dependencies:
 world_bundle_assert_same( false, str_contains( $workflow, 'required_abilities:' ), 'workflow does not assert low-level Data Machine abilities', $failures, $passes );
 world_bundle_assert_same( false, str_contains( $workflow, 'runtime_execution:' ), 'workflow does not expose low-level runtime execution payloads', $failures, $passes );
 world_bundle_assert_same( false, str_contains( $workflow, 'wp_codebox_wordpress_version:' ), 'workflow does not use deprecated WP Codebox WordPress version input', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'engine_data_outputs:' ), 'workflow projects World Creator PR URL through the wrapper output contract', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'tool_recorders:' ), 'workflow declares PR capture through the wrapper recorder contract', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'engine_data_outputs:' ), 'workflow projects World Creator PR URL through Homeboy structured output', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'tool_recorders:' ), 'workflow declares PR capture through Homeboy tool-result projection', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'points outside the world-day branch path' ), 'workflow validates artifact PR output before merging', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'latest_world_day_pr' ), 'workflow can fall back to the opened world-day PR', $failures, $passes );
 
 $bootstrap = is_file( $repo_root . '/tests/playground-ci/workloads/world-creator-bootstrap.php' ) ? (string) file_get_contents( $repo_root . '/tests/playground-ci/workloads/world-creator-bootstrap.php' ) : '';
 $preview   = is_file( $repo_root . '/tests/playground-ci/workloads/world-preview-probe.php' ) ? (string) file_get_contents( $repo_root . '/tests/playground-ci/workloads/world-preview-probe.php' ) : '';
 $readme    = is_file( $repo_root . '/README.md' ) ? (string) file_get_contents( $repo_root . '/README.md' ) : '';
+$plugin    = is_file( $repo_root . '/plugins/world-of-wordpress/world-of-wordpress.php' ) ? (string) file_get_contents( $repo_root . '/plugins/world-of-wordpress/world-of-wordpress.php' ) : '';
+$directive = is_file( $repo_root . '/plugins/world-of-wordpress/inc/class-world-perception-directive.php' ) ? (string) file_get_contents( $repo_root . '/plugins/world-of-wordpress/inc/class-world-perception-directive.php' ) : '';
 
-world_bundle_assert_same( false, str_contains( $bootstrap, 'DataMachineCode\\Tools\\GitHubPullRequestTool' ), 'bootstrap runs through the wrapper PR recorder contract', $failures, $passes );
+world_bundle_assert_same( false, str_contains( $bootstrap, 'DataMachineCode\\Tools\\GitHubPullRequestTool' ), 'bootstrap does not use Data Machine Code tool internals', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $bootstrap, 'terrarium_contract' ), 'bootstrap reports the day-cycle terrarium contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $preview, 'world_creator_preview' ), 'preview probe reports the terrarium preview contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $readme, 'public preview recipe' ), 'README documents the Playground blueprint as a preview recipe', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $plugin, 'WORLD_OF_WORDPRESS_SOURCE_ROOT' ), 'plugin accepts a named source-root runtime input', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $plugin, 'world_of_wordpress_source_root_candidates' ), 'plugin exposes source-root candidates hook', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $plugin, 'world_of_wordpress_memory_file_metadata' ), 'memory registration exposes runtime metadata hook', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $directive, 'world_of_wordpress_resolve_source_root' ), 'perception directive uses the source-root resolver', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $directive, 'world_of_wordpress_perception_directive_config' ), 'perception directive exposes runtime config hook', $failures, $passes );
 
 if ( $failures ) {
 	printf( "\nFAILED: %d validation checks failed.\n", count( $failures ) );

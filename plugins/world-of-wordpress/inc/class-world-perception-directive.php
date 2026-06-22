@@ -80,25 +80,17 @@ final class World_Perception_Directive implements \DataMachine\Engine\AI\Directi
 	}
 
 	/**
-	 * Resolve the repository root inside the Playground runtime.
+	 * Resolve the repository root inside the active runtime.
 	 *
-	 * In CI the entire repo is bind-mounted at `wp-content/plugins/world-of-wordpress/`.
-	 * In the public Playground the plugin is installed alone, so the repo
-	 * root is not present in the runtime — fall back gracefully.
+	 * Runtime wrappers can provide the source root through the world plugin's
+	 * named source-root hook. Public Playground installs may only have the plugin,
+	 * so the repo root is optional and perception falls back gracefully.
 	 *
 	 * @return string Repo root path or empty string when unavailable.
 	 */
 	private static function resolve_repo_root(): string {
-		$plugin_dir = defined( 'WORLD_OF_WORDPRESS_PLUGIN_DIR' )
-			? WORLD_OF_WORDPRESS_PLUGIN_DIR
-			: plugin_dir_path( dirname( __FILE__ ) );
-
-		// In CI the bind-mounted repo root lives two directories above
-		// the active plugin file (wp-content/plugins/world-of-wordpress/
-		// itself contains a `plugins/world-of-wordpress/` subtree).
-		$candidate = dirname( rtrim( $plugin_dir, '/\\' ), 2 );
-		if ( is_dir( $candidate ) && is_file( $candidate . '/WORLD.md' ) ) {
-			return $candidate;
+		if ( function_exists( 'world_of_wordpress_resolve_source_root' ) ) {
+			return world_of_wordpress_resolve_source_root();
 		}
 
 		return '';
@@ -365,17 +357,30 @@ final class World_Perception_Directive implements \DataMachine\Engine\AI\Directi
 	}
 }
 
-// Self-register in the directive system. Priority 25 places the
-// perception just after AgentModeDirective (22) so the mode framing
-// reads first, but before AgentDailyMemoryDirective (35) so the
-// agent has structural context before it sees yesterday's notes.
 add_filter(
 	'datamachine_directives',
 	static function ( array $directives ): array {
+		$config = apply_filters(
+			'world_of_wordpress_perception_directive_config',
+			array(
+				'priority' => 25,
+				'modes'    => array( 'world' ),
+			)
+		);
+		if ( ! is_array( $config ) ) {
+			$config = array();
+		}
+
+		$priority = isset( $config['priority'] ) ? (int) $config['priority'] : 25;
+		$modes    = isset( $config['modes'] ) && is_array( $config['modes'] ) ? array_values( array_filter( $config['modes'], 'is_string' ) ) : array( 'world' );
+		if ( empty( $modes ) ) {
+			$modes = array( 'world' );
+		}
+
 		$directives[] = array(
 			'class'    => 'World_Perception_Directive',
-			'priority' => 25,
-			'modes'    => array( 'world' ),
+			'priority' => $priority,
+			'modes'    => $modes,
 		);
 		return $directives;
 	}

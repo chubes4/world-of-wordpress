@@ -74,8 +74,10 @@ function world_of_wordpress_count_source_surface( string $base_path, string $rel
  * @return array<string, mixed>
  */
 function world_of_wordpress_get_source_compass(): array {
-	$repo_root_in_ci = dirname( WORLD_OF_WORDPRESS_PLUGIN_DIR, 2 );
-	$theme_runtime   = get_theme_root( 'world-of-wordpress' ) . '/world-of-wordpress';
+	$source_root   = function_exists( 'world_of_wordpress_resolve_source_root' ) ? world_of_wordpress_resolve_source_root() : '';
+	$theme_runtime = get_theme_root( 'world-of-wordpress' ) . '/world-of-wordpress';
+	$theme_source  = '' !== $source_root ? $source_root . '/themes/world-of-wordpress' : '';
+	$content_source = '' !== $source_root ? $source_root . '/content' : '';
 
 	$surfaces = array(
 		array(
@@ -88,13 +90,13 @@ function world_of_wordpress_get_source_compass(): array {
 			'label'         => __( 'World theme', 'world-of-wordpress' ),
 			'path'          => 'themes/world-of-wordpress/',
 			'description'   => __( 'The visible block theme: templates, parts, styles, and the terrarium skin.', 'world-of-wordpress' ),
-			'runtime_path'  => is_dir( $repo_root_in_ci . '/themes/world-of-wordpress' ) ? $repo_root_in_ci . '/themes/world-of-wordpress' : $theme_runtime,
+			'runtime_path'  => is_dir( $theme_source ) ? $theme_source : $theme_runtime,
 		),
 		array(
 			'label'         => __( 'Markdown content', 'world-of-wordpress' ),
 			'path'          => 'content/',
 			'description'   => __( 'Durable WordPress posts and pages loaded into Playground by Markdown Database Integration.', 'world-of-wordpress' ),
-			'runtime_path'  => is_dir( $repo_root_in_ci . '/content' ) ? $repo_root_in_ci . '/content' : WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR,
+			'runtime_path'  => is_dir( $content_source ) ? $content_source : WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR,
 		),
 	);
 

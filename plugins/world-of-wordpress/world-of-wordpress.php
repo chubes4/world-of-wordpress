@@ -40,6 +40,42 @@ require_once WORLD_OF_WORDPRESS_PLUGIN_DIR . 'inc/world-runtime-pulse-card.php';
 add_action( 'datamachine_memory_files', 'world_of_wordpress_register_memory_files' );
 
 /**
+ * Resolve the repository-bundled source root when the runtime provides one.
+ */
+function world_of_wordpress_resolve_source_root(): string {
+	$candidates = array();
+
+	if ( defined( 'WORLD_OF_WORDPRESS_SOURCE_ROOT' ) ) {
+		$candidates[] = WORLD_OF_WORDPRESS_SOURCE_ROOT;
+	}
+
+	$candidates[] = dirname( WORLD_OF_WORDPRESS_PLUGIN_DIR, 2 );
+
+	/**
+	 * Filters possible source roots for repo-bundled world files.
+	 *
+	 * Runtime wrappers can provide named input paths without requiring this plugin
+	 * to know the sandbox mount layout.
+	 *
+	 * @param array<int, string> $candidates Candidate absolute paths.
+	 */
+	$candidates = apply_filters( 'world_of_wordpress_source_root_candidates', $candidates );
+
+	foreach ( $candidates as $candidate ) {
+		if ( ! is_string( $candidate ) || '' === trim( $candidate ) ) {
+			continue;
+		}
+
+		$candidate = rtrim( $candidate, '/\\' );
+		if ( is_dir( $candidate ) && is_file( $candidate . '/WORLD.md' ) ) {
+			return $candidate;
+		}
+	}
+
+	return '';
+}
+
+/**
  * Register WORLD.md as shared memory for every agent on this site.
  *
  * The Blueprint (public Playground) or the CI bootstrap places `WORLD.md`
@@ -51,16 +87,28 @@ function world_of_wordpress_register_memory_files(): void {
 		return;
 	}
 
+	$metadata = array(
+		'layer'       => \DataMachine\Engine\AI\MemoryFileRegistry::LAYER_SHARED,
+		'protected'   => true,
+		'modes'       => array( \DataMachine\Engine\AI\MemoryFileRegistry::MODE_ALL ),
+		'label'       => 'World Context',
+		'description' => 'Shared World of WordPress context for every agent on the site.',
+	);
+
+	/**
+	 * Filters the Data Machine memory registration metadata for WORLD.md.
+	 *
+	 * Runtime wrappers can narrow modes or adjust labels without replacing the
+	 * world plugin's bootstrap path.
+	 *
+	 * @param array<string, mixed> $metadata Memory file metadata.
+	 */
+	$metadata = apply_filters( 'world_of_wordpress_memory_file_metadata', $metadata );
+
 	\DataMachine\Engine\AI\MemoryFileRegistry::register(
 		'WORLD.md',
 		18,
-		array(
-			'layer'       => \DataMachine\Engine\AI\MemoryFileRegistry::LAYER_SHARED,
-			'protected'   => true,
-			'modes'       => array( \DataMachine\Engine\AI\MemoryFileRegistry::MODE_ALL ),
-			'label'       => 'World Context',
-			'description' => 'Shared World of WordPress context for every agent on the site.',
-		)
+		is_array( $metadata ) ? $metadata : array()
 	);
 }
 
@@ -124,19 +172,20 @@ function world_of_wordpress_copy_directory( string $source, string $destination 
  * Stage the repo-bundled theme, content, and WORLD.md into runtime locations.
  *
  * In public Playground the Blueprint installs the theme separately, writes
- * content to the world-content dir, and writes WORLD.md there. In the agent
- * CI runtime the entire repo is bind-mounted at the plugin path; this
- * function detects that mount and copies the bundled files into the
- * locations the rest of the world expects.
+ * content to the world-content dir, and writes WORLD.md there. Agent runtimes
+ * can expose the repo-bundled source root through WORLD_OF_WORDPRESS_SOURCE_ROOT
+ * or the world_of_wordpress_source_root_candidates filter.
  *
  * Idempotent: if the destination already has content, files are overwritten
  * with the bundled versions. If the source isn't found, nothing happens.
  */
 function world_of_wordpress_stage_world_files(): void {
-	$plugin_dir       = WORLD_OF_WORDPRESS_PLUGIN_DIR;
-	$repo_root_in_ci  = dirname( $plugin_dir, 2 );
+	$source_root = world_of_wordpress_resolve_source_root();
+	if ( '' === $source_root ) {
+		return;
+	}
 
-	$theme_source = $repo_root_in_ci . '/themes/world-of-wordpress';
+	$theme_source = $source_root . '/themes/world-of-wordpress';
 	if ( is_dir( $theme_source ) ) {
 		$theme_destination = WP_CONTENT_DIR . '/themes/world-of-wordpress';
 		world_of_wordpress_copy_directory( $theme_source, $theme_destination );
@@ -146,12 +195,12 @@ function world_of_wordpress_stage_world_files(): void {
 		}
 	}
 
-	$content_source = $repo_root_in_ci . '/content';
+	$content_source = $source_root . '/content';
 	if ( is_dir( $content_source ) && ! is_dir( WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR ) ) {
 		world_of_wordpress_copy_directory( $content_source, WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR );
 	}
 
-	$world_md_source = $repo_root_in_ci . '/WORLD.md';
+	$world_md_source = $source_root . '/WORLD.md';
 	$world_md_dest   = WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR . '/WORLD.md';
 	if ( file_exists( $world_md_source ) && ! file_exists( $world_md_dest ) ) {
 		if ( ! is_dir( WORLD_OF_WORDPRESS_WORLD_CONTENT_DIR ) ) {

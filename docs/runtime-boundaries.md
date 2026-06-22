@@ -15,9 +15,12 @@ This note records the current boundary map for the World Creator day cycle.
   Agent CI wrapper with World Creator domain inputs, the MDI preview drop-in, and
   the world bootstrap/probe hooks.
 - `plugins/world-of-wordpress/world-of-wordpress.php` registers `WORLD.md` with
-  Data Machine memory and seeds MDI-backed content when the runtime boots.
-- World Creator PR capture uses the wrapper's tool recorder and engine-data
-  projection contract instead of direct Data Machine Code tool classes.
+  Data Machine memory and seeds MDI-backed content when the runtime provides a
+  source root through `WORLD_OF_WORDPRESS_SOURCE_ROOT` or the
+  `world_of_wordpress_source_root_candidates` hook. Memory metadata can be
+  narrowed by the runtime through `world_of_wordpress_memory_file_metadata`.
+- World Creator PR capture uses Homeboy's tool-result projection and
+  engine-data output contract instead of direct Data Machine Code tool classes.
 - `tests/playground-ci/component/world-of-wordpress-ci-driver.php` duplicates a
   small amount of Data Machine memory registration for CI-only bootstrapping.
 - `plugins/world-of-wordpress/inc/world-ability-atlas.php` reports
@@ -30,6 +33,9 @@ World of WordPress supplies these domain inputs to the day-cycle wrapper:
 - the repo and branch policy for day branches;
 - the World Creator bundle source;
 - the world bootstrap and preview probe files;
+- an optional named source root for repo-bundled theme, content, and `WORLD.md`;
+- optional runtime filters for World memory metadata and perception directive
+  modes/priority;
 - the visible runtime content, plugin, theme, and public preview blueprint;
 - completion policy such as whether a PR is required and which outcomes count.
 
@@ -46,12 +52,24 @@ the two workload hooks in `tests/playground-ci/workloads/`. The world plugin,
 theme, content, and bundle memory stay focused on the visible world and World
 Creator policy.
 
+## Open Upstream Gap
+
+The deployed Homeboy Data Machine Agent CI workflow still accepts hook files via
+`runtime_mounts` plus `workload_run_before`/`workload_run_after`; it does not yet
+expose a named workload-hook input that lets this repository avoid sandbox target
+paths entirely. World of WordPress is ready for that contract through the named
+source-root constant/filter and runtime-configurable memory/perception hooks, but
+the workflow mount declarations should remain until the upstream wrapper exposes
+named hook inputs.
+
 ## Guardrails
 
 - World Creator PR capture uses the shared wrapper's declarative
-  recorder/projection contract instead of direct Data Machine Code tool classes.
+  projection contract instead of direct Data Machine Code tool classes.
 - Public runtime introspection reports namespace-level or purpose-level
   summaries.
 - The public blueprint and day-cycle wrapper assemble the agent runtime.
+- Runtime-specific source-root, memory, and perception details use named inputs
+  or filters rather than sandbox mount path assumptions in plugin code.
 - `blueprints/` and `.github/` changes stay human-reviewed sealed runtime
   surfaces.
