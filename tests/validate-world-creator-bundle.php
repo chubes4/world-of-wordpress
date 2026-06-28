@@ -69,6 +69,66 @@ $required_tool_names = $flow['steps'][0]['completion_assertions']['required_tool
 world_bundle_assert_same( true, in_array( 'agent_daily_memory', $required_tool_names, true ), 'flow requires agent_daily_memory completion', $failures, $passes );
 world_bundle_assert_same( array( 'agent_daily_memory' ), $required_tool_names, 'flow preserves broad day-cycle completion contract', $failures, $passes );
 world_bundle_assert_same( false, str_contains( (string) ( $flow['steps'][0]['prompt_queue'][0]['prompt'] ?? '' ), 'bundles/world-creator/run-artifacts/' ), 'flow prompt has no deterministic heartbeat fallback', $failures, $passes );
+
+// Runner-owned publication: the agent must not hold write-git or PR-lifecycle tools.
+// The homeboy-extensions runner (workspace-publication-lifecycle.cjs) owns commit, push,
+// rebase-onto-base, and pull-request creation. The agent only edits files and inspects
+// read-only git, mirroring Automattic/docs-agent's workspace-editing flows.
+$forbidden_agent_tools = array(
+	'workspace_git_add',
+	'workspace_git_commit',
+	'workspace_git_push',
+	'workspace_git_rebase',
+	'workspace_git_reset',
+	'workspace_pr_status',
+	'workspace_pr_rebase',
+	'create_github_pull_request',
+	'merge_github_pull_request',
+	'cleanup_github_pull_request',
+	'comment_github_pull_request',
+	'upsert_github_pull_review_comment',
+);
+foreach ( $forbidden_agent_tools as $forbidden_tool ) {
+	world_bundle_assert_same( false, in_array( $forbidden_tool, $enabled_tools, true ), "flow does not grant the agent runner-owned publication tool {$forbidden_tool}", $failures, $passes );
+}
+
+$flow_prompt = (string) ( $flow['steps'][0]['prompt_queue'][0]['prompt'] ?? '' );
+world_bundle_assert_same( true, str_contains( $flow_prompt, 'workspace_git_status' ) && str_contains( $flow_prompt, 'workspace_git_diff' ), 'flow prompt ends by inspecting workspace status and diff', $failures, $passes );
+foreach ( array( 'create_github_pull_request', 'merge_github_pull_request', 'workspace_git_commit', 'workspace_git_push', 'open a pull request', 'open one' ) as $forbidden_prompt_text ) {
+	world_bundle_assert_same( false, str_contains( $flow_prompt, $forbidden_prompt_text ), "flow prompt must not direct the agent to publish ({$forbidden_prompt_text})", $failures, $passes );
+}
+
+// Completion is satisfiable without any agent-owned publication tool: workspace edits,
+// a read-only diff inspection, a mailbox reply, or a memory update each close the cycle.
+$complete_when_any   = $flow['steps'][0]['completion_assertions']['complete_when_any'] ?? array();
+$completion_tools    = array();
+foreach ( $complete_when_any as $outcome ) {
+	foreach ( $outcome['tools'] ?? array() as $tool ) {
+		$completion_tools[] = $tool['name'] ?? '';
+	}
+}
+foreach ( $forbidden_agent_tools as $forbidden_tool ) {
+	world_bundle_assert_same( false, in_array( $forbidden_tool, $completion_tools, true ), "completion gate is satisfiable without runner-owned publication tool {$forbidden_tool}", $failures, $passes );
+}
+world_bundle_assert_same( true, count( $complete_when_any ) > 0, 'completion gate offers at least one runner-compatible outcome', $failures, $passes );
+
+// The pipeline system prompt scopes the agent to workspace edits and delegates publication.
+$pipeline_path   = $repo_root . '/bundles/world-creator/pipelines/world-creator-pipeline.json';
+$pipeline        = world_bundle_read_json( $pipeline_path, $failures );
+$system_prompt   = (string) ( $pipeline['steps'][0]['step_config']['system_prompt'] ?? '' );
+world_bundle_assert_same( true, str_contains( $system_prompt, 'provided workspace' ), 'pipeline prompt scopes the agent to the provided workspace', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $system_prompt, 'handled for you' ), 'pipeline prompt delegates publication to the runner', $failures, $passes );
+foreach ( array( 'create_github_pull_request', 'workspace_git_commit', 'workspace_git_push', 'become reviewable pull requests' ) as $forbidden_pipeline_text ) {
+	world_bundle_assert_same( false, str_contains( $system_prompt, $forbidden_pipeline_text ), "pipeline prompt must not reference agent-owned publication ({$forbidden_pipeline_text})", $failures, $passes );
+}
+
+// The workflow hands publication to the runner workspace: explicit PR head branch, base ref,
+// and rebase-onto-base, matching workspace-publication-lifecycle.cjs fields.
+world_bundle_assert_same( true, str_contains( $workflow, '"branch": "world-day/{run_id}"' ), 'workflow declares the runner-owned PR head branch', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"from": "origin/main"' ), 'workflow declares the runner-owned PR base ref', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"rebase_base": true' ), 'workflow asks the runner to rebase onto the base before publishing', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'pr_title_template' ) && str_contains( $workflow, 'pr_body_template' ), 'workflow supplies runner PR title and body templates', $failures, $passes );
+
 world_bundle_assert_same( false, str_contains( $workflow, 'repo-contained world-day pull request' ), 'workflow uses the bundled flow prompt', $failures, $passes );
 world_bundle_assert_same( false, str_contains( $workflow, "- cron: '17 * * * *'" ), 'workflow remains paused unless manually dispatched', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'step_budget: 40' ), 'workflow gives the day cycle enough tool budget for PR creation', $failures, $passes );
