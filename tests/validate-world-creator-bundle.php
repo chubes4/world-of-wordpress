@@ -132,14 +132,18 @@ world_bundle_assert_same( true, str_contains( $workflow, 'pr_title_template' ) &
 world_bundle_assert_same( false, str_contains( $workflow, 'repo-contained world-day pull request' ), 'workflow uses the bundled flow prompt', $failures, $passes );
 world_bundle_assert_same( false, str_contains( $workflow, "- cron: '17 * * * *'" ), 'workflow remains paused unless manually dispatched', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, 'step_budget: 40' ), 'workflow gives the day cycle enough tool budget for PR creation', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'datamachine-agent-ci.yml@main' ), 'workflow uses the shared Homeboy runner wrapper', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'bundle_path: bundles/world-creator' ), 'workflow declares the World Creator bundle path', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'agent_slug: world-creator' ), 'workflow declares the World Creator agent', $failures, $passes );
-world_bundle_assert_same( true, str_contains( $workflow, 'flow_slug: world-creator-day-cycle-flow' ), 'workflow declares the World Creator day-cycle flow', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'runtime_profiles:' ), 'workflow does not inline runtime profile internals', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'runtime_dependencies:' ), 'workflow does not inline runtime dependency manifests', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'required_abilities:' ), 'workflow does not assert low-level runtime abilities', $failures, $passes );
-world_bundle_assert_same( false, str_contains( $workflow, 'runtime_execution:' ), 'workflow does not expose low-level runtime execution payloads', $failures, $passes );
+// The shared datamachine-agent-ci.yml wrapper was removed from homeboy-extensions main
+// (PR #1554); callers now target the generic runtime-agent-full-run.yml reusable workflow
+// and supply the runtime contract (profile, dependencies, abilities, bundle execution) directly.
+world_bundle_assert_same( true, str_contains( $workflow, 'runtime-agent-full-run.yml@main' ), 'workflow uses the generic Homeboy runtime runner', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"kind":"bundle","source":"bundles/world-creator"' ), 'workflow declares the World Creator bundle path', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"agent_slug":"world-creator"' ), 'workflow declares the World Creator agent', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"flow_slug":"world-creator-day-cycle-flow"' ) && str_contains( $workflow, 'workload_id: world-creator-day-cycle-flow' ), 'workflow declares the World Creator day-cycle flow', $failures, $passes );
+// The generic runner exposes the runtime contract as first-class workflow inputs.
+world_bundle_assert_same( true, str_contains( $workflow, 'runtime_profile: datamachine-agent-ci' ), 'workflow selects the Data Machine agent runtime profile', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'Automattic/agents-api@' ) && str_contains( $workflow, 'Extra-Chill/data-machine@' ), 'workflow mounts the Data Machine runtime dependency stack', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, 'datamachine/run-flow' ), 'workflow asserts the Data Machine runner abilities', $failures, $passes );
+world_bundle_assert_same( true, str_contains( $workflow, '"daily_memory_enabled":true' ), 'workflow keeps the Data Machine daily-memory gate enabled', $failures, $passes );
 world_bundle_assert_same( false, str_contains( $workflow, 'wp_codebox_wordpress_version:' ), 'workflow does not use deprecated WP Codebox WordPress version input', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, '"expose_to_agent": false' ), 'workflow delegates PR publication to the runner workspace contract', $failures, $passes );
 world_bundle_assert_same( true, str_contains( $workflow, '"capture_changes": true' ), 'workflow enables runner-owned change capture', $failures, $passes );
