@@ -70,11 +70,17 @@ jobs:
           "enabled": true,
           "repo": "world-of-wordpress",
           "clone_url": "https://github.com/chubes4/world-of-wordpress.git",
-          "branch_prefix": "world-day",
+          "branch": "world-day/{run_id}",
           "from": "origin/main",
           "bootstrap": false,
+          "rebase_base": true,
           "expose_to_agent": false,
           "capture_changes": true
+        }
+      artifact_export_config: |
+        {
+          "pr_title_template": "World Creator day cycle changes",
+          "pr_body_template": "## Summary\n- World Creator edited the world inside the provided workspace during its day cycle.\n- The runner published these workspace changes for human review; the agent holds no PR-lifecycle tools.\n\n## Result\n{result_table}\n\n## Checks\n{checks_table}\n\n## Review Artifacts\n{links_table}\n\n## AI assistance\n- **AI assistance:** Yes\n- **Tool(s):** World Creator agent via WP Codebox in GitHub Actions\n- **Model:** OpenAI GPT-5.5\n- **Used for:** Generated world changes from the running site for human review."
         }
       success_requires_pr: false
       success_completion_outcomes: '["world_change_pr","pr_rebased","pr_merged","pr_closed","mailbox_reply","memory_update"]'

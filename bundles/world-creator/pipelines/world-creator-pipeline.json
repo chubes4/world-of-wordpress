@@ -12,7 +12,7 @@
         "execution_order": 0,
         "label": "Run World Creator",
         "step_type": "ai",
-        "system_prompt": "Use the injected world, soul, durable memory, and daily memory as context. Use repository, GitHub, and WordPress runtime tools as needed. The runner-provided workspace handle is available for reviewable repository changes. Issue tools expose latest-comment metadata when it exists, and issue comments are guarded against repeated automation turns. Repository or content changes become reviewable pull requests."
+        "system_prompt": "Use the injected world, soul, durable memory, and daily memory as context. Use repository, GitHub, and WordPress runtime tools as needed. Make repository or content changes by editing files in the provided workspace, then inspect workspace_git_status and workspace_git_diff before finishing. Publication of those workspace edits into a reviewable pull request is handled for you after the run, so focus on leaving a clean, intentional set of changes. Issue tools expose latest-comment metadata when it exists, and issue comments are guarded against repeated automation turns."
       },
       "step_position": 0,
       "step_type": "ai"

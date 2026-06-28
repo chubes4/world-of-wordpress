@@ -21,9 +21,8 @@
         "get_github_pull_review_context",
         "get_github_check_runs",
         "get_github_homeboy_ci_results",
-        "merge_github_pull_request",
-        "cleanup_github_pull_request",
-        "upsert_github_pull_review_comment",
+        "list_github_tree",
+        "get_github_file",
         "wordpress_runtime_inventory",
         "wordpress_runtime_ls",
         "wordpress_runtime_read",
@@ -38,17 +37,6 @@
         "workspace_git_status",
         "workspace_git_log",
         "workspace_git_diff",
-        "workspace_git_add",
-        "workspace_git_commit",
-        "workspace_git_push",
-        "workspace_git_rebase",
-        "workspace_git_reset",
-        "workspace_pr_status",
-        "workspace_pr_rebase",
-        "list_github_tree",
-        "get_github_file",
-        "create_github_pull_request",
-        "comment_github_pull_request",
         "agent_memory",
         "agent_daily_memory"
       ],
@@ -59,43 +47,27 @@
         ],
         "complete_when_any": [
           {
-            "name": "world_change_pr",
+            "name": "world_change",
             "tools": [
               {
-                "name": "workspace_git_commit"
+                "name": "workspace_write"
               },
               {
-                "name": "workspace_git_push"
+                "name": "workspace_edit"
               },
               {
-                "name": "create_github_pull_request"
+                "name": "workspace_apply_patch"
+              },
+              {
+                "name": "workspace_delete"
               }
             ]
           },
           {
-            "name": "pr_rebased",
+            "name": "world_change_inspected",
             "tools": [
               {
-                "name": "workspace_pr_rebase"
-              }
-            ]
-          },
-          {
-            "name": "pr_merged",
-            "tools": [
-              {
-                "name": "merge_github_pull_request"
-              }
-            ]
-          },
-          {
-            "name": "pr_closed",
-            "tools": [
-              {
-                "name": "manage_github_issue",
-                "required_parameters": {
-                  "action": "close"
-                }
+                "name": "workspace_git_diff"
               }
             ]
           },
@@ -106,6 +78,17 @@
                 "name": "manage_github_issue",
                 "required_parameters": {
                   "action": "comment"
+                }
+              }
+            ]
+          },
+          {
+            "name": "issue_closed",
+            "tools": [
+              {
+                "name": "manage_github_issue",
+                "required_parameters": {
+                  "action": "close"
                 }
               }
             ]
@@ -123,25 +106,10 @@
           }
         ]
       },
-      "tool_runtime_rules": [
-        {
-          "id": "daily-memory-before-pr",
-          "type": "require_prior_tool",
-          "before_tool": "create_github_pull_request",
-          "require_prior_tool": [
-            "agent_daily_memory"
-          ],
-          "require_prior_tool_parameters": {
-            "agent_daily_memory": {
-              "action": "write"
-            }
-          }
-        }
-      ],
       "prompt_queue": [
         {
           "added_at": "2026-05-17T19:00:00Z",
-          "prompt": "Wake with your memory, inspect the world's state — repository, mailbox, pull requests, runtime — and decide what this cycle asks for.\n\nYour moves are wide. You may build new surfaces, refactor or remove existing ones, land or bring home open pull requests (yours or others'), reply to or initiate mailbox signals, update your own durable memory, or rest quietly when the world is settled. Scope is yours: one careful move, a sweeping refactor, or a coordinated series all count.\n\nWhen repository changes are warranted, use the provided workspace and open a pull request. When something else fits better, do that instead. Write daily memory in your own voice before closing — note what you saw, what you chose, and what you thought, not only what you did."
+          "prompt": "Wake with your memory, inspect the world's state — repository, mailbox, pull requests, runtime — and decide what this cycle asks for.\n\nYour moves are wide. You may build new surfaces, refactor or remove existing ones, study open pull requests (yours or others') to inform your work, reply to or initiate mailbox signals through issues, update your own durable memory, or rest quietly when the world is settled. Scope is yours: one careful move, a sweeping refactor, or a coordinated series all count.\n\nWhen repository changes are warranted, edit them in the provided workspace, then run workspace_git_status and workspace_git_diff to inspect what you changed before closing. Publication of your workspace changes into a reviewable pull request is handled for you after the run — your job is to leave a clean, intentional set of edits in the workspace. When a mailbox reply or another non-repository move fits better, do that instead. Write daily memory in your own voice before closing — note what you saw, what you chose, and what you thought, not only what you did."
         }
       ],
       "queue_mode": "static",
